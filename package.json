@@ -11,7 +11,10 @@
     "db:studio": "dotenv -e .env.local -- drizzle-kit studio",
     "db:generate": "dotenv -e .env.local -- drizzle-kit generate",
     "db:migrate": "dotenv -e .env.local -- drizzle-kit migrate",
-    "db:seed": "dotenv -e .env.local -- tsx db/seed.ts"
+    "db:seed": "dotenv -e .env.local -- tsx db/seed.ts",
+    "scrape:rubbers": "dotenv -e .env.local -- tsx db/scrapers/revspin.ts rubbers",
+    "scrape:blades": "dotenv -e .env.local -- tsx db/scrapers/revspin.ts blades",
+    "scrape:import": "dotenv -e .env.local -- tsx db/scrapers/import-revspin.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
@@ -36,8 +39,11 @@
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "playwright": "^1.59.1",
+    "playwright-extra": "^4.3.6",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5"

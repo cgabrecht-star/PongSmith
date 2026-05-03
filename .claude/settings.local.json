@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node \"/c/Program Files/nodejs/node_modules/npm/bin/npx-cli.js\" tsc --noEmit)"
+    ]
+  }
+}
