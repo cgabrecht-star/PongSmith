@@ -12,6 +12,7 @@ import { synergies, blades, rubbers } from "@/db/schema";
 import { and, desc, eq, gte, lte } from "drizzle-orm";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 const SYSTEM_PROMPT = `Du bist PongSmith — ein unabhängiger Tischtennis-Ausrüstungsberater für deutsche Vereinsspieler (TTR 1000–1700).
 
