@@ -14,7 +14,8 @@
     "db:seed": "dotenv -e .env.local -- tsx db/seed.ts",
     "scrape:rubbers": "dotenv -e .env.local -- tsx db/scrapers/revspin.ts rubbers",
     "scrape:blades": "dotenv -e .env.local -- tsx db/scrapers/revspin.ts blades",
-    "scrape:import": "dotenv -e .env.local -- tsx db/scrapers/import-revspin.ts"
+    "scrape:import": "dotenv -e .env.local -- tsx db/scrapers/import-revspin.ts",
+    "compute:synergies": "dotenv -e .env.local -- tsx db/scripts/compute-synergies.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
