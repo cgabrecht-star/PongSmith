@@ -92,11 +92,12 @@ export function BeraterChat() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const messagesRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    const el = messagesRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
   }, [messages, loading]);
 
   async function send() {
@@ -158,7 +159,7 @@ export function BeraterChat() {
       </div>
 
       {/* Nachrichten */}
-      <div className="flex-1 space-y-4 overflow-y-auto p-5">
+      <div ref={messagesRef} className="flex-1 space-y-4 overflow-y-auto p-5">
         {messages.map((msg, i) => (
           <Bubble key={i} msg={msg} />
         ))}
@@ -177,7 +178,6 @@ export function BeraterChat() {
             {apiError}
           </div>
         )}
-        <div ref={bottomRef} />
       </div>
 
       {/* Eingabe */}
