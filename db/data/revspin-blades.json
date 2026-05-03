@@ -8,7 +8,10 @@
     "communitySpeed": 9,
     "communityControl": 8.7,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 85,
+    "mfgControl": 80,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-timo-boll-zlf",
@@ -19,7 +22,10 @@
     "communitySpeed": 8.8,
     "communityControl": 9.3,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 9,
+    "mfgControl": 8,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-zhang-jike-alc",
@@ -30,7 +36,10 @@
     "communitySpeed": 9,
     "communityControl": 9.3,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": null,
+    "mfgControl": null,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-viscaria",
@@ -41,7 +50,10 @@
     "communitySpeed": 9,
     "communityControl": 8.8,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 8.7,
+    "mfgControl": 7.2,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-primorac",
@@ -52,7 +64,10 @@
     "communitySpeed": 7.6,
     "communityControl": 8.8,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 7.5,
+    "mfgControl": 7.8,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-innerforce-layer-alc",
@@ -63,7 +78,10 @@
     "communitySpeed": 9,
     "communityControl": 9.3,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": null,
+    "mfgControl": null,
+    "mfgScale": 13
   },
   {
     "slug": "stiga-allround-classic",
@@ -74,7 +92,10 @@
     "communitySpeed": 6.6,
     "communityControl": 8.9,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 4.1,
+    "mfgControl": 8.2,
+    "mfgScale": 10
   },
   {
     "slug": "stiga-allround-evolution",
@@ -85,7 +106,10 @@
     "communitySpeed": 7.3,
     "communityControl": 8.7,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 5.1,
+    "mfgControl": 7.1,
+    "mfgScale": 10
   },
   {
     "slug": "stiga-offensive-classic",
@@ -96,7 +120,10 @@
     "communitySpeed": 7.6,
     "communityControl": 8.3,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 5.2,
+    "mfgControl": 6.8,
+    "mfgScale": 10
   },
   {
     "slug": "stiga-clipper-cr",
@@ -107,7 +134,10 @@
     "communitySpeed": 9,
     "communityControl": 8.5,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 99,
+    "mfgControl": 64,
+    "mfgScale": 10
   },
   {
     "slug": "donic-waldner-allplay",
@@ -118,7 +148,10 @@
     "communitySpeed": 7.3,
     "communityControl": 8.9,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 68,
+    "mfgControl": 80,
+    "mfgScale": 10
   },
   {
     "slug": "donic-persson-powerplay",
@@ -129,7 +162,10 @@
     "communitySpeed": 8.6,
     "communityControl": 8.6,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 88,
+    "mfgControl": 72,
+    "mfgScale": 10
   },
   {
     "slug": "donic-ovtcharov-carbospeed",
@@ -140,7 +176,10 @@
     "communitySpeed": 9.6,
     "communityControl": 8.4,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 99,
+    "mfgControl": 60,
+    "mfgScale": 10
   },
   {
     "slug": "donic-waldner-senso-carbon",
@@ -151,7 +190,10 @@
     "communitySpeed": 8.3,
     "communityControl": 8.8,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 85,
+    "mfgControl": 79,
+    "mfgScale": 10
   },
   {
     "slug": "tibhar-samsonov-force-pro",
@@ -162,7 +204,10 @@
     "communitySpeed": 8.8,
     "communityControl": 8.9,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": null,
+    "mfgControl": null,
+    "mfgScale": null
   },
   {
     "slug": "tibhar-stratus-power-wood",
@@ -173,7 +218,10 @@
     "communitySpeed": 8.9,
     "communityControl": 9.3,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 9,
+    "mfgControl": 7.5,
+    "mfgScale": 10
   },
   {
     "slug": "joola-k5",
@@ -184,7 +232,10 @@
     "communitySpeed": 7.7,
     "communityControl": 8.6,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 88,
+    "mfgControl": 88,
+    "mfgScale": 10
   },
   {
     "slug": "xiom-stradivarius",
@@ -195,7 +246,10 @@
     "communitySpeed": 8.9,
     "communityControl": 8.6,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 90,
+    "mfgControl": 79,
+    "mfgScale": 10
   },
   {
     "slug": "xiom-hayabusa-z",
@@ -206,7 +260,10 @@
     "communitySpeed": 8.5,
     "communityControl": 9.3,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": null,
+    "mfgControl": null,
+    "mfgScale": 10
   },
   {
     "slug": "andro-super-core-cell-off",
@@ -217,7 +274,10 @@
     "communitySpeed": 9.1,
     "communityControl": 9,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 91,
+    "mfgControl": 94,
+    "mfgScale": 10
   },
   {
     "slug": "nittaku-acoustic",
@@ -228,7 +288,10 @@
     "communitySpeed": 8.6,
     "communityControl": 9.3,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 86,
+    "mfgControl": 67,
+    "mfgScale": 10
   },
   {
     "slug": "nittaku-violin",
@@ -239,7 +302,10 @@
     "communitySpeed": 8.2,
     "communityControl": 9.1,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 88,
+    "mfgControl": 65,
+    "mfgScale": 10
   },
   {
     "slug": "yasaka-ma-lin-extra-offensive",
@@ -250,7 +316,10 @@
     "communitySpeed": 8.5,
     "communityControl": 8.6,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": null,
+    "mfgControl": null,
+    "mfgScale": 10
   },
   {
     "slug": "yasaka-sweden-extra",
@@ -261,6 +330,9 @@
     "communitySpeed": 7.8,
     "communityControl": 9.1,
     "vibrationsScore": null,
-    "weightScore": null
+    "weightScore": null,
+    "mfgSpeed": 82,
+    "mfgControl": 71,
+    "mfgScale": 10
   }
 ]

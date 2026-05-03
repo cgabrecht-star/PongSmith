@@ -15,13 +15,21 @@ import type { RevspinRubber, RevspinBlade } from "./revspin";
 const DATA_DIR = path.join(process.cwd(), "db", "data");
 
 // ---------------------------------------------------------------------------
-// Normalisierung: revspin-Score (1–10) → unsere Skala (1.0–10.0)
-// revspin ist bereits 1–10, keine Umrechnung nötig — direkt übernehmen.
+// Normalisierung
 // ---------------------------------------------------------------------------
 
+// Community-Score (revspin, bereits 1–10) → String für numeric-Spalte
 function norm(val: number | null): string | null {
   if (val === null) return null;
   return val.toFixed(1);
+}
+
+// Hersteller-Rohdaten: Normierung auf 1.0–10.0
+// speedNorm = (mfgSpeed / mfgScale) * 10  (clamp auf max 10.0)
+function normMfg(raw: number | null, scale: number | null): string | null {
+  if (raw === null || scale === null || scale === 0) return null;
+  const n = Math.min((raw / scale) * 10, 10);
+  return n.toFixed(1);
 }
 
 // ---------------------------------------------------------------------------
@@ -100,8 +108,18 @@ async function importRubbers(cache: Map<string, number>) {
         manufacturerId,
         name: r.name,
         slug: r.slug,
-        communitySpeed: norm(r.communitySpeed),
-        communitySpin: norm(r.communitySpin),
+        // Hersteller-Rohdaten
+        speedRaw: r.mfgSpeed !== null ? String(r.mfgSpeed) : null,
+        spinRaw:  r.mfgSpin  !== null ? String(r.mfgSpin)  : null,
+        controlRaw: r.mfgControl !== null ? String(r.mfgControl) : null,
+        speedRawScale: r.mfgScale,
+        // Normierte Hersteller-Werte (1.0–10.0)
+        speedNorm:   normMfg(r.mfgSpeed,   r.mfgScale),
+        spinNorm:    normMfg(r.mfgSpin,    r.mfgScale),
+        controlNorm: normMfg(r.mfgControl, r.mfgScale),
+        // Community-Werte
+        communitySpeed:   norm(r.communitySpeed),
+        communitySpin:    norm(r.communitySpin),
         communityControl: norm(r.communityControl),
         communityReviewCount: r.reviewCount ?? 0,
         sourceUrl: r.sourceUrl,
@@ -145,7 +163,15 @@ async function importBlades(cache: Map<string, number>) {
         manufacturerId,
         name: b.name,
         slug: b.slug,
-        communitySpeed: norm(b.communitySpeed),
+        // Hersteller-Rohdaten
+        speedRaw:   b.mfgSpeed   !== null ? String(b.mfgSpeed)   : null,
+        controlRaw: b.mfgControl !== null ? String(b.mfgControl) : null,
+        speedRawScale: b.mfgScale,
+        // Normierte Hersteller-Werte (1.0–10.0)
+        speedNorm:   normMfg(b.mfgSpeed,   b.mfgScale),
+        controlNorm: normMfg(b.mfgControl, b.mfgScale),
+        // Community-Werte
+        communitySpeed:   norm(b.communitySpeed),
         communityControl: norm(b.communityControl),
         communityReviewCount: b.reviewCount ?? 0,
         sourceUrl: b.sourceUrl,

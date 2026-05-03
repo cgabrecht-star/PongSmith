@@ -25,6 +25,7 @@ export interface RevspinRubber {
   manufacturer: string;
   sourceUrl: string;
   reviewCount: number | null;
+  // Community-Ratings (revspin, 1–10)
   communitySpeed: number | null;
   communitySpin: number | null;
   communityControl: number | null;
@@ -32,6 +33,11 @@ export interface RevspinRubber {
   weightScore: number | null;
   spongeHardnessScore: number | null;
   gearsScore: number | null;
+  // Hersteller-Rohdaten (eigene Skala des Herstellers)
+  mfgSpeed: number | null;
+  mfgSpin: number | null;
+  mfgControl: number | null;
+  mfgScale: number | null; // Max-Wert der Hersteller-Skala (z.B. 13 für Butterfly)
 }
 
 export interface RevspinBlade {
@@ -44,6 +50,10 @@ export interface RevspinBlade {
   communityControl: number | null;
   vibrationsScore: number | null;
   weightScore: number | null;
+  // Hersteller-Rohdaten
+  mfgSpeed: number | null;
+  mfgControl: number | null;
+  mfgScale: number | null;
 }
 
 // ---------------------------------------------------------------------------
@@ -194,6 +204,32 @@ const KNOWN_MANUFACTURERS = [
   "Reactor", "Galaxy", "Double Fish", "Friendship",
 ];
 
+// Max-Wert der Hersteller-eigenen Speed-Skala (für Normierung auf 1–10)
+// speedNorm = (mfgSpeed / mfgScale) * 10
+const MFG_SCALE: Record<string, number> = {
+  butterfly: 13,
+  stiga:     10,
+  donic:     10,
+  tibhar:    10,
+  joola:     10,
+  xiom:      10,
+  yasaka:    10,
+  andro:     10,
+  dhs:       10,
+  nittaku:   10,
+  victas:    10,
+  gewo:      10,
+  tsp:       10,
+  sanwei:    10,
+  "729":     10,
+  yinhe:     10,
+  palio:     10,
+};
+
+function getMfgScale(manufacturer: string): number {
+  return MFG_SCALE[manufacturer.toLowerCase()] ?? 10;
+}
+
 // ---------------------------------------------------------------------------
 // Hilfsfunktionen
 // ---------------------------------------------------------------------------
@@ -302,29 +338,40 @@ async function scrapeRubberDetailOnce(
             ?.textContent?.trim() ?? "0"
         ) || null;
 
-      // Ratings aus UserRatingsTable extrahieren
+      // Community-Ratings aus #UserRatingsTable
       const ratings: Record<string, number | null> = {};
-      const table = document.querySelector("#UserRatingsTable");
-      if (table) {
-        const rows = table.querySelectorAll("tr");
-        rows.forEach((row) => {
-          const label =
-            row.querySelector(".cell_label")?.textContent?.trim().toLowerCase() ?? "";
-          const valueRaw =
-            row.querySelector(".cell_rating")?.textContent?.trim() ?? "";
-          // Erstes Token ist die Zahl (z.B. "8.7  Very fast")
+      const userTable = document.querySelector("#UserRatingsTable");
+      if (userTable) {
+        userTable.querySelectorAll("tr").forEach((row) => {
+          const label = row.querySelector(".cell_label")?.textContent?.trim().toLowerCase() ?? "";
+          const valueRaw = row.querySelector(".cell_rating")?.textContent?.trim() ?? "";
           const value = parseFloat(valueRaw.split(/\s+/)[0] ?? "");
           if (label && !isNaN(value)) ratings[label] = value;
         });
       }
 
-      return { name, reviewCount, ratings };
+      // Hersteller-Rohdaten aus zweiter Tabelle (ohne id)
+      const mfgRatings: Record<string, number | null> = {};
+      const allTables = document.querySelectorAll(".ProductRatingTable");
+      if (allTables.length >= 2) {
+        allTables[1]!.querySelectorAll("tr").forEach((row) => {
+          const label = row.querySelector(".cell_label")?.textContent?.trim().toLowerCase() ?? "";
+          const valueRaw = row.querySelector(".cell_rating")?.textContent?.trim() ?? "";
+          const value = parseFloat(valueRaw.split(/\s+/)[0] ?? "");
+          if (label && !isNaN(value)) mfgRatings[label] = value;
+        });
+      }
+
+      return { name, reviewCount, ratings, mfgRatings };
     });
+
+    const manufacturer = extractManufacturer(data.name);
+    const mfgScale = getMfgScale(manufacturer);
 
     return {
       slug: slugFromUrl(url, "rubber"),
       name: data.name,
-      manufacturer: extractManufacturer(data.name),
+      manufacturer,
       sourceUrl: url,
       reviewCount: data.reviewCount,
       communitySpeed: data.ratings["speed"] ?? null,
@@ -334,6 +381,10 @@ async function scrapeRubberDetailOnce(
       weightScore: data.ratings["weight"] ?? null,
       spongeHardnessScore: data.ratings["sponge hardness"] ?? null,
       gearsScore: data.ratings["gears"] ?? null,
+      mfgSpeed: data.mfgRatings["speed"] ?? null,
+      mfgSpin: data.mfgRatings["spin"] ?? null,
+      mfgControl: data.mfgRatings["control"] ?? null,
+      mfgScale: Object.keys(data.mfgRatings).length > 0 ? mfgScale : null,
     };
   } catch (err) {
     const msg = (err as Error).message ?? "";
@@ -387,32 +438,46 @@ async function scrapeBladeDetailOnce(
         ) || null;
 
       const ratings: Record<string, number | null> = {};
-      const table = document.querySelector("#UserRatingsTable");
-      if (table) {
-        const rows = table.querySelectorAll("tr");
-        rows.forEach((row) => {
-          const label =
-            row.querySelector(".cell_label")?.textContent?.trim().toLowerCase() ?? "";
-          const valueRaw =
-            row.querySelector(".cell_rating")?.textContent?.trim() ?? "";
+      const userTable = document.querySelector("#UserRatingsTable");
+      if (userTable) {
+        userTable.querySelectorAll("tr").forEach((row) => {
+          const label = row.querySelector(".cell_label")?.textContent?.trim().toLowerCase() ?? "";
+          const valueRaw = row.querySelector(".cell_rating")?.textContent?.trim() ?? "";
           const value = parseFloat(valueRaw.split(/\s+/)[0] ?? "");
           if (label && !isNaN(value)) ratings[label] = value;
         });
       }
 
-      return { name, reviewCount, ratings };
+      const mfgRatings: Record<string, number | null> = {};
+      const allTables = document.querySelectorAll(".ProductRatingTable");
+      if (allTables.length >= 2) {
+        allTables[1]!.querySelectorAll("tr").forEach((row) => {
+          const label = row.querySelector(".cell_label")?.textContent?.trim().toLowerCase() ?? "";
+          const valueRaw = row.querySelector(".cell_rating")?.textContent?.trim() ?? "";
+          const value = parseFloat(valueRaw.split(/\s+/)[0] ?? "");
+          if (label && !isNaN(value)) mfgRatings[label] = value;
+        });
+      }
+
+      return { name, reviewCount, ratings, mfgRatings };
     });
+
+    const manufacturer = extractManufacturer(data.name);
+    const mfgScale = getMfgScale(manufacturer);
 
     return {
       slug: slugFromUrl(url, "blade"),
       name: data.name,
-      manufacturer: extractManufacturer(data.name),
+      manufacturer,
       sourceUrl: url,
       reviewCount: data.reviewCount,
       communitySpeed: data.ratings["speed"] ?? null,
       communityControl: data.ratings["control"] ?? null,
       vibrationsScore: data.ratings["vibrations"] ?? null,
       weightScore: data.ratings["weight"] ?? null,
+      mfgSpeed: data.mfgRatings["speed"] ?? null,
+      mfgControl: data.mfgRatings["control"] ?? null,
+      mfgScale: Object.keys(data.mfgRatings).length > 0 ? mfgScale : null,
     };
   } catch (err) {
     const msg = (err as Error).message ?? "";

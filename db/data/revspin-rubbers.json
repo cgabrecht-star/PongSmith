@@ -11,7 +11,11 @@
     "tackinessScore": 2.3,
     "weightScore": 6.4,
     "spongeHardnessScore": 6.1,
-    "gearsScore": 8.6
+    "gearsScore": 8.6,
+    "mfgSpeed": 13,
+    "mfgSpin": 11,
+    "mfgControl": null,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-tenergy-80",
@@ -25,7 +29,11 @@
     "tackinessScore": 2.1,
     "weightScore": 5.5,
     "spongeHardnessScore": 5.4,
-    "gearsScore": 9
+    "gearsScore": 9,
+    "mfgSpeed": 132,
+    "mfgSpin": 112,
+    "mfgControl": null,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-tenergy-64",
@@ -39,7 +47,11 @@
     "tackinessScore": 2.5,
     "weightScore": 5.5,
     "spongeHardnessScore": 5.1,
-    "gearsScore": 8.5
+    "gearsScore": 8.5,
+    "mfgSpeed": 135,
+    "mfgSpin": 105,
+    "mfgControl": null,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-tenergy-05-fx",
@@ -53,7 +65,11 @@
     "tackinessScore": 2.9,
     "weightScore": 5.3,
     "spongeHardnessScore": 4.1,
-    "gearsScore": 8.4
+    "gearsScore": 8.4,
+    "mfgSpeed": 130,
+    "mfgSpin": 115,
+    "mfgControl": null,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-tenergy-80-fx",
@@ -67,7 +83,11 @@
     "tackinessScore": 1.8,
     "weightScore": 4.5,
     "spongeHardnessScore": 3.6,
-    "gearsScore": 7.8
+    "gearsScore": 7.8,
+    "mfgSpeed": 132,
+    "mfgSpin": 112,
+    "mfgControl": null,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-tenergy-19",
@@ -81,7 +101,11 @@
     "tackinessScore": 1.6,
     "weightScore": 4.5,
     "spongeHardnessScore": 5.8,
-    "gearsScore": 8.2
+    "gearsScore": 8.2,
+    "mfgSpeed": 132,
+    "mfgSpin": 117,
+    "mfgControl": 36,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-dignics-05",
@@ -95,7 +119,11 @@
     "tackinessScore": 1.8,
     "weightScore": 4.9,
     "spongeHardnessScore": 7,
-    "gearsScore": 8.4
+    "gearsScore": 8.4,
+    "mfgSpeed": 135,
+    "mfgSpin": 120,
+    "mfgControl": null,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-dignics-64",
@@ -109,7 +137,11 @@
     "tackinessScore": 1.7,
     "weightScore": 4.6,
     "spongeHardnessScore": 6.2,
-    "gearsScore": 8.9
+    "gearsScore": 8.9,
+    "mfgSpeed": 140,
+    "mfgSpin": 110,
+    "mfgControl": null,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-dignics-80",
@@ -123,7 +155,11 @@
     "tackinessScore": 1.7,
     "weightScore": 5.8,
     "spongeHardnessScore": 6.6,
-    "gearsScore": 8.2
+    "gearsScore": 8.2,
+    "mfgSpeed": 13,
+    "mfgSpin": 11,
+    "mfgControl": 70,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-dignics-09c",
@@ -137,7 +173,11 @@
     "tackinessScore": 5.5,
     "weightScore": 6.8,
     "spongeHardnessScore": 8.1,
-    "gearsScore": 9
+    "gearsScore": 9,
+    "mfgSpeed": 130,
+    "mfgSpin": 130,
+    "mfgControl": null,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-rozena",
@@ -151,7 +191,11 @@
     "tackinessScore": 1.5,
     "weightScore": 4.5,
     "spongeHardnessScore": 5,
-    "gearsScore": 6.9
+    "gearsScore": 6.9,
+    "mfgSpeed": 13,
+    "mfgSpin": 10,
+    "mfgControl": null,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-sriver-el",
@@ -165,7 +209,11 @@
     "tackinessScore": 2.6,
     "weightScore": 4,
     "spongeHardnessScore": 3.9,
-    "gearsScore": 6.9
+    "gearsScore": 6.9,
+    "mfgSpeed": 10,
+    "mfgSpin": 8,
+    "mfgControl": null,
+    "mfgScale": 13
   },
   {
     "slug": "butterfly-tackifire-drive",
@@ -179,7 +227,11 @@
     "tackinessScore": 5,
     "weightScore": 4.5,
     "spongeHardnessScore": 4.4,
-    "gearsScore": 6.7
+    "gearsScore": 6.7,
+    "mfgSpeed": 9,
+    "mfgSpin": 9.3,
+    "mfgControl": null,
+    "mfgScale": 13
   },
   {
     "slug": "stiga-mantra-m",
@@ -193,7 +245,11 @@
     "tackinessScore": 1.6,
     "weightScore": 4.6,
     "spongeHardnessScore": 5.3,
-    "gearsScore": 8
+    "gearsScore": 8,
+    "mfgSpeed": null,
+    "mfgSpin": null,
+    "mfgControl": null,
+    "mfgScale": null
   },
   {
     "slug": "stiga-mantra-h",
@@ -207,7 +263,11 @@
     "tackinessScore": 2,
     "weightScore": 5.9,
     "spongeHardnessScore": 8.7,
-    "gearsScore": 7.7
+    "gearsScore": 7.7,
+    "mfgSpeed": 158,
+    "mfgSpin": 132,
+    "mfgControl": 77,
+    "mfgScale": 10
   },
   {
     "slug": "stiga-mantra-s",
@@ -221,7 +281,11 @@
     "tackinessScore": 3.3,
     "weightScore": 4.4,
     "spongeHardnessScore": 3,
-    "gearsScore": 6
+    "gearsScore": 6,
+    "mfgSpeed": null,
+    "mfgSpin": null,
+    "mfgControl": null,
+    "mfgScale": null
   },
   {
     "slug": "stiga-calibra-lt",
@@ -235,7 +299,11 @@
     "tackinessScore": 4.5,
     "weightScore": 5.8,
     "spongeHardnessScore": 7.3,
-    "gearsScore": 8.5
+    "gearsScore": 8.5,
+    "mfgSpeed": 96,
+    "mfgSpin": 91,
+    "mfgControl": 70,
+    "mfgScale": 10
   },
   {
     "slug": "stiga-calibra-lt-sound",
@@ -249,7 +317,11 @@
     "tackinessScore": 2,
     "weightScore": 2.7,
     "spongeHardnessScore": 1.7,
-    "gearsScore": 7.7
+    "gearsScore": 7.7,
+    "mfgSpeed": 94,
+    "mfgSpin": 93,
+    "mfgControl": 71,
+    "mfgScale": 10
   },
   {
     "slug": "donic-bluefire-m1",
@@ -263,7 +335,11 @@
     "tackinessScore": 2.7,
     "weightScore": 5.9,
     "spongeHardnessScore": 7.2,
-    "gearsScore": 8
+    "gearsScore": 8,
+    "mfgSpeed": 107,
+    "mfgSpin": 107,
+    "mfgControl": 60,
+    "mfgScale": 10
   },
   {
     "slug": "donic-bluefire-m2",
@@ -277,7 +353,11 @@
     "tackinessScore": 1.8,
     "weightScore": 5.6,
     "spongeHardnessScore": 5.4,
-    "gearsScore": 7.7
+    "gearsScore": 7.7,
+    "mfgSpeed": 97,
+    "mfgSpin": 107,
+    "mfgControl": 70,
+    "mfgScale": 10
   },
   {
     "slug": "donic-bluefire-m3",
@@ -291,7 +371,11 @@
     "tackinessScore": 1.8,
     "weightScore": 5.3,
     "spongeHardnessScore": 3.1,
-    "gearsScore": 8.1
+    "gearsScore": 8.1,
+    "mfgSpeed": 90,
+    "mfgSpin": 107,
+    "mfgControl": 77,
+    "mfgScale": 10
   },
   {
     "slug": "donic-baracuda",
@@ -305,7 +389,11 @@
     "tackinessScore": 2.3,
     "weightScore": 5.5,
     "spongeHardnessScore": 4.9,
-    "gearsScore": 7.8
+    "gearsScore": 7.8,
+    "mfgSpeed": 91,
+    "mfgSpin": 98,
+    "mfgControl": 71,
+    "mfgScale": 10
   },
   {
     "slug": "donic-coppa-jo-silver",
@@ -319,7 +407,11 @@
     "tackinessScore": 2.5,
     "weightScore": 3.5,
     "spongeHardnessScore": 3,
-    "gearsScore": 6.7
+    "gearsScore": 6.7,
+    "mfgSpeed": 79,
+    "mfgSpin": 93,
+    "mfgControl": 70,
+    "mfgScale": 10
   },
   {
     "slug": "tibhar-evolution-mx-p",
@@ -333,7 +425,11 @@
     "tackinessScore": 2.3,
     "weightScore": 6.5,
     "spongeHardnessScore": 7,
-    "gearsScore": 8.7
+    "gearsScore": 8.7,
+    "mfgSpeed": 98,
+    "mfgSpin": 96,
+    "mfgControl": 67,
+    "mfgScale": 10
   },
   {
     "slug": "tibhar-evolution-mx-s",
@@ -347,7 +443,11 @@
     "tackinessScore": 2.4,
     "weightScore": 6.6,
     "spongeHardnessScore": 7.6,
-    "gearsScore": 9
+    "gearsScore": 9,
+    "mfgSpeed": 10,
+    "mfgSpin": 9,
+    "mfgControl": 8,
+    "mfgScale": 10
   },
   {
     "slug": "tibhar-evolution-fx-s",
@@ -361,7 +461,11 @@
     "tackinessScore": 1.3,
     "weightScore": 5.4,
     "spongeHardnessScore": 3.2,
-    "gearsScore": 7.4
+    "gearsScore": 7.4,
+    "mfgSpeed": null,
+    "mfgSpin": null,
+    "mfgControl": null,
+    "mfgScale": null
   },
   {
     "slug": "tibhar-evolution-el-s",
@@ -375,7 +479,11 @@
     "tackinessScore": 2.3,
     "weightScore": 6.2,
     "spongeHardnessScore": 6,
-    "gearsScore": 8.5
+    "gearsScore": 8.5,
+    "mfgSpeed": 123,
+    "mfgSpin": 122,
+    "mfgControl": 85,
+    "mfgScale": 10
   },
   {
     "slug": "tibhar-aurus",
@@ -389,7 +497,11 @@
     "tackinessScore": 2.2,
     "weightScore": 4.7,
     "spongeHardnessScore": 6.1,
-    "gearsScore": 8
+    "gearsScore": 8,
+    "mfgSpeed": 109,
+    "mfgSpin": 110,
+    "mfgControl": 90,
+    "mfgScale": 10
   },
   {
     "slug": "tibhar-aurus-sound",
@@ -403,7 +515,11 @@
     "tackinessScore": 2.2,
     "weightScore": 3.4,
     "spongeHardnessScore": 2,
-    "gearsScore": 7.1
+    "gearsScore": 7.1,
+    "mfgSpeed": 100,
+    "mfgSpin": 114,
+    "mfgControl": 105,
+    "mfgScale": 10
   },
   {
     "slug": "joola-rhyzm",
@@ -417,7 +533,11 @@
     "tackinessScore": 2.3,
     "weightScore": 5.9,
     "spongeHardnessScore": 6.7,
-    "gearsScore": 8.6
+    "gearsScore": 8.6,
+    "mfgSpeed": 116,
+    "mfgSpin": 107,
+    "mfgControl": 66,
+    "mfgScale": 10
   },
   {
     "slug": "joola-rhyzm-tech",
@@ -431,7 +551,11 @@
     "tackinessScore": 3.1,
     "weightScore": 5.3,
     "spongeHardnessScore": 5,
-    "gearsScore": 7.3
+    "gearsScore": 7.3,
+    "mfgSpeed": null,
+    "mfgSpin": null,
+    "mfgControl": null,
+    "mfgScale": null
   },
   {
     "slug": "joola-rhyzm-p",
@@ -445,7 +569,11 @@
     "tackinessScore": 2.3,
     "weightScore": 4.4,
     "spongeHardnessScore": 5.9,
-    "gearsScore": 8.8
+    "gearsScore": 8.8,
+    "mfgSpeed": null,
+    "mfgSpin": null,
+    "mfgControl": null,
+    "mfgScale": null
   },
   {
     "slug": "joola-dynaryz-agr",
@@ -459,7 +587,11 @@
     "tackinessScore": 1.6,
     "weightScore": 5.1,
     "spongeHardnessScore": 6.9,
-    "gearsScore": 7.4
+    "gearsScore": 7.4,
+    "mfgSpeed": null,
+    "mfgSpin": null,
+    "mfgControl": null,
+    "mfgScale": null
   },
   {
     "slug": "joola-zack",
@@ -473,7 +605,11 @@
     "tackinessScore": 2.2,
     "weightScore": 4,
     "spongeHardnessScore": 4.3,
-    "gearsScore": 6.5
+    "gearsScore": 6.5,
+    "mfgSpeed": 8,
+    "mfgSpin": 8,
+    "mfgControl": 8,
+    "mfgScale": 10
   },
   {
     "slug": "xiom-vega-pro",
@@ -487,7 +623,11 @@
     "tackinessScore": 2.1,
     "weightScore": 5.5,
     "spongeHardnessScore": 7,
-    "gearsScore": 8
+    "gearsScore": 8,
+    "mfgSpeed": 80,
+    "mfgSpin": 90,
+    "mfgControl": 80,
+    "mfgScale": 10
   },
   {
     "slug": "xiom-vega-europe",
@@ -501,7 +641,11 @@
     "tackinessScore": 1.9,
     "weightScore": 3.4,
     "spongeHardnessScore": 2.8,
-    "gearsScore": 7.8
+    "gearsScore": 7.8,
+    "mfgSpeed": 75,
+    "mfgSpin": 85,
+    "mfgControl": null,
+    "mfgScale": 10
   },
   {
     "slug": "xiom-vega-elite",
@@ -515,7 +659,11 @@
     "tackinessScore": 1,
     "weightScore": 2.4,
     "spongeHardnessScore": 0.8,
-    "gearsScore": 6.5
+    "gearsScore": 6.5,
+    "mfgSpeed": 70,
+    "mfgSpin": 85,
+    "mfgControl": null,
+    "mfgScale": 10
   },
   {
     "slug": "xiom-vega-asia",
@@ -529,7 +677,11 @@
     "tackinessScore": 2.5,
     "weightScore": 4.2,
     "spongeHardnessScore": 5.6,
-    "gearsScore": 7.8
+    "gearsScore": 7.8,
+    "mfgSpeed": null,
+    "mfgSpin": null,
+    "mfgControl": null,
+    "mfgScale": null
   },
   {
     "slug": "xiom-omega-vii-pro",
@@ -543,7 +695,11 @@
     "tackinessScore": 1.6,
     "weightScore": 4.3,
     "spongeHardnessScore": 6.2,
-    "gearsScore": 8.2
+    "gearsScore": 8.2,
+    "mfgSpeed": 93,
+    "mfgSpin": 87,
+    "mfgControl": 90,
+    "mfgScale": 10
   },
   {
     "slug": "xiom-omega-vii-tour",
@@ -557,7 +713,11 @@
     "tackinessScore": 2,
     "weightScore": 7.4,
     "spongeHardnessScore": 8.8,
-    "gearsScore": 9.1
+    "gearsScore": 9.1,
+    "mfgSpeed": 97,
+    "mfgSpin": 98,
+    "mfgControl": 67,
+    "mfgScale": 10
   },
   {
     "slug": "yasaka-rakza-7",
@@ -571,7 +731,11 @@
     "tackinessScore": 2.6,
     "weightScore": 4.9,
     "spongeHardnessScore": 6.1,
-    "gearsScore": 8.5
+    "gearsScore": 8.5,
+    "mfgSpeed": 94,
+    "mfgSpin": 95,
+    "mfgControl": 67,
+    "mfgScale": 10
   },
   {
     "slug": "yasaka-rakza-x",
@@ -585,7 +749,11 @@
     "tackinessScore": 2.2,
     "weightScore": 4.9,
     "spongeHardnessScore": 6.6,
-    "gearsScore": 8.5
+    "gearsScore": 8.5,
+    "mfgSpeed": 10,
+    "mfgSpin": 10,
+    "mfgControl": 8,
+    "mfgScale": 10
   },
   {
     "slug": "yasaka-rakza-7-soft",
@@ -599,7 +767,11 @@
     "tackinessScore": 2.4,
     "weightScore": 3.7,
     "spongeHardnessScore": 2.5,
-    "gearsScore": 7.6
+    "gearsScore": 7.6,
+    "mfgSpeed": 20,
+    "mfgSpin": 23,
+    "mfgControl": 17,
+    "mfgScale": 10
   },
   {
     "slug": "yasaka-mark-v",
@@ -613,7 +785,11 @@
     "tackinessScore": 2.6,
     "weightScore": 4,
     "spongeHardnessScore": 4.5,
-    "gearsScore": 7.6
+    "gearsScore": 7.6,
+    "mfgSpeed": 90,
+    "mfgSpin": 90,
+    "mfgControl": 78,
+    "mfgScale": 10
   },
   {
     "slug": "andro-hexer",
@@ -627,7 +803,11 @@
     "tackinessScore": 2.4,
     "weightScore": 5.3,
     "spongeHardnessScore": 6,
-    "gearsScore": 8.7
+    "gearsScore": 8.7,
+    "mfgSpeed": 107,
+    "mfgSpin": 109,
+    "mfgControl": 78,
+    "mfgScale": 10
   },
   {
     "slug": "andro-hexer-powergrip",
@@ -641,7 +821,11 @@
     "tackinessScore": 1.2,
     "weightScore": 5.4,
     "spongeHardnessScore": 6.8,
-    "gearsScore": 8.9
+    "gearsScore": 8.9,
+    "mfgSpeed": null,
+    "mfgSpin": null,
+    "mfgControl": null,
+    "mfgScale": null
   },
   {
     "slug": "andro-rasant",
@@ -655,7 +839,11 @@
     "tackinessScore": 2.1,
     "weightScore": 5.2,
     "spongeHardnessScore": 5.5,
-    "gearsScore": 8.9
+    "gearsScore": 8.9,
+    "mfgSpeed": null,
+    "mfgSpin": null,
+    "mfgControl": null,
+    "mfgScale": null
   },
   {
     "slug": "andro-rasant-powergrip",
@@ -669,7 +857,11 @@
     "tackinessScore": 2.1,
     "weightScore": 6.6,
     "spongeHardnessScore": 7.9,
-    "gearsScore": 8.9
+    "gearsScore": 8.9,
+    "mfgSpeed": 117,
+    "mfgSpin": 116,
+    "mfgControl": 73,
+    "mfgScale": 10
   },
   {
     "slug": "dhs-hurricane-3",
@@ -683,7 +875,11 @@
     "tackinessScore": 8.2,
     "weightScore": 7,
     "spongeHardnessScore": 8.5,
-    "gearsScore": 7.4
+    "gearsScore": 7.4,
+    "mfgSpeed": 12,
+    "mfgSpin": 11,
+    "mfgControl": 11,
+    "mfgScale": 10
   },
   {
     "slug": "dhs-hurricane-8",
@@ -697,7 +893,11 @@
     "tackinessScore": 8.1,
     "weightScore": 7,
     "spongeHardnessScore": 7.6,
-    "gearsScore": 8.9
+    "gearsScore": 8.9,
+    "mfgSpeed": null,
+    "mfgSpin": null,
+    "mfgControl": null,
+    "mfgScale": null
   },
   {
     "slug": "nittaku-fastarc-g-1",
@@ -711,7 +911,11 @@
     "tackinessScore": 2.3,
     "weightScore": 5.5,
     "spongeHardnessScore": 6.7,
-    "gearsScore": 9.1
+    "gearsScore": 9.1,
+    "mfgSpeed": 97,
+    "mfgSpin": 99,
+    "mfgControl": 66,
+    "mfgScale": 10
   },
   {
     "slug": "nittaku-fastarc-c-1",
@@ -725,7 +929,11 @@
     "tackinessScore": 2,
     "weightScore": 4.4,
     "spongeHardnessScore": 5,
-    "gearsScore": 7.8
+    "gearsScore": 7.8,
+    "mfgSpeed": 97,
+    "mfgSpin": 97,
+    "mfgControl": 67,
+    "mfgScale": 10
   },
   {
     "slug": "nittaku-fastarc-s-1",
@@ -739,7 +947,11 @@
     "tackinessScore": 1.9,
     "weightScore": 3.2,
     "spongeHardnessScore": 4.4,
-    "gearsScore": 8.5
+    "gearsScore": 8.5,
+    "mfgSpeed": 99,
+    "mfgSpin": 97,
+    "mfgControl": 65,
+    "mfgScale": 10
   },
   {
     "slug": "victas-triple-extra",
@@ -753,7 +965,11 @@
     "tackinessScore": 6.5,
     "weightScore": 7.5,
     "spongeHardnessScore": 7.3,
-    "gearsScore": 8.5
+    "gearsScore": 8.5,
+    "mfgSpeed": 8,
+    "mfgSpin": 9,
+    "mfgControl": 9,
+    "mfgScale": 10
   },
   {
     "slug": "victas-ventus-extra",
@@ -767,6 +983,10 @@
     "tackinessScore": 0.9,
     "weightScore": 5.8,
     "spongeHardnessScore": 6.8,
-    "gearsScore": 9.2
+    "gearsScore": 9.2,
+    "mfgSpeed": 121,
+    "mfgSpin": 136,
+    "mfgControl": null,
+    "mfgScale": 10
   }
 ]
