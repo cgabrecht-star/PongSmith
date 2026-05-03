@@ -38,11 +38,11 @@
 
 ### 1.2 Supabase + Datenbank-Setup (Woche 3-4, ca. 4 h)
 
-- [ ] Supabase-Projekt in Frankfurt-Region anlegen
-- [ ] Connection-String in `.env.local` speichern
-- [ ] Drizzle mit Supabase verbinden
-- [ ] `npm run db:push` und `npm run db:studio` Skripte einrichten
-- [ ] Erste Test-Migration erfolgreich
+- ✅ Supabase-Projekt anlegen
+- ✅ Connection-String in `.env.local` speichern
+- ✅ Drizzle mit Supabase verbinden
+- ✅ `npm run db:push` und `npm run db:studio` Skripte einrichten
+- ✅ Erste Test-Migration erfolgreich
 
 ### 1.3 Datenbank-Schema entwerfen (Woche 4, ca. 9 h)
 
