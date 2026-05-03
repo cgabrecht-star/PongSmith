@@ -13,6 +13,7 @@ import { and, desc, eq, gte, lte } from "drizzle-orm";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 60; // Vercel: bis zu 60s für Agentic Loop
 
 const SYSTEM_PROMPT = `Du bist PongSmith — ein unabhängiger Tischtennis-Ausrüstungsberater für deutsche Vereinsspieler (TTR 1000–1700).
 
@@ -172,7 +173,10 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ text: "Entschuldigung, konnte keine Antwort generieren." });
   } catch (err) {
-    console.error("[berater]", err);
-    return NextResponse.json({ error: "Serverfehler" }, { status: 500 });
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("[berater]", msg);
+    // Im Development: echte Fehlermeldung zurückgeben
+    const detail = process.env.NODE_ENV !== "production" ? msg : msg.substring(0, 120);
+    return NextResponse.json({ error: detail }, { status: 500 });
   }
 }
