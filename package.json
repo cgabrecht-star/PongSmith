@@ -19,7 +19,10 @@
     "db:insert-exotics": "dotenv -e .env.local -- tsx db/scripts/insert-exotics.ts",
     "db:add-image-url": "dotenv -e .env.local -- tsx db/scripts/add-image-url.ts",
     "inspect:revspin": "dotenv -e .env.local -- tsx db/scripts/inspect-revspin.ts",
-    "db:backfill-images": "dotenv -e .env.local -- tsx db/scripts/backfill-images.ts"
+    "db:backfill-images": "dotenv -e .env.local -- tsx db/scripts/backfill-images.ts",
+    "scrape:racketinsight": "dotenv -e .env.local -- tsx db/scrapers/racketinsight.ts",
+    "import:racketinsight": "dotenv -e .env.local -- tsx db/scrapers/import-racketinsight.ts",
+    "db:fix-wrong-descriptions": "dotenv -e .env.local -- tsx db/scripts/fix-wrong-descriptions.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",
