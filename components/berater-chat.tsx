@@ -2,88 +2,137 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// ---------------------------------------------------------------------------
-// Typen
-// ---------------------------------------------------------------------------
-
 interface Message {
   role: "user" | "assistant";
   content: string;
 }
 
-// ---------------------------------------------------------------------------
-// Erster Satz von PongSmith — kein API-Call
-// ---------------------------------------------------------------------------
-
 const GREETING =
   "Hallo! Ich bin PongSmith, dein unabhängiger Ausrüstungsberater. 🏓\n\nErzähl mir kurz von dir: Welchen Q-TTR hast du ungefähr, wie spielst du (offensiv, allround oder defensiv) — und was nervt dich an deinem aktuellen Setup?";
 
-// ---------------------------------------------------------------------------
-// Hilfsfunktionen
-// ---------------------------------------------------------------------------
+// Rendert **fett**, *kursiv* und einfache Listen aus Markdown-Text
+function renderInline(text: string): React.ReactNode[] {
+  const parts: React.ReactNode[] = [];
+  // Matches **bold** und *italic*
+  const regex = /(\*\*(.+?)\*\*|\*(.+?)\*)/g;
+  let last = 0;
+  let match: RegExpExecArray | null;
+  let key = 0;
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > last) parts.push(text.slice(last, match.index));
+    if (match[2] !== undefined) {
+      parts.push(<strong key={key++} style={{ color: "var(--ps-ink-0)", fontWeight: 700 }}>{match[2]}</strong>);
+    } else if (match[3] !== undefined) {
+      parts.push(<em key={key++}>{match[3]}</em>);
+    }
+    last = match.index + match[0].length;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts;
+}
 
 function formatText(text: string) {
-  // Nummerierte Listen und Zeilenumbrüche formatieren
   return text.split("\n").map((line, i) => {
-    const isNumbered = /^\d+\./.test(line.trim());
+    const trimmed = line.trim();
+    const isEmpty = trimmed === "";
+    const isBullet = /^[-–•]/.test(trimmed);
+    const isNumbered = /^\d+\./.test(trimmed);
+    const isArrow = trimmed.startsWith("→");
+
+    if (isEmpty) return <br key={i} />;
+
+    const content = isBullet
+      ? trimmed.replace(/^[-–•]\s*/, "")
+      : isArrow
+        ? trimmed
+        : line;
+
     return (
-      <span key={i} className={`block ${isNumbered ? "mt-2 first:mt-0" : ""}`}>
-        {line || <br />}
+      <span
+        key={i}
+        style={{
+          display: "block",
+          marginTop: (isBullet || isNumbered || isArrow) ? "4px" : i === 0 ? 0 : "2px",
+          paddingLeft: isBullet ? "1em" : isArrow ? "0.5em" : 0,
+          textIndent: isBullet ? "-1em" : 0,
+          color: isArrow ? "var(--ps-ember-2)" : undefined,
+        }}
+      >
+        {isBullet && <span style={{ color: "var(--ps-ember)", marginRight: 6 }}>·</span>}
+        {renderInline(content)}
       </span>
     );
   });
 }
 
-// ---------------------------------------------------------------------------
-// Typing-Indikator
-// ---------------------------------------------------------------------------
-
 function TypingDots() {
   return (
-    <div className="flex items-center gap-1 px-1 py-0.5">
+    <div style={{ display: "flex", alignItems: "center", gap: 4, padding: "4px 2px" }}>
       {[0, 1, 2].map((i) => (
         <span
           key={i}
-          className="block h-2 w-2 rounded-full bg-zinc-400 animate-bounce"
-          style={{ animationDelay: `${i * 0.15}s` }}
+          className="typing-dot"
+          style={{
+            display: "block",
+            width: 6, height: 6,
+            borderRadius: "50%",
+            background: "var(--ps-ember-2)",
+            animationDelay: `${i * 0.18}s`,
+          }}
         />
       ))}
     </div>
   );
 }
 
-// ---------------------------------------------------------------------------
-// Nachrichtenblase
-// ---------------------------------------------------------------------------
-
 function Bubble({ msg }: { msg: Message }) {
   const isUser = msg.role === "user";
   return (
-    <div className={`flex gap-3 ${isUser ? "flex-row-reverse" : "flex-row"}`}>
-      {/* Avatar */}
+    <div style={{ display: "flex", gap: 10, justifyContent: isUser ? "flex-end" : "flex-start" }}>
+      {/* AI avatar */}
       {!isUser && (
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-orange-500 text-xs font-bold text-white">
-          PS
+        <div style={{
+          flexShrink: 0, width: 32, height: 32, borderRadius: 4,
+          background: "linear-gradient(180deg, rgba(255,107,53,0.18), rgba(255,107,53,0.06))",
+          border: "1px solid rgba(255,107,53,0.3)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          color: "var(--ps-ember-2)", fontSize: 14,
+        }}>
+          🔨
         </div>
       )}
 
       {/* Bubble */}
-      <div
-        className={`max-w-[78%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
-          isUser
-            ? "rounded-tr-sm bg-orange-500 text-white"
-            : "rounded-tl-sm bg-zinc-100 text-zinc-800"
-        }`}
-      >
+      <div style={{
+        maxWidth: "78%",
+        padding: "12px 14px",
+        background: isUser
+          ? "linear-gradient(180deg, #ff7a45, var(--ps-ember-deep))"
+          : "var(--ps-bg-2)",
+        color: isUser ? "#1a0d05" : "var(--ps-ink-0)",
+        border: isUser ? "1px solid #ff8b56" : "1px solid var(--ps-line)",
+        borderRadius: isUser ? "12px 4px 12px 12px" : "4px 12px 12px 12px",
+        fontSize: 14.5, lineHeight: 1.55,
+        boxShadow: isUser ? "0 4px 16px rgba(255,107,53,0.25)" : "none",
+      }}>
         {formatText(msg.content)}
       </div>
+
+      {/* User avatar */}
+      {isUser && (
+        <div style={{
+          flexShrink: 0, width: 32, height: 32, borderRadius: 4,
+          background: "var(--ps-bg-3)", border: "1px solid var(--ps-line)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          color: "var(--ps-ink-2)", fontSize: 10, fontWeight: 600,
+          fontFamily: "var(--font-jetbrains), monospace",
+        }}>
+          DU
+        </div>
+      )}
     </div>
   );
 }
-
-// ---------------------------------------------------------------------------
-// Haupt-Komponente
-// ---------------------------------------------------------------------------
 
 export function BeraterChat() {
   const [messages, setMessages] = useState<Message[]>([
@@ -112,7 +161,6 @@ export function BeraterChat() {
     setApiError(null);
 
     try {
-      // Alle Nachrichten inkl. Begrüßung an API schicken
       const res = await fetch("/api/berater", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -121,7 +169,6 @@ export function BeraterChat() {
         }),
       });
       const data = (await res.json()) as { text?: string; error?: string };
-
       if (data.error) {
         setApiError(data.error);
       } else {
@@ -142,71 +189,124 @@ export function BeraterChat() {
     }
   }
 
+  // Quick suggestions
+  const suggestions = [
+    "1.280 TTR, VH-dominant, 100–200 €",
+    "Allround, Block hält nicht stabil",
+    "Defensiv, Kontrolle wichtiger als Tempo",
+  ];
+
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
-      {/* Chat-Header */}
-      <div className="flex items-center gap-3 border-b border-zinc-100 px-5 py-3">
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-500 text-sm font-bold text-white">
-          PS
-        </div>
+    <div className="card-forged" style={{ display: "flex", height: "100%", flexDirection: "column", overflow: "hidden" }}>
+      {/* Header */}
+      <div style={{
+        display: "flex", alignItems: "center", gap: 12,
+        borderBottom: "1px solid var(--ps-line-2)", padding: "14px 20px",
+        background: "var(--ps-bg-1)",
+      }}>
+        <div style={{
+          width: 40, height: 40, borderRadius: 4,
+          background: "linear-gradient(180deg, rgba(255,107,53,0.18), rgba(255,107,53,0.06))",
+          border: "1px solid rgba(255,107,53,0.3)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontSize: 20,
+        }}>🔨</div>
         <div>
-          <div className="text-sm font-semibold text-zinc-900">PongSmith Berater</div>
-          <div className="flex items-center gap-1.5 text-xs text-zinc-400">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            Bereit
+          <div className="ff-display" style={{ fontSize: 20, lineHeight: 1, color: "var(--ps-ink-0)" }}>Dein Schmied</div>
+          <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--ps-ink-3)", marginTop: 3 }}>
+            <span style={{ color: "var(--ps-good)" }}>●</span> Online · antwortet in Sekunden
           </div>
         </div>
       </div>
 
-      {/* Nachrichten */}
-      <div ref={messagesRef} className="flex-1 space-y-4 overflow-y-auto p-5">
+      {/* Messages */}
+      <div
+        ref={messagesRef}
+        style={{ flex: 1, overflowY: "auto", padding: "20px", display: "flex", flexDirection: "column", gap: 16 }}
+      >
         {messages.map((msg, i) => (
           <Bubble key={i} msg={msg} />
         ))}
         {loading && (
-          <div className="flex gap-3">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-orange-500 text-xs font-bold text-white">
-              PS
-            </div>
-            <div className="rounded-2xl rounded-tl-sm bg-zinc-100 px-4 py-3">
+          <div style={{ display: "flex", gap: 10 }}>
+            <div style={{
+              width: 32, height: 32, borderRadius: 4, flexShrink: 0,
+              background: "rgba(255,107,53,0.12)", border: "1px solid rgba(255,107,53,0.3)",
+              display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14,
+            }}>🔨</div>
+            <div style={{
+              padding: "12px 16px",
+              background: "var(--ps-bg-2)", border: "1px solid var(--ps-line)",
+              borderRadius: "4px 12px 12px 12px",
+            }}>
               <TypingDots />
             </div>
           </div>
         )}
         {apiError && (
-          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          <div style={{
+            borderRadius: 4, border: "1px solid rgba(217,106,90,0.4)",
+            background: "rgba(217,106,90,0.08)", padding: "12px 16px",
+            fontSize: 13, color: "var(--ps-bad)",
+          }}>
             {apiError}
           </div>
         )}
       </div>
 
-      {/* Eingabe */}
-      <div className="border-t border-zinc-100 p-4">
-        <div className="flex items-end gap-2">
+      {/* Suggestions */}
+      <div style={{ padding: "8px 20px 0", display: "flex", gap: 6, overflowX: "auto", paddingBottom: 4 }}>
+        {suggestions.map((s, i) => (
+          <button
+            key={i}
+            onClick={() => setInput(s)}
+            style={{
+              background: "var(--ps-bg-2)", border: "1px solid var(--ps-line)",
+              color: "var(--ps-ink-1)", padding: "5px 10px",
+              borderRadius: 999, fontSize: 11.5, whiteSpace: "nowrap", flexShrink: 0,
+              cursor: "pointer", fontFamily: "inherit",
+            }}
+          >
+            {s}
+          </button>
+        ))}
+      </div>
+
+      {/* Input */}
+      <div style={{ borderTop: "1px solid var(--ps-line-2)", padding: "12px 16px 16px" }}>
+        <div style={{
+          display: "flex", gap: 8, alignItems: "flex-end",
+          background: "var(--ps-bg-2)", border: "1px solid var(--ps-line)",
+          borderRadius: 4, padding: 6,
+        }}>
           <textarea
             ref={inputRef}
             rows={1}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Schreib PongSmith…"
+            placeholder="Antwort tippen…"
             disabled={loading}
-            className="flex-1 resize-none rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-2.5 text-sm text-zinc-900 placeholder-zinc-400 transition focus:border-orange-400 focus:bg-white focus:outline-none focus:ring-0 disabled:opacity-50"
-            style={{ maxHeight: "120px" }}
+            style={{
+              flex: 1, background: "transparent", border: 0,
+              color: "var(--ps-ink-0)", fontSize: 14.5,
+              resize: "none", outline: "none", padding: "8px 6px",
+              minHeight: 22, maxHeight: 100,
+              fontFamily: "inherit",
+            }}
           />
           <button
             onClick={() => void send()}
             disabled={loading || !input.trim()}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-500 text-white transition hover:bg-orange-600 disabled:opacity-40"
+            className="ember-btn"
+            style={{ padding: "10px 14px", display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12 }}
             aria-label="Senden"
           >
-            <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
-              <path d="M3.105 2.288a.75.75 0 0 0-.826.95l1.254 3.9a.75.75 0 0 0 .54.499l7.303 1.479a.75.75 0 0 1 0 1.468l-7.303 1.479a.75.75 0 0 0-.54.499l-1.254 3.9a.75.75 0 0 0 .826.95 28.896 28.896 0 0 0 15.293-7.154.75.75 0 0 0 0-1.115A28.897 28.897 0 0 0 3.105 2.288Z" />
-            </svg>
+            ➤ Senden
           </button>
         </div>
-        <p className="mt-2 text-center text-xs text-zinc-400">
-          Enter zum Senden · Shift+Enter für Zeilenumbruch
+        <p className="ff-mono" style={{ marginTop: 8, textAlign: "center", fontSize: 10, color: "var(--ps-ink-4)", letterSpacing: "0.06em" }}>
+          ⏎ senden · ⇧⏎ neue Zeile
         </p>
       </div>
     </div>

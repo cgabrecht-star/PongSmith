@@ -1,10 +1,6 @@
 "use client";
 
-import { useState } from "react";
-
-// ---------------------------------------------------------------------------
-// Typen
-// ---------------------------------------------------------------------------
+import { useEffect, useState } from "react";
 
 type PlayStyle = "offensive_topspin" | "allround" | "defensive";
 
@@ -21,23 +17,82 @@ interface Setup {
   rubberName: string;
 }
 
-// ---------------------------------------------------------------------------
-// Hilfsfunktionen
-// ---------------------------------------------------------------------------
+// ─── Synergy Ring (mini) ───────────────────────────────────────────────────
+function MiniRing({ value }: { value: number }) {
+  const size = 76;
+  const stroke = 5;
+  const r = (size - stroke) / 2;
+  const c = 2 * Math.PI * r;
+  const [shown, setShown] = useState(0);
 
-function scoreBar(value: number, color: string) {
+  useEffect(() => {
+    let raf: number;
+    let start: number | null = null;
+    const dur = 700;
+    const step = (t: number) => {
+      if (!start) start = t;
+      const k = Math.min(1, (t - start) / dur);
+      setShown(Math.round(value * (1 - Math.pow(1 - k, 3))));
+      if (k < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [value]);
+
+  const off = c - (value / 100) * c;
   return (
-    <div className="h-1.5 w-full overflow-hidden rounded-full bg-zinc-100">
-      <div className={`h-full rounded-full ${color} transition-all`} style={{ width: `${value}%` }} />
+    <div style={{ position: "relative", width: size, height: size, flexShrink: 0 }}>
+      <svg className="ring-svg" width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
+        <circle cx={size / 2} cy={size / 2} r={r} stroke="var(--ps-bg-4)" strokeWidth={stroke} fill="none" />
+        <circle
+          cx={size / 2} cy={size / 2} r={r}
+          stroke="url(#ringGrad2)" strokeWidth={stroke} fill="none"
+          strokeDasharray={c} strokeDashoffset={off} strokeLinecap="round"
+        />
+        <defs>
+          <linearGradient id="ringGrad2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#ff8c5a" />
+            <stop offset="100%" stopColor="#c84a1e" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div style={{
+        position: "absolute", inset: 0,
+        display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+      }}>
+        <div className="ff-display" style={{ fontSize: 22, lineHeight: 1, color: "var(--ps-ink-0)" }}>{shown}</div>
+        <div className="ff-mono" style={{ fontSize: 8, letterSpacing: "0.12em", color: "var(--ps-ink-3)" }}>/100</div>
+      </div>
     </div>
   );
 }
 
-const STYLES: { id: PlayStyle; icon: string; label: string; sub: string }[] = [
-  { id: "offensive_topspin", icon: "⚡", label: "Offensiv", sub: "Topspin & Tempo" },
-  { id: "allround", icon: "⚖️", label: "Allround", sub: "Ausgewogen" },
-  { id: "defensive", icon: "🛡️", label: "Defensiv", sub: "Sicher & kontrolliert" },
+// ─── Sub-score bar ─────────────────────────────────────────────────────────
+function ScoreBar({ label, value, color }: { label: string; value: number; color: string }) {
+  return (
+    <div>
+      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+        <span className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ps-ink-3)" }}>{label}</span>
+        <span className="ff-mono" style={{ fontSize: 10, color: "var(--ps-ink-1)" }}>{value}</span>
+      </div>
+      <div className="stat-track">
+        <div className="stat-fill" style={{ width: `${value}%`, background: color }} />
+      </div>
+    </div>
+  );
+}
+
+const STYLES: { id: PlayStyle; label: string; sub: string }[] = [
+  { id: "offensive_topspin", label: "Offensiv", sub: "Topspin & Tempo" },
+  { id: "allround", label: "Allround", sub: "Ausgewogen" },
+  { id: "defensive", label: "Defensiv", sub: "Sicher & kontrolliert" },
 ];
+
+const STYLE_ICONS: Record<PlayStyle, string> = {
+  offensive_topspin: "⚡",
+  allround: "⚖",
+  defensive: "🛡",
+};
 
 const PLAY_STYLE_LABELS: Record<string, string> = {
   offensive_topspin: "Offensiv",
@@ -45,95 +100,72 @@ const PLAY_STYLE_LABELS: Record<string, string> = {
   defensive: "Defensiv",
 };
 
-// ---------------------------------------------------------------------------
-// Setup-Karte
-// ---------------------------------------------------------------------------
-
+// ─── Setup Card ─────────────────────────────────────────────────────────────
 function SetupCard({ setup, rank }: { setup: Setup; rank: number }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition hover:shadow-md">
-      {/* Rank-Streifen */}
-      <div
-        className={`h-1 w-full ${rank === 1 ? "bg-amber-400" : rank === 2 ? "bg-zinc-300" : "bg-orange-200"}`}
-      />
+    <div
+      className="card-forged"
+      style={{
+        padding: 20,
+        display: "flex",
+        flexDirection: "column",
+        gap: 14,
+        transition: "border-color 200ms, transform 200ms",
+        position: "relative",
+        overflow: "hidden",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = "rgba(255,107,53,0.4)";
+        e.currentTarget.style.transform = "translateY(-2px)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "var(--ps-line)";
+        e.currentTarget.style.transform = "translateY(0)";
+      }}
+    >
+      {/* Rank accent */}
+      <div style={{
+        position: "absolute", top: 0, left: 0, right: 0, height: 2,
+        background: rank === 1
+          ? "linear-gradient(90deg, transparent, var(--ps-ember), transparent)"
+          : "linear-gradient(90deg, transparent, var(--ps-line), transparent)",
+      }} />
 
-      <div className="p-5">
-        {/* Header */}
-        <div className="mb-4 flex items-start justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <span
-              className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-black ${
-                rank === 1
-                  ? "bg-amber-100 text-amber-700"
-                  : rank === 2
-                    ? "bg-zinc-100 text-zinc-600"
-                    : "bg-orange-50 text-orange-600"
-              }`}
-            >
-              {rank}
-            </span>
-            <div className="min-w-0">
-              <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Holz</div>
-              <div className="truncate font-semibold text-zinc-900">{setup.bladeName}</div>
-            </div>
+      {/* Header */}
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 14, marginTop: 4 }}>
+        <div style={{ minWidth: 0 }}>
+          <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.16em", color: "var(--ps-ember-2)", textTransform: "uppercase" }}>
+            SETUP · 0{rank}
           </div>
-          <div className="shrink-0 text-right">
-            <div className="text-2xl font-black text-zinc-900">{setup.synergyScore}</div>
-            <div className="text-[10px] font-medium text-zinc-400">/ 100</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ps-ink-0)", marginTop: 4, lineHeight: 1.3 }}>
+            {setup.bladeName}
+          </div>
+          <div style={{ fontSize: 11, color: "var(--ps-ink-3)", marginTop: 4 }}>
+            {setup.rubberName}
           </div>
         </div>
+        <MiniRing value={setup.synergyScore} />
+      </div>
 
-        {/* Belag */}
-        <div className="mb-4 rounded-xl bg-zinc-50 px-4 py-3">
-          <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">
-            Belag (VH &amp; RH)
-          </div>
-          <div className="mt-0.5 font-medium text-zinc-800">{setup.rubberName}</div>
-        </div>
+      {/* Tags */}
+      <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+        <span className="tag-line tag-ember">
+          {PLAY_STYLE_LABELS[setup.playStyleTarget] ?? setup.playStyleTarget}
+        </span>
+        <span className="tag-line">TTR {setup.ttrTarget}</span>
+      </div>
 
-        {/* Sub-Scores */}
-        <div className="space-y-2.5">
-          <div>
-            <div className="mb-1 flex justify-between text-xs text-zinc-500">
-              <span>Tempo-Abstimmung</span>
-              <span className="font-semibold text-zinc-700">{setup.tempoMatch}</span>
-            </div>
-            {scoreBar(setup.tempoMatch, "bg-blue-400")}
-          </div>
-          <div>
-            <div className="mb-1 flex justify-between text-xs text-zinc-500">
-              <span>Kontrollreserve</span>
-              <span className="font-semibold text-zinc-700">{setup.controlReserve}</span>
-            </div>
-            {scoreBar(setup.controlReserve, "bg-emerald-400")}
-          </div>
-          <div>
-            <div className="mb-1 flex justify-between text-xs text-zinc-500">
-              <span>Spin-Potenzial</span>
-              <span className="font-semibold text-zinc-700">{setup.spinPotential}</span>
-            </div>
-            {scoreBar(setup.spinPotential, "bg-orange-400")}
-          </div>
-        </div>
-
-        {/* Tags */}
-        <div className="mt-4 flex gap-2">
-          <span className="rounded-full bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600">
-            {PLAY_STYLE_LABELS[setup.playStyleTarget] ?? setup.playStyleTarget}
-          </span>
-          <span className="rounded-full bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600">
-            TTR {setup.ttrTarget}
-          </span>
-        </div>
+      {/* Sub-scores */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        <ScoreBar label="Tempo-Abstimmung" value={setup.tempoMatch} color="linear-gradient(90deg, #2563eb, #60a5fa)" />
+        <ScoreBar label="Kontrollreserve" value={setup.controlReserve} color="linear-gradient(90deg, #059669, #34d399)" />
+        <ScoreBar label="Spin-Potenzial" value={setup.spinPotential} color="linear-gradient(90deg, var(--ps-ember-deep), var(--ps-ember))" />
       </div>
     </div>
   );
 }
 
-// ---------------------------------------------------------------------------
-// Haupt-Komponente
-// ---------------------------------------------------------------------------
-
+// ─── Main Form ──────────────────────────────────────────────────────────────
 export function AdvisorForm() {
   const [ttr, setTtr] = useState(1300);
   const [playStyle, setPlayStyle] = useState<PlayStyle>("allround");
@@ -167,13 +199,15 @@ export function AdvisorForm() {
   }
 
   return (
-    <div className="space-y-8">
-      <form onSubmit={handleSubmit} className="space-y-6">
-        {/* TTR */}
-        <div className="space-y-2">
-          <div className="flex items-baseline justify-between">
-            <label className="font-semibold text-zinc-900">Q-TTR</label>
-            <span className="text-3xl font-black tabular-nums text-zinc-900">{ttr}</span>
+    <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        {/* TTR Slider */}
+        <div>
+          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 12 }}>
+            <label className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--ps-ink-3)" }}>
+              Q-TTR Spielstärke
+            </label>
+            <span className="ff-display" style={{ fontSize: 44, color: "var(--ps-ink-0)", lineHeight: 1 }}>{ttr}</span>
           </div>
           <input
             type="range"
@@ -182,81 +216,95 @@ export function AdvisorForm() {
             step={10}
             value={ttr}
             onChange={(e) => setTtr(Number(e.target.value))}
-            className="w-full accent-orange-500"
+            style={{ width: "100%", accentColor: "var(--ps-ember)", cursor: "pointer" }}
           />
-          <div className="flex justify-between text-xs text-zinc-400">
+          <div className="ff-mono" style={{ display: "flex", justifyContent: "space-between", fontSize: 9, color: "var(--ps-ink-4)", marginTop: 6, letterSpacing: "0.1em" }}>
             <span>800</span>
-            <span>Nicht sicher? 1300 ist ein guter Startpunkt.</span>
+            <span>Nicht sicher? 1.300 ist ein guter Startpunkt.</span>
             <span>1900</span>
           </div>
         </div>
 
-        {/* Spielstil */}
-        <div className="space-y-2">
-          <label className="font-semibold text-zinc-900">Spielstil</label>
-          <div className="grid grid-cols-3 gap-3">
-            {STYLES.map((s) => (
-              <button
-                key={s.id}
-                type="button"
-                onClick={() => setPlayStyle(s.id)}
-                className={`flex flex-col items-center gap-1.5 rounded-xl border-2 px-3 py-4 text-center transition-all ${
-                  playStyle === s.id
-                    ? "border-orange-500 bg-orange-50 shadow-sm"
-                    : "border-zinc-200 bg-white hover:border-zinc-300"
-                }`}
-              >
-                <span className="text-xl">{s.icon}</span>
-                <span
-                  className={`text-sm font-semibold ${playStyle === s.id ? "text-orange-700" : "text-zinc-700"}`}
+        {/* Play style */}
+        <div>
+          <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--ps-ink-3)", marginBottom: 12 }}>
+            Spielstil
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
+            {STYLES.map((s) => {
+              const active = playStyle === s.id;
+              return (
+                <button
+                  key={s.id}
+                  type="button"
+                  onClick={() => setPlayStyle(s.id)}
+                  style={{
+                    display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+                    padding: "16px 12px", borderRadius: 4, cursor: "pointer",
+                    background: active ? "rgba(255,107,53,0.08)" : "var(--ps-bg-2)",
+                    border: active ? "1px solid rgba(255,107,53,0.5)" : "1px solid var(--ps-line)",
+                    color: active ? "var(--ps-ember-2)" : "var(--ps-ink-2)",
+                    transition: "all 160ms",
+                    fontFamily: "inherit",
+                    boxShadow: active ? "0 0 16px rgba(255,107,53,0.15)" : "none",
+                  }}
                 >
-                  {s.label}
-                </span>
-                <span className="text-xs text-zinc-400">{s.sub}</span>
-              </button>
-            ))}
+                  <span style={{ fontSize: 20 }}>{STYLE_ICONS[s.id]}</span>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: active ? "var(--ps-ember-2)" : "var(--ps-ink-0)" }}>
+                    {s.label}
+                  </span>
+                  <span className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.08em", color: "var(--ps-ink-3)", textAlign: "center" }}>{s.sub}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
+        {/* Submit */}
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-xl bg-orange-500 py-3.5 font-semibold text-white shadow transition hover:bg-orange-600 disabled:opacity-60"
+          className="ember-btn ember-btn-glow"
+          style={{ width: "100%", padding: "16px", fontSize: 15, justifyContent: "center" }}
         >
-          {loading ? "Suche läuft…" : "Setups finden →"}
+          {loading ? "⚙ Suche läuft…" : "🔨 Setups schmieden →"}
         </button>
       </form>
 
-      {/* Fehler */}
+      {/* Error */}
       {error && (
-        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <div style={{
+          borderRadius: 4, border: "1px solid rgba(217,106,90,0.4)",
+          background: "rgba(217,106,90,0.08)", padding: "12px 16px",
+          fontSize: 13, color: "var(--ps-bad)",
+        }}>
           {error}
         </div>
       )}
 
-      {/* Keine Ergebnisse */}
+      {/* Empty */}
       {setups?.length === 0 && (
-        <p className="text-center text-sm text-zinc-500">
+        <p className="ff-mono" style={{ textAlign: "center", fontSize: 11, color: "var(--ps-ink-3)", letterSpacing: "0.08em" }}>
           Keine Ergebnisse — versuch einen anderen Spielstil.
         </p>
       )}
 
-      {/* Ergebnisse */}
+      {/* Results */}
       {setups && setups.length > 0 && (
-        <div className="space-y-4">
-          <div className="flex items-baseline justify-between">
-            <h3 className="font-semibold text-zinc-900">
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <div className="ff-display" style={{ fontSize: 28, color: "var(--ps-ink-0)", lineHeight: 1 }}>
               Top {setups.length} für TTR {ttr}
-            </h3>
-            <span className="text-xs text-zinc-400">
-              {STYLES.find((s) => s.id === playStyle)?.label}
-            </span>
+            </div>
+            <span className="tag-line">{STYLES.find((s) => s.id === playStyle)?.label}</span>
           </div>
-          {setups.map((s, i) => (
-            <SetupCard key={`${s.bladeId}-${s.rubberId}`} setup={s} rank={i + 1} />
-          ))}
-          <p className="text-center text-xs text-zinc-400">
-            Quelle: revspin.net Community-Ratings
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 14 }}>
+            {setups.map((s, i) => (
+              <SetupCard key={`${s.bladeId}-${s.rubberId}`} setup={s} rank={i + 1} />
+            ))}
+          </div>
+          <p className="ff-mono" style={{ textAlign: "center", fontSize: 9.5, color: "var(--ps-ink-4)", letterSpacing: "0.1em" }}>
+            QUELLE: REVSPIN.NET COMMUNITY-RATINGS
           </p>
         </div>
       )}
