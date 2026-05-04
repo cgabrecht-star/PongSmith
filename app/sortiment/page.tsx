@@ -23,6 +23,7 @@ interface RubberItem {
   ttrOptimal: number | null;
   reviewCount: number | null;
   description: string | null;
+  communityDescription: string | null;
   imageUrl: string | null;
 }
 
@@ -46,6 +47,7 @@ interface BladeItem {
   ttrOptimal: number | null;
   reviewCount: number | null;
   description: string | null;
+  communityDescription: string | null;
   imageUrl: string | null;
 }
 
@@ -54,15 +56,6 @@ type ProductItem = RubberItem | BladeItem;
 interface Manufacturer { name: string; slug: string; }
 
 // ─── Hilfsfunktionen ─────────────────────────────────────────────────────────
-
-function statBar(value: string | null, color: string) {
-  const v = value ? Math.round(parseFloat(value) * 10) : 0;
-  return (
-    <div className="stat-track" style={{ flex: 1 }}>
-      <div className="stat-fill" style={{ width: `${v}%`, background: color }} />
-    </div>
-  );
-}
 
 function rubberTypeLabel(t: string) {
   return t === "smooth" ? "Invertiert"
@@ -87,18 +80,24 @@ function playStyleColor(s: string | null) {
     : "var(--ps-ink-3)";
 }
 
-// ─── Karten ───────────────────────────────────────────────────────────────────
+// ─── Bild-Komponente ─────────────────────────────────────────────────────────
+// `size` und `hovered` steuerbar von außen — Hover-Effekt kommt vom Parent.
 
-function ProductImage({ url, name }: { url: string | null; name: string }) {
+function ProductImage({
+  url, name, size = 72, hovered = false,
+}: { url: string | null; name: string; size?: number; hovered?: boolean }) {
   const [error, setError] = useState(false);
+  const scale = hovered ? 1.06 : 1;
+  const baseStyle: React.CSSProperties = {
+    width: size, height: size, flexShrink: 0, borderRadius: 4,
+    background: "var(--ps-bg-3)", border: "1px solid var(--ps-line-2)",
+    transition: "transform 220ms ease, border-color 220ms",
+    transform: `scale(${scale})`,
+    transformOrigin: "left center",
+  };
   if (!url || error) {
     return (
-      <div style={{
-        width: 72, height: 72, flexShrink: 0, borderRadius: 4,
-        background: "var(--ps-bg-3)", border: "1px solid var(--ps-line-2)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        fontSize: 24,
-      }}>
+      <div style={{ ...baseStyle, display: "flex", alignItems: "center", justifyContent: "center", fontSize: size / 3 }}>
         🏓
       </div>
     );
@@ -109,148 +108,12 @@ function ProductImage({ url, name }: { url: string | null; name: string }) {
       src={url}
       alt={name}
       onError={() => setError(true)}
-      style={{
-        width: 72, height: 72, objectFit: "contain", flexShrink: 0,
-        borderRadius: 4, background: "var(--ps-bg-3)",
-        border: "1px solid var(--ps-line-2)", padding: 4,
-      }}
+      style={{ ...baseStyle, objectFit: "contain", padding: 4 }}
     />
   );
 }
 
-function RubberCard({ item }: { item: RubberItem }) {
-  const [expanded, setExpanded] = useState(false);
-  return (
-    <div
-      className="card-forged"
-      style={{ padding: "16px 18px", cursor: "pointer", transition: "border-color 180ms, transform 180ms" }}
-      onClick={() => setExpanded((v) => !v)}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "rgba(255,107,53,0.35)";
-        e.currentTarget.style.transform = "translateY(-1px)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "var(--ps-line)";
-        e.currentTarget.style.transform = "translateY(0)";
-      }}
-    >
-      {/* Header mit Bild */}
-      <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-        <ProductImage url={item.imageUrl} name={item.name} />
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.14em", color: "var(--ps-ink-4)", textTransform: "uppercase", marginBottom: 4 }}>
-            {item.manufacturer}
-          </div>
-          <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ps-ink-0)", lineHeight: 1.25, marginBottom: 6 }}>
-            {item.name}
-          </div>
-          <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
-            <span className="tag-line" style={{ fontSize: 9 }}>
-              {rubberTypeLabel(item.rubberType)}
-            </span>
-            <span
-              className="tag-line"
-              style={{ fontSize: 9, borderColor: `${playStyleColor(item.playStyle)}44`, color: playStyleColor(item.playStyle) }}
-            >
-              {playStyleLabel(item.playStyle)}
-            </span>
-            {item.ttrOptimal && <span className="tag-line" style={{ fontSize: 9 }}>TTR {item.ttrOptimal}</span>}
-            {item.hardnessMin && <span className="tag-line" style={{ fontSize: 9 }}>{item.hardnessMin}°</span>}
-          </div>
-        </div>
-      </div>
-
-      {/* Stats */}
-      <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 6 }}>
-        <StatRow label="Speed" value={item.speedNorm} color="linear-gradient(90deg,#2563eb,#60a5fa)" />
-        <StatRow label="Spin" value={item.spinNorm} color="linear-gradient(90deg,var(--ps-ember-deep),var(--ps-ember))" />
-        <StatRow label="Control" value={item.controlNorm} color="linear-gradient(90deg,#059669,#34d399)" />
-      </div>
-
-      {/* Reviews */}
-      {item.reviewCount != null && item.reviewCount > 0 && (
-        <div className="ff-mono" style={{ marginTop: 8, fontSize: 9, color: "var(--ps-ink-4)" }}>
-          ★ {item.reviewCount} Community-Reviews
-        </div>
-      )}
-
-      {/* Description */}
-      {expanded && item.description && (
-        <p style={{ marginTop: 12, fontSize: 12.5, color: "var(--ps-ink-2)", lineHeight: 1.65, borderTop: "1px solid var(--ps-line-2)", paddingTop: 12 }}>
-          {item.description}
-        </p>
-      )}
-      {expanded && !item.description && (
-        <p style={{ marginTop: 12, fontSize: 12, color: "var(--ps-ink-4)", borderTop: "1px solid var(--ps-line-2)", paddingTop: 12, fontStyle: "italic" }}>
-          Beschreibung folgt.
-        </p>
-      )}
-    </div>
-  );
-}
-
-function BladeCard({ item }: { item: BladeItem }) {
-  const [expanded, setExpanded] = useState(false);
-  return (
-    <div
-      className="card-forged"
-      style={{ padding: "16px 18px", cursor: "pointer", transition: "border-color 180ms, transform 180ms" }}
-      onClick={() => setExpanded((v) => !v)}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "rgba(255,107,53,0.35)";
-        e.currentTarget.style.transform = "translateY(-1px)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "var(--ps-line)";
-        e.currentTarget.style.transform = "translateY(0)";
-      }}
-    >
-      {/* Header mit Bild */}
-      <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-        <ProductImage url={item.imageUrl} name={item.name} />
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.14em", color: "var(--ps-ink-4)", textTransform: "uppercase", marginBottom: 4 }}>
-            {item.manufacturer}
-          </div>
-          <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ps-ink-0)", lineHeight: 1.25, marginBottom: 6 }}>
-            {item.name}
-          </div>
-          <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
-            <span
-              className="tag-line"
-              style={{ fontSize: 9, borderColor: `${playStyleColor(item.playStyle)}44`, color: playStyleColor(item.playStyle) }}
-            >
-              {playStyleLabel(item.playStyle)}
-            </span>
-            {item.composition && <span className="tag-line" style={{ fontSize: 9 }}>{item.composition}</span>}
-            {item.ttrOptimal && <span className="tag-line" style={{ fontSize: 9 }}>TTR {item.ttrOptimal}</span>}
-            {item.weightMin && item.weightMax && (
-              <span className="tag-line" style={{ fontSize: 9 }}>{item.weightMin}–{item.weightMax} g</span>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Stats */}
-      <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 6 }}>
-        <StatRow label="Speed" value={item.speedNorm} color="linear-gradient(90deg,#2563eb,#60a5fa)" />
-        <StatRow label="Control" value={item.controlNorm} color="linear-gradient(90deg,#059669,#34d399)" />
-      </div>
-
-      {/* Description */}
-      {expanded && item.description && (
-        <p style={{ marginTop: 12, fontSize: 12.5, color: "var(--ps-ink-2)", lineHeight: 1.65, borderTop: "1px solid var(--ps-line-2)", paddingTop: 12 }}>
-          {item.description}
-        </p>
-      )}
-      {expanded && !item.description && (
-        <p style={{ marginTop: 12, fontSize: 12, color: "var(--ps-ink-4)", borderTop: "1px solid var(--ps-line-2)", paddingTop: 12, fontStyle: "italic" }}>
-          Beschreibung folgt.
-        </p>
-      )}
-    </div>
-  );
-}
+// ─── Stat-Reihe ───────────────────────────────────────────────────────────────
 
 function StatRow({ label, value, color }: { label: string; value: string | null; color: string }) {
   const v = value ? Math.round(parseFloat(value) * 10) : 0;
@@ -265,6 +128,240 @@ function StatRow({ label, value, color }: { label: string; value: string | null;
       <span className="ff-mono" style={{ fontSize: 9, color: "var(--ps-ink-3)", width: 24, textAlign: "right" }}>
         {value ? parseFloat(value).toFixed(1) : "–"}
       </span>
+    </div>
+  );
+}
+
+// ─── Karten ───────────────────────────────────────────────────────────────────
+
+function ProductCard({ item, onClick }: { item: ProductItem; onClick: () => void }) {
+  const [hovered, setHovered] = useState(false);
+  const isRubber = item.kind === "rubber";
+
+  return (
+    <div
+      className="card-forged"
+      style={{
+        padding: "16px 18px",
+        cursor: "pointer",
+        transition: "border-color 220ms, transform 220ms, box-shadow 220ms",
+        transform: hovered ? "translateY(-2px)" : "translateY(0)",
+        borderColor: hovered ? "rgba(255,107,53,0.45)" : "var(--ps-line)",
+        boxShadow: hovered ? "0 12px 32px rgba(0,0,0,0.35)" : "none",
+      }}
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Header mit Bild */}
+      <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+        <ProductImage url={item.imageUrl} name={item.name} hovered={hovered} />
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.14em", color: "var(--ps-ink-4)", textTransform: "uppercase", marginBottom: 4 }}>
+            {item.manufacturer}
+          </div>
+          <div
+            style={{
+              fontSize: hovered ? 15.5 : 14,
+              fontWeight: 600,
+              color: hovered ? "var(--ps-ember-2)" : "var(--ps-ink-0)",
+              lineHeight: 1.25,
+              marginBottom: 6,
+              transition: "font-size 220ms, color 220ms",
+            }}
+          >
+            {item.name}
+          </div>
+          <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+            {isRubber && (
+              <span className="tag-line" style={{ fontSize: 9 }}>
+                {rubberTypeLabel((item as RubberItem).rubberType)}
+              </span>
+            )}
+            <span
+              className="tag-line"
+              style={{ fontSize: 9, borderColor: `${playStyleColor(item.playStyle)}44`, color: playStyleColor(item.playStyle) }}
+            >
+              {playStyleLabel(item.playStyle)}
+            </span>
+            {item.ttrOptimal && <span className="tag-line" style={{ fontSize: 9 }}>TTR {item.ttrOptimal}</span>}
+            {!isRubber && (item as BladeItem).composition && (
+              <span className="tag-line" style={{ fontSize: 9 }}>{(item as BladeItem).composition}</span>
+            )}
+            {isRubber && (item as RubberItem).hardnessMin && (
+              <span className="tag-line" style={{ fontSize: 9 }}>{(item as RubberItem).hardnessMin}°</span>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Stats */}
+      <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 6 }}>
+        <StatRow label="Speed" value={item.speedNorm} color="linear-gradient(90deg,#2563eb,#60a5fa)" />
+        {isRubber && (
+          <StatRow label="Spin" value={(item as RubberItem).spinNorm} color="linear-gradient(90deg,var(--ps-ember-deep),var(--ps-ember))" />
+        )}
+        <StatRow label="Control" value={item.controlNorm} color="linear-gradient(90deg,#059669,#34d399)" />
+      </div>
+
+      {/* Hint */}
+      <div className="ff-mono" style={{ marginTop: 10, fontSize: 9, color: hovered ? "var(--ps-ember-2)" : "var(--ps-ink-4)", letterSpacing: "0.08em", textTransform: "uppercase", transition: "color 220ms" }}>
+        {hovered ? "→ Details öffnen" : `${item.reviewCount && item.reviewCount > 0 ? `★ ${item.reviewCount} Reviews` : "Klick für Details"}`}
+      </div>
+    </div>
+  );
+}
+
+// ─── Detail-Modal ─────────────────────────────────────────────────────────────
+
+function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void }) {
+  // Esc zum Schließen + Body-Scroll-Lock
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  const isRubber = item.kind === "rubber";
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 100,
+        background: "rgba(8,8,10,0.78)", backdropFilter: "blur(6px)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: 24, animation: "fadein 180ms ease",
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="card-forged"
+        style={{
+          width: "100%", maxWidth: 920, maxHeight: "90vh", overflowY: "auto",
+          background: "var(--ps-bg-2)", padding: 0,
+          borderColor: "rgba(255,107,53,0.35)",
+          animation: "slideup 240ms cubic-bezier(0.2,0.8,0.2,1)",
+        }}
+      >
+        {/* Header */}
+        <div style={{ padding: "24px 28px", borderBottom: "1px solid var(--ps-line-2)", display: "flex", gap: 24, alignItems: "flex-start", flexWrap: "wrap" }}>
+          <ProductImage url={item.imageUrl} name={item.name} size={140} />
+          <div style={{ flex: 1, minWidth: 240 }}>
+            <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", color: "var(--ps-ink-4)", textTransform: "uppercase", marginBottom: 6 }}>
+              {item.manufacturer}
+            </div>
+            <h2 className="ff-display" style={{ fontSize: 34, color: "var(--ps-ink-0)", lineHeight: 1.05, marginBottom: 10 }}>
+              {item.name}
+            </h2>
+            <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+              {isRubber && (
+                <span className="tag-line" style={{ fontSize: 10 }}>
+                  {rubberTypeLabel((item as RubberItem).rubberType)}
+                </span>
+              )}
+              <span className="tag-line" style={{ fontSize: 10, borderColor: `${playStyleColor(item.playStyle)}55`, color: playStyleColor(item.playStyle) }}>
+                {playStyleLabel(item.playStyle)}
+              </span>
+              {item.ttrOptimal && <span className="tag-line" style={{ fontSize: 10 }}>TTR {item.ttrOptimal}</span>}
+              {isRubber && (item as RubberItem).hardnessMin && (
+                <span className="tag-line" style={{ fontSize: 10 }}>{(item as RubberItem).hardnessMin}° Schwamm</span>
+              )}
+              {!isRubber && (item as BladeItem).composition && (
+                <span className="tag-line" style={{ fontSize: 10 }}>{(item as BladeItem).composition}</span>
+              )}
+              {!isRubber && (item as BladeItem).weightMin && (item as BladeItem).weightMax && (
+                <span className="tag-line" style={{ fontSize: 10 }}>{(item as BladeItem).weightMin}–{(item as BladeItem).weightMax} g</span>
+              )}
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            style={{
+              background: "transparent", border: "1px solid var(--ps-line-2)",
+              color: "var(--ps-ink-3)", borderRadius: 4, padding: "6px 10px",
+              cursor: "pointer", fontFamily: "inherit", fontSize: 14,
+            }}
+            aria-label="Schließen"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Specs */}
+        <div style={{ padding: "20px 28px", borderBottom: "1px solid var(--ps-line-2)" }}>
+          <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", color: "var(--ps-ink-4)", textTransform: "uppercase", marginBottom: 10 }}>
+            Spezifikationen
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8, maxWidth: 500 }}>
+            <StatRow label="Speed" value={item.speedNorm} color="linear-gradient(90deg,#2563eb,#60a5fa)" />
+            {isRubber && (
+              <StatRow label="Spin" value={(item as RubberItem).spinNorm} color="linear-gradient(90deg,var(--ps-ember-deep),var(--ps-ember))" />
+            )}
+            <StatRow label="Control" value={item.controlNorm} color="linear-gradient(90deg,#059669,#34d399)" />
+          </div>
+          {item.reviewCount != null && item.reviewCount > 0 && (
+            <div className="ff-mono" style={{ marginTop: 12, fontSize: 10, color: "var(--ps-ink-4)" }}>
+              ★ {item.reviewCount} Community-Reviews
+            </div>
+          )}
+        </div>
+
+        {/* Hersteller-Beschreibung */}
+        <div style={{ padding: "20px 28px", borderBottom: "1px solid var(--ps-line-2)" }}>
+          <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", color: "var(--ps-ember-2)", textTransform: "uppercase", marginBottom: 10 }}>
+            Hersteller-Beschreibung
+          </div>
+          {item.description ? (
+            <p style={{ fontSize: 13.5, color: "var(--ps-ink-1)", lineHeight: 1.7 }}>
+              {item.description}
+            </p>
+          ) : (
+            <p style={{ fontSize: 12.5, color: "var(--ps-ink-4)", fontStyle: "italic" }}>
+              Noch keine Beschreibung hinterlegt.
+            </p>
+          )}
+        </div>
+
+        {/* Community-Beschreibung */}
+        <div style={{ padding: "20px 28px" }}>
+          <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", color: "#34d399", textTransform: "uppercase", marginBottom: 10 }}>
+            Was Spieler sagen
+          </div>
+          {item.communityDescription ? (
+            <p style={{ fontSize: 13.5, color: "var(--ps-ink-1)", lineHeight: 1.7 }}>
+              {item.communityDescription}
+            </p>
+          ) : (
+            <p style={{ fontSize: 12.5, color: "var(--ps-ink-4)", fontStyle: "italic" }}>
+              Noch keine Community-Stimmen aggregiert.
+            </p>
+          )}
+        </div>
+
+        {/* Footer / Future-CTA */}
+        <div style={{ padding: "16px 28px", borderTop: "1px solid var(--ps-line-2)", background: "var(--ps-bg-1)" }}>
+          <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.1em", color: "var(--ps-ink-4)", textAlign: "center", textTransform: "uppercase" }}>
+            Bald: in den Schläger-Schmied einbauen · Preis vergleichen · zum Shop
+          </div>
+        </div>
+      </div>
+
+      {/* Inline-Keyframes */}
+      <style jsx>{`
+        @keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        @keyframes slideup {
+          from { opacity: 0; transform: translateY(20px) scale(0.97); }
+          to   { opacity: 1; transform: translateY(0)    scale(1); }
+        }
+      `}</style>
     </div>
   );
 }
@@ -303,6 +400,7 @@ export default function SortimentPage() {
   const [bladeItems, setBladeItems] = useState<BladeItem[]>([]);
   const [manufacturers, setManufacturers] = useState<Manufacturer[]>([]);
   const [manufacturer, setManufacturer] = useState<string>("");
+  const [activeItem, setActiveItem] = useState<ProductItem | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -361,7 +459,7 @@ export default function SortimentPage() {
             Sortiment
           </h1>
           <p style={{ fontSize: 15, color: "var(--ps-ink-3)" }}>
-            Alle Beläge und Hölzer in unserem Index — mit normierten Specs aus Hersteller-Daten und Community-Reviews.
+            Alle Beläge und Hölzer in unserem Index — mit Hersteller-Specs, Übersetzung und aggregierten Spielerstimmen. Karte anklicken für Details.
           </p>
         </div>
 
@@ -386,8 +484,6 @@ export default function SortimentPage() {
 
         {/* Filter-Zeile */}
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24, alignItems: "center" }}>
-
-          {/* Suche */}
           <input
             type="text"
             placeholder="Name suchen…"
@@ -400,7 +496,6 @@ export default function SortimentPage() {
             }}
           />
 
-          {/* Belag-Typ (nur Beläge) */}
           {tab === "rubber" && (
             <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
               {[
@@ -415,7 +510,6 @@ export default function SortimentPage() {
             </div>
           )}
 
-          {/* Spielstil */}
           <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
             {[
               { v: "", l: "Alle Stile" },
@@ -428,7 +522,6 @@ export default function SortimentPage() {
             ))}
           </div>
 
-          {/* Hersteller */}
           <select
             value={manufacturer}
             onChange={(e) => setManufacturer(e.target.value)}
@@ -445,7 +538,6 @@ export default function SortimentPage() {
             ))}
           </select>
 
-          {/* Reset */}
           {(rubberType || playStyle || manufacturer || search) && (
             <button
               onClick={() => { setRubberType(""); setPlayStyle(""); setManufacturer(""); setSearch(""); }}
@@ -460,7 +552,7 @@ export default function SortimentPage() {
           )}
         </div>
 
-        {/* Ergebnis-Counter */}
+        {/* Counter */}
         <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.1em", color: "var(--ps-ink-4)", marginBottom: 20, textTransform: "uppercase" }}>
           {loading ? "Lade…" : `${items.length} ${tab === "rubber" ? "Beläge" : "Hölzer"} gefunden`}
         </div>
@@ -485,19 +577,26 @@ export default function SortimentPage() {
             gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
             gap: 14,
           }}>
-            {items.map((item) =>
-              item.kind === "rubber"
-                ? <RubberCard key={`r-${item.id}`} item={item} />
-                : <BladeCard key={`b-${item.id}`} item={item} />
-            )}
+            {items.map((item) => (
+              <ProductCard
+                key={`${item.kind}-${item.id}`}
+                item={item}
+                onClick={() => setActiveItem(item)}
+              />
+            ))}
           </div>
         )}
 
-        {/* Source note */}
+        {/* Source-Note */}
         <p className="ff-mono" style={{ marginTop: 40, textAlign: "center", fontSize: 9.5, color: "var(--ps-ink-4)", letterSpacing: "0.1em" }}>
-          DATEN: REVSPIN.NET COMMUNITY-RATINGS + HERSTELLER-DATENBLÄTTER · NORMIERT AUF 1.0–10.0 SKALA
+          DATEN: HERSTELLER-DATENBLÄTTER + AGGREGIERTE COMMUNITY-STIMMEN · NORMIERT AUF 1.0–10.0
         </p>
       </div>
+
+      {/* Modal */}
+      {activeItem && (
+        <DetailModal item={activeItem} onClose={() => setActiveItem(null)} />
+      )}
     </div>
   );
 }
