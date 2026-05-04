@@ -15,7 +15,8 @@
     "scrape:rubbers": "dotenv -e .env.local -- tsx db/scrapers/revspin.ts rubbers",
     "scrape:blades": "dotenv -e .env.local -- tsx db/scrapers/revspin.ts blades",
     "scrape:import": "dotenv -e .env.local -- tsx db/scrapers/import-revspin.ts",
-    "compute:synergies": "dotenv -e .env.local -- tsx db/scripts/compute-synergies.ts"
+    "compute:synergies": "dotenv -e .env.local -- tsx db/scripts/compute-synergies.ts",
+    "db:insert-exotics": "dotenv -e .env.local -- tsx db/scripts/insert-exotics.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",

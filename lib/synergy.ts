@@ -23,6 +23,7 @@ export interface BladeInput {
 
 export interface RubberInput {
   id: number;
+  type?: "smooth" | "short_pips" | "long_pips" | "anti" | null;
   speedNorm: number | null;
   spinNorm: number | null;
   controlNorm: number | null;
@@ -156,7 +157,10 @@ function calcStyleFit(
 
 function calcPlayStyle(
   avgSpeed: number,
+  rubberType?: "smooth" | "short_pips" | "long_pips" | "anti" | null,
 ): "offensive_topspin" | "allround" | "defensive" | "material" {
+  // Noppen und Anti immer als Material-Spieler kennzeichnen
+  if (rubberType && rubberType !== "smooth") return "material";
   if (avgSpeed >= 8.5) return "offensive_topspin";
   if (avgSpeed >= 7.0) return "allround";
   return "defensive";
@@ -213,7 +217,7 @@ export function computeSynergy(blade: BladeInput, rubber: RubberInput): SynergyR
     spinPotential,
     weightBalance,
     styleFit,
-    playStyleTarget: calcPlayStyle(avgSpeed),
+    playStyleTarget: calcPlayStyle(avgSpeed, rubber.type),
     ttrTarget: calcTtrTarget(avgSpeed),
   };
 }

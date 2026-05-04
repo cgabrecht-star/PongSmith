@@ -42,6 +42,7 @@ async function main() {
         },
         {
           id: rubber.id,
+          type: rubber.type,
           speedNorm: rubber.speedNorm ? parseFloat(rubber.speedNorm) : null,
           spinNorm: rubber.spinNorm ? parseFloat(rubber.spinNorm) : null,
           controlNorm: rubber.controlNorm ? parseFloat(rubber.controlNorm) : null,
