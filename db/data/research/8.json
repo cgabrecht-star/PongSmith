@@ -1,5 +1,33 @@
 [
   {
+    "slug": "dr-neubauer-abs-2",
+    "name": "A-B-S 2",
+    "manufacturer": "Dr. Neubauer",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=de&prod=129",
+    "manufacturerDescription": "Sehr langsamer Glatt-Anti für das Blockspiel mit Plastik- und ABS-Bällen. Hohe Kontrolle, spürbare Spinumkehr und extrem flache, kurze Blockbälle. Dämpfungsschwamm in mehreren Stärken ermöglicht variablen Störeffekt.",
+    "manufacturerSpecs": {
+      "speed": "Tempo 51 (Herstellerangabe)",
+      "spin": null,
+      "control": "Kontrolle 92 (Herstellerangabe)",
+      "spongeHardness": null,
+      "thickness": "2.1 / 2.3 / 2.5 mm Dämpfungsschwamm",
+      "weight": null,
+      "layers": null,
+      "category": "anti"
+    },
+    "communityConsensus": {
+      "summary": "Spieler beschreiben ABS 2 als extrem langsamen, kontrollierten Glatt-Anti mit starker Spinumkehr und flachen, giftigen Blockbällen am Tisch. Schwach ist er gegen komplett leere Bälle, die aktiver geführt werden müssen.",
+      "sources": [
+        "https://revspin.net/rubber/dr-neubauer-abs-2.html",
+        "https://www.noppen-test.de/forum/viewtopic.php?t=36185"
+      ],
+      "playerLevelRange": "nicht spezifiziert",
+      "primaryUseCase": "Rückhand-Blockspiel mit Glatt-Anti am Tisch."
+    }
+  },
+  {
     "slug": "dr-neubauer-aggressivo",
     "name": "Aggressivo",
     "manufacturer": "Dr. Neubauer",
@@ -20,8 +48,285 @@
     "communityConsensus": {
       "summary": null,
       "sources": [],
-      "playerLevelRange": null,
-      "primaryUseCase": null
+      "playerLevelRange": "nicht spezifiziert",
+      "primaryUseCase": "unbekannt"
+    }
+  },
+  {
+    "slug": "dr-neubauer-desperado",
+    "name": "Desperado",
+    "manufacturer": "Dr. Neubauer",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=de&prod=76",
+    "manufacturerDescription": "Desperado ist ein langer Noppen-Belag für tischnahes Störspiel mit Hackblock, passivem Block und aggressivem Hinedrücken auf Topspin. Auch aus der Abwehr lassen sich sehr flache Unterschnittbälle erzeugen.",
+    "manufacturerSpecs": {
+      "speed": "Tempo 55 (Herstellerangabe)",
+      "spin": "Effet 81 (Herstellerangabe)",
+      "control": "Kontrolle 83 (Herstellerangabe)",
+      "spongeHardness": null,
+      "thickness": "OX / 0.6 / 1.0 mm",
+      "weight": null,
+      "layers": null,
+      "category": "long pips"
+    },
+    "communityConsensus": {
+      "summary": "Auf Revspin wird Desperado als kontrollierter, aber immer noch sehr störender Langnoppenbelag mit gutem Spinrückschlag beschrieben. Besonders stark sei er im tischnahen Block- und Hackblockspiel, weniger in der Distanzabwehr.",
+      "sources": [
+        "https://revspin.net/pips/dr-neubauer-desperado.html"
+      ],
+      "playerLevelRange": "nicht spezifiziert",
+      "primaryUseCase": "Lange Noppen auf der Rückhand für tischnahes Block- und Hackblockspiel."
+    }
+  },
+  {
+    "slug": "dr-neubauer-explosion",
+    "name": "Explosion",
+    "manufacturer": "Dr. Neubauer",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=132",
+    "manufacturerDescription": "Explosion ist eine sehr schnelle Kurznoppe, die ein dynamisches Konter- und Schussspiel bei gleichzeitig flachem, störendem Ballabsprung ermöglicht. Dünnere Schwämme verstärken den Störeffekt, dickere Versionen erhöhen Tempo und Durchschlagskraft.",
+    "manufacturerSpecs": {
+      "speed": "Speed 94 (Herstellerangabe)",
+      "spin": "Spin 83 (Herstellerangabe)",
+      "control": "Control 94 (Herstellerangabe)",
+      "spongeHardness": null,
+      "thickness": "OX / 1.2 / 1.5 / 1.8 / 2.0 / 2.2 mm",
+      "weight": null,
+      "layers": null,
+      "category": "short pips"
+    },
+    "communityConsensus": {
+      "summary": "Spieler beschreiben Explosion als harte, sehr schnelle Kurznoppe mit noch spürbarem, aber geringerem Störeffekt als Killer Pro. Gelobt werden Kontrolle und Sicherheit beim tischnahen Block- und Schussspiel, in dünnen Schwämmen.",
+      "sources": [
+        "https://revspin.net/pips/dr-neubauer-explosion.html",
+        "https://www.noppen-test.de/forum/viewtopic.php?t=36723"
+      ],
+      "playerLevelRange": "nicht spezifiziert",
+      "primaryUseCase": ", direktes Angriffsspiel mit Kurznoppen auf der Rückhand oder Vorhand."
+    }
+  },
+  {
+    "slug": "dr-neubauer-golem",
+    "name": "Golem",
+    "manufacturer": "Dr. Neubauer",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": null,
+    "manufacturerDescription": null,
+    "manufacturerSpecs": {
+      "speed": null,
+      "spin": null,
+      "control": null,
+      "spongeHardness": null,
+      "thickness": null,
+      "weight": null,
+      "layers": null,
+      "category": "short pips"
+    },
+    "communityConsensus": {
+      "summary": null,
+      "sources": [],
+      "playerLevelRange": "nicht spezifiziert",
+      "primaryUseCase": "unbekannt"
+    }
+  },
+  {
+    "slug": "dr-neubauer-grizzly",
+    "name": "Grizzly",
+    "manufacturer": "Dr. Neubauer",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=de&prod=52",
+    "manufacturerDescription": "Grizzly ist ein Anti-Spin-Belag für ein Allround-Störspiel mit sicherem Blocken am Tisch und variabler Abwehr. Er kombiniert guten Störeffekt mit hoher Kontrolle und erlaubt auch druckvolle Angriffe durch Druckschupf und Liften.",
+    "manufacturerSpecs": {
+      "speed": "Tempo 77 (Herstellerangabe)",
+      "spin": null,
+      "control": "Kontrolle 85 (Herstellerangabe)",
+      "spongeHardness": null,
+      "thickness": "1.0 / 1.6 / 2.0 mm",
+      "weight": null,
+      "layers": null,
+      "category": "anti"
+    },
+    "communityConsensus": {
+      "summary": "In Reviews wird Grizzly als relativ schneller, aber noch kontrollierbarer Anti mit spürbarem Störeffekt und ordentlicher Spinumkehr beschrieben. Viele nutzen ihn für variable Block- und Abwehrsysteme statt rein passives Stören.",
+      "sources": [
+        "https://revspin.net/rubber/dr-neubauer-grizzly-anti-abs-sponge.html",
+        "https://www.drneubauer.com/index.php?p=6&lang=de"
+      ],
+      "playerLevelRange": "nicht spezifiziert",
+      "primaryUseCase": "Allround-Anti für Block und Schnittabwehr mit gelegentlichen Angriffsbällen."
+    }
+  },
+  {
+    "slug": "dr-neubauer-killer",
+    "name": "Killer",
+    "manufacturer": "Dr. Neubauer",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=de&prod=81",
+    "manufacturerDescription": "Killer ist eine offensive Noppen-aussen-Entwicklung, die schnelle Konter- und Schussbälle mit stark abtauchendem Ballabsprung ermöglicht. Die Kontrolle wird als überragend beschrieben und die Schnittanfälligkeit ist relativ gering.",
+    "manufacturerSpecs": {
+      "speed": null,
+      "spin": null,
+      "control": null,
+      "spongeHardness": null,
+      "thickness": "1.5 / 1.8 / 2.0 / max (~2.2) mm",
+      "weight": null,
+      "layers": null,
+      "category": "short pips"
+    },
+    "communityConsensus": {
+      "summary": "Auf Revspin wird Killer als sehr störende, schnelle Kurznoppe mit flachem, unangenehmem Ballabsprung und dennoch guter Kontrolle bewertet. Viele Spieler berichten aber von erhöhter Fehlerquote bei unsauberer Technik.",
+      "sources": [
+        "https://revspin.net/pips/dr-neubauer-killer.html",
+        "https://www.noppen-test.de/forum/viewtopic.php?t=36723&start=45"
+      ],
+      "playerLevelRange": "nicht spezifiziert",
+      "primaryUseCase": ", aggressives Noppen-aussen-Spiel auf Rückhand oder Vorhand."
+    }
+  },
+  {
+    "slug": "dr-neubauer-super-block",
+    "name": "Super Block",
+    "manufacturer": "Dr. Neubauer",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.drneubauer.com/index.php?p=6&lang=de",
+    "manufacturerDescription": "Super Block ist laut Hersteller der langsamste lange Noppenbelag der Firma und speziell für kurze Blockbälle am Tisch ausgelegt. Aufgrund maximalen Störeffekts gilt er dort als Referenz für passives Störspiel.",
+    "manufacturerSpecs": {
+      "speed": null,
+      "spin": null,
+      "control": null,
+      "spongeHardness": null,
+      "thickness": null,
+      "weight": null,
+      "layers": null,
+      "category": "long pips"
+    },
+    "communityConsensus": {
+      "summary": "Spieler erinnern Super Block als extrem langsamen, OX-gespielten Langnoppenbelag mit maximaler Spinumkehr und sehr flachem, wackelndem Blockball. Die Kontrolle im passiven Block wird gelobt, offensive Optionen gelten als stark eingeschränkt.",
+      "sources": [
+        "https://revspin.net/pips/dr-neubauer-super-block.html",
+        "https://www.tt-maximum.com/shop/en/rubbers/dr-neubauer-super-block"
+      ],
+      "playerLevelRange": "nicht spezifiziert",
+      "primaryUseCase": "Passives Block- und Störspiel mit langen Noppen OX direkt am Tisch."
+    }
+  },
+  {
+    "slug": "dr-neubauer-tactical",
+    "name": "Tactical",
+    "manufacturer": "Dr. Neubauer",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": null,
+    "manufacturerDescription": null,
+    "manufacturerSpecs": {
+      "speed": null,
+      "spin": null,
+      "control": null,
+      "spongeHardness": null,
+      "thickness": null,
+      "weight": null,
+      "layers": null,
+      "category": null
+    },
+    "communityConsensus": {
+      "summary": null,
+      "sources": [],
+      "playerLevelRange": "nicht spezifiziert",
+      "primaryUseCase": "unbekannt"
+    }
+  },
+  {
+    "slug": "spinlord-dornenglanz-ii",
+    "name": "Dornenglanz II",
+    "manufacturer": "SpinLord",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": null,
+    "manufacturerDescription": "Dornenglanz II ist eine lange Noppe mit mittelharten, elastischen Noppen für variables Allround- und Defensivspiel mit höherem Tempo und Störeffekt als klassische Allroundnoppen. Er soll sowohl am Tisch als auch in Distanz gleichermaßen effektiv sein.",
+    "manufacturerSpecs": {
+      "speed": "Speed ca. 5 (SpinLord-Angabe bei Händlern)",
+      "spin": "Spin ca. 4.5 (Herstellerangabe über Händler)",
+      "control": "Control ca. 9 (Herstellerangabe über Händler)",
+      "spongeHardness": "mittel",
+      "thickness": "OX / verschiedene Schwammversionen (Angaben variieren)",
+      "weight": null,
+      "layers": null,
+      "category": "long pips"
+    },
+    "communityConsensus": {
+      "summary": "Auf Revspin und in Foren wird Dornenglanz II als gefährliche, aber recht kontrollierbare Allround-Langnoppe mit flacher Flugkurve und gutem Störeffekt beschrieben. Besonders hervorgehoben werden seine Stärken in variabler Schnittabwehr und aktiven Störschlägen.",
+      "sources": [
+        "https://revspin.net/pips/spinlord-dornenglanz-ii.html",
+        "https://www.noppen-test.de/forum/viewtopic.php?t=28936",
+        "https://www.youtube.com/watch?v=TLJZPsB8Bzg"
+      ],
+      "playerLevelRange": "nicht spezifiziert",
+      "primaryUseCase": "Variables Defensiv- und Störspiel mit langen Noppen, sowohl am Tisch als auch aus der Halbdistanz."
+    }
+  },
+  {
+    "slug": "spinlord-marder",
+    "name": "Marder",
+    "manufacturer": "SpinLord",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": null,
+    "manufacturerDescription": "Marder ist ein langsamer, kontrollorientierter Noppen-innen-Belag mit leicht klebriger Oberfläche für schnittreiches Allround- bis Defensivspiel. Er wird häufig mit dünnem Schwamm für sichere Schupf- und Chopbälle eingesetzt.",
+    "manufacturerSpecs": {
+      "speed": "Speed 6.4 (Revspin-Communitywert)",
+      "spin": "Spin 8.4 (Revspin-Communitywert)",
+      "control": "Control 9.2 (Revspin-Communitywert)",
+      "spongeHardness": "medium-soft",
+      "thickness": "typisch 1.0–2.0 mm laut Tests und Händlerangaben",
+      "weight": null,
+      "layers": null,
+      "category": "inverted/smooth"
+    },
+    "communityConsensus": {
+      "summary": "Spieler beschreiben Marder als sehr kontrollierten, eher langsamen Inverted mit hoher Schnittentwicklung und geringer Spinanfälligkeit, ideal für passives Block- und Schupfspiel. Besonders beliebt ist er bei modernen Defensivspielern, die mit dünnem Schwamm zuverlässig gegen Topspin choppen wollen.",
+      "sources": [
+        "https://revspin.net/rubber/spinlord-marder.html",
+        "https://www.youtube.com/watch?v=3nCFKsKfLxE",
+        "https://www.youtube.com/watch?v=bXiqMFdlVeM",
+        "https://www.tabletennisdaily.com/forum/topics/defensive-inverted-rubber.38458/"
+      ],
+      "playerLevelRange": "nicht spezifiziert",
+      "primaryUseCase": "Defensiv- und Allroundspieler, die viel Schnitt mit hoher Kontrolle in Schupf und Unterschnittabwehr suchen."
+    }
+  },
+  {
+    "slug": "spinlord-waran",
+    "name": "Waran",
+    "manufacturer": "SpinLord",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": null,
+    "manufacturerDescription": "Waran ist eine sehr schnelle Kurznoppe mit griffigem Topsheet für direktes tischnahes Angriffsspiel. Der Belag kombiniert hohes Tempo mit relativ guter Kontrolle und erzeugt flache, unangenehme Ballflugbahnen.",
+    "manufacturerSpecs": {
+      "speed": "Speed 9.0 (Revspin-Communitywert)",
+      "spin": "Spin 7.6 (Revspin-Communitywert)",
+      "control": "Control 8.7 (Revspin-Communitywert)",
+      "spongeHardness": "medium-soft",
+      "thickness": "typisch 1.5 / 1.8 / 2.0 mm laut Tests",
+      "weight": null,
+      "layers": null,
+      "category": "short pips"
+    },
+    "communityConsensus": {
+      "summary": "Auf Revspin und in Foren gilt Waran als sehr schnelle, druckvolle Kurznoppe, die sich fürs tischnahes Konter- und Schussspiel eignet und dabei noch erstaunlich kontrollierbar bleibt. Gelobt werden die flache Flugkurve, einfache Blocks und die Möglichkeit, auch etwas Spin zu erzeugen, während reine Störeigenschaften moderat bleiben.",
+      "sources": [
+        "https://revspin.net/pips/spinlord-waran.html",
+        "https://mytabletennis.net/forum/short-pips-review-spinlord-waran_topic73024.html",
+        "https://tabletennisdata.weebly.com/spinlord-waran-review.html"
+      ],
+      "playerLevelRange": "nicht spezifiziert",
+      "primaryUseCase": ", direktes Angriffsspiel mit Kurznoppen, häufig auf der Rückhand, für Konter, Schuss und druckvolle Blocks."
     }
   }
 ]
