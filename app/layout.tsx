@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Bebas_Neue, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { config } from "@/lib/config";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -22,10 +24,58 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+// ── Metadata ────────────────────────────────────────────────────────────────
+// Vollständige SEO/Social-Tags. metadataBase ist Pflicht für openGraph + canonical.
+
 export const metadata: Metadata = {
-  title: "PongSmith — Die Tischtennis-Schmiede",
-  description:
-    "Unabhängige KI-Ausrüstungsberatung für Vereinsspieler. Finde das Setup das zu deinem TTR und Spielstil passt.",
+  metadataBase: new URL(config.siteUrl),
+  title: {
+    default: `${config.siteName} — ${config.siteTagline}`,
+    template: `%s · ${config.siteName}`,
+  },
+  description: config.siteDescription,
+  applicationName: config.siteName,
+  authors: [{ name: "Christoph Gabrecht" }],
+  keywords: [
+    "Tischtennis Beratung",
+    "Tischtennis Schläger",
+    "Belag Empfehlung",
+    "Holz Empfehlung",
+    "TTR Schläger",
+    "Vereinsspieler Ausrüstung",
+    "TT Setup",
+    "Spielstil Beratung",
+    "Tischtennis KI",
+  ],
+  creator: "PongSmith",
+  publisher: "PongSmith",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: config.siteUrl,
+    siteName: config.siteName,
+    title: `${config.siteName} — ${config.siteTagline}`,
+    description: config.siteDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${config.siteName} — ${config.siteTagline}`,
+    description: config.siteDescription,
+  },
+  alternates: {
+    canonical: config.siteUrl,
+  },
+  category: "sports",
 };
 
 export default function RootLayout({
@@ -48,6 +98,16 @@ export default function RootLayout({
         }}
       >
         {children}
+
+        {/* Plausible Analytics — cookie-frei, DSGVO-konform, in EU gehostet */}
+        {process.env.NODE_ENV === "production" && (
+          <Script
+            defer
+            data-domain={config.plausibleDomain}
+            src={config.plausibleScript}
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );

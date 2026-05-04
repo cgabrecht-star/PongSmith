@@ -113,7 +113,8 @@ export const blades = pgTable(
     ttrMax: smallint("ttr_max"),
     ttrOptimal: smallint("ttr_optimal"),
 
-    description: text("description"),
+    description: text("description"),                       // Hersteller-Beschreibung (umformuliert)
+    communityDescription: text("community_description"),     // Schnittmenge der Community-Meinungen
     imageUrl: varchar("image_url", { length: 500 }),
     sourceUrl: varchar("source_url", { length: 500 }), // URL der Datenquelle
     isActive: boolean("is_active").default(true).notNull(),
@@ -170,7 +171,8 @@ export const rubbers = pgTable(
     ttrMax: smallint("ttr_max"),
     ttrOptimal: smallint("ttr_optimal"),
 
-    description: text("description"),
+    description: text("description"),                       // Hersteller-Beschreibung (umformuliert)
+    communityDescription: text("community_description"),     // Schnittmenge der Community-Meinungen
     imageUrl: varchar("image_url", { length: 500 }),
     sourceUrl: varchar("source_url", { length: 500 }),
     isActive: boolean("is_active").default(true).notNull(),

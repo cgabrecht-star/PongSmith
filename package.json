@@ -22,7 +22,9 @@
     "db:backfill-images": "dotenv -e .env.local -- tsx db/scripts/backfill-images.ts",
     "scrape:racketinsight": "dotenv -e .env.local -- tsx db/scrapers/racketinsight.ts",
     "import:racketinsight": "dotenv -e .env.local -- tsx db/scrapers/import-racketinsight.ts",
-    "db:fix-wrong-descriptions": "dotenv -e .env.local -- tsx db/scripts/fix-wrong-descriptions.ts"
+    "db:fix-wrong-descriptions": "dotenv -e .env.local -- tsx db/scripts/fix-wrong-descriptions.ts",
+    "db:add-community-description": "dotenv -e .env.local -- tsx db/scripts/add-community-description.ts",
+    "db:export-product-list": "dotenv -e .env.local -- tsx db/scripts/export-product-list.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",

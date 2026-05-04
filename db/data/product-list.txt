@@ -1,0 +1,124 @@
+# PongSmith Produktliste — für Recherche-Agenten
+# Format: slug | Name | Hersteller | Typ
+
+## Beläge (rubbers)
+
+dawei-388d-1 | 388D-1 | Dawei | Belag-lange-Noppen
+friendship-729-cream | 729 Cream | Friendship | Belag-anti
+friendship-802-40 | 802-40 | Friendship | Belag-kurze-Noppen
+juic-999-elite | 999 Elite | Juic | Belag-lange-Noppen
+dr-neubauer-abs-2 | A-B-S 2 | Dr. Neubauer | Belag-lange-Noppen
+dr-neubauer-aggressivo | Aggressivo | Dr. Neubauer | Belag-anti
+andro-hexer | Andro Hexer | Andro | Belag-invertiert
+andro-hexer-powergrip | Andro Hexer Powergrip | Andro | Belag-invertiert
+andro-rasant | Andro Rasant | Andro | Belag-invertiert
+andro-rasant-powergrip | Andro Rasant PowerGrip | Andro | Belag-invertiert
+butterfly-dignics-05 | Butterfly Dignics 05 | Butterfly | Belag-invertiert
+butterfly-dignics-09c | Butterfly Dignics 09C | Butterfly | Belag-invertiert
+butterfly-dignics-64 | Butterfly Dignics 64 | Butterfly | Belag-invertiert
+butterfly-dignics-80 | Butterfly Dignics 80 | Butterfly | Belag-invertiert
+butterfly-rozena | Butterfly Rozena | Butterfly | Belag-invertiert
+butterfly-sriver-el | Butterfly Sriver EL | Butterfly | Belag-invertiert
+butterfly-tackifire-drive | Butterfly Tackifire Drive | Butterfly | Belag-invertiert
+butterfly-tenergy-05 | Butterfly Tenergy 05 | Butterfly | Belag-invertiert
+butterfly-tenergy-05-fx | Butterfly Tenergy 05 FX | Butterfly | Belag-invertiert
+butterfly-tenergy-19 | Butterfly Tenergy 19 | Butterfly | Belag-invertiert
+butterfly-tenergy-64 | Butterfly Tenergy 64 | Butterfly | Belag-invertiert
+butterfly-tenergy-80 | Butterfly Tenergy 80 | Butterfly | Belag-invertiert
+butterfly-tenergy-80-fx | Butterfly Tenergy 80 FX | Butterfly | Belag-invertiert
+nittaku-curl-p1r | Curl P-1R | Nittaku | Belag-lange-Noppen
+victas-curl-p5v | Curl P5V | Victas | Belag-anti
+dr-neubauer-desperado | Desperado | Dr. Neubauer | Belag-lange-Noppen
+dhs-hurricane-3 | DHS Hurricane 3 (H3) | DHS | Belag-invertiert
+dhs-hurricane-8 | DHS Hurricane 8 | DHS | Belag-invertiert
+donic-baracuda | Donic Baracuda | Donic | Belag-invertiert
+donic-bluefire-m1 | Donic Bluefire M1 | Donic | Belag-invertiert
+donic-bluefire-m2 | Donic Bluefire M2 | Donic | Belag-invertiert
+donic-bluefire-m3 | Donic Bluefire M3 | Donic | Belag-invertiert
+donic-coppa-jo-silver | Donic Coppa JO Silver | Donic | Belag-invertiert
+spinlord-dornenglanz-ii | Dornenglanz II | SpinLord | Belag-lange-Noppen
+dr-neubauer-explosion | Explosion | Dr. Neubauer | Belag-kurze-Noppen
+joola-express-ultra | Express Ultra | Joola | Belag-kurze-Noppen
+yinhe-galaxy-955 | Galaxy 955 | Yinhe | Belag-lange-Noppen
+dr-neubauer-golem | Golem | Dr. Neubauer | Belag-kurze-Noppen
+tibhar-grass-dtecs | Grass D.TecS | Tibhar | Belag-lange-Noppen
+dr-neubauer-grizzly | Grizzly | Dr. Neubauer | Belag-lange-Noppen
+joola-dynaryz-agr | JOOLA Dynaryz AGR | Joola | Belag-invertiert
+joola-rhyzm | JOOLA Rhyzm | Joola | Belag-invertiert
+joola-rhyzm-tech | JOOLA Rhyzm Tech | Joola | Belag-invertiert
+joola-rhyzm-p | JOOLA Rhyzm-P | Joola | Belag-invertiert
+joola-zack | JOOLA Zack | Joola | Belag-invertiert
+dr-neubauer-killer | Killer | Dr. Neubauer | Belag-lange-Noppen
+spinlord-marder | Marder | SpinLord | Belag-lange-Noppen
+nittaku-fastarc-c-1 | Nittaku Fastarc C-1 | Nittaku | Belag-invertiert
+nittaku-fastarc-g-1 | Nittaku Fastarc G-1 | Nittaku | Belag-invertiert
+nittaku-fastarc-s-1 | Nittaku Fastarc S-1 | Nittaku | Belag-invertiert
+joola-orca | Orca | Joola | Belag-anti
+yasaka-phantom-0011-infinity | Phantom 0011 Infinity | Yasaka | Belag-lange-Noppen
+tibhar-phantom-guang | Phantom Guang | Tibhar | Belag-anti
+donic-quattro-a1 | Quattro A1 | Donic | Belag-kurze-Noppen
+donic-slice-40-cd-turbo | Slice 40 CD Turbo | Donic | Belag-anti
+nittaku-spectol-s1 | Spectol S1 | Nittaku | Belag-kurze-Noppen
+tibhar-speedy-soft | Speedy Soft | Tibhar | Belag-kurze-Noppen
+tibhar-speedy-soft-dtecs | Speedy Soft D.TecS | Tibhar | Belag-kurze-Noppen
+stiga-calibra-lt | Stiga Calibra LT | Stiga | Belag-invertiert
+stiga-calibra-lt-sound | Stiga Calibra LT Sound | Stiga | Belag-invertiert
+stiga-mantra-h | Stiga Mantra H | Stiga | Belag-invertiert
+stiga-mantra-m | Stiga Mantra M | Stiga | Belag-invertiert
+stiga-mantra-s | Stiga Mantra S | Stiga | Belag-invertiert
+dr-neubauer-super-block | Super Block | Dr. Neubauer | Belag-anti
+tibhar-aurus | Tibhar Aurus | Tibhar | Belag-invertiert
+tibhar-aurus-sound | Tibhar Aurus Sound | Tibhar | Belag-invertiert
+tibhar-evolution-el-s | Tibhar Evolution EL-S | Tibhar | Belag-invertiert
+tibhar-evolution-fx-s | Tibhar Evolution FX-S | Tibhar | Belag-invertiert
+tibhar-evolution-mx-p | Tibhar Evolution MX-P | Tibhar | Belag-invertiert
+tibhar-evolution-mx-s | Tibhar Evolution MX-S | Tibhar | Belag-invertiert
+victas-triple-extra | Victas Triple Extra | Victas | Belag-invertiert
+victas-ventus-extra | Victas Ventus Extra | Victas | Belag-invertiert
+victas-vo-101 | VO > 101 | Victas | Belag-kurze-Noppen
+victas-vo-102 | VO > 102 | Victas | Belag-lange-Noppen
+spinlord-waran | Waran | SpinLord | Belag-kurze-Noppen
+xiom-omega-vii-pro | Xiom Omega VII Pro | Xiom | Belag-invertiert
+xiom-omega-vii-tour | Xiom Omega VII Tour | Xiom | Belag-invertiert
+xiom-vega-asia | Xiom Vega Asia | Xiom | Belag-invertiert
+xiom-vega-elite | Xiom Vega Elite | Xiom | Belag-invertiert
+xiom-vega-europe | Xiom Vega Europe | Xiom | Belag-invertiert
+xiom-vega-pro | Xiom Vega Pro | Xiom | Belag-invertiert
+yasaka-mark-v | Yasaka Mark V | Yasaka | Belag-invertiert
+yasaka-rakza-7 | Yasaka Rakza 7 | Yasaka | Belag-invertiert
+yasaka-rakza-7-soft | Yasaka Rakza 7 Soft | Yasaka | Belag-invertiert
+yasaka-rakza-x | Yasaka Rakza X | Yasaka | Belag-invertiert
+
+## Hölzer (blades)
+
+butterfly-addoy | Addoy | Butterfly | Holz
+andro-super-core-cell-off | Andro Super Core Cell OFF | Andro | Holz
+donic-appelgren-allplay-senso-v2 | Appelgren Allplay Senso V2 | Donic | Holz
+butterfly-innerforce-layer-alc | Butterfly Innerforce Layer ALC | Butterfly | Holz
+butterfly-primorac | Butterfly Primorac | Butterfly | Holz
+butterfly-timo-boll-alc | Butterfly Timo Boll ALC | Butterfly | Holz
+butterfly-timo-boll-zlf | Butterfly Timo Boll ZLF | Butterfly | Holz
+butterfly-viscaria | Butterfly Viscaria | Butterfly | Holz
+butterfly-zhang-jike-alc | Butterfly Zhang Jike ALC | Butterfly | Holz
+tibhar-champ | Champ | Tibhar | Holz
+stiga-defensive-wrb | Defensive WRB | Stiga | Holz
+donic-ovtcharov-carbospeed | Donic Ovtcharov Carbospeed | Donic | Holz
+donic-persson-powerplay | Donic Persson Powerplay | Donic | Holz
+donic-waldner-allplay | Donic Waldner Allplay | Donic | Holz
+donic-waldner-senso-carbon | Donic Waldner Senso Carbon | Donic | Holz
+butterfly-joo-se-hyuk | Joo Se Hyuk | Butterfly | Holz
+joola-k5 | JOOLA K5 | Joola | Holz
+nittaku-ludeack | Ludeack | Nittaku | Holz
+nittaku-acoustic | Nittaku Acoustic | Nittaku | Holz
+nittaku-violin | Nittaku Violin | Nittaku | Holz
+stiga-allround-classic | Stiga Allround Classic | Stiga | Holz
+stiga-allround-evolution | Stiga Allround Evolution | Stiga | Holz
+stiga-clipper-cr | Stiga Clipper CR | Stiga | Holz
+stiga-offensive-classic | Stiga Offensive Classic (OC) | Stiga | Holz
+dr-neubauer-tactical | Tactical | Dr. Neubauer | Holz
+tibhar-samsonov-force-pro | Tibhar Samsonov Force Pro | Tibhar | Holz
+tibhar-stratus-power-wood | Tibhar Stratus Power Wood | Tibhar | Holz
+xiom-hayabusa-z | Xiom Hayabusa Z | Xiom | Holz
+xiom-stradivarius | Xiom Stradivarius | Xiom | Holz
+yasaka-ma-lin-extra-offensive | Yasaka Ma Lin Extra Offensive | Yasaka | Holz
+yasaka-sweden-extra | Yasaka Sweden Extra | Yasaka | Holz
