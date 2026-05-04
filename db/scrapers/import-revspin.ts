@@ -122,9 +122,21 @@ async function importRubbers(cache: Map<string, number>) {
         communitySpin:    norm(r.communitySpin),
         communityControl: norm(r.communityControl),
         communityReviewCount: r.reviewCount ?? 0,
+        imageUrl: r.imageUrl ?? null,
+        description: r.description ?? null,
         sourceUrl: r.sourceUrl,
       })
-      .onConflictDoNothing(); // slug ist UNIQUE — kein doppelter Import
+      .onConflictDoUpdate({
+        target: rubbers.slug,
+        set: {
+          imageUrl: r.imageUrl ?? null,
+          description: r.description ?? null,
+          communitySpeed:   norm(r.communitySpeed),
+          communitySpin:    norm(r.communitySpin),
+          communityControl: norm(r.communityControl),
+          communityReviewCount: r.reviewCount ?? 0,
+        },
+      });
 
     inserted++;
   }
@@ -174,9 +186,20 @@ async function importBlades(cache: Map<string, number>) {
         communitySpeed:   norm(b.communitySpeed),
         communityControl: norm(b.communityControl),
         communityReviewCount: b.reviewCount ?? 0,
+        imageUrl: b.imageUrl ?? null,
+        description: b.description ?? null,
         sourceUrl: b.sourceUrl,
       })
-      .onConflictDoNothing();
+      .onConflictDoUpdate({
+        target: blades.slug,
+        set: {
+          imageUrl: b.imageUrl ?? null,
+          description: b.description ?? null,
+          communitySpeed:   norm(b.communitySpeed),
+          communityControl: norm(b.communityControl),
+          communityReviewCount: b.reviewCount ?? 0,
+        },
+      });
 
     inserted++;
   }

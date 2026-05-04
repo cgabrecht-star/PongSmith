@@ -16,7 +16,10 @@
     "scrape:blades": "dotenv -e .env.local -- tsx db/scrapers/revspin.ts blades",
     "scrape:import": "dotenv -e .env.local -- tsx db/scrapers/import-revspin.ts",
     "compute:synergies": "dotenv -e .env.local -- tsx db/scripts/compute-synergies.ts",
-    "db:insert-exotics": "dotenv -e .env.local -- tsx db/scripts/insert-exotics.ts"
+    "db:insert-exotics": "dotenv -e .env.local -- tsx db/scripts/insert-exotics.ts",
+    "db:add-image-url": "dotenv -e .env.local -- tsx db/scripts/add-image-url.ts",
+    "inspect:revspin": "dotenv -e .env.local -- tsx db/scripts/inspect-revspin.ts",
+    "db:backfill-images": "dotenv -e .env.local -- tsx db/scripts/backfill-images.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",

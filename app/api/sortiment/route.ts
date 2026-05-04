@@ -102,6 +102,7 @@ export async function GET(req: NextRequest) {
       ttrOptimal: r.ttrOptimal,
       reviewCount: r.communityReviewCount,
       description: r.description,
+      imageUrl: r.imageUrl,
     }));
 
     const mappedBlades = bladeRows.map((b) => ({
@@ -124,6 +125,7 @@ export async function GET(req: NextRequest) {
       ttrOptimal: b.ttrOptimal,
       reviewCount: b.communityReviewCount,
       description: b.description,
+      imageUrl: b.imageUrl,
     }));
 
     return NextResponse.json({

@@ -23,6 +23,7 @@ interface RubberItem {
   ttrOptimal: number | null;
   reviewCount: number | null;
   description: string | null;
+  imageUrl: string | null;
 }
 
 interface BladeItem {
@@ -45,6 +46,7 @@ interface BladeItem {
   ttrOptimal: number | null;
   reviewCount: number | null;
   description: string | null;
+  imageUrl: string | null;
 }
 
 type ProductItem = RubberItem | BladeItem;
@@ -87,6 +89,35 @@ function playStyleColor(s: string | null) {
 
 // ─── Karten ───────────────────────────────────────────────────────────────────
 
+function ProductImage({ url, name }: { url: string | null; name: string }) {
+  const [error, setError] = useState(false);
+  if (!url || error) {
+    return (
+      <div style={{
+        width: 72, height: 72, flexShrink: 0, borderRadius: 4,
+        background: "var(--ps-bg-3)", border: "1px solid var(--ps-line-2)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        fontSize: 24,
+      }}>
+        🏓
+      </div>
+    );
+  }
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={url}
+      alt={name}
+      onError={() => setError(true)}
+      style={{
+        width: 72, height: 72, objectFit: "contain", flexShrink: 0,
+        borderRadius: 4, background: "var(--ps-bg-3)",
+        border: "1px solid var(--ps-line-2)", padding: 4,
+      }}
+    />
+  );
+}
+
 function RubberCard({ item }: { item: RubberItem }) {
   const [expanded, setExpanded] = useState(false);
   return (
@@ -103,26 +134,29 @@ function RubberCard({ item }: { item: RubberItem }) {
         e.currentTarget.style.transform = "translateY(0)";
       }}
     >
-      {/* Header */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
-        <div style={{ minWidth: 0 }}>
+      {/* Header mit Bild */}
+      <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+        <ProductImage url={item.imageUrl} name={item.name} />
+        <div style={{ flex: 1, minWidth: 0 }}>
           <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.14em", color: "var(--ps-ink-4)", textTransform: "uppercase", marginBottom: 4 }}>
             {item.manufacturer}
           </div>
-          <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ps-ink-0)", lineHeight: 1.25 }}>
+          <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ps-ink-0)", lineHeight: 1.25, marginBottom: 6 }}>
             {item.name}
           </div>
-        </div>
-        <div style={{ display: "flex", gap: 5, flexShrink: 0 }}>
-          <span className="tag-line" style={{ fontSize: 9 }}>
-            {rubberTypeLabel(item.rubberType)}
-          </span>
-          <span
-            className="tag-line"
-            style={{ fontSize: 9, borderColor: `${playStyleColor(item.playStyle)}44`, color: playStyleColor(item.playStyle) }}
-          >
-            {playStyleLabel(item.playStyle)}
-          </span>
+          <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+            <span className="tag-line" style={{ fontSize: 9 }}>
+              {rubberTypeLabel(item.rubberType)}
+            </span>
+            <span
+              className="tag-line"
+              style={{ fontSize: 9, borderColor: `${playStyleColor(item.playStyle)}44`, color: playStyleColor(item.playStyle) }}
+            >
+              {playStyleLabel(item.playStyle)}
+            </span>
+            {item.ttrOptimal && <span className="tag-line" style={{ fontSize: 9 }}>TTR {item.ttrOptimal}</span>}
+            {item.hardnessMin && <span className="tag-line" style={{ fontSize: 9 }}>{item.hardnessMin}°</span>}
+          </div>
         </div>
       </div>
 
@@ -133,23 +167,22 @@ function RubberCard({ item }: { item: RubberItem }) {
         <StatRow label="Control" value={item.controlNorm} color="linear-gradient(90deg,#059669,#34d399)" />
       </div>
 
-      {/* Meta */}
-      <div style={{ marginTop: 10, display: "flex", gap: 8, flexWrap: "wrap" }}>
-        {item.ttrOptimal && (
-          <span className="tag-line" style={{ fontSize: 9 }}>TTR {item.ttrOptimal}</span>
-        )}
-        {item.hardnessMin && (
-          <span className="tag-line" style={{ fontSize: 9 }}>{item.hardnessMin}°</span>
-        )}
-        {item.reviewCount != null && item.reviewCount > 0 && (
-          <span className="tag-line" style={{ fontSize: 9 }}>★ {item.reviewCount} Reviews</span>
-        )}
-      </div>
+      {/* Reviews */}
+      {item.reviewCount != null && item.reviewCount > 0 && (
+        <div className="ff-mono" style={{ marginTop: 8, fontSize: 9, color: "var(--ps-ink-4)" }}>
+          ★ {item.reviewCount} Community-Reviews
+        </div>
+      )}
 
       {/* Description */}
       {expanded && item.description && (
         <p style={{ marginTop: 12, fontSize: 12.5, color: "var(--ps-ink-2)", lineHeight: 1.65, borderTop: "1px solid var(--ps-line-2)", paddingTop: 12 }}>
           {item.description}
+        </p>
+      )}
+      {expanded && !item.description && (
+        <p style={{ marginTop: 12, fontSize: 12, color: "var(--ps-ink-4)", borderTop: "1px solid var(--ps-line-2)", paddingTop: 12, fontStyle: "italic" }}>
+          Beschreibung folgt.
         </p>
       )}
     </div>
@@ -172,22 +205,30 @@ function BladeCard({ item }: { item: BladeItem }) {
         e.currentTarget.style.transform = "translateY(0)";
       }}
     >
-      {/* Header */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
-        <div style={{ minWidth: 0 }}>
+      {/* Header mit Bild */}
+      <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+        <ProductImage url={item.imageUrl} name={item.name} />
+        <div style={{ flex: 1, minWidth: 0 }}>
           <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.14em", color: "var(--ps-ink-4)", textTransform: "uppercase", marginBottom: 4 }}>
             {item.manufacturer}
           </div>
-          <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ps-ink-0)", lineHeight: 1.25 }}>
+          <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ps-ink-0)", lineHeight: 1.25, marginBottom: 6 }}>
             {item.name}
           </div>
+          <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+            <span
+              className="tag-line"
+              style={{ fontSize: 9, borderColor: `${playStyleColor(item.playStyle)}44`, color: playStyleColor(item.playStyle) }}
+            >
+              {playStyleLabel(item.playStyle)}
+            </span>
+            {item.composition && <span className="tag-line" style={{ fontSize: 9 }}>{item.composition}</span>}
+            {item.ttrOptimal && <span className="tag-line" style={{ fontSize: 9 }}>TTR {item.ttrOptimal}</span>}
+            {item.weightMin && item.weightMax && (
+              <span className="tag-line" style={{ fontSize: 9 }}>{item.weightMin}–{item.weightMax} g</span>
+            )}
+          </div>
         </div>
-        <span
-          className="tag-line"
-          style={{ fontSize: 9, borderColor: `${playStyleColor(item.playStyle)}44`, color: playStyleColor(item.playStyle), flexShrink: 0 }}
-        >
-          {playStyleLabel(item.playStyle)}
-        </span>
       </div>
 
       {/* Stats */}
@@ -196,19 +237,15 @@ function BladeCard({ item }: { item: BladeItem }) {
         <StatRow label="Control" value={item.controlNorm} color="linear-gradient(90deg,#059669,#34d399)" />
       </div>
 
-      {/* Meta */}
-      <div style={{ marginTop: 10, display: "flex", gap: 8, flexWrap: "wrap" }}>
-        {item.composition && <span className="tag-line" style={{ fontSize: 9 }}>{item.composition}</span>}
-        {item.ttrOptimal && <span className="tag-line" style={{ fontSize: 9 }}>TTR {item.ttrOptimal}</span>}
-        {item.weightMin && item.weightMax && (
-          <span className="tag-line" style={{ fontSize: 9 }}>{item.weightMin}–{item.weightMax} g</span>
-        )}
-      </div>
-
       {/* Description */}
       {expanded && item.description && (
         <p style={{ marginTop: 12, fontSize: 12.5, color: "var(--ps-ink-2)", lineHeight: 1.65, borderTop: "1px solid var(--ps-line-2)", paddingTop: 12 }}>
           {item.description}
+        </p>
+      )}
+      {expanded && !item.description && (
+        <p style={{ marginTop: 12, fontSize: 12, color: "var(--ps-ink-4)", borderTop: "1px solid var(--ps-line-2)", paddingTop: 12, fontStyle: "italic" }}>
+          Beschreibung folgt.
         </p>
       )}
     </div>

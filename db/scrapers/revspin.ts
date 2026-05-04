@@ -24,6 +24,8 @@ export interface RevspinRubber {
   name: string;
   manufacturer: string;
   sourceUrl: string;
+  imageUrl: string | null;
+  description: string | null;
   reviewCount: number | null;
   // Community-Ratings (revspin, 1–10)
   communitySpeed: number | null;
@@ -45,6 +47,8 @@ export interface RevspinBlade {
   name: string;
   manufacturer: string;
   sourceUrl: string;
+  imageUrl: string | null;
+  description: string | null;
   reviewCount: number | null;
   communitySpeed: number | null;
   communityControl: number | null;
@@ -362,17 +366,28 @@ async function scrapeRubberDetailOnce(
         });
       }
 
-      return { name, reviewCount, ratings, mfgRatings };
+      const imgEl = document.querySelector("img.product_detail_image");
+      const imageUrl = imgEl?.getAttribute("src") ?? null;
+
+      return { name, reviewCount, ratings, mfgRatings, imageUrl, description: null };
     });
 
     const manufacturer = extractManufacturer(data.name);
     const mfgScale = getMfgScale(manufacturer);
+    const slug = slugFromUrl(url, "rubber");
+
+    // Bild: scrape-Ergebnis nutzen, sonst vorhersagbares URL-Muster
+    const imageUrl = data.imageUrl
+      ? (data.imageUrl.startsWith("http") ? data.imageUrl : `${BASE}${data.imageUrl}`)
+      : `${BASE}/images/rubber/${slug}.jpg`;
 
     return {
       slug: slugFromUrl(url, "rubber"),
       name: data.name,
       manufacturer,
       sourceUrl: url,
+      imageUrl,
+      description: data.description,
       reviewCount: data.reviewCount,
       communitySpeed: data.ratings["speed"] ?? null,
       communitySpin: data.ratings["spin"] ?? null,
@@ -459,17 +474,27 @@ async function scrapeBladeDetailOnce(
         });
       }
 
-      return { name, reviewCount, ratings, mfgRatings };
+      const imgEl = document.querySelector("img.product_detail_image");
+      const imageUrl = imgEl?.getAttribute("src") ?? null;
+
+      return { name, reviewCount, ratings, mfgRatings, imageUrl, description: null };
     });
 
     const manufacturer = extractManufacturer(data.name);
     const mfgScale = getMfgScale(manufacturer);
+    const slug = slugFromUrl(url, "blade");
+
+    const imageUrl = data.imageUrl
+      ? (data.imageUrl.startsWith("http") ? data.imageUrl : `${BASE}${data.imageUrl}`)
+      : `${BASE}/images/blade/${slug}.jpg`;
 
     return {
       slug: slugFromUrl(url, "blade"),
       name: data.name,
       manufacturer,
       sourceUrl: url,
+      imageUrl,
+      description: data.description,
       reviewCount: data.reviewCount,
       communitySpeed: data.ratings["speed"] ?? null,
       communityControl: data.ratings["control"] ?? null,

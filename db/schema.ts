@@ -114,6 +114,7 @@ export const blades = pgTable(
     ttrOptimal: smallint("ttr_optimal"),
 
     description: text("description"),
+    imageUrl: varchar("image_url", { length: 500 }),
     sourceUrl: varchar("source_url", { length: 500 }), // URL der Datenquelle
     isActive: boolean("is_active").default(true).notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -170,6 +171,7 @@ export const rubbers = pgTable(
     ttrOptimal: smallint("ttr_optimal"),
 
     description: text("description"),
+    imageUrl: varchar("image_url", { length: 500 }),
     sourceUrl: varchar("source_url", { length: 500 }),
     isActive: boolean("is_active").default(true).notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
