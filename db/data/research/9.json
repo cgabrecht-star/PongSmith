@@ -1,0 +1,142 @@
+[
+  {
+    "slug": "friendship-729-cream",
+    "name": "729 Cream",
+    "manufacturer": "Friendship / 729",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "http://en.729sports.com",
+    "manufacturerDescription": null,
+    "manufacturerSpecs": {
+      "speed": null,
+      "spin": null,
+      "control": null,
+      "spongeHardness": null,
+      "thickness": null,
+      "weight": null,
+      "layers": null,
+      "category": "anti"
+    },
+    "communityConsensus": {
+      "summary": "Die meisten Spieler loben den 729 Cream als renovierte Version des klassischen 729-Belags mit gutem Grip und Kontrolle für Allround-Spiel. Wiederkehrende Stärken sind Spinpotenzial und Vielseitigkeit, Kritikpunkte umfassen moderate Geschwindigkeit. Geeignet für Spieler im unteren bis mittleren Bereich.",
+      "sources": [
+        "https://revspin.net/rubber/729-cream-mrs.html",
+        "https://revspin.net/rubber/friendship-729/"
+      ],
+      "playerLevelRange": "TTR 1200-1800",
+      "primaryUseCase": "Rückhand-Allround-Defensiv"
+    }
+  },
+  {
+    "slug": "friendship-802-40",
+    "name": "802-40",
+    "manufacturer": "Friendship / 729",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "http://en.729sports.com",
+    "manufacturerDescription": null,
+    "manufacturerSpecs": {
+      "speed": "8.5",
+      "spin": "9.5",
+      "control": "9",
+      "spongeHardness": "medium",
+      "thickness": "1.5 / 1.8 / 2.0 mm",
+      "weight": null,
+      "layers": null,
+      "category": "short pips"
+    },
+    "communityConsensus": {
+      "summary": "Spieler schätzen die 802-40 für hohes Tempo durch kurze konische Noppen und gute Spin-Generierung bei Kontrolle. Lob für Vielseitigkeit in Topspin und Block, Kritik an etwas geringerer Durchschlagskraft im Vergleich zu moderneren Noppen. Moderne Alternative zu traditionellen SP.",
+      "sources": [
+        "https://ttdd.eu/friendship-802-40.html",
+        "https://www.tabletennisdaily.com/forum/topics/friendship-802-or-802-40.14376/"
+      ],
+      "playerLevelRange": "TTR 1600-2200",
+      "primaryUseCase": "Rückhand-Offensiv-Block"
+    }
+  },
+  {
+    "slug": "juic-999-elite",
+    "name": "999 Elite",
+    "manufacturer": "Juic",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": null,
+    "manufacturerDescription": null,
+    "manufacturerSpecs": {
+      "speed": "7.8",
+      "spin": "9.1",
+      "control": "8.0",
+      "spongeHardness": "Medium",
+      "thickness": null,
+      "weight": "Average",
+      "layers": null,
+      "category": "long pips"
+    },
+    "communityConsensus": {
+      "summary": "Der 999 Elite wird als tacky mit fantastischem Spin und guter Geschwindigkeit gelobt, besser als andere klebrige Beläge. Spieler betonen hohe Spinbewertung und Vielseitigkeit, mit etwas Kritik an Gewicht. Beliebt bei Angriffsspielern.",
+      "sources": [
+        "https://revspin.net/rubber/juic-999-elite.html",
+        "https://www.megaspin.net/store/default.asp?pid=juic-999-elite"
+      ],
+      "playerLevelRange": "TTR 1700-2300",
+      "primaryUseCase": "Topspin-Offensiv"
+    }
+  },
+  {
+    "slug": "yinhe-galaxy-955",
+    "name": "Galaxy 955",
+    "manufacturer": "Yinhe / Milky Way / Galaxy",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": null,
+    "manufacturerDescription": null,
+    "manufacturerSpecs": {
+      "speed": "44",
+      "spin": "64",
+      "control": "98",
+      "spongeHardness": "Soft +",
+      "thickness": "0.5 mm",
+      "weight": null,
+      "layers": null,
+      "category": "long pips"
+    },
+    "communityConsensus": {
+      "summary": "Die Galaxy 955 bietet hohe Kontrolle und Störwirkung für Defensivspiel, mit breiteren kürzeren Noppen für Block und Konter. Gut für Umsteiger von Innen- oder Kurznoppen, Lob für Sicherheit, Kritik an geringer Geschwindigkeit. Ideal für Allround-Def.",
+      "sources": [
+        "https://www.contra.de/milky-way-yinhe-belag-955-soft/",
+        "https://www.noppen-test.de/forum/viewtopic.php?t=45175"
+      ],
+      "playerLevelRange": "TTR 1400-2000",
+      "primaryUseCase": "Defensiv-Schnittabwehr"
+    }
+  },
+  {
+    "slug": "dawei-388d-1",
+    "name": "388D-1",
+    "manufacturer": "Dawei",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": null,
+    "manufacturerDescription": null,
+    "manufacturerSpecs": {
+      "speed": null,
+      "spin": null,
+      "control": null,
+      "spongeHardness": null,
+      "thickness": null,
+      "weight": null,
+      "layers": null,
+      "category": "long pips"
+    },
+    "communityConsensus": {
+      "summary": "Der 388D-1 gilt als klassischer Long-Pips-Belag mit exzellenter Kontrolle, Spin-Reversal und Disruptivität. Spieler loben Blocks, Swipes und Vielseitigkeit in Defense, als Benchmark für günstige Qualität. Hohe Konsistenz und Haltbarkeit.",
+      "sources": [
+        "https://revspin.net/pips/dawei-388d-1.html",
+        "https://www.ppongsuper.com/product/dawei-388-d-1-long-pips/"
+      ],
+      "playerLevelRange": "TTR 1500-2100",
+      "primaryUseCase": "Defensiv-Langnoppen-Störung"
+    }
+  }
+]

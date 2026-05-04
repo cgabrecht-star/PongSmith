@@ -24,7 +24,10 @@
     "import:racketinsight": "dotenv -e .env.local -- tsx db/scrapers/import-racketinsight.ts",
     "db:fix-wrong-descriptions": "dotenv -e .env.local -- tsx db/scripts/fix-wrong-descriptions.ts",
     "db:add-community-description": "dotenv -e .env.local -- tsx db/scripts/add-community-description.ts",
-    "db:export-product-list": "dotenv -e .env.local -- tsx db/scripts/export-product-list.ts"
+    "db:export-product-list": "dotenv -e .env.local -- tsx db/scripts/export-product-list.ts",
+    "db:parse-research": "tsx db/scripts/parse-research-docx.ts",
+    "db:import-research": "dotenv -e .env.local -- tsx db/scripts/import-research.ts",
+    "db:clean-revspin-urls": "dotenv -e .env.local -- tsx db/scripts/clean-revspin-urls.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",
@@ -50,6 +53,8 @@
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "jsonrepair": "^3.14.0",
+    "mammoth": "^1.12.0",
     "playwright": "^1.59.1",
     "playwright-extra": "^4.3.6",
     "prettier": "^3.8.3",

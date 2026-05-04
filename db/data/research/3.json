@@ -1,0 +1,349 @@
+[
+  {
+    "slug": "donic-baracuda",
+    "name": "DONIC BARACUDA",
+    "manufacturer": "Donic",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.donic.com/DONIC-BARACUDA/000284118",
+    "manufacturerDescription": "Offensive inverted rubber with medium sponge, very high spin and a steep topspin trajectory for rotation-focused attackers seeking safety and precision.",
+    "manufacturerSpecs": {
+      "speed": "schnell (OFF -, OFF, OFF +)",
+      "spin": "hoch",
+      "control": "mittel",
+      "spongeHardness": ",",
+      "thickness": "1,8 / 2,0 / max. mm",
+      "weight": null,
+      "layers": null,
+      "category": "inverted/smooth"
+    },
+    "communityConsensus": {
+      "summary": "Spieler beschreiben den Baracuda als sehr griffigen Belag mit extrem hohem Spin und hohem Ballbogen, der das Topspinspiel auf Unterschnitt deutlich erleichtert. Das Tempo wird meist als moderat bis mittelhoch eingestuft, mit viel Kontrolle und gutem Ballkontakt im Kurz- und Blockspiel. Kritisiert wird vor allem die ausgeprägte Schnittanfälligkeit beim Blocken sowie ein etwas geringerer Endspeed im Vergleich zu modernen ESN‑Tensors.",
+      "sources": [
+        "https://revspin.net/rubber/donic-baracuda.html",
+        "https://racketinsight.com/table-tennis/donic-baracuda-review/",
+        "https://www.tabletennisdaily.com/equipment/baracuda.1046/reviews"
+      ],
+      "playerLevelRange": "Typischerweise fortgeschrittene Vereinsspieler bis Oberliga‑Niveau, aber auch ambitionierte Hobbyspieler kommen mit dem moderaten Tempo zurecht.",
+      "primaryUseCase": "Vorhandbelag für rotationsstarke Offensiv‑ und Allroundspieler, die mit sicheren, hochbogigen Topspins punkten wollen."
+    }
+  },
+  {
+    "slug": "donic-bluefire-m1",
+    "name": "DONIC BLUEFIRE M1",
+    "manufacturer": "Donic",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.donic.com/DONIC-BLUEFIRE-M1/000294220",
+    "manufacturerDescription": ", sehr schneller Offensivbelag mit blauem Tension‑Schwamm und extrem spinfreudigem Obergummi, entwickelt für kompromisslose Angreifer mit explosiven Topspins.",
+    "manufacturerSpecs": {
+      "speed": "schnell (OFF, OFF +)",
+      "spin": "hoch",
+      "control": "mittel",
+      "spongeHardness": ", 47,5° Medium‑hard",
+      "thickness": "2,0 / max. mm",
+      "weight": null,
+      "layers": null,
+      "category": "inverted/smooth"
+    },
+    "communityConsensus": {
+      "summary": "Der Bluefire M1 gilt als extrem schneller und katapultstarker Tensor mit sehr hohem Spin und hoher Flugkurve, der enorme Offensivpower bietet. Viele Spieler betonen, dass der Belag durch seine Härte und Schnittanfälligkeit technisch anspruchsvoll ist und vollen Körpereinsatz sowie saubere Technik verlangt. Gelobt werden die Durchschlagskraft und der starke Topspin aus der Halbdistanz, während Kurzspiel und passives Blocken deutlich schwieriger sind.",
+      "sources": [
+        "https://revspin.net/rubber/donic-bluefire-m1.html",
+        "https://www.tt-spin.de/donic-bluefire-m1/",
+        "https://www.tabletennisdaily.com/forum/topics/donic-bluefire-m1.27188/"
+      ],
+      "playerLevelRange": "Vor allem für erfahrene Liga‑Spieler und Leistungsklasse (ca. höherer Bezirksklasse bis Oberliga) empfohlen; Einsteiger empfinden ihn meist als zu schwierig.",
+      "primaryUseCase": "Vorhandbelag für aggressive Topspin‑Offensive mit hoher Flugkurve und maximalem Spin bei hohem Tempo."
+    }
+  },
+  {
+    "slug": "donic-bluefire-m2",
+    "name": "DONIC BLUEFIRE M2",
+    "manufacturer": "Donic",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.donic.com/DONIC-BLUEFIRE-M2/000295118",
+    "manufacturerDescription": "Medium‑harter Bluefire‑Belag mit ausgewogener Mischung aus Spin, Speed und Ballgefühl, konzipiert als kontrolliertere Allround‑Offensivvariante mit hoher Flugkurve.",
+    "manufacturerSpecs": {
+      "speed": "mittel (ALL+, OFF -, OFF)",
+      "spin": "hoch",
+      "control": "hoch",
+      "spongeHardness": ", 45°",
+      "thickness": "1,8 / 2,0 / max. mm",
+      "weight": null,
+      "layers": null,
+      "category": "inverted/smooth"
+    },
+    "communityConsensus": {
+      "summary": "Der Bluefire M2 wird als ausgewogener Tensor mit sehr hohem Spin, spürbarem Katapult und deutlich mehr Kontrolle als der M1 beschrieben. Spieler heben hervor, dass er vielseitig auf Vorhand und Rückhand einsetzbar ist und sowohl variable Topspins als auch sichere Blocks und Konter erlaubt. Kritisch angemerkt wird, dass der Katapult im Kurzspiel etwas springig sein kann und der Belag nicht ganz die Maximalgeschwindigkeit moderner OFF+‑Beläge erreicht.",
+      "sources": [
+        "https://revspin.net/rubber/donic-bluefire-m2.html",
+        "https://revspin.net/rubber/donic/",
+        "https://www.ppongsuper.com/the-most-detailed-donic-bluefire-m2-reviews/"
+      ],
+      "playerLevelRange": "Geeignet für ambitionierte Vereinsspieler vom mittleren bis hohen Leistungsbereich, die Offensivspiel mit guter Fehlertoleranz suchen.",
+      "primaryUseCase": "Variabler Topspinbelag für beide Seiten, besonders für spinorientierte Offensivspieler mit Fokus auf Balance zwischen Tempo und Kontrolle."
+    }
+  },
+  {
+    "slug": "donic-bluefire-m3",
+    "name": "DONIC BLUEFIRE M3",
+    "manufacturer": "Donic",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.donic.com/DONIC-BLUEFIRE-M3/000296118",
+    "manufacturerDescription": "Weichste Bluefire‑Variante mit sehr hoher Kontrolle, ausgeprägtem Spin und sattem Sound, ideal für kontrolliertes Allround‑Topspinspiel.",
+    "manufacturerSpecs": {
+      "speed": "kontrolliert (ALL, ALL+, OFF -)",
+      "spin": "hoch",
+      "control": "hoch",
+      "spongeHardness": ", 40°",
+      "thickness": "1,8 / 2,0 / max. mm",
+      "weight": null,
+      "layers": null,
+      "category": "inverted/smooth"
+    },
+    "communityConsensus": {
+      "summary": "Der Bluefire M3 wird von vielen als sehr weicher, spinfreudiger Tensor mit extrem hoher Flugkurve und viel Kontrolle beschrieben. Er eignet sich besonders gut auf der Rückhand für rotationsreiche Topspins, Flicks und Blocks, während auf der Vorhand etwas Durchschlagskraft fehlt, wenn das Holz eher langsam ist. Spieler loben den hohen Spaßfaktor und das einfache Spinerzeugen, bemängeln aber, dass klare Endschläge und harte Schüsse weniger „knallen“ als mit härteren Belägen.",
+      "sources": [
+        "https://revspin.net/rubber/donic-bluefire-m3.html",
+        "https://www.megaspin.net/store/product-reviews.asp?pid=d-bluefire-ms3",
+        "https://www.tabletennisdaily.com/equipment/bluefire-m3.1060/reviews"
+      ],
+      "playerLevelRange": "Vom ambitionierten Freizeitspieler bis zum Ligaspieler im mittleren Bereich, der ein weiches, fehlertolerantes Topspinsetup sucht.",
+      "primaryUseCase": "Rückhandbelag für kontrollierte, spinreiche Topspins und variable Allround‑Offensive nahe am Tisch."
+    }
+  },
+  {
+    "slug": "donic-coppa-jo-silver",
+    "name": "Donic Coppa JO Silver",
+    "manufacturer": "Donic",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": null,
+    "manufacturerDescription": "Softere Version der Coppa‑JO‑Serie mit starkem eingebautem Frischklebeeffekt, hohem Tempo und viel Spin, ausgelegt für offensives Topspinspiel.",
+    "manufacturerSpecs": {
+      "speed": null,
+      "spin": null,
+      "control": null,
+      "spongeHardness": "relativ weich, softer als Coppa JO Gold",
+      "thickness": "1,8 / 2,0 / max. mm",
+      "weight": null,
+      "layers": null,
+      "category": "inverted/smooth"
+    },
+    "communityConsensus": {
+      "summary": "Spieler beschreiben den Coppa JO Silver als schnellen, elastischen Belag mit starkem Speed‑Glue‑Gefühl, hohem Spin und leichtem, weicherem Schwamm. Er wird überwiegend offensiven Spielern mit guter Technik empfohlen, da Kontrolle und Blocks bei sehr hohem Tempo anspruchsvoll sind. Positiv hervorgehoben wird die Kombination aus Power, Spin und angenehm weichem Anschlag im Vergleich zu härteren Profi‑Belägen.",
+      "sources": [
+        "https://revspin.net/rubber/donic-coppa-jo-silver.html",
+        "https://pingpongshop.eu/8927-donic-coppa-jo-gold",
+        "https://www.tabletennisdaily.com/equipment/coppa-jo-silver.1335/reviews"
+      ],
+      "playerLevelRange": "Vor allem für fortgeschrittene bis sehr starke Offensivspieler geeignet; für Anfänger wird er meist als zu schnell eingeschätzt.",
+      "primaryUseCase": "Schneller Offensivbelag für druckvolles Topspin‑ und Schussspiel nahe am Tisch, meist auf Vorhand oder Rückhand von Angreifern."
+    }
+  },
+  {
+    "slug": "donic-quattro-a1",
+    "name": "Donic Quattro A1",
+    "manufacturer": "Donic",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": null,
+    "manufacturerDescription": null,
+    "manufacturerSpecs": {
+      "speed": null,
+      "spin": null,
+      "control": null,
+      "spongeHardness": null,
+      "thickness": null,
+      "weight": null,
+      "layers": null,
+      "category": "short pips"
+    },
+    "communityConsensus": {
+      "summary": null,
+      "sources": [],
+      "playerLevelRange": null,
+      "primaryUseCase": null
+    }
+  },
+  {
+    "slug": "donic-slice-40-cd-turbo",
+    "name": "DONIC SLICE 40 CD",
+    "manufacturer": "Donic",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.donic.com/en/DONIC-SLICE-40-CD/000281118",
+    "manufacturerDescription": "Sehr griffiger Defensivbelag mit weichem Schwamm und leicht klebrigem Obergummi, ausgelegt für maximales Unterschnittspiel und kontrollierte, rotationsreiche Topspins.",
+    "manufacturerSpecs": {
+      "speed": "kontrolliert (DEF, DEF +, ALL -)",
+      "spin": "extrem",
+      "control": "hoch",
+      "spongeHardness": "medium‑soft / medium, weicher Schwamm",
+      "thickness": "1,2 / 1,5 / 1,8 mm",
+      "weight": null,
+      "layers": null,
+      "category": "inverted/smooth"
+    },
+    "communityConsensus": {
+      "summary": "Der Slice 40 CD wird von Verteidigern als sehr langsamer, extrem schnittiger Belag mit klebrigem Obergummi beschrieben, der enormen Unterschnitt bei Abwehrbällen ermöglicht. Viele Nutzer loben die Kontrolle beim Schupf‑ und Chopspiel, während Topspin und Endschlag eher mühsam und kraftaufwendig sind. Modern Defenders setzen ihn häufig auf der Rückhand ein, um mit variabler Schnittabwehr und gelegentlichen, stark rotationsreichen Topspins zu punkten.",
+      "sources": [
+        "https://revspin.net/rubber/donic-slice-40-cd.html",
+        "https://www.contra.de/en/donic-rubber-slice-40-c-d/",
+        "https://www.schoeler-micke.de/belaege/noppen-innen/allround/660/donic-belag-slice-40-cd",
+        "https://ooakforum.com/viewtopic.php?f=44&t=30655"
+      ],
+      "playerLevelRange": "Klassische und moderne Abwehrspieler ab solidem Vereinsspiel‑Niveau; im unteren Bereich eher Speziallösung.",
+      "primaryUseCase": "Rückhand‑Defensivbelag für klassisches und modernes Abwehrspiel mit maximalem Unterschnitt und hoher Kontrolle."
+    }
+  },
+  {
+    "slug": "donic-appelgren-allplay-senso-v2",
+    "name": "DONIC Appelgren Allplay Senso V2",
+    "manufacturer": "Donic",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.donic.com/en/DONIC-APPELGREN-SENSO-ALLPLAY-V2/100224010",
+    "manufacturerDescription": "Klassisches Allroundholz mit SENSO‑V2‑Fräsung, sehr hoher Ballkontrolle, weichem Gefühl und ausreichenden Temporeserven für spinorientiertes Allround‑ bis Offensivspiel.",
+    "manufacturerSpecs": {
+      "speed": "controlled (ALL -, ALL)",
+      "spin": null,
+      "control": "high",
+      "spongeHardness": null,
+      "thickness": null,
+      "weight": "80–90 g",
+      "layers": "5 Holzfurniere (Abachi Kern, Limba Außen)",
+      "category": null
+    },
+    "communityConsensus": {
+      "summary": "Die Community beschreibt das Appelgren Allplay Senso V2 als sehr kontrolliertes, elastisches Allroundholz mit leichtem Gewicht und gutem Feedback für rotationsreiches Spiel. Es eignet sich besonders für Spieler, die mit Topspin, Block und Schupf ein variables Allroundspiel aufbauen und die Kontrolle klar vor maximalem Tempo priorisieren. Häufig wird es als ideales Entwicklungs‑ oder Zweitholz für technisch sauberes Training genannt, weniger als Wahl für kompromisslose Offensivspieler.",
+      "sources": [
+        "https://revspin.net/blade/donic-appelgren-allplay-senso-v2.html",
+        "https://www.donic.com/en/DONIC-APPELGREN-SENSO-ALLPLAY-V2/100224010",
+        "https://www.tt-bott.de/DONIC-Appelgren-Allplay-Senso-V2/100224030"
+      ],
+      "playerLevelRange": "Von ambitionierten Einsteigern bis zu Ligaspielern mit Allround‑ oder spinorientiertem Offensivstil.",
+      "primaryUseCase": "Allroundholz mit Fokus auf Kontrolle und Spin, häufig für Technikaufbau und rotationsreiches Topspin‑Nah‑am‑Tisch‑Spiel genutzt."
+    }
+  },
+  {
+    "slug": "donic-ovtcharov-carbospeed",
+    "name": "Donic Ovtcharov Carbospeed",
+    "manufacturer": "Donic",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": null,
+    "manufacturerDescription": "Sehr schnelles OFF+‑Carbonholz mit hinoki‑basiertem 5‑Schicht‑Aufbau, hoher Steifigkeit und großem Katapult, entwickelt für kompromisslose Angreifer und Konterspieler.",
+    "manufacturerSpecs": {
+      "speed": "sehr schnell, Herstellerwert ca. 99 / OFF+",
+      "spin": null,
+      "control": "mittel bis begrenzt (ca. 60)",
+      "spongeHardness": null,
+      "thickness": null,
+      "weight": "ca. 85–90 g",
+      "layers": "5‑schichtig: 3 Holz + 2 Carbon, Hinoki‑Außenfurnier",
+      "category": null
+    },
+    "communityConsensus": {
+      "summary": "Spieler sind sich einig, dass das Ovtcharov Carbospeed eines der schnellsten Donic‑Hölzer ist, mit sehr hoher Steifigkeit und großem Katapult. Trotz des enormen Tempos wird das Feedback als sauber beschrieben; Kontrolle ist für ein OFF+‑Brett brauchbar, erfordert aber eine sehr stabile Technik. Empfohlen wird das Holz klar nur für erfahrene Offensivspieler, viele berichten, dass es für Einsteiger und passive Spieler deutlich zu schnell ist.",
+      "sources": [
+        "https://revspin.net/blade/donic-ovtcharov-carbospeed.html",
+        "https://tabletennis-reference.com/racket/detail/130",
+        "https://www.megaspin.net/store/default.asp?pid=d-ovtcharov-cs",
+        "https://tabletennis11.com/en/blog/donic-ovtcha-carbospeed"
+      ],
+      "playerLevelRange": "Typischerweise höherklassige Offensivspieler (Verbandsliga und aufwärts) oder ambitionierte Turnierspieler mit sehr guter Technik.",
+      "primaryUseCase": "OFF+‑Holz für harte Topspins, Gegentopspins und aggressive Konterduelle aus der Halbdistanz."
+    }
+  },
+  {
+    "slug": "donic-persson-powerplay",
+    "name": "DONIC Persson Powerplay",
+    "manufacturer": "Donic",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.donic.com/en/DONIC-PERSSON-POWERPLAY/100206010",
+    "manufacturerDescription": "Siebenschichtiges Offensivholz „Power Pur“ mit Anti‑Vibrationsfolie, dynamischem, hartem Anschlag und guter Ballrückmeldung, made in Sweden.",
+    "manufacturerSpecs": {
+      "speed": "fast (OFF -, OFF)",
+      "spin": null,
+      "control": "medium",
+      "spongeHardness": null,
+      "thickness": null,
+      "weight": "80–90 g",
+      "layers": "7 Vollholzfurniere (Abachi Kern, Abachi/Koto mit Anti‑Vibrations‑Folie)",
+      "category": null
+    },
+    "communityConsensus": {
+      "summary": "Das Persson Powerplay wird als klassisches, recht schnelles 7‑Schichten‑Offensivholz mit viel Power, aber immer noch guter Kontrolle beschrieben. Viele Spieler heben die hohe Spinentwicklung durch die leichte Flexibilität hervor, während Blocks dank der Härte des Holzes flach und druckvoll bleiben. Es gilt als sehr vielseitig für Topspin‑, Block‑ und Konterspieler und wird oft als „zeitloses“ Offensivholz bezeichnet.",
+      "sources": [
+        "https://revspin.net/blade/donic-persson-powerplay.html",
+        "https://www.donic.com/en/DONIC-PERSSON-POWERPLAY/100206010",
+        "https://www.tt-news.de/showthread.php?t=4701"
+      ],
+      "playerLevelRange": "Geeignet für Ligaspieler vom mittleren bis hohen Offensivniveau; für absolute Anfänger eher zu schnell.",
+      "primaryUseCase": "Offensivholz für rotationsreiche Eröffnungen und druckvolle Topspins mit gleichzeitig zuverlässigem Block‑ und Konterspiel."
+    }
+  },
+  {
+    "slug": "donic-waldner-allplay",
+    "name": "DONIC Waldner Allplay",
+    "manufacturer": "Donic",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.donic.com/en/DONIC-WALDNER-ALLPLAY/100218020",
+    "manufacturerDescription": "Allroundholz mit exzellenter Kontrolle, geringem Gewicht und gutem Gefühl, basierend auf dem klassischen DONIC ALLPLAY im Waldner‑Design.",
+    "manufacturerSpecs": {
+      "speed": "controlled (ALL -, ALL)",
+      "spin": null,
+      "control": "high",
+      "spongeHardness": null,
+      "thickness": null,
+      "weight": "80–90 g",
+      "layers": "5 Holzfurniere (Abachi Kern, Limba Außen)",
+      "category": null
+    },
+    "communityConsensus": {
+      "summary": "Die Community sieht das Waldner Allplay als eines der Referenzhölzer im Allroundbereich mit sehr hoher Kontrolle und ausgeprägtem Ballgefühl. Es bietet ausreichend Flex für Spin und Lernphase, bleibt aber spürbar langsamer als klassische Offensivhölzer, was es ideal für Techniktraining und variable Allroundsysteme macht. Häufig wird es als ideales erstes „richtiges“ Holz empfohlen, das auch mit Noppen und defensiveren Belägen gut harmoniert.",
+      "sources": [
+        "https://revspin.net/blade/donic-waldner-allplay.html",
+        "https://www.donic.com/en/DONIC-WALDNER-ALLPLAY/100218020",
+        "https://www.racket-company.com/en/donic-waldner-allplay.html"
+      ],
+      "playerLevelRange": "Vom ambitionierten Einsteiger bis zum erfahrenen Allround‑Ligaspieler; besonders beliebt in unteren und mittleren Ligen.",
+      "primaryUseCase": "Kontrollholz für Allround‑ und spinorientiertes Offensivspiel, häufig zur Technikschulung und in Kombi‑Setups mit Noppen genutzt."
+    }
+  },
+  {
+    "slug": "donic-waldner-senso-carbon",
+    "name": "DONIC WALDNER SENSO CARBON",
+    "manufacturer": "Donic",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.donic.com/en/DONIC-WALDNER-SENSO-CARBON/100219010",
+    "manufacturerDescription": "Carbonverstärkte Variante des Waldner‑Allroundkonzepts für offensiv orientierte Allrounder, mit perfekter Balance aus Tempo, Kontrolle und feinem Ballgefühl.",
+    "manufacturerSpecs": {
+      "speed": "medium (ALL+, OFF -)",
+      "spin": null,
+      "control": "medium bis gut",
+      "spongeHardness": null,
+      "thickness": null,
+      "weight": "80–90 g",
+      "layers": "7‑schichtig: Abachi Kern, Carbon (2+4), Anegre, Limba Außenfurnier",
+      "category": null
+    },
+    "communityConsensus": {
+      "summary": "Spieler beschreiben das Waldner Senso Carbon als ausgewogenes OFF‑/ALL+‑Holz mit dünnen Carbonlagen, das sich fast wie Vollholz spielt, aber mit größerem Sweetspot. Es bietet spürbar mehr Tempo als das Waldner Allplay, bleibt aber kontrollierbar und eignet sich gut für rotationsreiche Topspins und variable Offensivsysteme. Gelobt wird besonders das weiche, gefühlvolle Anschlagsverhalten trotz Carbon, wodurch es auch für aufstrebende Offensivspieler gut beherrschbar bleibt.",
+      "sources": [
+        "https://revspin.net/blade/donic-waldner-senso-carbon.html",
+        "https://www.donic.com/en/DONIC-WALDNER-SENSO-CARBON/100219010",
+        "https://www.hanno-tischtennis.de/de/hanno-hoelzer/donic/donic-waldner-senso-carbon.html",
+        "https://www.tabletennisdaily.com/forum/topics/donic-waldner-senso-carbon-replacement.35759/"
+      ],
+      "playerLevelRange": "Für fortgeschrittene Allround‑ und Offensivspieler geeignet, die vom klassischen Allroundholz den Schritt zu mehr Tempo machen wollen.",
+      "primaryUseCase": "Offensiv‑Allroundholz für topspinorientiertes Spiel mit erhöhter Stabilität und größerem Sweetspot bei weiterhin gutem Ballgefühl."
+    }
+  }
+]

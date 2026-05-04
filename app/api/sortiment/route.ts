@@ -102,6 +102,7 @@ export async function GET(req: NextRequest) {
       ttrOptimal: r.ttrOptimal,
       reviewCount: r.communityReviewCount,
       description: r.description,
+      communityDescription: r.communityDescription,
       imageUrl: r.imageUrl,
     }));
 
@@ -125,6 +126,7 @@ export async function GET(req: NextRequest) {
       ttrOptimal: b.ttrOptimal,
       reviewCount: b.communityReviewCount,
       description: b.description,
+      communityDescription: b.communityDescription,
       imageUrl: b.imageUrl,
     }));
 

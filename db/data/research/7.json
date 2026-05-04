@@ -1,0 +1,476 @@
+[
+  {
+    "imageSource": "nittaku.tt",
+    "manufacturerUrl": "https://nittaku.tt/en/products/fastarc-c-1/1000",
+    "manufacturerDescription": "Fastarc C-1 is an offensive rubber with a softer sponge than G-1 and noticeable catapult for spinny attacking play. The grippy topsheet and approx. 45° sponge balance speed, spin and control for modern topspin. It targets offensive players who prefer a slightly more elastic, forgiving feel.",
+    "manufacturerSpecs": {
+      "speed": null,
+      "spin": null,
+      "control": null,
+      "spongeHardness": "ca. 45° medium-hard sponge (softer than Fastarc G-1).",
+      "thickness": null,
+      "weight": null,
+      "layers": null,
+      "category": "inverted/smooth"
+    },
+    "communityConsensus": {
+      "summary": "Spieler beschreiben den Fastarc C-1 fast einhellig als etwas weichere, katapultstärkere und fehlerverzeihendere Variante des G-1 mit sehr hohem Spinpotenzial. Er bietet ein lineares, kontrolliertes Tempo, lange Ballkontaktzeit und eignet sich gut für rotationsreiche Topspins und aktive Blocks, ohne so hart und direkt zu sein wie typische ESN-Offensivbeläge. Häufig gelobt werden Spin und Kontrolle im Eröffnungstopspin und im Spin-Spin-Duell, kritisiert wird höchstens, dass er für absolute Power-Hitter etwas weicher und weniger brachial als G-1 wirkt.",
+      "sources": [
+        "https://revspin.net/rubber/nittaku-fastarc-c-1.html",
+        "https://revspin.net/shop/normal/151-nittaku-fastarc-c-1.html",
+        "https://nittaku.tt/pages/nittaku-fastarc-g-1-vs-c-1-und-s-1-belag-vergleich",
+        "https://shop.soulspin.de/products/nittaku-fastarc-c-1-tischtennnisbelag",
+        "https://www.youtube.com/watch?v=SfJDQdrhPjc"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Vorhand- oder Rückhand-Topspinbelag für offensive Allround- bis Offensivspieler, die viel Spin mit guter Kontrolle suchen."
+    }
+  },
+  {
+    "slug": "nittaku-fastarc-g-1",
+    "name": "Nittaku Fastarc G-1",
+    "manufacturer": "Nittaku",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://nittaku.tt/products/fastarc-g-1",
+    "manufacturerDescription": "Fastarc G-1 is a highly popular offensive rubber with a grippy topsheet and a 47.5° hard sponge for extremely high spin and high speed. It plays very direct with little catapult, giving clear, reliable ball feedback for active strokes. Within the Fastarc series it is the most direct and stable version, designed for spin-oriented offensive players.",
+    "manufacturerSpecs": {
+      "speed": "Tempo 15.0 (Nittaku Fastarc-G-1 rating).",
+      "spin": "Spin 12.5 (Nittaku Fastarc-G-1 rating).",
+      "control": null,
+      "spongeHardness": "47.5° hard sponge.",
+      "thickness": null,
+      "weight": null,
+      "layers": null,
+      "category": "inverted/smooth"
+    },
+    "communityConsensus": {
+      "summary": "Die Community sieht den Fastarc G-1 als extrem spinsensiblen Topspinbelag mit hartem, aber kontrollierbarem Anschlag, der nah und mittig zum Tisch enorme Spinkurven liefert. Viele beschreiben ihn als chinesisch angehauchten ESN-Belag: wenig Katapult, linear, hoher Eigenaufwand, dafür sehr präzise Platzierung und Stabilität im Spinspiel. Gelobt werden Spin, Kontrolle und Verlässlichkeit im ersten Topspin, kritisiert werden das relativ hohe Gewicht und die Anforderung einer sauberen Technik.",
+      "sources": [
+        "https://revspin.net/rubber/nittaku-fastarc-g-1.html",
+        "https://www.spinfactory.de/tischtennis-belaege/nittaku-table-tennis-rubber-fastarc-g1.html",
+        "https://nittaku.tt/products/fastarc-g-1",
+        "https://www.paddlepalace.com/Nittaku-Fastarc-G-1/productinfo/RNFG1/",
+        "https://nittaku.tt/pages/nittaku-fastarc-g-1-vs-c-1-und-s-1-belag-vergleich"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Vorhand-Topspinbelag für ambitionierte Offensivspieler, die aktiv mit viel Spin arbeiten und ein direktes, katapultarmes Spielgefühl bevorzugen."
+    }
+  },
+  {
+    "slug": "nittaku-fastarc-s-1",
+    "name": "Nittaku Fastarc S-1",
+    "manufacturer": "Nittaku",
+    "imageUrl": "https://nittaku.tt/cdn/shop/files/nittaku-fastarc-c1-s1-unterschiede-tischtennisbelag-offensiv.webp?v=1774283607&width=1400",
+    "imageSource": "nittaku.tt",
+    "manufacturerUrl": "https://nittaku.tt/en/products/nittaku-fastarc-s-1-rubber",
+    "manufacturerDescription": "Fastarc S-1 is a soft offensive rubber with strong catapult designed for players wanting a lively bounce and flatter trajectory. With an approx. 45° sponge and grippy topsheet it offers high speed, clear momentum and very good feeling on soft topspins. It is the softest Fastarc and among the fastest, supporting dynamic topspin play with easy acceleration.",
+    "manufacturerSpecs": {
+      "speed": "Tempo 15.5 (Nittaku Fastarc-S-1 rating).",
+      "spin": "Spin 11.75 (Nittaku Fastarc-S-1 rating).",
+      "control": null,
+      "spongeHardness": "ca. 45° medium sponge.",
+      "thickness": null,
+      "weight": null,
+      "layers": null,
+      "category": "inverted/smooth"
+    },
+    "communityConsensus": {
+      "summary": "Spieler beschreiben den Fastarc S-1 als schnellsten und katapultstärksten Belag der Serie mit weicherem Feeling und hohem Grundtempo. Er bietet gute Kontrolle im Block und in flachen, frontalen Offensivaktionen, ist aber etwas spuranfälliger und weniger präzise als der G-1 bei maximalem Armzug. Häufig eingesetzt wird er als RH-Offensivbelag oder für Spieler, die ein dynamisches, aber noch kontrollierbares Topsinspiel mit etwas flacherer Flugkurve suchen.",
+      "sources": [
+        "https://revspin.net/rubber/nittaku-fastarc-s-1.html",
+        "https://nittaku.tt/pages/nittaku-fastarc-g-1-vs-c-1-und-s-1-belag-vergleich",
+        "https://shop.soulspin.de/products/nittaku-fastarc-s-1-tischtennisbelag",
+        "https://www.youtube.com/watch?v=voq9EpyOrUA",
+        "https://www.noppen-test.de/forum/viewtopic.php?t=26658"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Schneller Vorhand- oder Rückhandbelag für dynamische Offensivspieler, die viel Katapult und leichte Tempogewinnung im Topspin- und Blockspiel wünschen."
+    }
+  },
+  {
+    "slug": "nittaku-curl-p1r",
+    "name": "CURL P1R / CURL P1V",
+    "manufacturer": "Victas (ex TSP)",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "http://victas.com/de_de/products/detail.html?id=24",
+    "manufacturerDescription": "CURL P1V (ex TSP CURL P-1R) is a long pips rubber produced with very long and soft pimples for maximum backspin and deception. It is made for modern defensive players who create heavy backspin and disruptive trajectories against topspin attacks. The rubber is ITTF-approved and offered in several sponge thicknesses from OX to medium.",
+    "manufacturerSpecs": {
+      "speed": null,
+      "spin": null,
+      "control": null,
+      "spongeHardness": "Medium-hard long pips sponge depending on version.",
+      "thickness": "OX / Extra Thin / Thin / Medium sponge options.",
+      "weight": null,
+      "layers": null,
+      "category": "long pips"
+    },
+    "communityConsensus": {
+      "summary": "Die Community sieht den Curl P1R/P1V als Referenz-Lange-Noppe für moderne Abwehr mit maximalem Unterschnitt und starkem Störeffekt. Viele betonen, dass der Belag technisch anspruchsvoll ist, im Gegenzug aber extrem giftige Unterschnitt- und Störbälle sowohl am Tisch als auch aus der Distanz ermöglicht. Wiederkehrend gelobt werden Schnittumkehr und Spinumfang, kritisiert wird die hohe Fehleranfälligkeit bei unsauberer Technik und der hohe Trainingsaufwand.",
+      "sources": [
+        "https://revspin.net/pips/tsp-curl-p-1r.html",
+        "https://www.spinfactory.de/tischtennis-belaege/tischtennis-abwehr-belag-victas-curl-p1v.html",
+        "https://www.nishohi.com/en/victas-curl-p1v-table-tennis-rubber",
+        "https://www.youtube.com/watch?v=-x8t83GP-SM",
+        "https://www.tabletennisdaily.com/forum/topics/t-s-p-curl-p-h.28151/",
+        "https://forum.tt-news.de/showthread.php?t=271000"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Rückhand-Langnoppe für moderne Verteidiger und variable Abwehrspieler, die maximalen Unterschnitt und Störeffekt suchen."
+    }
+  },
+  {
+    "slug": "nittaku-spectol-s1",
+    "name": "SPECTOL S1",
+    "manufacturer": "Victas",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "http://www.victas.com/de_de/products/detail.html?id=79",
+    "manufacturerDescription": "SPECTOL S1 is a classic short pips rubber designed for powerful close-to-the-table play. Its short, slightly grippy pimples allow easy lift-loops and fast transitions between passive and active strokes. The rubber is versatile and suitable for a wide variety of pips-out playing styles.",
+    "manufacturerSpecs": {
+      "speed": null,
+      "spin": null,
+      "control": null,
+      "spongeHardness": "ca. 45° medium sponge (shop and spec listings).[]",
+      "thickness": "1.3 / 1.6 / 2.0 / max sponge thickness.",
+      "weight": null,
+      "layers": null,
+      "category": "short pips"
+    },
+    "communityConsensus": {
+      "summary": "Spieler beschreiben den Spectol S1 als vielseitige Kurznoppe mit gutem Tempo, kontrollierbarem Störeffekt und ordentlich Eigenrotation durch leicht griffige Noppen. Wiederkehrend betont werden sichere Blocks und Konter nah am Tisch sowie die Möglichkeit, Bälle aktiv anzuheben und aggressiv zu drücken. Kritisch angemerkt wird, dass der reine Störeffekt geringer ist als bei sehr harten, langsameren Noppen, dafür ist der Belag insgesamt deutlich variabler einsetzbar.",
+      "sources": [
+        "http://www.victas.com/de_de/products/detail.html?id=79",
+        "https://www.spinfactory.de/tischtennis-belaege/victas-belag-spectol-s1.html",
+        "https://www.tabletennis.my/products/victas-spectol-s1",
+        "https://www.contra.de/en/victas-rubber-spectol-s1/",
+        "https://www.tt-maximum.com/shop/index.php?sesq=en%2Fblades%2Fnittaku-ludeack"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Kurznoppe für tischnahes Block- und Konterspiel mit Möglichkeit zu aktiven Anhebe- und Druckschlägen auf Vor- oder Rückhand."
+    }
+  },
+  {
+    "slug": "nittaku-acoustic",
+    "name": "Nittaku Acoustic",
+    "manufacturer": "Nittaku",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://nittaku.tt/en/products/acoustic-off",
+    "manufacturerDescription": "Acoustic is a fast offensive all-wood blade built using special wood lamination technology from stringed instrument production. It offers high elasticity with very good control, giving a solid feel for topspin and offensive play close to and mid-distance from the table. Within the Acoustic series it is the fastest pure wood version, made in Japan with carefully selected plies.",
+    "manufacturerSpecs": {
+      "speed": "Offensive class (OFF) in Nittaku listings.",
+      "spin": null,
+      "control": null,
+      "spongeHardness": null,
+      "thickness": "Blade thickness approx. 5.7 mm.",
+      "weight": "Approx. 85–88 g blade weight.",
+      "layers": "5‑ply all-wood construction.",
+      "category": null
+    },
+    "communityConsensus": {
+      "summary": "Die Acoustic gilt in Foren und Reviews als einer der ausgewogensten 5‑schichtigen OFF-Holzklassiker mit hohem Ballgefühl und viel Spinpotenzial. Spieler loben die Kombination aus mittlerem Tempo, ausgezeichneter Kontrolle und ausgeprägtem Feedback, die sowohl variables Topspinspiel als auch kontrolliertes Blocken erlaubt. Häufig hervorgehoben wird, dass das Holz sich sehr „musikalisch“ und lebendig anfühlt, aber im Vergleich zu modernen Carbon-Offensivhölzern weniger brutale Endgeschwindigkeit bietet.",
+      "sources": [
+        "https://tabletennis-reference.com/racket/detail/50",
+        "https://revspin.net/blade/nittaku-acoustic.html",
+        "https://www.spinfactory.de/tischtennis-hoelzer/tischtennis-holz-nittaku-acoustic.html",
+        "https://southbaytt.com/product/nittaku-acoustic-blade/",
+        "https://www.ppongsuper.com/nittaku-acoustic-review-ma-long-used-it-before/"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Offensives Allround- bis Topspinhobel für Spieler, die ein gefühlvolles Vollholz mit guter Kontrolle auf beiden Seiten bevorzugen."
+    }
+  },
+  {
+    "slug": "nittaku-violin",
+    "name": "Nittaku Violin",
+    "manufacturer": "Nittaku",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://nittaku.tt/en/products/violin-off",
+    "manufacturerDescription": "Violin is the second fastest blade in the Acoustic series, using selected woods and a special bonding method from string instrument making. It is a hard blade that still offers enough elasticity for a wonderfully soft feel and slightly less speed than Acoustic. The blade is designed for offensive players valuing soft touch, spin potential and precise control, made in Japan with a 5‑ply construction.",
+    "manufacturerSpecs": {
+      "speed": "Offensive class, slightly slower than Acoustic.",
+      "spin": null,
+      "control": null,
+      "spongeHardness": null,
+      "thickness": "Blade thickness approx. 5.3 mm.",
+      "weight": "Approx. 88 g blade weight.",
+      "layers": "5‑ply all-wood construction.",
+      "category": null
+    },
+    "communityConsensus": {
+      "summary": "Die Violin wird von vielen Spielern als kontrolliertes OFF-/ALL+‑Holz mit sehr hohem Spinpotenzial und ausgeprägter Vibration beschrieben. Sie erlaubt nahe am Tisch wie auch in mittlerer Distanz rotationsreiche Topspins auf beiden Seiten, bei etwas geringerem Maximaltempo als die Acoustic. Wiederholt gelobt werden Kontrolle im Kurz-Kurz-Spiel und beim Aufschlag/Rückschlag, während Power-Hitter gelegentlich mehr Durchschlagskraft vermissen.",
+      "sources": [
+        "https://nittaku.tt/en/products/violin-off",
+        "https://revspin.net/blade/nittaku-violin.html",
+        "https://www.ppongsuper.com/the-most-detailed-nittaku-violin-blade-review/",
+        "https://www.reddit.com/r/tabletennis/comments/ux04gy/how_would_you_rate_the_nittaku_violin/"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Holz für spinorientierte Offensiv- und Allroundspieler, die maximale Kontrolle bei beidseitigem Topspinspiel und im Kurzspiel priorisieren."
+    }
+  },
+  {
+    "slug": "nittaku-ludeack",
+    "name": "Nittaku Ludeack",
+    "manufacturer": "Nittaku",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.tt-maximum.com/shop/index.php?sesq=en%2Fblades%2Fnittaku-ludeack",
+    "manufacturerDescription": "Ludeack is a powerful 7‑ply all-wood blade with a construction similar to Adelie but about 0.3 mm thicker for more speed potential. It is made in Japan and targeted at offensive players who like a solid, crisp feel and strong blocks. Manufacturer ratings list it as an OFF‑ blade with high control and an 85 g target weight.",
+    "manufacturerSpecs": {
+      "speed": "Speed 8.5 (manufacturer rating in Revspin listing).[]",
+      "spin": null,
+      "control": "Control 7.8 (manufacturer rating in Revspin listing).[]",
+      "spongeHardness": null,
+      "thickness": "Blade thickness around 6.4–6.6 mm.",
+      "weight": "Approx. 85 g blade weight.",
+      "layers": "7‑ply all-wood construction (Limba/Ayous composition).[]",
+      "category": null
+    },
+    "communityConsensus": {
+      "summary": "Die Community beschreibt den Ludeack als klassisches 7‑schichtiges Vollholz mit OFF−‑Tempo, sehr hoher Kontrolle und crispem Balltreffgefühl. Er wird oft als ideales Holz für tischnahes Block- und Konterspiel sowie rotationsreiche Topspins mit viel Kontrolle und Feedback empfohlen. Häufig hervorgehoben wird der große Sweetspot und die Fehlertoleranz, während absolute Power im Vergleich zu schnelleren Carbon-Hölzern etwas begrenzt ist.",
+      "sources": [
+        "https://revspin.net/blade/nittaku-ludeack.html",
+        "https://www.tt-maximum.com/shop/index.php?sesq=en%2Fblades%2Fnittaku-ludeack",
+        "https://pingpongshop.eu/nittaku-ludeack",
+        "https://tabletennis11.com/en/blog/nittaku-Ludeack-power-fleet-review",
+        "https://revspin.net/blade/"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Holz für kontrollorientierte Offensivspieler, insbesondere Block- und Topspinspieler, die ein klassisches 7‑fach Vollholz ohne Kunstfaser suchen."
+    }
+  },
+  {
+    "slug": "victas-triple-extra",
+    "name": "Victas TRIPLE Extra",
+    "manufacturer": "Victas",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.victas.com/en_gb/products/detail.html?id=29",
+    "manufacturerDescription": "TRIPLE Extra is a high-performance sticky offensive rubber developed as equipment for offensive players building their game on heavy rotation and power. It combines an extra-hard sponge with a grippy, tacky topsheet to generate strong spin and penetrating topspins. The rubber is intended for advanced players who can fully exploit its hardness and spin potential.",
+    "manufacturerSpecs": {
+      "speed": null,
+      "spin": null,
+      "control": null,
+      "spongeHardness": "Very hard, Chinese-style power sponge.",
+      "thickness": null,
+      "weight": null,
+      "layers": null,
+      "category": "inverted/smooth"
+    },
+    "communityConsensus": {
+      "summary": "Spieler sehen den Victas Triple Extra als harten, klebrigen Offensivbelag mit extrem hohem Spinpotenzial und recht hohem Tempo, der aber viel Körpereinsatz verlangt. Er richtet sich primär an fortgeschrittene bis sehr gute Offensivspieler, die ein chinesisch anmutendes, direktes Feeling mit flachem Ballabsprung und hoher Spinentwicklung bevorzugen. Wiederkehrende Kritikpunkte sind das hohe Gewicht und die Schwierigkeit, bei passiver Technik ausreichend Tempo zu generieren.",
+      "sources": [
+        "https://revspin.net/rubber/victas-triple-extra.html",
+        "https://revspin.net/rubber/victas/",
+        "https://www.spinfactory.de/tischtennis-belaege/victas-triple-double-extra.html",
+        "https://tt-xpert.de/en/victas-triple-extra/000001310001",
+        "https://forum.tt-news.de/showthread.php?t=398802"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Vorhandbelag für rotationsstarke Offensivspieler, die harte, klebrige Beläge mit viel Spin und Power bevorzugen."
+    }
+  },
+  {
+    "slug": "victas-ventus-extra",
+    "name": "Victas VENTUS Extra",
+    "manufacturer": "Victas",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.victas.com/en_gb/products/detail.html?id=12",
+    "manufacturerDescription": "VENTUS Extra is the flagship of the successful Ventus series, developed to meet the complex demands of modern topspin players. Its optimized pink high-performance sponge, combined with an energetic topsheet, offers maximum spin and speed while maintaining the well-balanced Ventus playing characteristics. The rubber is ideal for fast topspin rallies and spinny serve–return variations.",
+    "manufacturerSpecs": {
+      "speed": "Tempo 113 (Victas/Contra rating).[]",
+      "spin": "Spin/Effet 111 (Victas/Contra rating).[]",
+      "control": "Control 91 (Victas/Contra rating).[]",
+      "spongeHardness": "Hard sponge according to manufacturer listings.",
+      "thickness": "1.8 / 2.0 / max sponge options.",
+      "weight": null,
+      "layers": null,
+      "category": "inverted/smooth"
+    },
+    "communityConsensus": {
+      "summary": "Ventus Extra wird von vielen Spielern als moderner ESN-Offensivbelag mit hohem Spin, eher geringem Katapult und hartem, aber kontrollierbarem Anschlag beschrieben. Gelobt werden Durchschlagskraft in Topspinduellen, sehr gute Spinentwicklung bei Aufschlag und Eröffnung sowie die Stabilität im Blockspiel. Kritisiert wird vereinzelt das höhere Gewicht und die Anforderung einer aktiven Technik, insbesondere im Vergleich zu weicheren Ventus-Varianten.",
+      "sources": [
+        "https://revspin.net/rubber/victas-ventus-extra.html",
+        "https://revspin.net/rubber/victas/",
+        "https://revspin.net/shop/normal/1422-victas-ventus-extra.html",
+        "https://www.victas.com/en_gb/products/detail.html?id=12",
+        "https://www.contra.de/victas-belag-ventus-extra/",
+        "https://www.reddit.com/r/tabletennis/comments/12y4dh2/anyone_usedusing_victas_ventus_extrastiff_on_the/"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Topspin-orientierter Vorhandbelag für offensive Spieler, die viel Spin und Power mit relativ lin­ea­rem, katapultarmem Verhalten kombinieren wollen."
+    }
+  },
+  {
+    "slug": "victas-vo-101",
+    "name": "Victas VO > 101",
+    "manufacturer": "Victas",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.victas.com/en_gb/products/detail.html?id=31",
+    "manufacturerDescription": "VO > 101 is a very fast and dangerous short pips-out rubber with built-in High Energy Tension Technology. Developed by Japanese pips experts and German researchers, it features an optimized pimple geometry that produces strong pips-out effect and a flat ball trajectory to pressure opponents. The elastic sponge and tension technology open up new dimensions of speed for aggressive pips-out attackers.",
+    "manufacturerSpecs": {
+      "speed": "Speed 108 (Victas/Contra rating).[]",
+      "spin": "Spin 88 (Victas/Contra rating).[]",
+      "control": "Control 86 (Victas/Contra rating).[]",
+      "spongeHardness": "Soft+ / approx. 37.5° sponge.",
+      "thickness": "1.6 / 1.8 / 2.0 / max sponge options.",
+      "weight": null,
+      "layers": null,
+      "category": "short pips"
+    },
+    "communityConsensus": {
+      "summary": "Die VO‑101 wird als sehr schnelle, druckvolle Kurznoppe mit starkem Störeffekt und flacher Flugkurve beschrieben. Viele Spieler nutzen sie für aggressives tischnahes Offensivspiel mit harten Kontern, geraden Schüssen und unangenehm fallenden Blocks. Wiederkehrend genannt werden die hohe Endgeschwindigkeit und Gefährlichkeit, während Kontrolle bei passivem Spiel und Schnittanfälligkeit als Nachteile genannt werden.",
+      "sources": [
+        "https://revspin.net/pips/victas-vo-101.html",
+        "https://www.victas.com/en_gb/products/detail.html?id=31",
+        "https://www.spinfactory.de/tischtennis-belaege/victas-vo-101.html",
+        "https://www.contra.de/en/victas-rubber-vo-101/",
+        "https://www.tt-xpert.de/victas-vo-101/000000720603",
+        "https://www.noppen-test.de/forum/viewtopic.php?t=23498&start=30"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Kurznoppe für sehr aggressives, tischnahes Vorwärts- und Blockspiel mit flachem Ballabsprung und starkem Druck auf den Gegner."
+    }
+  },
+  {
+    "slug": "victas-vo-102",
+    "name": "Victas VO > 102",
+    "manufacturer": "Victas",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://www.victas.com/en_gb/products/detail.html?id=32",
+    "manufacturerDescription": "VO > 102 is a High Energy Tension short pips rubber with short, slightly wider pimples optimized to enable players to create their own spin variations. Its special pips geometry provides direct ball feedback and excellent control while the elastic sponge and tension technology deliver speed. The rubber is aimed at ambitious and even top players seeking a fast, variable pips-out rubber for active offensive play.",
+    "manufacturerSpecs": {
+      "speed": "Speed 7.5/10 (Victas spec as listed).[]",
+      "spin": "Spin 7.2/10 (Victas spec as listed).[]",
+      "control": "Control 8.0/10 (Victas spec as listed).[]",
+      "spongeHardness": "Sponge hardness 37.5±3 (German standard).[]",
+      "thickness": null,
+      "weight": null,
+      "layers": null,
+      "category": "short pips"
+    },
+    "communityConsensus": {
+      "summary": "Spieler beschreiben die VO‑102 als variablere, spinnigere Kurznoppe mit sehr gutem Kompromiss aus Tempo, Spin und Kontrolle, die sich fast wie ein Noppen-innen-Belag spielen lässt. Hervorgehoben werden die sehr gute Blockkontrolle, einfache Eröffnung auf Unterschnitt sowie hohe Spinfähigkeit für eine Kurznoppe. Kritikpunkte sind das vergleichsweise hohe Gewicht und der geringere reine Störeffekt im Vergleich zu klassischeren Störnoppen.",
+      "sources": [
+        "https://revspin.net/pips/victas-vo-102.html",
+        "https://www.victas.com/en_gb/products/detail.html?id=32",
+        "https://www.spinfactory.de/tischtennis-belaege/victas-vo-102.html",
+        "https://www.nishohi.com/sg/victas-vo-102-table-tennis-rubber",
+        "https://www.tt-xpert.de/victas-vo-102/000000720701",
+        "https://www.youtube.com/watch?v=0s2lBh-51m0",
+        "https://www.noppen-test.de/forum/viewtopic.php?t=290928"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Kurznoppe für variables Offensivspiel auf VH oder RH mit viel Blockkontrolle, guter Spinfähigkeit und hoher Dynamik."
+    }
+  },
+  {
+    "slug": "victas-curl-p5v",
+    "name": "Victas CURL P5V",
+    "manufacturer": "Victas",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "http://victas.com/de_de/products/detail.html?id=100",
+    "manufacturerDescription": "CURL P5V is a long pips rubber with a pimple geometry similar to the popular CURL P1V but featuring very hard pimples for maximum pressure. The hard pips enable flat, aggressive blocks that make it difficult for opponents to play the next ball, while still allowing precise placement from distance. It is offered in several sponge thicknesses, including OX, and is aimed at defensive players seeking a more offensive long pips option.",
+    "manufacturerSpecs": {
+      "speed": null,
+      "spin": null,
+      "control": null,
+      "spongeHardness": "55±3 sponge hardness (Japan standard).[]",
+      "thickness": "OX / 0.5 / 1.0 / 1.5 mm sponge options.",
+      "weight": null,
+      "layers": null,
+      "category": "long pips"
+    },
+    "communityConsensus": {
+      "summary": "Die CURL P5V wird als Langnoppe mit sehr harten, druckvollen Noppen beschrieben, die besonders beim Blocken einen extrem flachen, unangenehmen Ballabsprung erzeugen. Spieler berichten von hoher Kontrolle im tischnahen Stör- und Blockspiel sowie brauchbarer Sicherheit in der tischfernen Abwehr, jedoch weniger maximalem Unterschnitt als beim P1V. Mehrfach betont wird, dass P5V eher als Block‑ und Pressnoppe denn als reine Abwehrnoppe wahrgenommen wird.",
+      "sources": [
+        "http://victas.com/de_de/products/detail.html?id=100",
+        "https://www.victas.com/en_gb/products/detail.html?id=45",
+        "https://www.nishohi.com/en/victas-curl-p5v-table-tennis-rubber",
+        "https://revspin.net/pips/victas-curl-p5v.html",
+        "https://tabletennis11.com/et/victas-curl-p5v",
+        "https://www.reddit.com/r/tabletennis/comments/158ryp5/feint_long_3_and_victas_curl_p5v/",
+        "https://www.youtube.com/watch?v=MVodVpnx72A"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Langnoppe für aggressive, tischnah blockende und pressende Defensiv- bzw. Allroundspieler mit Fokus auf flachen, störenden Blocks."
+    }
+  },
+  {
+    "slug": "dhs-hurricane-3",
+    "name": "DHS Hurricane 3",
+    "manufacturer": "DHS",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://dhssport.com/en/DHS-Hurricane-3",
+    "manufacturerDescription": "Hurricane 3 is a tacky offensive rubber designed for players who mainly adopt a controlled playing style with loop drives. The sticky topsheet and hard sponge generate strong spin and a long arc, enhancing control and enabling fast attack and looping close to the table. It has been a top choice for many Chinese national team players since the 2000s and is optimized for the 40+ plastic ball.",
+    "manufacturerSpecs": {
+      "speed": "Speed around 8.1/10 in common DHS ratings for H3.",
+      "spin": "Spin around 8.9–9.3/10 in common DHS ratings.",
+      "control": "Control about 8.7–8.7/10 in community/manufacturer-style scales.",
+      "spongeHardness": "Hard Chinese sponge, typically 37–41° DHS scale depending on version.",
+      "thickness": "Commonly supplied in 2.1–2.15 mm sponge thickness.",
+      "weight": null,
+      "layers": null,
+      "category": "inverted/smooth"
+    },
+    "communityConsensus": {
+      "summary": "Die Community beschreibt den Hurricane 3 als klassischen chinesischen Vorhandbelag mit sehr klebrigem Obergummi, hartem Schwamm, enormem Spinniveau und relativ niedrigem Katapult. Er bietet bei aktivem Körpereinsatz eine extreme Spinentwicklung und hohe Präzision, verlangt aber eine saubere, schnelle Technik und fühlt sich bei passiven Schlägen eher langsam und tot an. Häufig eingesetzt wird er als kompromissloser Vorhandbelag von ambitionierten Spielern bis hin zu Profis, während Einsteiger ohne Technik den Belag oft als zu schwer und zu anspruchsvoll empfinden.",
+      "sources": [
+        "https://revspin.net/rubber/dhs-hurricane-3.html",
+        "https://revspin.net/rubber/dhs-hurricane-3-national.html",
+        "https://revspin.net/rubber/dhs-hurricane-3-provincial.html",
+        "https://www.dhs-729.eu/gb/rubbers/21-dhs-hurricane-3-39-mid.html",
+        "https://dhssport.com/en/DHS-Hurricane-3",
+        "https://www.tabletennisdaily.com/equipment/hurricane-3.1356/",
+        "https://www.tabletennisdaily.com/forum/topics/time-to-try-hurricane-3.38320/",
+        "https://www.tabletennisdaily.com/forum/topics/dhs-hurricane-3-neo-the-complete-amateur-guide-review.38949/",
+        "https://www.contra.de/en/dhs-rubber-hurricane-3-mid-39-0/"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Vorhandbelag für spinorientierte Offensivspieler mit chinesischer Technik, die maximalen Spin und Kontrolle bei geringem Katapult suchen."
+    }
+  },
+  {
+    "slug": "dhs-hurricane-8",
+    "name": "DHS Hurricane 8",
+    "manufacturer": "DHS",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": "https://dhs-tt.uk/product/hurricane-8/",
+    "manufacturerDescription": "Hurricane 8 is a new generation sticky-speed rubber designed for the 40+ plastic ball, balancing flexibility and elasticity. Its new high-density sponge with Macro-Cell or High-Elasticity Particle Osmosis technology increases elasticity by about 15%, giving high shot speed even with weaker strokes. The rubber provides unique spin, unpredictable arc and significantly enhanced shot speed, targeting offensive players who need more speed than classic sticky rubbers.",
+    "manufacturerSpecs": {
+      "speed": "Speed around 8.5–8.6/10 or 92/100 in common listings.",
+      "spin": "Spin around 9.3/10 or 98/100 in common listings.",
+      "control": "Control around 7.7/10 or mid‑70s/100 depending on version.",
+      "spongeHardness": "Available in MID 39° and HARD 40° DHS sponge hardness.",
+      "thickness": "Typically supplied in 2.15 mm and 2.2 mm sponge thickness.",
+      "weight": null,
+      "layers": null,
+      "category": "inverted/smooth"
+    },
+    "communityConsensus": {
+      "summary": "Die Community beschreibt den Hurricane 8 als moderneren, etwas elastischeren „Sticky-Tension“-Belag, der im Vergleich zu H3 etwas weniger Tackiness, dafür mehr Katapult und höheres Tempo bietet. Spieler loben das hohe Spinniveau, die verbesserte Durchschlagskraft mit Plastikbällen und die geringere Kraftanforderung, insbesondere in der Mid‑Distance. Kritisiert werden das hohe Gewicht und dass manche Spieler die etwas schwächere extreme Endrotation im Vergleich zu gut getuntem H3 wahrnehmen.",
+      "sources": [
+        "https://revspin.net/rubber/dhs-hurricane-8.html",
+        "https://chtt.se/en/varumarken/dhs/dhsgummi/dhs-hurricane-8",
+        "https://dhs-tt.uk/product/hurricane-8/",
+        "https://www.xvt.cc/product/dhs-hurricane-8-high-tacky-speed-table-tennis-rubber-ping-pong-rubber",
+        "https://ttgearlab.com/2023/06/04/dhs-hurricane-8-introduction/",
+        "https://www.ppongsuper.com/dhs-hurricane-8-table-tennis-rubber-review/",
+        "https://www.megaspin.net/store/default.asp?pid=dhs-h-80-mid",
+        "https://www.tabletennisdaily.com/forum/topics/hurricane-3-vs-hurricane-8-for-bh.33659/page-2"
+      ],
+      "playerLevelRange": null,
+      "primaryUseCase": "Vorhandbelag für offensive Spieler, die ein chinesisch klebriges Obergummi mit etwas mehr Elastizität, Katapult und Tempo als beim klassischen Hurricane 3 suchen."
+    }
+  }
+]

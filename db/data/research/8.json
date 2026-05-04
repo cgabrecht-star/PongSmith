@@ -1,0 +1,27 @@
+[
+  {
+    "slug": "dr-neubauer-aggressivo",
+    "name": "Aggressivo",
+    "manufacturer": "Dr. Neubauer",
+    "imageUrl": null,
+    "imageSource": null,
+    "manufacturerUrl": null,
+    "manufacturerDescription": null,
+    "manufacturerSpecs": {
+      "speed": null,
+      "spin": null,
+      "control": null,
+      "spongeHardness": null,
+      "thickness": null,
+      "weight": null,
+      "layers": null,
+      "category": "anti"
+    },
+    "communityConsensus": {
+      "summary": null,
+      "sources": [],
+      "playerLevelRange": null,
+      "primaryUseCase": null
+    }
+  }
+]
