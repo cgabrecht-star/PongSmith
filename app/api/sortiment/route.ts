@@ -24,6 +24,7 @@ export async function GET(req: NextRequest) {
   const playStyle = searchParams.get("play_style");
   const manufacturerSlug = searchParams.get("manufacturer");
   const q = searchParams.get("q");
+  const lang = searchParams.get("lang") === "en" ? "en" : "de";
 
   try {
     // ── Hersteller-Cache ──────────────────────────────────────────────────
@@ -101,8 +102,8 @@ export async function GET(req: NextRequest) {
       ttrMax: r.ttrMax,
       ttrOptimal: r.ttrOptimal,
       reviewCount: r.communityReviewCount,
-      description: r.description,
-      communityDescription: r.communityDescription,
+      description: lang === "en" ? (r.descriptionEn ?? r.description) : r.description,
+      communityDescription: lang === "en" ? (r.communityDescriptionEn ?? r.communityDescription) : r.communityDescription,
       imageUrl: r.imageUrl,
     }));
 
@@ -125,8 +126,8 @@ export async function GET(req: NextRequest) {
       ttrMax: b.ttrMax,
       ttrOptimal: b.ttrOptimal,
       reviewCount: b.communityReviewCount,
-      description: b.description,
-      communityDescription: b.communityDescription,
+      description: lang === "en" ? (b.descriptionEn ?? b.description) : b.description,
+      communityDescription: lang === "en" ? (b.communityDescriptionEn ?? b.communityDescription) : b.communityDescription,
       imageUrl: b.imageUrl,
     }));
 

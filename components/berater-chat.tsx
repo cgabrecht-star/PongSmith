@@ -1,19 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/lib/language-context";
 
 interface Message {
   role: "user" | "assistant";
   content: string;
 }
 
-const GREETING =
-  "Hallo! Ich bin PongSmith, dein unabhängiger Ausrüstungsberater. 🏓\n\nErzähl mir kurz von dir: Welchen Q-TTR hast du ungefähr, wie spielst du (offensiv, allround, defensiv oder mit Material wie langen Noppen / Anti) — und was nervt dich an deinem aktuellen Setup?";
-
 // Rendert **fett**, *kursiv* und einfache Listen aus Markdown-Text
 function renderInline(text: string): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
-  // Matches **bold** und *italic*
   const regex = /(\*\*(.+?)\*\*|\*(.+?)\*)/g;
   let last = 0;
   let match: RegExpExecArray | null;
@@ -85,11 +82,10 @@ function TypingDots() {
   );
 }
 
-function Bubble({ msg }: { msg: Message }) {
+function Bubble({ msg, userLabel }: { msg: Message; userLabel: string }) {
   const isUser = msg.role === "user";
   return (
     <div style={{ display: "flex", gap: 10, justifyContent: isUser ? "flex-end" : "flex-start" }}>
-      {/* AI avatar */}
       {!isUser && (
         <div style={{
           flexShrink: 0, width: 32, height: 32, borderRadius: 4,
@@ -102,7 +98,6 @@ function Bubble({ msg }: { msg: Message }) {
         </div>
       )}
 
-      {/* Bubble */}
       <div style={{
         maxWidth: "78%",
         padding: "12px 14px",
@@ -118,7 +113,6 @@ function Bubble({ msg }: { msg: Message }) {
         {formatText(msg.content)}
       </div>
 
-      {/* User avatar */}
       {isUser && (
         <div style={{
           flexShrink: 0, width: 32, height: 32, borderRadius: 4,
@@ -127,7 +121,7 @@ function Bubble({ msg }: { msg: Message }) {
           color: "var(--ps-ink-2)", fontSize: 10, fontWeight: 600,
           fontFamily: "var(--font-jetbrains), monospace",
         }}>
-          DU
+          {userLabel}
         </div>
       )}
     </div>
@@ -135,14 +129,24 @@ function Bubble({ msg }: { msg: Message }) {
 }
 
 export function BeraterChat() {
+  const { lang, t } = useLanguage();
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: GREETING },
+    { role: "assistant", content: t.berater.greeting },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  // Greeting nachladen wenn Sprache wechselt UND noch keine User-Nachricht da ist
+  useEffect(() => {
+    setMessages((prev) => {
+      const hasUserMsg = prev.some((m) => m.role === "user");
+      if (hasUserMsg) return prev; // laufendes Gespräch nicht zerstören
+      return [{ role: "assistant", content: t.berater.greeting }];
+    });
+  }, [lang, t.berater.greeting]);
 
   useEffect(() => {
     const el = messagesRef.current;
@@ -166,6 +170,7 @@ export function BeraterChat() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: updated.map((m) => ({ role: m.role, content: m.content })),
+          lang,
         }),
       });
       const data = (await res.json()) as { text?: string; error?: string };
@@ -175,7 +180,7 @@ export function BeraterChat() {
         setMessages((prev) => [...prev, { role: "assistant", content: data.text ?? "" }]);
       }
     } catch {
-      setApiError("Verbindungsfehler — bitte erneut versuchen.");
+      setApiError(t.berater.error);
     } finally {
       setLoading(false);
       inputRef.current?.focus();
@@ -189,12 +194,25 @@ export function BeraterChat() {
     }
   }
 
-  // Quick suggestions
-  const suggestions = [
-    "1.280 TTR, VH-dominant, 100–200 €",
-    "Allround, Block hält nicht stabil",
-    "Defensiv, Kontrolle wichtiger als Tempo",
-  ];
+  // Quick suggestions je Sprache
+  const suggestions = lang === "de"
+    ? [
+      "1.280 TTR, VH-dominant, 100–200 €",
+      "Allround, Block hält nicht stabil",
+      "Defensiv, Kontrolle wichtiger als Tempo",
+    ]
+    : [
+      "1,280 TTR, FH-dominant, €100–200 budget",
+      "Allround, my block isn't stable",
+      "Defensive, control over speed",
+    ];
+
+  const headerTitle = lang === "de" ? "Dein Schmied" : "Your Smith";
+  const onlineLabel = lang === "de"
+    ? "Online · antwortet in Sekunden"
+    : "Online · replies in seconds";
+  const userLabel = lang === "de" ? "DU" : "YOU";
+  const sendHint = lang === "de" ? "⏎ senden · ⇧⏎ neue Zeile" : "⏎ send · ⇧⏎ new line";
 
   return (
     <div className="card-forged" style={{ display: "flex", height: "100%", flexDirection: "column", overflow: "hidden" }}>
@@ -212,9 +230,9 @@ export function BeraterChat() {
           fontSize: 20,
         }}>🔨</div>
         <div>
-          <div className="ff-display" style={{ fontSize: 20, lineHeight: 1, color: "var(--ps-ink-0)" }}>Dein Schmied</div>
+          <div className="ff-display" style={{ fontSize: 20, lineHeight: 1, color: "var(--ps-ink-0)" }}>{headerTitle}</div>
           <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--ps-ink-3)", marginTop: 3 }}>
-            <span style={{ color: "var(--ps-good)" }}>●</span> Online · antwortet in Sekunden
+            <span style={{ color: "var(--ps-good)" }}>●</span> {onlineLabel}
           </div>
         </div>
       </div>
@@ -225,7 +243,7 @@ export function BeraterChat() {
         style={{ flex: 1, overflowY: "auto", padding: "20px", display: "flex", flexDirection: "column", gap: 16 }}
       >
         {messages.map((msg, i) => (
-          <Bubble key={i} msg={msg} />
+          <Bubble key={i} msg={msg} userLabel={userLabel} />
         ))}
         {loading && (
           <div style={{ display: "flex", gap: 10 }}>
@@ -285,7 +303,7 @@ export function BeraterChat() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Antwort tippen…"
+            placeholder={t.berater.placeholder}
             disabled={loading}
             style={{
               flex: 1, background: "transparent", border: 0,
@@ -300,13 +318,13 @@ export function BeraterChat() {
             disabled={loading || !input.trim()}
             className="ember-btn"
             style={{ padding: "10px 14px", display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12 }}
-            aria-label="Senden"
+            aria-label={t.berater.send}
           >
-            ➤ Senden
+            ➤ {t.berater.send}
           </button>
         </div>
         <p className="ff-mono" style={{ marginTop: 8, textAlign: "center", fontSize: 10, color: "var(--ps-ink-4)", letterSpacing: "0.06em" }}>
-          ⏎ senden · ⇧⏎ neue Zeile
+          {sendHint}
         </p>
       </div>
     </div>

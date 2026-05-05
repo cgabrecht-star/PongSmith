@@ -3,132 +3,13 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { BeraterChat } from "@/components/berater-chat";
 import { AdvisorForm } from "@/components/advisor-form";
+import { LanguageSwitcher } from "@/components/language-switcher";
+import { useLanguage } from "@/lib/language-context";
+import type { Lang } from "@/lib/i18n";
 
-// ─────────────────────────────────────────────
-// i18n
-// ─────────────────────────────────────────────
-type Lang = "de" | "en";
-
-const T = {
-  de: {
-    nav: { start: "Start", berater: "Berater", check: "Schnell-Check", guide: "Ratgeber" },
-    hero: {
-      kicker: "Die Tischtennis-Schmiede",
-      line1: "Dein Schläger,",
-      line2: "in 3 Minuten",
-      line3: "ehrlich beraten.",
-      sub: "Damit du nie wieder 200 € in ein Setup steckst, das nicht zu dir passt. Unabhängig. Kostenlos. Ohne Marken-Bias.",
-      cta: "Jetzt beraten lassen",
-      ctaSecondary: "So funktioniert's",
-      stat1v: "1.000–1.700",
-      stat1l: "Q-TTR Spielstärke",
-      stat2v: "0 €",
-      stat2l: "Beratung",
-      stat3v: "14",
-      stat3l: "Hersteller im Index",
-    },
-    how: {
-      title: "Drei Schritte. Kein Verkaufsdruck.",
-      sub: "Wir hören dir zu — und sagen dir, was wir wirklich denken.",
-      steps: [
-        { n: "01", t: "Erzählen", d: "Du beschreibst deine Spielstärke, Frustpunkte und worauf du im Match warten musst." },
-        { n: "02", t: "Spiegeln", d: "Wir fassen dein Profil zusammen, damit Missverständnisse vorm Geldausgeben sterben." },
-        { n: "03", t: "Empfehlen", d: "Drei begründete Setups mit Synergie-Score, Preisvergleich und ehrlichem „warum nicht“." },
-      ],
-    },
-    trust: {
-      title: "Woher kommt unser Wissen?",
-      sub: "Drei Säulen. Keine Schiebung.",
-      pillars: [
-        { t: "Hersteller-Daten", d: "Speed-, Spin- und Control-Werte direkt aus Datenblättern. Wir kürzen nichts schön." },
-        { t: "Community-Reviews", d: "Aggregiert aus Foren und Bewertungsportalen. Wir filtern Schreihälse heraus." },
-        { t: "Vereinsspieler", d: "Echte Erfahrungsberichte aus dem TTR-Korridor 1.000–1.700, nicht Bundesliga-Phantasie." },
-      ],
-    },
-    berater: {
-      kicker: "KI-Berater",
-      title: "Beschreib dich — ich empfehle konkret.",
-      sub: "Sag mir deinen TTR, Spielstil und was dich stört. Ich durchsuche die Datenbank und erkläre dir warum ein Setup zu dir passt.",
-    },
-    check: {
-      kicker: "Schnell-Check",
-      title: "TTR + Spielstil → Top 3 Setups.",
-      sub: "Kein Chat, kein Warten. Schieb den Regler auf deinen TTR, wähl deinen Stil — fertig.",
-    },
-    faq: {
-      title: "Häufige Fragen",
-      items: [
-        { q: "Verdient ihr an meinem Kauf?", a: "Ja, über Affiliate-Links — aber nur, wenn du aus eigener Überzeugung kaufst. Unsere Empfehlung ändert sich nicht durch Provisionen. Wir markieren das transparent." },
-        { q: "Warum keine Bundesliga-Beläge?", a: "Weil ein Tenergy 05 unter 1.700 TTR meist mehr Frust als Spin liefert. Wir empfehlen das Setup, mit dem du nächsten Dienstag besser spielst." },
-        { q: "Reicht eine KI für sowas Persönliches?", a: "Die KI hört strukturiert zu, vergleicht dein Profil mit hunderten Beläg-Holz-Kombinationen und legt die Begründung offen. Du entscheidest." },
-        { q: "Was ist mit Defensiv-Setups?", a: "Voll abgedeckt. Sag uns einfach, du spielst hinter dem Tisch — die Empfehlungen drehen sich entsprechend." },
-      ],
-    },
-    footer: {
-      tag: "Unabhängig · Markenneutral · Kostenlos",
-      copy: "© 2026 PongSmith. Geschmiedet in Deutschland.",
-    },
-  },
-  en: {
-    nav: { start: "Home", berater: "Advisor", check: "Quick Pick", guide: "Guide" },
-    hero: {
-      kicker: "The Table-Tennis Forge",
-      line1: "Your bat,",
-      line2: "honestly built",
-      line3: "in 3 minutes.",
-      sub: "So you never burn another €200 on a setup that doesn't fit you. Independent. Free. Zero brand bias.",
-      cta: "Get my setup",
-      ctaSecondary: "How it works",
-      stat1v: "1,000–1,700",
-      stat1l: "Q-TTR rating range",
-      stat2v: "€0",
-      stat2l: "Cost to you",
-      stat3v: "14",
-      stat3l: "Brands indexed",
-    },
-    how: {
-      title: "Three steps. No sales pressure.",
-      sub: "We listen — then tell you what we actually think.",
-      steps: [
-        { n: "01", t: "Tell us", d: "Describe your level, your frustrations, the shot you keep waiting for in matches." },
-        { n: "02", t: "Mirror", d: "We summarise your profile back so misunderstandings die before you spend money." },
-        { n: "03", t: "Recommend", d: "Three reasoned setups with a synergy score, price comparison, and honest 'why not'." },
-      ],
-    },
-    trust: {
-      title: "Where our knowledge comes from",
-      sub: "Three pillars. No funny business.",
-      pillars: [
-        { t: "Manufacturer data", d: "Speed, spin, control numbers straight from spec sheets. We do not round up." },
-        { t: "Community reviews", d: "Aggregated from forums and rating sites. We filter out the loudest yellers." },
-        { t: "Club players", d: "Real reports from the 1,000–1,700 TTR corridor. Not pro-tour fantasy." },
-      ],
-    },
-    berater: {
-      kicker: "AI Advisor",
-      title: "Describe yourself — I'll recommend specifically.",
-      sub: "Tell me your TTR, play style and what bothers you. I search the database and explain why a setup fits you.",
-    },
-    check: {
-      kicker: "Quick Pick",
-      title: "TTR + Play style → Top 3 setups.",
-      sub: "No chat, no waiting. Slide to your TTR, pick your style — done.",
-    },
-    faq: {
-      title: "Common questions",
-      items: [
-        { q: "Do you make money on my purchase?", a: "Yes, via affiliate links — but only when you buy out of conviction. Our pick does not change because of commissions. We label it openly." },
-        { q: "Why no pro-tour rubbers?", a: "Because a Tenergy 05 under 1,700 TTR usually delivers more frustration than spin. We recommend the setup that lets you play better next Tuesday." },
-        { q: "Can an AI really do this?", a: "The AI listens with structure, compares your profile to hundreds of blade/rubber combinations, and shows the reasoning. You decide." },
-        { q: "What about defensive setups?", a: "Fully covered. Just tell us you play behind the table and the picks rotate accordingly." },
-      ],
-    },
-    footer: {
-      tag: "Independent · Brand-neutral · Free",
-      copy: "© 2026 PongSmith. Forged in Germany.",
-    },
-  },
-};
+// Alte lokale `T`-Konstante entfernt — wird jetzt aus lib/i18n.ts via useLanguage gezogen.
+// Section-Komponenten unten erhalten die `t` als Prop, sind weiterhin selbst-enthaltend.
+type LegacyLang = Lang;
 
 // ─────────────────────────────────────────────
 // Sparks
@@ -245,8 +126,8 @@ function SectionLabel({ n, children }: { n: string; children: React.ReactNode })
 // ─────────────────────────────────────────────
 // TopBar
 // ─────────────────────────────────────────────
-function TopBar({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
-  const t = T[lang];
+function TopBar() {
+  const { t, lang } = useLanguage();
   const navItems = [
     { id: "hero-section", label: t.nav.start },
     { id: "berater-section", label: t.nav.berater },
@@ -310,35 +191,11 @@ function TopBar({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
             onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ps-ink-0)")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ps-ink-2)")}
           >
-            {lang === "de" ? "Sortiment" : "Products"}
+            {t.nav.sortiment}
           </a>
         </nav>
 
-        {/* Language toggle */}
-        <div style={{ display: "flex", alignItems: "center", gap: 2, border: "1px solid var(--ps-line)", borderRadius: 3, padding: 2 }}>
-          {(["de", "en"] as Lang[]).map((l) => (
-            <button
-              key={l}
-              onClick={() => setLang(l)}
-              style={{
-                background: lang === l ? "var(--ps-ember)" : "transparent",
-                color: lang === l ? "#1a0d05" : "var(--ps-ink-2)",
-                border: 0,
-                borderRadius: 2,
-                padding: "4px 8px",
-                fontSize: 10,
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                cursor: "pointer",
-                fontFamily: "inherit",
-                transition: "all 160ms",
-              }}
-            >
-              {l}
-            </button>
-          ))}
-        </div>
+        <LanguageSwitcher />
       </div>
     </header>
   );
@@ -347,8 +204,8 @@ function TopBar({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
 // ─────────────────────────────────────────────
 // Mobile Bottom Bar
 // ─────────────────────────────────────────────
-function MobileBottomBar({ lang }: { lang: Lang }) {
-  const t = T[lang];
+function MobileBottomBar() {
+  const { t } = useLanguage();
   const items = [
     { label: t.nav.start, id: "hero-section", icon: "⊙" },
     { label: t.nav.berater, id: "berater-section", icon: "◈" },
@@ -390,8 +247,8 @@ function MobileBottomBar({ lang }: { lang: Lang }) {
 // ─────────────────────────────────────────────
 // Hero Section
 // ─────────────────────────────────────────────
-function Hero({ lang }: { lang: Lang }) {
-  const t = T[lang].hero;
+function Hero() {
+  const t = useLanguage().t.hero;
   const scrollToBerater = () => {
     const el = document.getElementById("berater-section");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -482,8 +339,8 @@ function Hero({ lang }: { lang: Lang }) {
 // ─────────────────────────────────────────────
 // How It Works
 // ─────────────────────────────────────────────
-function HowItWorks({ lang }: { lang: Lang }) {
-  const t = T[lang].how;
+function HowItWorks() {
+  const t = useLanguage().t.how;
   const icons = ["💬", "🪞", "🔨"];
   return (
     <section id="how-section" style={{ padding: "90px 20px", background: "var(--ps-bg-0)", borderBottom: "1px solid var(--ps-line-2)" }}>
@@ -515,10 +372,11 @@ function HowItWorks({ lang }: { lang: Lang }) {
 // ─────────────────────────────────────────────
 // Trust Pillars
 // ─────────────────────────────────────────────
-function Trust({ lang }: { lang: Lang }) {
-  const t = T[lang].trust;
+function Trust() {
+  const { t: tAll, lang } = useLanguage();
+  const t = tAll.trust;
   const pillarIcons = ["📊", "👥", "🏓"];
-  const pillarNums = ["SÄULE 01", "SÄULE 02", "SÄULE 03"];
+  const pillarNums = lang === "de" ? ["SÄULE 01", "SÄULE 02", "SÄULE 03"] : ["PILLAR 01", "PILLAR 02", "PILLAR 03"];
   return (
     <section className="forge-bg" style={{ padding: "90px 20px", borderBottom: "1px solid var(--ps-line-2)" }}>
       <div style={{ maxWidth: 1240, margin: "0 auto" }}>
@@ -552,8 +410,8 @@ function Trust({ lang }: { lang: Lang }) {
 // ─────────────────────────────────────────────
 // Berater Section
 // ─────────────────────────────────────────────
-function BeraterSection({ lang }: { lang: Lang }) {
-  const t = T[lang].berater;
+function BeraterSection() {
+  const t = useLanguage().t.berater;
   return (
     <section id="berater-section" style={{ padding: "90px 20px", background: "var(--ps-bg-0)", borderBottom: "1px solid var(--ps-line-2)", scrollMarginTop: 64 }}>
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
@@ -573,8 +431,8 @@ function BeraterSection({ lang }: { lang: Lang }) {
 // ─────────────────────────────────────────────
 // Schnell-Check Section
 // ─────────────────────────────────────────────
-function SchnellCheckSection({ lang }: { lang: Lang }) {
-  const t = T[lang].check;
+function SchnellCheckSection() {
+  const t = useLanguage().t.check;
   return (
     <section id="check-section" className="forge-bg" style={{ padding: "90px 20px", borderBottom: "1px solid var(--ps-line-2)", scrollMarginTop: 64 }}>
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
@@ -592,8 +450,8 @@ function SchnellCheckSection({ lang }: { lang: Lang }) {
 // ─────────────────────────────────────────────
 // FAQ
 // ─────────────────────────────────────────────
-function FAQ({ lang }: { lang: Lang }) {
-  const t = T[lang].faq;
+function FAQ() {
+  const t = useLanguage().t.faq;
   const [open, setOpen] = useState(-1);
   return (
     <section style={{ padding: "90px 20px", background: "var(--ps-bg-1)", borderBottom: "1px solid var(--ps-line-2)" }}>
@@ -640,21 +498,32 @@ function FAQ({ lang }: { lang: Lang }) {
 // ─────────────────────────────────────────────
 // Footer
 // ─────────────────────────────────────────────
-function Footer({ lang }: { lang: Lang }) {
-  const t = T[lang].footer;
-  const footerLinks = {
-    de: [
-      { t: "Beratung", items: ["KI-Berater", "Schnell-Check", "Sortiment"] },
-      { t: "Werkstatt", items: ["Ratgeber"] },
-      { t: "Rechtliches", items: ["Impressum", "Datenschutz", "Affiliate-Hinweis"] },
-    ],
-    en: [
-      { t: "Advisory", items: ["AI Advisor", "Quick Pick", "Products"] },
-      { t: "Workshop", items: ["Guide"] },
-      { t: "Legal", items: ["Imprint", "Privacy", "Affiliate disclosure"] },
-    ],
-  };
-  const cols = footerLinks[lang];
+function Footer() {
+  const { t: tAll } = useLanguage();
+  const t = tAll.footer;
+  // Sprach-unabhängige IDs pro Link → Routing-Logik unten via Switch
+  const cols: { t: string; items: { id: string; label: string }[] }[] = [
+    {
+      t: t.colAdvisory,
+      items: [
+        { id: "advisor", label: t.itemAdvisor },
+        { id: "quickpick", label: t.itemQuickPick },
+        { id: "sortiment", label: t.itemSortiment },
+      ],
+    },
+    {
+      t: t.colWorkshop,
+      items: [{ id: "guide", label: t.itemGuide }],
+    },
+    {
+      t: t.colLegal,
+      items: [
+        { id: "imprint", label: t.itemImprint },
+        { id: "privacy", label: t.itemPrivacy },
+        { id: "affiliate", label: t.itemAffiliate },
+      ],
+    },
+  ];
 
   return (
     <footer style={{ padding: "60px 20px 80px", background: "var(--ps-bg-0)" }}>
@@ -673,13 +542,12 @@ function Footer({ lang }: { lang: Lang }) {
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
                 {col.items.map((it, j) => {
                   const href =
-                    it === "Impressum" || it === "Imprint" ? "/impressum"
-                    : it === "Datenschutz" || it === "Privacy" ? "/datenschutz"
-                    : it === "Affiliate-Hinweis" || it === "Affiliate disclosure" ? "/datenschutz#affiliates"
-                    : it === "Sortiment" || it === "Products" ? "/sortiment"
-                    : it === "KI-Berater" || it === "AI Advisor" ? "/#berater-section"
-                    : it === "Schnell-Check" || it === "Quick Pick" ? "/#check-section"
-                    : it === "Ratgeber" || it === "Guide" ? "#"
+                    it.id === "imprint" ? "/impressum"
+                    : it.id === "privacy" ? "/datenschutz"
+                    : it.id === "affiliate" ? "/datenschutz#affiliates"
+                    : it.id === "sortiment" ? "/sortiment"
+                    : it.id === "advisor" ? "/#berater-section"
+                    : it.id === "quickpick" ? "/#check-section"
                     : "#";
                   return (
                     <li key={j}>
@@ -688,7 +556,7 @@ function Footer({ lang }: { lang: Lang }) {
                         onClick={href === "#" ? (e) => e.preventDefault() : undefined}
                         style={{ color: "var(--ps-ink-2)", fontSize: 13.5, textDecoration: "none" }}
                       >
-                        {it}
+                        {it.label}
                       </a>
                     </li>
                   );
@@ -711,19 +579,17 @@ function Footer({ lang }: { lang: Lang }) {
 // Page
 // ─────────────────────────────────────────────
 export default function Home() {
-  const [lang, setLang] = useState<Lang>("de");
-
   return (
     <div className="pb-mobile" style={{ backgroundColor: "var(--ps-bg-0)", color: "var(--ps-ink-0)", minHeight: "100vh" }}>
-      <TopBar lang={lang} setLang={setLang} />
-      <Hero lang={lang} />
-      <HowItWorks lang={lang} />
-      <Trust lang={lang} />
-      <BeraterSection lang={lang} />
-      <SchnellCheckSection lang={lang} />
-      <FAQ lang={lang} />
-      <Footer lang={lang} />
-      <MobileBottomBar lang={lang} />
+      <TopBar />
+      <Hero />
+      <HowItWorks />
+      <Trust />
+      <BeraterSection />
+      <SchnellCheckSection />
+      <FAQ />
+      <Footer />
+      <MobileBottomBar />
     </div>
   );
 }

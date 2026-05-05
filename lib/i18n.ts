@@ -1,0 +1,355 @@
+/**
+ * Zentrale Internationalisierung für PongSmith.
+ *
+ * Alle UI-Texte landen hier. Pro Sprache ein Block. Strukturierter Zugriff
+ * über getT(lang) gibt die jeweilige Sub-Struktur zurück.
+ *
+ * Sprache wird über `LanguageContext` verwaltet (cookie + localStorage).
+ */
+
+export type Lang = "de" | "en";
+export const DEFAULT_LANG: Lang = "de";
+
+// ────────────────────────────────────────────────────────────────────────────
+// Translations
+// ────────────────────────────────────────────────────────────────────────────
+
+const translations = {
+  de: {
+    // Navigation
+    nav: {
+      start: "Start",
+      berater: "Berater",
+      check: "Schnell-Check",
+      sortiment: "Sortiment",
+      guide: "Ratgeber",
+    },
+
+    // Hero
+    hero: {
+      kicker: "Die Tischtennis-Schmiede",
+      line1: "Dein Schläger,",
+      line2: "in 3 Minuten",
+      line3: "ehrlich beraten.",
+      sub: "Damit du nie wieder 200 € in ein Setup steckst, das nicht zu dir passt. Unabhängig. Kostenlos. Ohne Marken-Bias.",
+      cta: "Jetzt beraten lassen",
+      ctaSecondary: "So funktioniert's",
+      stat1v: "1.000–1.700",
+      stat1l: "Q-TTR Spielstärke",
+      stat2v: "0 €",
+      stat2l: "Beratung",
+      stat3v: "14",
+      stat3l: "Hersteller im Index",
+    },
+
+    // How it works
+    how: {
+      title: "Drei Schritte. Kein Verkaufsdruck.",
+      sub: "Wir hören dir zu — und sagen dir, was wir wirklich denken.",
+      steps: [
+        { n: "01", t: "Erzählen", d: "Du beschreibst deine Spielstärke, Frustpunkte und worauf du im Match warten musst." },
+        { n: "02", t: "Spiegeln", d: "Wir fassen dein Profil zusammen, damit Missverständnisse vorm Geldausgeben sterben." },
+        { n: "03", t: "Empfehlen", d: "Drei begründete Setups mit Synergie-Score, Preisvergleich und ehrlichem „warum nicht\"." },
+      ],
+    },
+
+    // Trust
+    trust: {
+      title: "Woher kommt unser Wissen?",
+      sub: "Drei Säulen. Keine Schiebung.",
+      pillars: [
+        { t: "Hersteller-Daten", d: "Speed-, Spin- und Control-Werte direkt aus Datenblättern. Wir kürzen nichts schön." },
+        { t: "Community-Reviews", d: "Aggregiert aus Foren und Bewertungsportalen. Wir filtern Schreihälse heraus." },
+        { t: "Vereinsspieler", d: "Echte Erfahrungsberichte aus dem TTR-Korridor 1.000–1.700, nicht Bundesliga-Phantasie." },
+      ],
+    },
+
+    // Berater
+    berater: {
+      kicker: "KI-Berater",
+      title: "Beschreib dich — ich empfehle konkret.",
+      sub: "Sag mir deinen TTR, Spielstil und was dich stört. Ich durchsuche die Datenbank und erkläre dir warum ein Setup zu dir passt.",
+      greeting: "Hallo! Ich bin PongSmith, dein unabhängiger Ausrüstungsberater. 🏓\n\nErzähl mir kurz von dir: Welchen Q-TTR hast du ungefähr, wie spielst du (offensiv, allround, defensiv oder mit Material wie langen Noppen / Anti) — und was nervt dich an deinem aktuellen Setup?",
+      placeholder: "Schreib deine Antwort…",
+      send: "Senden",
+      thinking: "Denkt nach…",
+      error: "Etwas ist schiefgegangen. Bitte erneut versuchen.",
+    },
+
+    // Schnell-Check
+    check: {
+      kicker: "Schnell-Check",
+      title: "TTR + Spielstil → Top 3 Setups.",
+      sub: "Kein Chat, kein Warten. Schieb den Regler auf deinen TTR, wähl deinen Stil — fertig.",
+      ttrLabel: "Q-TTR Spielstärke",
+      ttrHint: "Nicht sicher? 1.300 ist ein guter Startpunkt.",
+      styleLabel: "Spielstil",
+      styleOffensive: "Offensiv",
+      styleOffensiveSub: "Topspin & Tempo",
+      styleAllround: "Allround",
+      styleAllroundSub: "Ausgewogen",
+      styleDefensive: "Defensiv",
+      styleDefensiveSub: "Sicher & kontrolliert",
+      submit: "Top 3 anzeigen",
+      submitting: "Suche…",
+      resultsTitle: "Deine Setups",
+      tryAgain: "Andere Werte ausprobieren",
+      synergy: "Synergie",
+      tempoMatch: "Tempo-Abstimmung",
+      controlReserve: "Kontrollreserve",
+      spinPotential: "Spin-Potenzial",
+    },
+
+    // FAQ
+    faq: {
+      title: "Häufige Fragen",
+      items: [
+        { q: "Verdient ihr an meinem Kauf?", a: "Ja, über Affiliate-Links — aber nur, wenn du aus eigener Überzeugung kaufst. Unsere Empfehlung ändert sich nicht durch Provisionen. Wir markieren das transparent." },
+        { q: "Warum keine Bundesliga-Beläge?", a: "Weil ein Tenergy 05 unter 1.700 TTR meist mehr Frust als Spin liefert. Wir empfehlen das Setup, mit dem du nächsten Dienstag besser spielst." },
+        { q: "Reicht eine KI für sowas Persönliches?", a: "Die KI hört strukturiert zu, vergleicht dein Profil mit hunderten Beläg-Holz-Kombinationen und legt die Begründung offen. Du entscheidest." },
+        { q: "Was ist mit Defensiv-Setups?", a: "Voll abgedeckt. Sag uns einfach, du spielst hinter dem Tisch — die Empfehlungen drehen sich entsprechend." },
+      ],
+    },
+
+    // Footer
+    footer: {
+      tag: "Unabhängig · Markenneutral · Kostenlos",
+      copy: "© 2026 PongSmith. Geschmiedet in Deutschland.",
+      colAdvisory: "Beratung",
+      colWorkshop: "Werkstatt",
+      colLegal: "Rechtliches",
+      itemAdvisor: "KI-Berater",
+      itemQuickPick: "Schnell-Check",
+      itemSortiment: "Sortiment",
+      itemGuide: "Ratgeber",
+      itemImprint: "Impressum",
+      itemPrivacy: "Datenschutz",
+      itemAffiliate: "Affiliate-Hinweis",
+    },
+
+    // Sortiment
+    sortiment: {
+      title: "Sortiment",
+      subtitle: "Alle Beläge und Hölzer in unserem Index — mit Hersteller-Specs, Übersetzung und aggregierten Spielerstimmen. Karte anklicken für Details.",
+      tabRubbers: "Beläge",
+      tabBlades: "Hölzer",
+      searchPlaceholder: "Name suchen…",
+      allTypes: "Alle Typen",
+      typeSmooth: "Invertiert",
+      typeLongPips: "Lange Noppen",
+      typeShortPips: "Kurze Noppen",
+      typeAnti: "Anti",
+      allStyles: "Alle Stile",
+      styleOffensive: "Offensiv",
+      styleAllround: "Allround",
+      styleDefensive: "Defensiv",
+      styleMaterial: "Material",
+      allManufacturers: "Alle Hersteller",
+      reset: "Reset",
+      loading: "LADE SORTIMENT…",
+      noResults: "Keine Treffer",
+      noResultsHint: "Filter anpassen oder Reset drücken.",
+      foundRubbers: "Beläge gefunden",
+      foundBlades: "Hölzer gefunden",
+      sourceNote: "DATEN: HERSTELLER-DATENBLÄTTER + AGGREGIERTE COMMUNITY-STIMMEN · NORMIERT AUF 1.0–10.0",
+      consultBtn: "🔨 Beraten lassen",
+      // Modal
+      specs: "Spezifikationen",
+      reviews: "Community-Reviews",
+      manufacturerDesc: "Hersteller-Beschreibung",
+      communityDesc: "Was Spieler sagen",
+      noDescription: "Noch keine Beschreibung hinterlegt.",
+      noCommunity: "Noch keine Community-Stimmen aggregiert.",
+      futureCta: "Bald: in den Schläger-Schmied einbauen · Preis vergleichen · zum Shop",
+      hoverHint: "→ Details öffnen",
+      defaultHint: "Klick für Details",
+      reviewCount: "Community-Reviews",
+      // Tags
+      labelSpongeHardness: "Schwamm",
+      labelComposition: "Aufbau",
+      labelWeight: "Gewicht",
+      // Stats
+      labelSpeed: "Speed",
+      labelSpin: "Spin",
+      labelControl: "Control",
+      // Aria
+      closeAriaLabel: "Schließen",
+    },
+
+    // Common
+    common: {
+      backHome: "← Zur Startseite",
+    },
+  },
+
+  en: {
+    nav: {
+      start: "Home",
+      berater: "Advisor",
+      check: "Quick Pick",
+      sortiment: "Products",
+      guide: "Guide",
+    },
+
+    hero: {
+      kicker: "The Table-Tennis Forge",
+      line1: "Your racket,",
+      line2: "honestly built,",
+      line3: "in 3 minutes.",
+      sub: "So you never burn another €200 on a setup that doesn't fit you. Independent. Free. Zero brand bias.",
+      cta: "Get my setup",
+      ctaSecondary: "How it works",
+      stat1v: "1,000–1,700",
+      stat1l: "Q-TTR rating range",
+      stat2v: "€0",
+      stat2l: "Cost to you",
+      stat3v: "14",
+      stat3l: "Brands indexed",
+    },
+
+    how: {
+      title: "Three steps. No sales pressure.",
+      sub: "We listen — then tell you what we actually think.",
+      steps: [
+        { n: "01", t: "Tell us", d: "Describe your level, your frustrations, the shot you keep waiting for in matches." },
+        { n: "02", t: "Mirror", d: "We summarise your profile back so misunderstandings die before you spend money." },
+        { n: "03", t: "Recommend", d: "Three reasoned setups with a synergy score, price comparison, and honest 'why not'." },
+      ],
+    },
+
+    trust: {
+      title: "Where our knowledge comes from",
+      sub: "Three pillars. No funny business.",
+      pillars: [
+        { t: "Manufacturer data", d: "Speed, spin, control numbers straight from spec sheets. We do not round up." },
+        { t: "Community reviews", d: "Aggregated from forums and rating sites. We filter out the loudest yellers." },
+        { t: "Club players", d: "Real reports from the 1,000–1,700 TTR corridor. Not pro-tour fantasy." },
+      ],
+    },
+
+    berater: {
+      kicker: "AI Advisor",
+      title: "Describe yourself — I'll recommend specifically.",
+      sub: "Tell me your TTR, play style and what bothers you. I search the database and explain why a setup fits you.",
+      greeting: "Hello! I'm PongSmith, your independent table-tennis equipment advisor. 🏓\n\nTell me a bit about yourself: What's your approximate Q-TTR or playing level, how do you play (offensive, allround, defensive, or with material like long pips / anti) — and what bothers you about your current setup?",
+      placeholder: "Type your reply…",
+      send: "Send",
+      thinking: "Thinking…",
+      error: "Something went wrong. Please try again.",
+    },
+
+    check: {
+      kicker: "Quick Pick",
+      title: "TTR + Play style → Top 3 setups.",
+      sub: "No chat, no waiting. Slide to your TTR, pick your style — done.",
+      ttrLabel: "Q-TTR rating",
+      ttrHint: "Not sure? 1,300 is a good starting point.",
+      styleLabel: "Play style",
+      styleOffensive: "Offensive",
+      styleOffensiveSub: "Topspin & speed",
+      styleAllround: "Allround",
+      styleAllroundSub: "Balanced",
+      styleDefensive: "Defensive",
+      styleDefensiveSub: "Safe & controlled",
+      submit: "Show top 3",
+      submitting: "Searching…",
+      resultsTitle: "Your setups",
+      tryAgain: "Try different values",
+      synergy: "Synergy",
+      tempoMatch: "Speed match",
+      controlReserve: "Control reserve",
+      spinPotential: "Spin potential",
+    },
+
+    faq: {
+      title: "Common questions",
+      items: [
+        { q: "Do you make money on my purchase?", a: "Yes, via affiliate links — but only when you buy out of conviction. Our pick does not change because of commissions. We label it openly." },
+        { q: "Why no pro-tour rubbers?", a: "Because a Tenergy 05 under 1,700 TTR usually delivers more frustration than spin. We recommend the setup that lets you play better next Tuesday." },
+        { q: "Can an AI really do this?", a: "The AI listens with structure, compares your profile to hundreds of blade/rubber combinations, and shows the reasoning. You decide." },
+        { q: "What about defensive setups?", a: "Fully covered. Just tell us you play behind the table and the picks rotate accordingly." },
+      ],
+    },
+
+    footer: {
+      tag: "Independent · Brand-neutral · Free",
+      copy: "© 2026 PongSmith. Forged in Germany.",
+      colAdvisory: "Advisory",
+      colWorkshop: "Workshop",
+      colLegal: "Legal",
+      itemAdvisor: "AI Advisor",
+      itemQuickPick: "Quick Pick",
+      itemSortiment: "Products",
+      itemGuide: "Guide",
+      itemImprint: "Imprint",
+      itemPrivacy: "Privacy",
+      itemAffiliate: "Affiliate disclosure",
+    },
+
+    sortiment: {
+      title: "Products",
+      subtitle: "Every rubber and blade in our index — with manufacturer specs, translated descriptions, and aggregated player feedback. Click a card for details.",
+      tabRubbers: "Rubbers",
+      tabBlades: "Blades",
+      searchPlaceholder: "Search by name…",
+      allTypes: "All types",
+      typeSmooth: "Inverted",
+      typeLongPips: "Long pips",
+      typeShortPips: "Short pips",
+      typeAnti: "Anti",
+      allStyles: "All styles",
+      styleOffensive: "Offensive",
+      styleAllround: "Allround",
+      styleDefensive: "Defensive",
+      styleMaterial: "Material",
+      allManufacturers: "All manufacturers",
+      reset: "Reset",
+      loading: "LOADING PRODUCTS…",
+      noResults: "No matches",
+      noResultsHint: "Adjust filters or hit Reset.",
+      foundRubbers: "rubbers found",
+      foundBlades: "blades found",
+      sourceNote: "DATA: MANUFACTURER SPEC SHEETS + AGGREGATED COMMUNITY VOICES · NORMALISED 1.0–10.0",
+      consultBtn: "🔨 Get advice",
+      // Modal
+      specs: "Specifications",
+      reviews: "Community reviews",
+      manufacturerDesc: "Manufacturer description",
+      communityDesc: "What players say",
+      noDescription: "No description on file yet.",
+      noCommunity: "No community feedback aggregated yet.",
+      futureCta: "Coming: build into the racket forge · compare prices · go to shop",
+      hoverHint: "→ Open details",
+      defaultHint: "Click for details",
+      reviewCount: "community reviews",
+      // Tags
+      labelSpongeHardness: "Sponge",
+      labelComposition: "Composition",
+      labelWeight: "Weight",
+      // Stats
+      labelSpeed: "Speed",
+      labelSpin: "Spin",
+      labelControl: "Control",
+      // Aria
+      closeAriaLabel: "Close",
+    },
+
+    common: {
+      backHome: "← Back to home",
+    },
+  },
+} as const;
+
+// ────────────────────────────────────────────────────────────────────────────
+// Helper
+// ────────────────────────────────────────────────────────────────────────────
+
+export type Translations = typeof translations.de;
+
+export function getT(lang: Lang): Translations {
+  return translations[lang] as Translations;
+}
+
+export function isValidLang(s: string | null | undefined): s is Lang {
+  return s === "de" || s === "en";
+}

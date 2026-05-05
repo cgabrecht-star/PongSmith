@@ -2,6 +2,8 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
+import { useLanguage } from "@/lib/language-context";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 // ─── Typen ────────────────────────────────────────────────────────────────────
 
@@ -57,19 +59,21 @@ interface Manufacturer { name: string; slug: string; }
 
 // ─── Hilfsfunktionen ─────────────────────────────────────────────────────────
 
-function rubberTypeLabel(t: string) {
-  return t === "smooth" ? "Invertiert"
-    : t === "long_pips" ? "Lange Noppen"
-    : t === "short_pips" ? "Kurze Noppen"
-    : t === "anti" ? "Anti"
-    : t;
+// Diese Funktionen erhalten die Übersetzungen als Argument — werden in jeder
+// Komponente die sie nutzt mit dem aktuellen `t` aufgerufen.
+function rubberTypeLabel(type: string, t: ReturnType<typeof useLanguage>["t"]) {
+  return type === "smooth" ? t.sortiment.typeSmooth
+    : type === "long_pips" ? t.sortiment.typeLongPips
+    : type === "short_pips" ? t.sortiment.typeShortPips
+    : type === "anti" ? t.sortiment.typeAnti
+    : type;
 }
 
-function playStyleLabel(s: string | null) {
-  return s === "offensive_topspin" ? "Offensiv"
-    : s === "allround" ? "Allround"
-    : s === "defensive" ? "Defensiv"
-    : s === "material" ? "Material"
+function playStyleLabel(s: string | null, t: ReturnType<typeof useLanguage>["t"]) {
+  return s === "offensive_topspin" ? t.sortiment.styleOffensive
+    : s === "allround" ? t.sortiment.styleAllround
+    : s === "defensive" ? t.sortiment.styleDefensive
+    : s === "material" ? t.sortiment.styleMaterial
     : "–";
 }
 
@@ -217,6 +221,7 @@ function StatRow({ label, value, color }: { label: string; value: string | null;
 // ─── Karten ───────────────────────────────────────────────────────────────────
 
 function ProductCard({ item, onClick }: { item: ProductItem; onClick: () => void }) {
+  const { t } = useLanguage();
   const [hovered, setHovered] = useState(false);
   const isRubber = item.kind === "rubber";
 
@@ -257,14 +262,14 @@ function ProductCard({ item, onClick }: { item: ProductItem; onClick: () => void
           <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
             {isRubber && (
               <span className="tag-line" style={{ fontSize: 9 }}>
-                {rubberTypeLabel((item as RubberItem).rubberType)}
+                {rubberTypeLabel((item as RubberItem).rubberType, t)}
               </span>
             )}
             <span
               className="tag-line"
               style={{ fontSize: 9, borderColor: `${playStyleColor(item.playStyle)}44`, color: playStyleColor(item.playStyle) }}
             >
-              {playStyleLabel(item.playStyle)}
+              {playStyleLabel(item.playStyle, t)}
             </span>
             {item.ttrOptimal && <span className="tag-line" style={{ fontSize: 9 }}>TTR {item.ttrOptimal}</span>}
             {!isRubber && (item as BladeItem).composition && (
@@ -279,16 +284,20 @@ function ProductCard({ item, onClick }: { item: ProductItem; onClick: () => void
 
       {/* Stats */}
       <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 6 }}>
-        <StatRow label="Speed" value={item.speedNorm} color="linear-gradient(90deg,#2563eb,#60a5fa)" />
+        <StatRow label={t.sortiment.labelSpeed} value={item.speedNorm} color="linear-gradient(90deg,#2563eb,#60a5fa)" />
         {isRubber && (
-          <StatRow label="Spin" value={(item as RubberItem).spinNorm} color="linear-gradient(90deg,var(--ps-ember-deep),var(--ps-ember))" />
+          <StatRow label={t.sortiment.labelSpin} value={(item as RubberItem).spinNorm} color="linear-gradient(90deg,var(--ps-ember-deep),var(--ps-ember))" />
         )}
-        <StatRow label="Control" value={item.controlNorm} color="linear-gradient(90deg,#059669,#34d399)" />
+        <StatRow label={t.sortiment.labelControl} value={item.controlNorm} color="linear-gradient(90deg,#059669,#34d399)" />
       </div>
 
       {/* Hint */}
       <div className="ff-mono" style={{ marginTop: 10, fontSize: 9, color: hovered ? "var(--ps-ember-2)" : "var(--ps-ink-4)", letterSpacing: "0.08em", textTransform: "uppercase", transition: "color 220ms" }}>
-        {hovered ? "→ Details öffnen" : `${item.reviewCount && item.reviewCount > 0 ? `★ ${item.reviewCount} Reviews` : "Klick für Details"}`}
+        {hovered
+          ? t.sortiment.hoverHint
+          : (item.reviewCount && item.reviewCount > 0
+              ? `★ ${item.reviewCount} ${t.sortiment.reviewCount}`
+              : t.sortiment.defaultHint)}
       </div>
     </div>
   );
@@ -297,6 +306,7 @@ function ProductCard({ item, onClick }: { item: ProductItem; onClick: () => void
 // ─── Detail-Modal ─────────────────────────────────────────────────────────────
 
 function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void }) {
+  const { t, lang } = useLanguage();
   // Esc zum Schließen + Body-Scroll-Lock
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -309,6 +319,7 @@ function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void
   }, [onClose]);
 
   const isRubber = item.kind === "rubber";
+  const spongeLabel = lang === "de" ? "° Schwamm" : "° sponge";
 
   return (
     <div
@@ -343,15 +354,15 @@ function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
               {isRubber && (
                 <span className="tag-line" style={{ fontSize: 10 }}>
-                  {rubberTypeLabel((item as RubberItem).rubberType)}
+                  {rubberTypeLabel((item as RubberItem).rubberType, t)}
                 </span>
               )}
               <span className="tag-line" style={{ fontSize: 10, borderColor: `${playStyleColor(item.playStyle)}55`, color: playStyleColor(item.playStyle) }}>
-                {playStyleLabel(item.playStyle)}
+                {playStyleLabel(item.playStyle, t)}
               </span>
               {item.ttrOptimal && <span className="tag-line" style={{ fontSize: 10 }}>TTR {item.ttrOptimal}</span>}
               {isRubber && (item as RubberItem).hardnessMin && (
-                <span className="tag-line" style={{ fontSize: 10 }}>{(item as RubberItem).hardnessMin}° Schwamm</span>
+                <span className="tag-line" style={{ fontSize: 10 }}>{(item as RubberItem).hardnessMin}{spongeLabel}</span>
               )}
               {!isRubber && (item as BladeItem).composition && (
                 <span className="tag-line" style={{ fontSize: 10 }}>{(item as BladeItem).composition}</span>
@@ -368,7 +379,7 @@ function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void
               color: "var(--ps-ink-3)", borderRadius: 4, padding: "6px 10px",
               cursor: "pointer", fontFamily: "inherit", fontSize: 14,
             }}
-            aria-label="Schließen"
+            aria-label={t.sortiment.closeAriaLabel}
           >
             ✕
           </button>
@@ -377,18 +388,18 @@ function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void
         {/* Specs */}
         <div style={{ padding: "20px 28px", borderBottom: "1px solid var(--ps-line-2)" }}>
           <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", color: "var(--ps-ink-4)", textTransform: "uppercase", marginBottom: 10 }}>
-            Spezifikationen
+            {t.sortiment.specs}
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 8, maxWidth: 500 }}>
-            <StatRow label="Speed" value={item.speedNorm} color="linear-gradient(90deg,#2563eb,#60a5fa)" />
+            <StatRow label={t.sortiment.labelSpeed} value={item.speedNorm} color="linear-gradient(90deg,#2563eb,#60a5fa)" />
             {isRubber && (
-              <StatRow label="Spin" value={(item as RubberItem).spinNorm} color="linear-gradient(90deg,var(--ps-ember-deep),var(--ps-ember))" />
+              <StatRow label={t.sortiment.labelSpin} value={(item as RubberItem).spinNorm} color="linear-gradient(90deg,var(--ps-ember-deep),var(--ps-ember))" />
             )}
-            <StatRow label="Control" value={item.controlNorm} color="linear-gradient(90deg,#059669,#34d399)" />
+            <StatRow label={t.sortiment.labelControl} value={item.controlNorm} color="linear-gradient(90deg,#059669,#34d399)" />
           </div>
           {item.reviewCount != null && item.reviewCount > 0 && (
             <div className="ff-mono" style={{ marginTop: 12, fontSize: 10, color: "var(--ps-ink-4)" }}>
-              ★ {item.reviewCount} Community-Reviews
+              ★ {item.reviewCount} {t.sortiment.reviews}
             </div>
           )}
         </div>
@@ -396,7 +407,7 @@ function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void
         {/* Hersteller-Beschreibung */}
         <div style={{ padding: "20px 28px", borderBottom: "1px solid var(--ps-line-2)" }}>
           <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", color: "var(--ps-ember-2)", textTransform: "uppercase", marginBottom: 10 }}>
-            Hersteller-Beschreibung
+            {t.sortiment.manufacturerDesc}
           </div>
           {item.description ? (
             <p style={{ fontSize: 13.5, color: "var(--ps-ink-1)", lineHeight: 1.7 }}>
@@ -404,7 +415,7 @@ function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void
             </p>
           ) : (
             <p style={{ fontSize: 12.5, color: "var(--ps-ink-4)", fontStyle: "italic" }}>
-              Noch keine Beschreibung hinterlegt.
+              {t.sortiment.noDescription}
             </p>
           )}
         </div>
@@ -412,7 +423,7 @@ function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void
         {/* Community-Beschreibung */}
         <div style={{ padding: "20px 28px" }}>
           <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", color: "#34d399", textTransform: "uppercase", marginBottom: 10 }}>
-            Was Spieler sagen
+            {t.sortiment.communityDesc}
           </div>
           {item.communityDescription ? (
             <p style={{ fontSize: 13.5, color: "var(--ps-ink-1)", lineHeight: 1.7 }}>
@@ -420,7 +431,7 @@ function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void
             </p>
           ) : (
             <p style={{ fontSize: 12.5, color: "var(--ps-ink-4)", fontStyle: "italic" }}>
-              Noch keine Community-Stimmen aggregiert.
+              {t.sortiment.noCommunity}
             </p>
           )}
         </div>
@@ -428,7 +439,7 @@ function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void
         {/* Footer / Future-CTA */}
         <div style={{ padding: "16px 28px", borderTop: "1px solid var(--ps-line-2)", background: "var(--ps-bg-1)" }}>
           <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.1em", color: "var(--ps-ink-4)", textAlign: "center", textTransform: "uppercase" }}>
-            Bald: in den Schläger-Schmied einbauen · Preis vergleichen · zum Shop
+            {t.sortiment.futureCta}
           </div>
         </div>
       </div>
@@ -473,6 +484,7 @@ function Chip({
 // ─── Hauptseite ───────────────────────────────────────────────────────────────
 
 export default function SortimentPage() {
+  const { t, lang } = useLanguage();
   const [tab, setTab] = useState<"rubber" | "blade">("rubber");
   const [rubberType, setRubberType] = useState<string>("");
   const [playStyle, setPlayStyle] = useState<string>("");
@@ -491,6 +503,7 @@ export default function SortimentPage() {
     if (playStyle) params.set("play_style", playStyle);
     if (manufacturer) params.set("manufacturer", manufacturer);
     if (search) params.set("q", search);
+    params.set("lang", lang);
 
     const res = await fetch(`/api/sortiment?${params}`);
     const data = await res.json() as { rubbers: RubberItem[]; blades: BladeItem[]; manufacturers: Manufacturer[] };
@@ -498,7 +511,7 @@ export default function SortimentPage() {
     setBladeItems(data.blades ?? []);
     if (data.manufacturers) setManufacturers(data.manufacturers);
     setLoading(false);
-  }, [rubberType, playStyle, manufacturer, search, tab]);
+  }, [rubberType, playStyle, manufacturer, search, tab, lang]);
 
   useEffect(() => { void load(); }, [load]);
 
@@ -520,15 +533,16 @@ export default function SortimentPage() {
           </Link>
           <span style={{ color: "var(--ps-line)", fontSize: 18 }}>·</span>
           <span className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--ps-ink-3)" }}>
-            Sortiment
+            {t.sortiment.title}
           </span>
           <div style={{ flex: 1 }} />
+          <LanguageSwitcher />
           <Link
-            href="/#berater"
+            href="/#berater-section"
             className="ember-btn"
             style={{ padding: "7px 14px", fontSize: 11, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 5 }}
           >
-            🔨 Beraten lassen
+            {t.sortiment.consultBtn}
           </Link>
         </div>
       </div>
@@ -538,28 +552,28 @@ export default function SortimentPage() {
         {/* Titel */}
         <div style={{ marginBottom: 36 }}>
           <h1 className="ff-display" style={{ fontSize: 52, color: "var(--ps-ink-0)", lineHeight: 1, marginBottom: 8 }}>
-            Sortiment
+            {t.sortiment.title}
           </h1>
           <p style={{ fontSize: 15, color: "var(--ps-ink-3)" }}>
-            Alle Beläge und Hölzer in unserem Index — mit Hersteller-Specs, Übersetzung und aggregierten Spielerstimmen. Karte anklicken für Details.
+            {t.sortiment.subtitle}
           </p>
         </div>
 
         {/* Tabs */}
         <div style={{ display: "flex", gap: 3, marginBottom: 28, background: "var(--ps-bg-2)", padding: 4, borderRadius: 6, border: "1px solid var(--ps-line)", width: "fit-content" }}>
-          {(["rubber", "blade"] as const).map((t) => (
+          {(["rubber", "blade"] as const).map((tabId) => (
             <button
-              key={t}
-              onClick={() => { setTab(t); setRubberType(""); }}
+              key={tabId}
+              onClick={() => { setTab(tabId); setRubberType(""); }}
               style={{
                 padding: "8px 20px", borderRadius: 4, fontSize: 13, fontWeight: 600,
                 cursor: "pointer", fontFamily: "inherit", border: "none",
-                background: tab === t ? "var(--ps-bg-4)" : "transparent",
-                color: tab === t ? "var(--ps-ink-0)" : "var(--ps-ink-3)",
+                background: tab === tabId ? "var(--ps-bg-4)" : "transparent",
+                color: tab === tabId ? "var(--ps-ink-0)" : "var(--ps-ink-3)",
                 transition: "all 140ms",
               }}
             >
-              {t === "rubber" ? `Beläge (${rubberCount})` : `Hölzer (${bladeCount})`}
+              {tabId === "rubber" ? `${t.sortiment.tabRubbers} (${rubberCount})` : `${t.sortiment.tabBlades} (${bladeCount})`}
             </button>
           ))}
         </div>
@@ -568,7 +582,7 @@ export default function SortimentPage() {
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24, alignItems: "center" }}>
           <input
             type="text"
-            placeholder="Name suchen…"
+            placeholder={t.sortiment.searchPlaceholder}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             style={{
@@ -581,11 +595,11 @@ export default function SortimentPage() {
           {tab === "rubber" && (
             <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
               {[
-                { v: "", l: "Alle Typen" },
-                { v: "smooth", l: "Invertiert" },
-                { v: "long_pips", l: "Lange Noppen" },
-                { v: "short_pips", l: "Kurze Noppen" },
-                { v: "anti", l: "Anti" },
+                { v: "", l: t.sortiment.allTypes },
+                { v: "smooth", l: t.sortiment.typeSmooth },
+                { v: "long_pips", l: t.sortiment.typeLongPips },
+                { v: "short_pips", l: t.sortiment.typeShortPips },
+                { v: "anti", l: t.sortiment.typeAnti },
               ].map(({ v, l }) => (
                 <Chip key={v} active={rubberType === v} onClick={() => setRubberType(v)}>{l}</Chip>
               ))}
@@ -594,11 +608,11 @@ export default function SortimentPage() {
 
           <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
             {[
-              { v: "", l: "Alle Stile" },
-              { v: "offensive_topspin", l: "Offensiv" },
-              { v: "allround", l: "Allround" },
-              { v: "defensive", l: "Defensiv" },
-              { v: "material", l: "Material" },
+              { v: "", l: t.sortiment.allStyles },
+              { v: "offensive_topspin", l: t.sortiment.styleOffensive },
+              { v: "allround", l: t.sortiment.styleAllround },
+              { v: "defensive", l: t.sortiment.styleDefensive },
+              { v: "material", l: t.sortiment.styleMaterial },
             ].map(({ v, l }) => (
               <Chip key={v} active={playStyle === v} onClick={() => setPlayStyle(v)}>{l}</Chip>
             ))}
@@ -614,7 +628,7 @@ export default function SortimentPage() {
               outline: "none", cursor: "pointer",
             }}
           >
-            <option value="">Alle Hersteller</option>
+            <option value="">{t.sortiment.allManufacturers}</option>
             {manufacturers.map((m) => (
               <option key={m.slug} value={m.slug}>{m.name}</option>
             ))}
@@ -629,28 +643,30 @@ export default function SortimentPage() {
                 fontSize: 11, cursor: "pointer", fontFamily: "inherit",
               }}
             >
-              ✕ Reset
+              ✕ {t.sortiment.reset}
             </button>
           )}
         </div>
 
         {/* Counter */}
         <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.1em", color: "var(--ps-ink-4)", marginBottom: 20, textTransform: "uppercase" }}>
-          {loading ? "Lade…" : `${items.length} ${tab === "rubber" ? "Beläge" : "Hölzer"} gefunden`}
+          {loading
+            ? (lang === "de" ? "Lade…" : "Loading…")
+            : `${items.length} ${tab === "rubber" ? t.sortiment.foundRubbers : t.sortiment.foundBlades}`}
         </div>
 
         {/* Grid */}
         {loading ? (
           <div style={{ display: "flex", justifyContent: "center", padding: "60px 0" }}>
             <div className="ff-mono" style={{ fontSize: 11, color: "var(--ps-ink-4)", letterSpacing: "0.1em" }}>
-              LADE SORTIMENT…
+              {t.sortiment.loading}
             </div>
           </div>
         ) : items.length === 0 ? (
           <div style={{ textAlign: "center", padding: "60px 0" }}>
-            <div className="ff-display" style={{ fontSize: 36, color: "var(--ps-ink-3)", marginBottom: 8 }}>Keine Treffer</div>
+            <div className="ff-display" style={{ fontSize: 36, color: "var(--ps-ink-3)", marginBottom: 8 }}>{t.sortiment.noResults}</div>
             <p className="ff-mono" style={{ fontSize: 11, color: "var(--ps-ink-4)", letterSpacing: "0.08em" }}>
-              Filter anpassen oder Reset drücken.
+              {t.sortiment.noResultsHint}
             </p>
           </div>
         ) : (
@@ -671,7 +687,7 @@ export default function SortimentPage() {
 
         {/* Source-Note */}
         <p className="ff-mono" style={{ marginTop: 40, textAlign: "center", fontSize: 9.5, color: "var(--ps-ink-4)", letterSpacing: "0.1em" }}>
-          DATEN: HERSTELLER-DATENBLÄTTER + AGGREGIERTE COMMUNITY-STIMMEN · NORMIERT AUF 1.0–10.0
+          {t.sortiment.sourceNote}
         </p>
       </div>
 

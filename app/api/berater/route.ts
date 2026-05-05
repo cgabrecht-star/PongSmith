@@ -15,7 +15,11 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
-const SYSTEM_PROMPT = `Du bist PongSmith — der unabhängige Tischtennis-Ausrüstungsberater für deutsche Vereinsspieler.
+// ────────────────────────────────────────────────────────────────────────────
+// System-Prompts pro Sprache
+// ────────────────────────────────────────────────────────────────────────────
+
+const SYSTEM_PROMPT_DE = `Du bist PongSmith — der unabhängige Tischtennis-Ausrüstungsberater für deutsche Vereinsspieler.
 
 ## Charakter & Ton
 
@@ -73,6 +77,68 @@ Spielt bewusst anders. Schätze seinen Stil — kein Belächeln, kein "warum spi
 → Kläre zuerst: Lange Noppen (KN), Kurze Noppen (LP) oder Anti?
 → Dann mit rubber_type abfragen. Die Belag-Kategorie kurz erklären wenn der Spieler offen dafür scheint.`;
 
+const SYSTEM_PROMPT_EN = `You are PongSmith — the independent table-tennis equipment advisor for club players.
+
+## Character & tone
+
+You are like the experienced club teammate who hangs around after practice and gives an honest opinion — without trying to sell anything. You know the frustration of a setup that doesn't fit. You can tell instantly whether someone is unsure of themselves or already knows what they want.
+
+Specifically:
+- **Language:** Always English. Friendly but not chummy.
+- **Length:** Three precise sentences beat one long paragraph. Bullet points where they aid clarity.
+- **No marketing:** No superlatives without justification. Avoid "perfect" or "revolutionary".
+- **Mirror moment:** Before recommending, briefly show you understood the player's situation — one sentence that says "I hear you". This builds trust.
+
+## Conversation flow
+
+**Step 1 — Understand the player profile:**
+Find out: TTR rating (or playing experience in years/months), play style, current setup if any, specific problem or goal.
+
+Never ask everything at once. As soon as TTR + play style are clear → straight to step 2.
+
+**Step 2 — Query the database:**
+Call the query_setups tool as soon as you know TTR + play style. Don't wait for more details when the essentials are there.
+
+**Step 3 — Explain the results:**
+For each recommendation, in 1–2 sentences explain WHY it fits this specific player — not just "good blade", but "this blade gives you the control you're losing on your blocks".
+
+## Player types you'll recognise
+
+**Mid-level type (TTR 1000–1400, allround/offensive):**
+Often unsure, feels their gear is to blame. Needs a forgiving setup. Tone: warm, affirming. "That sounds like a classic problem when..."
+
+**Ambitious type (TTR 1400–1700, offensive topspin):**
+Knows what they want, likes optimising. Can handle more technical explanations. Tone: direct, ambitious. "If you want your forehand topspin even more aggressive..."
+
+**Material player type (long pips / anti, any TTR):**
+Plays deliberately differently. Respect their style — no condescension. Tone: respectful of the tactics. "Long pips as a blocking weapon work when the blade..."
+
+## Database results — strict rules
+
+**With results:**
+→ Recommend only products from the results. Max 3, ordered by priority.
+→ No additional products from memory — even ones you know.
+
+**With "DB_KEIN_ERGEBNIS" (no result):**
+→ Be honest: "We don't have a recommendation in the database for your exact profile yet."
+→ Briefly explain why (edge of TTR range, rare style).
+→ Suggest the Quick Pick with slightly adjusted parameters.
+→ No product recommendations from memory.
+
+**With "DB_ANFAENGER" (TTR < 900, beginner):**
+→ Direct, not condescending: our database starts at TTR 1000.
+→ Give exactly ONE entry-level tip: a pre-assembled racket for €30–60 (Stiga, Donic, Butterfly entry lines). Don't invest in an expensive setup before 3 months of play.
+→ Invite them to come back in 3–6 months.
+→ No specific rubber names from memory.
+
+**With material players (play_style="material"):**
+→ First clarify: long pips (LP), short pips (SP), or anti?
+→ Then query with rubber_type. Briefly explain the rubber category if the player seems open to it.`;
+
+function getSystemPrompt(lang: string): string {
+  return lang === "en" ? SYSTEM_PROMPT_EN : SYSTEM_PROMPT_DE;
+}
+
 const TOOLS: Anthropic.Tool[] = [
   {
     name: "query_setups",
@@ -107,7 +173,10 @@ async function runQuerySetups(
   ttr: number,
   playStyle: string,
   rubberType?: string,
+  lang: "de" | "en" = "de",
 ): Promise<string> {
+  const isEn = lang === "en";
+
   // ── Anfänger-Erkennung ──────────────────────────────────────────
   if (ttr < 900) {
     return "DB_ANFAENGER";
@@ -122,26 +191,34 @@ async function runQuerySetups(
       rubberType === "long_pips" ? "long_pips"
       : rubberType === "short_pips" ? "short_pips"
       : rubberType === "anti" ? "anti"
-      : null; // alle Exoten-Typen
+      : null;
 
     const rows = await queryMaterialDB(clamped, dbRubberType);
 
     if (rows.length === 0) {
-      return `DB_KEIN_ERGEBNIS (TTR: ${ttr}, Material-Stil: ${rubberType ?? "alle Typen"})`;
+      return `DB_KEIN_ERGEBNIS (TTR: ${ttr}, ${isEn ? "material style" : "Material-Stil"}: ${rubberType ?? (isEn ? "all types" : "alle Typen")})`;
     }
 
-    const typeName =
-      rubberType === "long_pips" ? "Lange Noppen"
-      : rubberType === "short_pips" ? "Kurze Noppen"
-      : rubberType === "anti" ? "Anti-Belag"
-      : "Material-Spieler";
+    const typeName = isEn
+      ? (rubberType === "long_pips" ? "Long Pips"
+        : rubberType === "short_pips" ? "Short Pips"
+        : rubberType === "anti" ? "Anti rubber"
+        : "Material player")
+      : (rubberType === "long_pips" ? "Lange Noppen"
+        : rubberType === "short_pips" ? "Kurze Noppen"
+        : rubberType === "anti" ? "Anti-Belag"
+        : "Material-Spieler");
+
+    const labels = isEn
+      ? { header: "Database results", blade: "Blade", rubber: "Rubber", synergy: "Synergy", tempo: "Speed", control: "Control", spin: "Spin" }
+      : { header: "Datenbankresultate", blade: "Holz", rubber: "Belag", synergy: "Synergie", tempo: "Tempo", control: "Kontrolle", spin: "Spin" };
 
     return (
-      `Datenbankresultate für TTR ${ttr} (${typeName}):\n` +
+      `${labels.header} ${isEn ? "for TTR" : "für TTR"} ${ttr} (${typeName}):\n` +
       rows
         .map(
           (r, i) =>
-            `${i + 1}. Holz: ${r.bladeName} | Belag: ${r.rubberName} | Synergie: ${r.synergyScore}/100 | Tempo: ${r.tempoMatch} | Kontrolle: ${r.controlReserve} | Spin: ${r.spinPotential}`,
+            `${i + 1}. ${labels.blade}: ${r.bladeName} | ${labels.rubber}: ${r.rubberName} | ${labels.synergy}: ${r.synergyScore}/100 | ${labels.tempo}: ${r.tempoMatch} | ${labels.control}: ${r.controlReserve} | ${labels.spin}: ${r.spinPotential}`,
         )
         .join("\n")
     );
@@ -152,36 +229,42 @@ async function runQuerySetups(
     ? (playStyle as "offensive_topspin" | "allround" | "defensive")
     : "allround";
 
-  // Erster Versuch: exakter Spielstil
   const rows = await queryDB(clamped, validStyle);
 
-  // Fallback: wenn nichts gefunden → mit "allround" nochmal versuchen
   const finalRows =
     rows.length > 0 || validStyle === "allround"
       ? rows
       : await queryDB(clamped, "allround");
 
   if (finalRows.length === 0) {
-    return `DB_KEIN_ERGEBNIS (TTR: ${ttr}, Stil: ${validStyle})`;
+    return `DB_KEIN_ERGEBNIS (TTR: ${ttr}, ${isEn ? "style" : "Stil"}: ${validStyle})`;
   }
 
-  const styleName =
-    validStyle === "offensive_topspin"
-      ? "Offensiv/Topspin"
-      : validStyle === "allround"
-        ? "Allround"
-        : "Defensiv";
+  const styleName = isEn
+    ? (validStyle === "offensive_topspin" ? "Offensive/Topspin"
+      : validStyle === "allround" ? "Allround"
+      : "Defensive")
+    : (validStyle === "offensive_topspin" ? "Offensiv/Topspin"
+      : validStyle === "allround" ? "Allround"
+      : "Defensiv");
+
   const fallbackNote =
     rows.length === 0 && finalRows.length > 0
-      ? ` (Hinweis: keine genauen Treffer für "${validStyle}", zeige Allround-Alternativen)\n`
+      ? ` (${isEn
+          ? `note: no exact match for "${validStyle}", showing Allround alternatives`
+          : `Hinweis: keine genauen Treffer für "${validStyle}", zeige Allround-Alternativen`})\n`
       : "";
 
+  const labels = isEn
+    ? { header: "Database results", blade: "Blade", rubber: "Rubber", synergy: "Synergy", tempo: "Speed", control: "Control", spin: "Spin" }
+    : { header: "Datenbankresultate", blade: "Holz", rubber: "Belag", synergy: "Synergie", tempo: "Tempo", control: "Kontrolle", spin: "Spin" };
+
   return (
-    `Datenbankresultate für TTR ${ttr} (${styleName}):\n${fallbackNote}` +
+    `${labels.header} ${isEn ? "for TTR" : "für TTR"} ${ttr} (${styleName}):\n${fallbackNote}` +
     finalRows
       .map(
         (r, i) =>
-          `${i + 1}. Holz: ${r.bladeName} | Belag: ${r.rubberName} | Synergie: ${r.synergyScore}/100 | Tempo: ${r.tempoMatch} | Kontrolle: ${r.controlReserve} | Spin: ${r.spinPotential}`,
+          `${i + 1}. ${labels.blade}: ${r.bladeName} | ${labels.rubber}: ${r.rubberName} | ${labels.synergy}: ${r.synergyScore}/100 | ${labels.tempo}: ${r.tempoMatch} | ${labels.control}: ${r.controlReserve} | ${labels.spin}: ${r.spinPotential}`,
       )
       .join("\n")
   );
@@ -278,9 +361,12 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { messages } = (await req.json()) as {
+    const { messages, lang: rawLang } = (await req.json()) as {
       messages: { role: "user" | "assistant"; content: string }[];
+      lang?: string;
     };
+
+    const lang: "de" | "en" = rawLang === "en" ? "en" : "de";
 
     const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -294,7 +380,7 @@ export async function POST(req: NextRequest) {
       const response = await client.messages.create({
         model: "claude-opus-4-7",
         max_tokens: 1024,
-        system: SYSTEM_PROMPT,
+        system: getSystemPrompt(lang),
         tools: TOOLS,
         messages: current,
       });
@@ -320,7 +406,7 @@ export async function POST(req: NextRequest) {
             play_style: string;
             rubber_type?: string;
           };
-          toolResult = await runQuerySetups(inp.ttr, inp.play_style, inp.rubber_type);
+          toolResult = await runQuerySetups(inp.ttr, inp.play_style, inp.rubber_type, lang);
         }
 
         current = [
@@ -336,7 +422,10 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    return NextResponse.json({ text: "Entschuldigung, konnte keine Antwort generieren." });
+    const fallback = lang === "en"
+      ? "Sorry, I couldn't generate a response."
+      : "Entschuldigung, konnte keine Antwort generieren.";
+    return NextResponse.json({ text: fallback });
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     console.error("[berater]", msg);

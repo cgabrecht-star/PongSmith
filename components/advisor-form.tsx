@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/lib/language-context";
 
 type PlayStyle = "offensive_topspin" | "allround" | "defensive";
 
@@ -82,26 +83,21 @@ function ScoreBar({ label, value, color }: { label: string; value: number; color
   );
 }
 
-const STYLES: { id: PlayStyle; label: string; sub: string }[] = [
-  { id: "offensive_topspin", label: "Offensiv", sub: "Topspin & Tempo" },
-  { id: "allround", label: "Allround", sub: "Ausgewogen" },
-  { id: "defensive", label: "Defensiv", sub: "Sicher & kontrolliert" },
-];
-
 const STYLE_ICONS: Record<PlayStyle, string> = {
   offensive_topspin: "⚡",
   allround: "⚖",
   defensive: "🛡",
 };
 
-const PLAY_STYLE_LABELS: Record<string, string> = {
-  offensive_topspin: "Offensiv",
-  allround: "Allround",
-  defensive: "Defensiv",
-};
-
 // ─── Setup Card ─────────────────────────────────────────────────────────────
 function SetupCard({ setup, rank }: { setup: Setup; rank: number }) {
+  const { t } = useLanguage();
+  const styleLabel: Record<string, string> = {
+    offensive_topspin: t.check.styleOffensive,
+    allround: t.check.styleAllround,
+    defensive: t.check.styleDefensive,
+    material: t.sortiment.styleMaterial,
+  };
   return (
     <div
       className="card-forged"
@@ -150,16 +146,16 @@ function SetupCard({ setup, rank }: { setup: Setup; rank: number }) {
       {/* Tags */}
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
         <span className="tag-line tag-ember">
-          {PLAY_STYLE_LABELS[setup.playStyleTarget] ?? setup.playStyleTarget}
+          {styleLabel[setup.playStyleTarget] ?? setup.playStyleTarget}
         </span>
         <span className="tag-line">TTR {setup.ttrTarget}</span>
       </div>
 
       {/* Sub-scores */}
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <ScoreBar label="Tempo-Abstimmung" value={setup.tempoMatch} color="linear-gradient(90deg, #2563eb, #60a5fa)" />
-        <ScoreBar label="Kontrollreserve" value={setup.controlReserve} color="linear-gradient(90deg, #059669, #34d399)" />
-        <ScoreBar label="Spin-Potenzial" value={setup.spinPotential} color="linear-gradient(90deg, var(--ps-ember-deep), var(--ps-ember))" />
+        <ScoreBar label={t.check.tempoMatch} value={setup.tempoMatch} color="linear-gradient(90deg, #2563eb, #60a5fa)" />
+        <ScoreBar label={t.check.controlReserve} value={setup.controlReserve} color="linear-gradient(90deg, #059669, #34d399)" />
+        <ScoreBar label={t.check.spinPotential} value={setup.spinPotential} color="linear-gradient(90deg, var(--ps-ember-deep), var(--ps-ember))" />
       </div>
     </div>
   );
@@ -167,11 +163,19 @@ function SetupCard({ setup, rank }: { setup: Setup; rank: number }) {
 
 // ─── Main Form ──────────────────────────────────────────────────────────────
 export function AdvisorForm() {
+  const { t, lang } = useLanguage();
   const [ttr, setTtr] = useState(1300);
   const [playStyle, setPlayStyle] = useState<PlayStyle>("allround");
   const [loading, setLoading] = useState(false);
   const [setups, setSetups] = useState<Setup[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // Spielstil-Optionen aus Übersetzung
+  const styles: { id: PlayStyle; label: string; sub: string }[] = [
+    { id: "offensive_topspin", label: t.check.styleOffensive, sub: t.check.styleOffensiveSub },
+    { id: "allround", label: t.check.styleAllround, sub: t.check.styleAllroundSub },
+    { id: "defensive", label: t.check.styleDefensive, sub: t.check.styleDefensiveSub },
+  ];
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -183,20 +187,23 @@ export function AdvisorForm() {
       const res = await fetch("/api/recommend", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ttr, playStyle }),
+        body: JSON.stringify({ ttr, playStyle, lang }),
       });
       const data = (await res.json()) as { setups?: Setup[]; error?: string };
       if (!res.ok || data.error) {
-        setError(data.error ?? "Unbekannter Fehler");
+        setError(data.error ?? (lang === "de" ? "Unbekannter Fehler" : "Unknown error"));
       } else {
         setSetups(data.setups ?? []);
       }
     } catch {
-      setError("Verbindungsfehler — bitte erneut versuchen.");
+      setError(lang === "de" ? "Verbindungsfehler — bitte erneut versuchen." : "Connection error — please try again.");
     } finally {
       setLoading(false);
     }
   }
+
+  // TTR-Hint mit Komma im DE und Punkt im EN bekommt der Wert
+  const formatTtr = (v: number) => lang === "de" ? v.toLocaleString("de-DE") : v.toLocaleString("en-US");
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
@@ -205,9 +212,9 @@ export function AdvisorForm() {
         <div>
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 12 }}>
             <label className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--ps-ink-3)" }}>
-              Q-TTR Spielstärke
+              {t.check.ttrLabel}
             </label>
-            <span className="ff-display" style={{ fontSize: 44, color: "var(--ps-ink-0)", lineHeight: 1 }}>{ttr}</span>
+            <span className="ff-display" style={{ fontSize: 44, color: "var(--ps-ink-0)", lineHeight: 1 }}>{formatTtr(ttr)}</span>
           </div>
           <input
             type="range"
@@ -220,7 +227,7 @@ export function AdvisorForm() {
           />
           <div className="ff-mono" style={{ display: "flex", justifyContent: "space-between", fontSize: 9, color: "var(--ps-ink-4)", marginTop: 6, letterSpacing: "0.1em" }}>
             <span>800</span>
-            <span>Nicht sicher? 1.300 ist ein guter Startpunkt.</span>
+            <span>{t.check.ttrHint}</span>
             <span>1900</span>
           </div>
         </div>
@@ -228,10 +235,10 @@ export function AdvisorForm() {
         {/* Play style */}
         <div>
           <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--ps-ink-3)", marginBottom: 12 }}>
-            Spielstil
+            {t.check.styleLabel}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
-            {STYLES.map((s) => {
+            {styles.map((s) => {
               const active = playStyle === s.id;
               return (
                 <button
@@ -267,7 +274,9 @@ export function AdvisorForm() {
           className="ember-btn ember-btn-glow"
           style={{ width: "100%", padding: "16px", fontSize: 15, justifyContent: "center" }}
         >
-          {loading ? "⚙ Suche läuft…" : "🔨 Setups schmieden →"}
+          {loading
+            ? (lang === "de" ? "⚙ Suche läuft…" : "⚙ Searching…")
+            : (lang === "de" ? "🔨 Setups schmieden →" : "🔨 Forge setups →")}
         </button>
       </form>
 
@@ -285,7 +294,9 @@ export function AdvisorForm() {
       {/* Empty */}
       {setups?.length === 0 && (
         <p className="ff-mono" style={{ textAlign: "center", fontSize: 11, color: "var(--ps-ink-3)", letterSpacing: "0.08em" }}>
-          Keine Ergebnisse — versuch einen anderen Spielstil.
+          {lang === "de"
+            ? "Keine Ergebnisse — versuch einen anderen Spielstil."
+            : "No results — try a different play style."}
         </p>
       )}
 
@@ -294,9 +305,11 @@ export function AdvisorForm() {
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <div className="ff-display" style={{ fontSize: 28, color: "var(--ps-ink-0)", lineHeight: 1 }}>
-              Top {setups.length} für TTR {ttr}
+              {lang === "de"
+                ? `Top ${setups.length} für TTR ${formatTtr(ttr)}`
+                : `Top ${setups.length} for TTR ${formatTtr(ttr)}`}
             </div>
-            <span className="tag-line">{STYLES.find((s) => s.id === playStyle)?.label}</span>
+            <span className="tag-line">{styles.find((s) => s.id === playStyle)?.label}</span>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 14 }}>
             {setups.map((s, i) => (
@@ -304,7 +317,7 @@ export function AdvisorForm() {
             ))}
           </div>
           <p className="ff-mono" style={{ textAlign: "center", fontSize: 9.5, color: "var(--ps-ink-4)", letterSpacing: "0.1em" }}>
-            QUELLE: REVSPIN.NET COMMUNITY-RATINGS
+            {t.sortiment.sourceNote}
           </p>
         </div>
       )}

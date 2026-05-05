@@ -113,8 +113,10 @@ export const blades = pgTable(
     ttrMax: smallint("ttr_max"),
     ttrOptimal: smallint("ttr_optimal"),
 
-    description: text("description"),                       // Hersteller-Beschreibung (umformuliert)
-    communityDescription: text("community_description"),     // Schnittmenge der Community-Meinungen
+    description: text("description"),                            // Hersteller-Beschreibung (DE)
+    descriptionEn: text("description_en"),                        // Hersteller-Beschreibung (EN)
+    communityDescription: text("community_description"),          // Spielerstimmen-Schnittmenge (DE)
+    communityDescriptionEn: text("community_description_en"),     // Spielerstimmen-Schnittmenge (EN)
     imageUrl: varchar("image_url", { length: 500 }),
     sourceUrl: varchar("source_url", { length: 500 }), // URL der Datenquelle
     isActive: boolean("is_active").default(true).notNull(),
@@ -171,8 +173,10 @@ export const rubbers = pgTable(
     ttrMax: smallint("ttr_max"),
     ttrOptimal: smallint("ttr_optimal"),
 
-    description: text("description"),                       // Hersteller-Beschreibung (umformuliert)
-    communityDescription: text("community_description"),     // Schnittmenge der Community-Meinungen
+    description: text("description"),                            // Hersteller-Beschreibung (DE)
+    descriptionEn: text("description_en"),                        // Hersteller-Beschreibung (EN)
+    communityDescription: text("community_description"),          // Spielerstimmen-Schnittmenge (DE)
+    communityDescriptionEn: text("community_description_en"),     // Spielerstimmen-Schnittmenge (EN)
     imageUrl: varchar("image_url", { length: 500 }),
     sourceUrl: varchar("source_url", { length: 500 }),
     isActive: boolean("is_active").default(true).notNull(),

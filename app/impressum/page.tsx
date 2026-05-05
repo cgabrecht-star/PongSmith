@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { LegalPageHeader } from "@/components/legal-page-header";
 
 export const metadata = {
   title: "Impressum — PongSmith",
@@ -10,18 +10,7 @@ export default function ImpressumPage() {
     <div className="forge-bg" style={{ minHeight: "100vh", padding: "80px 24px 60px" }}>
       <div style={{ maxWidth: 680, margin: "0 auto" }}>
 
-        {/* Back */}
-        <Link
-          href="/"
-          className="ff-mono"
-          style={{
-            fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase",
-            color: "var(--ps-ember-2)", textDecoration: "none", display: "inline-flex",
-            alignItems: "center", gap: 6, marginBottom: 40,
-          }}
-        >
-          ← Zurück zur Startseite
-        </Link>
+        <LegalPageHeader />
 
         <h1
           className="ff-display"

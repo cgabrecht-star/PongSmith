@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Bebas_Neue, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { config } from "@/lib/config";
+import { LanguageProvider } from "@/lib/language-context";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -97,7 +98,9 @@ export default function RootLayout({
           minHeight: "100vh",
         }}
       >
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
 
         {/* Plausible Analytics — cookie-frei, DSGVO-konform, in EU gehostet */}
         {process.env.NODE_ENV === "production" && (
