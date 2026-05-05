@@ -33,7 +33,8 @@
     "db:check-consistency": "tsx db/scripts/check-description-consistency.ts",
     "db:fix-mismatches": "dotenv -e .env.local -- tsx db/scripts/fix-mismatches.ts",
     "db:audit": "dotenv -e .env.local -- tsx db/scripts/audit-db.ts",
-    "db:backfill-play-styles": "dotenv -e .env.local -- tsx db/scripts/backfill-play-styles.ts"
+    "db:backfill-play-styles": "dotenv -e .env.local -- tsx db/scripts/backfill-play-styles.ts",
+    "db:download-images": "dotenv -e .env.local -- tsx db/scripts/download-product-images.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",
