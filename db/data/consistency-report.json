@@ -1,0 +1,92 @@
+[
+  {
+    "slug": "dr-neubauer-killer",
+    "kind": "rubber",
+    "name": "Killer",
+    "manufacturer": "12",
+    "reason": "Hersteller beschreibt \"stark abtauchendem Ballabsprung\", Community berichtet von \"flachem, unangenehmem Ballabsprung\" - dies sind gegensätzliche Ballabsprung-Charakteristiken.",
+    "description": "Killer ist eine offensive Noppen-aussen-Entwicklung, die schnelle Konter- und Schussbälle mit stark abtauchendem Ballabsprung ermöglicht. Die Kontrolle wird als überragend beschrieben und die Schnittanfälligkeit ist relativ gering.",
+    "communityDescription": "Auf Revspin wird Killer als sehr störende, schnelle Kurznoppe mit flachem, unangenehmem Ballabsprung und dennoch guter Kontrolle bewertet. Viele Spieler berichten aber von erhöhter Fehlerquote bei unsauberer Technik."
+  },
+  {
+    "slug": "spinlord-marder",
+    "kind": "rubber",
+    "name": "Marder",
+    "manufacturer": "13",
+    "reason": "Die Community beschreibt Marder als \"Inverted\", während die Hersteller-Beschreibung klar \"Noppen-innen-Belag\" (Lange Noppen/LP) definiert – das sind zwei grundverschiedene Belag-Typen.",
+    "description": "Marder ist ein langsamer, kontrollorientierter Noppen-innen-Belag mit leicht klebriger Oberfläche für schnittreiches Allround- bis Defensivspiel. Er wird häufig mit dünnem Schwamm für sichere Schupf- und Chopbälle eingesetzt.",
+    "communityDescription": "Spieler beschreiben Marder als sehr kontrollierten, eher langsamen Inverted mit hoher Schnittentwicklung und geringer Spinanfälligkeit, ideal für passives Block- und Schupfspiel. Besonders beliebt ist er bei modernen Defensivspielern, die mit dünnem Schwamm zuverlässig gegen Topspin choppen wollen."
+  },
+  {
+    "slug": "dr-neubauer-abs-2",
+    "kind": "rubber",
+    "name": "A-B-S 2",
+    "manufacturer": "12",
+    "reason": "Die Hersteller-Beschreibung nennt es \"Glatt-Anti\", die Produkt-Kategorisierung definiert es aber als \"LANGE NOPPEN (LP/KN)\" – das sind zwei völlig unterschiedliche Belag-Typen.",
+    "description": "Sehr langsamer Glatt-Anti für das Blockspiel mit Plastik- und ABS-Bällen. Hohe Kontrolle, spürbare Spinumkehr und extrem flache, kurze Blockbälle. Dämpfungsschwamm in mehreren Stärken ermöglicht variablen Störeffekt.",
+    "communityDescription": "Spieler beschreiben ABS 2 als extrem langsamen, kontrollierten Glatt-Anti mit starker Spinumkehr und flachen, giftigen Blockbällen am Tisch. Schwach ist er gegen komplett leere Bälle, die aktiver geführt werden müssen."
+  },
+  {
+    "slug": "juic-999-elite",
+    "kind": "rubber",
+    "name": "999 Elite",
+    "manufacturer": "16",
+    "reason": "Lange-Noppen-Beläge haben weniger Spin als glatte/invertierte Beläge und dienen primär zur Störwirkung, nicht zu hohem Spin und Angriffsspiel wie beschrieben.",
+    "description": "LP-Belag des japanischen Herstellers Juic. Solide Störwirkung, gut für Allround-Noppen-Spieler.",
+    "communityDescription": "Der 999 Elite wird als tacky mit fantastischem Spin und guter Geschwindigkeit gelobt, besser als andere klebrige Beläge. Spieler betonen hohe Spinbewertung und Vielseitigkeit, mit etwas Kritik an Gewicht. Beliebt bei Angriffsspielern."
+  },
+  {
+    "slug": "friendship-729-cream",
+    "kind": "rubber",
+    "name": "729 Cream",
+    "manufacturer": "17",
+    "reason": "Die Community beschreibt das Produkt als Allround-Belag mit Spinpotenzial und Kontrolle, während der Hersteller es explizit als Anti-Topspin-Belag mit Stördynamik charakterisiert – das sind unterschiedliche Belag-Typ-Kategorien.",
+    "description": "Sehr günstiger chinesischer Anti-Belag. Maximale Stördynamik zum kleinen Preis. Gut zum Kennenlernen des Anti-Spiels.",
+    "communityDescription": "Die meisten Spieler loben den 729 Cream als renovierte Version des klassischen 729-Belags mit gutem Grip und Kontrolle für Allround-Spiel. Wiederkehrende Stärken sind Spinpotenzial und Vielseitigkeit, Kritikpunkte umfassen moderate Geschwindigkeit. Geeignet für Spieler im unteren bis mittleren Bereich."
+  },
+  {
+    "slug": "tibhar-grass-dtecs",
+    "kind": "rubber",
+    "name": "Grass D.TecS",
+    "manufacturer": "4",
+    "reason": "Die Hersteller-Beschreibung charakterisiert den Belag als Kontroll- und Neutralisierungsbelag mit guter Balance, während die Community-Beschreibung ihn als einen der \"giftigsten\" und anspruchsvollsten Störbeläge mit hoher Fehleranfälligkeit und Spinempfindlichkeit darstellt – dies sind grundlegend unterschiedliche Spielcharakteristiken.",
+    "description": "Die Grass D.TecS kombiniert die D.TecS-Technologie mit den bewährten Eigenschaften des klassischen Grass und eröffnet damit neue Möglichkeiten sowohl beim Schupps als auch beim Blockspiel. Die eingearbeitete Spannung in Belag und Schwamm macht die Noppen elastischer und erzeugt starken Rückwärtsspin. Der Belag bietet gute Kontrolle und ausreichend Tempo, um aggressive und störende Schläge des Gegners zu neutralisieren.",
+    "communityDescription": "Grass D.TecS gilt als einer der giftigsten Langnoppenbeläge und wird regelmäßig für seinen starken Störeffekt, ausgeprägte Schnittumkehr und das sehr flache Ballflugverhalten gelobt. Viele Spieler berichten, dass er in OX oder dünnen Schwammstärken enorme Unterschnittwerte beim klassischen Abwehrspiel sowie unangenehm flatternde Blockbälle am Tisch erzeugt, dabei aber deutlich anspruchsvoller in der Kontrolle ist als klassische Defensivnoppen. Wiederkehrende Kritikpunkte sind die hohe Fehleranfälligkeit bei falschem Schlägerwinkel, die Empfindlichkeit auf gegnerischen Spin und eine gewisse Eingewöhnungszeit, bis man den Katapult durch die eingebaute Spannung im Griff hat."
+  },
+  {
+    "slug": "andro-hexer",
+    "kind": "rubber",
+    "name": "Andro Hexer",
+    "manufacturer": "9",
+    "reason": "Community-Beschreibung erwähnt \"Naturgummi-Oberlage\" und charakterisiert den Belag als älteren, von neueren Serien verdrängten Belag, während Hersteller-Beschreibung ihn als aktuellen, vielseitigen Universal-Belag mit grünem Spezial-Schwamm darstellt – dies deutet auf unterschiedliche Produkt-Generationen oder Verwechslung mit einem älteren Hexer-Modell hin.",
+    "description": "Die Hexer Gummi-Serie gehört zu den vielseitigsten Belägen im Andro-Sortiment. Erhältlich in nahezu allen Schwammhärtegraden, verkörpern Hexer Grip, Hexer Powergrip und die zugehörigen SFX-Versionen Zuverlässigkeit, Spinentwicklung und hohe Verarbeitungsqualität. Mit einem grünen Schwamm aus speziellem Gummimaterial ausgestattet, eignen sich Hexer Grip und Powergrip als universelle Beläge für moderne und variabel spielende Spieler aller Leistungsklassen.",
+    "communityDescription": "Der klassische Hexer wird als spinorientierter Tensor mit starkem Katapult und hohem Spinniveau beschrieben, basierend auf einem mittel-harten Schwamm und einer Naturgummi-Oberlage. Spieler heben die sehr gute Spinentwicklung bei Topspins, verlässliche Kontrolle im Block/Schupf sowie ein ausgewogenes Verhältnis von Tempo und Sicherheit hervor, wodurch er sich gut für beide Seiten eignet. Kritikpunkte sind ein im Vergleich zu ganz modernen Belägen etwas geringerer „Peak-Speed“ und dass er bei der Einführung der Rasanter-Serie von noch leistungsfähigeren Nachfolgern verdrängt wurde, auch wenn viele ihn weiterhin als „underrated“ und angenehm zu spielen einstufen."
+  },
+  {
+    "slug": "joola-express-ultra",
+    "kind": "rubber",
+    "name": "Express Ultra",
+    "manufacturer": "5",
+    "reason": "Die Hersteller-Beschreibung positioniert den Express Ultra als Defensiv-Belag für klassisches Konter-Spiel, während die Community ihn als offensive Kurznoppe mit Flathits und Topspin-ähnlichen Schlägen beschreibt – das sind gegensätzliche Spielcharakteristiken.",
+    "description": "Der JOOLA Express Ultra ist ein Belag für Kurznoppen-Spieler, der mit einem weichen Balance-Schwamm ausgestattet ist. Die integrierte Tensor-Technologie erzeugt einen ähnlichen Effekt wie Speedglue und erhöht die Elastizität des Belags deutlich. Dadurch entstehen zusätzliche Geschwindigkeits- und Spinwerte. Mit dem Express Ultra lässt sich ein starkes Konter-Spiel entwickeln. Der Belag gehört zur JOOLA Precision Line und wurde speziell für moderne Defensiv-Spieler konzipiert, die mit Noppen nach außen spielen.",
+    "communityDescription": "Express Ultra wird von vielen Spielern als sehr schnelle, für eine Kurznoppe außergewöhnlich spinnige Noppe-innen-ähnliche Kurznoppe beschrieben, die dank Tensor-Schwamm ein ausgeprägtes Frischklebegefühl bietet. Häufig gelobt werden die Möglichkeiten zu harten Flathits, aggressiven Blocks und auch topspinähnlichen Schlägen bei gleichzeitig relativ hoher Kontrolle für eine Offensivkurznoppe, wodurch der Umstieg von Noppen-innen-Belägen erleichtert wird. Kritikpunkte sind der geringe Störeffekt/Spinumkehr im Vergleich zu „klassischen“ Störnoppen und der insgesamt hohe Speed, der ungeübten Kurznoppenspielern zu schnell sein kann."
+  },
+  {
+    "slug": "butterfly-joo-se-hyuk",
+    "kind": "blade",
+    "name": "Joo Se Hyuk",
+    "manufacturer": "1",
+    "reason": "Hersteller beschreibt ein weiches Defensivholz mit klassischem Spielgefühl, Community beschreibt ein hartes, schnelles Offensiv-hybrid-Holz – das sind gegensätzliche Charakteristiken.",
+    "description": "Signaturholz des ehemaligen Weltklasse-Defensivspielers Joo Se Hyuk. 7-Lagen Allholz mit weichem Spielgefühl. Eines der beliebtesten Defensivhölzer weltweit. Kombiniert gut mit LP, Anti und klassischen Defensivbelägen.",
+    "communityDescription": "Die Community beschreibt das Joo-Se-Hyuk-Holz als großes, schweres Defensivholz mit sehr hartem Anschlag, das sich eher wie ein schnelles Offensivholz mit vergrößertem Schlägerblatt spielt. Es wird vor allem von modernen Abwehrspielern eingesetzt, die aus der Distanz mit viel Unterschnitt verteidigen und bei Gelegenheit mit der Vorhand aggressiv mit Topspin oder Schuss kontern. Wiederkehrend gelobt werden die enorme Stabilität in der Unterschnittabwehr, das hohe Spinniveau in Verbindung mit langen Noppen sowie die hervorragende Kontrolle trotz des hohen Tempos. Kritisiert werden das hohe Gewicht und die damit verbundene Ermüdung sowie die Tatsache, dass das Holz für klassische, tischnahe Abwehr oder Einsteiger deutlich zu schnell ist."
+  },
+  {
+    "slug": "xiom-hayabusa-z",
+    "kind": "blade",
+    "name": "Xiom Hayabusa Z",
+    "manufacturer": "6",
+    "reason": "Die Community-Beschreibung bezieht sich auf das \"Hayabusa ZL Pro\" (mit ZL-Kern), die Hersteller-Beschreibung auf das \"Hayabusa Z\" (mit Inner Zephylium-Kern) – zwei unterschiedliche Produkte/Varianten.",
+    "description": "Xiom Hayabusa Z\n\nPreis: 95,90 €\n\nOffensivholz mit Inner Zephylium für präzise Ballkontrolle. Das Blatt bietet Profispielern ein ausgewogenes Verhältnis zwischen Angriffsverhalten und Defensivfähigkeiten. Kennzeichnend ist die hohe Konsistenz bei offensiven Schlägen, insbesondere bei Angriffsballons mit großer Genauigkeit.\n\nTyp: OFF\nHolzdicke: 5,7 mm\nGewicht: 85 g ± 3 g\nSchichtaufbau: 5+2 Lagen\nGriff: FL / ST\nKern: Inner Zephylium\nHergestellt in China",
+    "communityDescription": "Spieler heben beim Hayabusa ZL Pro immer wieder die große Kontrolle, das weiche, aber präzise Ballgefühl und die lange Ballkontaktzeit hervor, wodurch sich sehr viel Spin mit vergleichsweise moderatem Grundtempo erzeugen lässt. Das Holz wird als inneres ZL‑Offensivholz beschrieben, das sich fast wie ein hochwertiges Vollholz mit großem Sweetspot spielt, beim Topspin überragenden Spin liefert und besonders für Looping‑lastiges Offensivspiel sowie den Umstieg von Allwood‑Hölzern geeignet ist. Gleichzeitig betonen Reviews, dass es nicht extrem schnell ist, wodurch kurze Ablagen, Block und platzierte Eröffnungen sehr sicher bleiben."
+  }
+]

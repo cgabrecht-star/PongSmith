@@ -29,7 +29,11 @@
     "db:import-research": "dotenv -e .env.local -- tsx db/scripts/import-research.ts",
     "db:clean-revspin-urls": "dotenv -e .env.local -- tsx db/scripts/clean-revspin-urls.ts",
     "db:clean-descriptions": "dotenv -e .env.local -- tsx db/scripts/clean-description-artifacts.ts",
-    "db:translate-descriptions": "dotenv -e .env.local -- tsx db/scripts/translate-descriptions.ts"
+    "db:translate-descriptions": "dotenv -e .env.local -- tsx db/scripts/translate-descriptions.ts",
+    "db:check-consistency": "tsx db/scripts/check-description-consistency.ts",
+    "db:fix-mismatches": "dotenv -e .env.local -- tsx db/scripts/fix-mismatches.ts",
+    "db:audit": "dotenv -e .env.local -- tsx db/scripts/audit-db.ts",
+    "db:backfill-play-styles": "dotenv -e .env.local -- tsx db/scripts/backfill-play-styles.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",

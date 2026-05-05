@@ -166,8 +166,12 @@ export default function DatenschutzPage() {
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  // Anker-ID aus dem Titel ableiten (z.B. "7. Affiliate-Links" → "affiliates")
+  const id = title.toLowerCase().includes("affiliate")
+    ? "affiliates"
+    : title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   return (
-    <div>
+    <div id={id} style={{ scrollMarginTop: 80 }}>
       <h2
         className="ff-mono"
         style={{

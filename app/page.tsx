@@ -751,13 +751,13 @@ function Footer({ lang }: { lang: Lang }) {
   const t = T[lang].footer;
   const footerLinks = {
     de: [
-      { t: "Beratung", items: ["Chat starten", "So funktioniert's", "Dein Profil"] },
-      { t: "Werkstatt", items: ["Ratgeber", "Glossar", "TTR-Rechner"] },
+      { t: "Beratung", items: ["KI-Berater", "Schnell-Check", "Sortiment"] },
+      { t: "Werkstatt", items: ["Ratgeber"] },
       { t: "Rechtliches", items: ["Impressum", "Datenschutz", "Affiliate-Hinweis"] },
     ],
     en: [
-      { t: "Advisory", items: ["Start chat", "How it works", "Your profile"] },
-      { t: "Workshop", items: ["Guide", "Glossary", "TTR calculator"] },
+      { t: "Advisory", items: ["AI Advisor", "Quick Pick", "Products"] },
+      { t: "Workshop", items: ["Guide"] },
       { t: "Legal", items: ["Imprint", "Privacy", "Affiliate disclosure"] },
     ],
   };
@@ -780,12 +780,13 @@ function Footer({ lang }: { lang: Lang }) {
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
                 {col.items.map((it, j) => {
                   const href =
-                    it === "Impressum" ? "/impressum"
-                    : it === "Datenschutz" ? "/datenschutz"
-                    : it === "Imprint" ? "/impressum"
-                    : it === "Privacy" ? "/datenschutz"
+                    it === "Impressum" || it === "Imprint" ? "/impressum"
+                    : it === "Datenschutz" || it === "Privacy" ? "/datenschutz"
+                    : it === "Affiliate-Hinweis" || it === "Affiliate disclosure" ? "/datenschutz#affiliates"
+                    : it === "Sortiment" || it === "Products" ? "/sortiment"
+                    : it === "KI-Berater" || it === "AI Advisor" ? "/#berater-section"
+                    : it === "Schnell-Check" || it === "Quick Pick" ? "/#check-section"
                     : it === "Ratgeber" || it === "Guide" ? "#"
-                    : it === "Sortiment" ? "/sortiment"
                     : "#";
                   return (
                     <li key={j}>

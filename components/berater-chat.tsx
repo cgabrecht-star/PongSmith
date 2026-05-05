@@ -8,7 +8,7 @@ interface Message {
 }
 
 const GREETING =
-  "Hallo! Ich bin PongSmith, dein unabhängiger Ausrüstungsberater. 🏓\n\nErzähl mir kurz von dir: Welchen Q-TTR hast du ungefähr, wie spielst du (offensiv, allround oder defensiv) — und was nervt dich an deinem aktuellen Setup?";
+  "Hallo! Ich bin PongSmith, dein unabhängiger Ausrüstungsberater. 🏓\n\nErzähl mir kurz von dir: Welchen Q-TTR hast du ungefähr, wie spielst du (offensiv, allround, defensiv oder mit Material wie langen Noppen / Anti) — und was nervt dich an deinem aktuellen Setup?";
 
 // Rendert **fett**, *kursiv* und einfache Listen aus Markdown-Text
 function renderInline(text: string): React.ReactNode[] {
