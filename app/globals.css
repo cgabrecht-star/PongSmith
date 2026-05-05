@@ -335,27 +335,7 @@
   At −45° (raised):  head bottom → x=427, y=113  — clearly upper-right ✓
   At  +12° (strike): head bottom → x=301, y=150  — lands on anvil top surface ✓
 */
-/* Schläger schwebt sanft auf und ab über dem Amboss */
-@keyframes paddleFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-10px); }
-}
-
-/* Schläger dreht sich um die vertikale Achse — abwechselnd Vor- und Rückhand sichtbar.
-   ScaleX simuliert die 3D-Y-Rotation in 2D (vereinfacht aber sieht überraschend gut aus) */
-@keyframes paddleSpin {
-  0%   { transform: scaleX(1)    skewY(-2deg); }
-  25%  { transform: scaleX(0.05) skewY(0deg); }
-  50%  { transform: scaleX(-1)   skewY(2deg); }
-  75%  { transform: scaleX(0.05) skewY(0deg); }
-  100% { transform: scaleX(1)    skewY(-2deg); }
-}
-
-/* Schatten unterhalb pulsiert leicht synchron zum Schweben */
-@keyframes paddleShadow {
-  0%, 100% { transform: scale(1, 1);    opacity: 0.35; }
-  50%      { transform: scale(0.85, 1); opacity: 0.18; }
-}
+/* Hero-Animationen entfernt — Design-Refresh kommt später */
 @keyframes typingBlink {
   0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
   40% { opacity: 1; transform: translateY(-2px); }
