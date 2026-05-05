@@ -411,20 +411,14 @@ function Hero({ lang }: { lang: Lang }) {
         filter: "blur(30px)", pointerEvents: "none",
       }} />
 
-      {/* Anvil + Hammer SVG
+      {/* Anvil + schwebender, sich drehender TT-Schläger
           ─────────────────────────────────────────────────────────────
-          Hammer geometry (pivot = grip at top-right):
-            Pivot      : (330, 15)
-            Handle     : 116 px → bottom at y = 131
-            Ferrule    : y = 128–136
-            Head       : y = 131–153, 65 px wide, centered on x = 330
-            D (pivot→head-bottom) = 138 px
-
-            −45° raised : head-bottom → (427, 113)  upper-right, clear of anvil ✓
-            +12° strike : head-bottom → (301, 150)  on anvil top surface ✓
+          Schläger schwebt über der Arbeitsfläche des Ambosses (Mitte ca. x=172, y=110).
+          Animation: leichtes Auf/Ab-Schweben + langsame Y-Achsen-Rotation
+          (sodass abwechselnd rote Vor- und schwarze Rückhand-Seite sichtbar ist).
           ─────────────────────────────────────────────────────────────
       */}
-      <div style={{ position: "absolute", right: "0", bottom: "2%", width: 460, height: 320, opacity: 0.65, pointerEvents: "none" }}>
+      <div style={{ position: "absolute", right: "0", bottom: "2%", width: 460, height: 320, opacity: 0.85, pointerEvents: "none" }}>
         <svg viewBox="0 0 460 320" width="100%" height="100%">
           <defs>
             <linearGradient id="anvilGrad" x1="0" x2="0" y1="0" y2="1">
@@ -440,83 +434,90 @@ function Hero({ lang }: { lang: Lang }) {
               <stop offset="30%" stopColor="#ff7535" stopOpacity="0.7" />
               <stop offset="100%" stopColor="#ff4010" stopOpacity="0" />
             </radialGradient>
-            <radialGradient id="impactGlow" cx="0.5" cy="0.5" r="0.5">
-              <stop offset="0%" stopColor="#ffe090" stopOpacity="1" />
-              <stop offset="45%" stopColor="#ff6b35" stopOpacity="0.65" />
-              <stop offset="100%" stopColor="#ff6b35" stopOpacity="0" />
+            <linearGradient id="paddleHandle" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%"   stopColor="#5c4028" />
+              <stop offset="40%"  stopColor="#8c6b42" />
+              <stop offset="70%"  stopColor="#6b4f2e" />
+              <stop offset="100%" stopColor="#3e2c1c" />
+            </linearGradient>
+            <radialGradient id="rubberRed" cx="0.4" cy="0.4" r="0.6">
+              <stop offset="0%"   stopColor="#e85a3a" />
+              <stop offset="60%"  stopColor="#c8331a" />
+              <stop offset="100%" stopColor="#7a1d0c" />
             </radialGradient>
-            <linearGradient id="handleWood" x1="0" x2="1" y1="0" y2="0">
-              <stop offset="0%"   stopColor="#6b4f2e" />
-              <stop offset="35%"  stopColor="#8c6b42" />
-              <stop offset="65%"  stopColor="#7a5c38" />
-              <stop offset="100%" stopColor="#5c4028" />
-            </linearGradient>
-            <linearGradient id="headMetal" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%"   stopColor="#323028" />
-              <stop offset="50%"  stopColor="#232120" />
-              <stop offset="100%" stopColor="#141412" />
-            </linearGradient>
+            <radialGradient id="rubberRedHi" cx="0.35" cy="0.3" r="0.35">
+              <stop offset="0%"   stopColor="#ffb088" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="#ffb088" stopOpacity="0" />
+            </radialGradient>
           </defs>
 
-          {/* ── Ember heat glow on the anvil working face ── */}
-          <ellipse cx="172" cy="149" rx="125" ry="18" fill="url(#emberCore)" opacity="0.9" />
+          {/* ── Ember heat glow auf der Arbeitsfläche ── */}
+          <ellipse cx="172" cy="149" rx="125" ry="18" fill="url(#emberCore)" opacity="0.95">
+            <animate attributeName="opacity" values="0.7;1;0.7" dur="3.2s" repeatCount="indefinite" />
+          </ellipse>
 
           {/* ── Anvil ── */}
-          {/* Top working face */}
           <path d="M44 150 L300 150 L316 165 L64 165 Z" fill="url(#anvilTop)" stroke="#302e2a" strokeWidth="1.2" />
-          {/* Top face highlight edge */}
           <line x1="46" y1="151" x2="298" y2="151" stroke="#4a4640" strokeWidth="0.8" opacity="0.5" />
-          {/* Horn */}
           <path d="M44 150 C26 151 13 157 9 165 L64 165 Z" fill="url(#anvilGrad)" stroke="#302e2a" strokeWidth="1" />
-          {/* Waist */}
           <path d="M110 165 L110 215 L86 238 L86 250 L256 250 L256 238 L232 215 L232 165 Z"
                 fill="url(#anvilGrad)" stroke="#302e2a" strokeWidth="1.2" />
-          {/* Base */}
           <rect x="64" y="250" width="214" height="36" fill="url(#anvilGrad)" stroke="#302e2a" strokeWidth="1.2" rx="1" />
           <rect x="64" y="250" width="214" height="4" fill="#2a2826" />
 
-          {/* ── Impact flash — opacity-animated ellipse at strike point (x=301, y=150) ── */}
-          <ellipse cx="280" cy="150" rx="36" ry="12" fill="url(#impactGlow)"
-            style={{ animation: "hammerImpact 2.6s linear infinite" }} />
+          {/* ── Schatten unter dem schwebenden Schläger (auf Amboss-Oberkante) ── */}
+          <ellipse cx="172" cy="148" rx="60" ry="6" fill="#000" opacity="0.35"
+            style={{ animation: "paddleShadow 4.5s ease-in-out infinite" }} />
 
-          {/* ── Hammer ── */}
-          <g style={{ transformOrigin: "330px 15px", animation: "hammerStrike 2.6s ease-in-out infinite" }}>
+          {/* ── Schwebender, drehender Schläger ── */}
+          <g style={{ transformOrigin: "172px 100px", animation: "paddleFloat 4.5s ease-in-out infinite" }}>
+            <g style={{ transformOrigin: "172px 100px", animation: "paddleSpin 6s linear infinite" }}>
 
-            {/* Pommel cap */}
-            <rect x="323" y="12" width="14" height="7" fill="#252320" rx="3" />
+              {/* Griff (immer sichtbar als Säule) */}
+              <rect x="166" y="135" width="12" height="38" rx="3"
+                    fill="url(#paddleHandle)" stroke="#2a1d10" strokeWidth="0.6" />
+              <line x1="168" y1="142" x2="176" y2="146" stroke="#3e2c1c" strokeWidth="0.5" opacity="0.6" />
+              <line x1="168" y1="155" x2="176" y2="159" stroke="#3e2c1c" strokeWidth="0.5" opacity="0.6" />
 
-            {/* Handle — wood */}
-            <rect x="324" y="15" width="12" height="116" fill="url(#handleWood)" rx="3" />
-            {/* Wood grain lines */}
-            <line x1="327" y1="38"  x2="334" y2="47"  stroke="#4a3520" strokeWidth="0.7" opacity="0.5" />
-            <line x1="327" y1="62"  x2="334" y2="70"  stroke="#4a3520" strokeWidth="0.7" opacity="0.5" />
-            <line x1="327" y1="85"  x2="334" y2="93"  stroke="#4a3520" strokeWidth="0.7" opacity="0.5" />
-            <line x1="327" y1="108" x2="334" y2="115" stroke="#4a3520" strokeWidth="0.7" opacity="0.5" />
+              {/* Belag-Kante (dünner Rand zwischen Holz und Belag) */}
+              <ellipse cx="172" cy="100" rx="50" ry="46" fill="#1a0d05" />
 
-            {/* Ferrule */}
-            <rect x="322" y="127" width="16" height="9" fill="#222020" stroke="#3a3830" strokeWidth="0.8" rx="1" />
-            <line x1="322" y1="130" x2="338" y2="130" stroke="#3a3a38" strokeWidth="0.5" />
-            <line x1="322" y1="133" x2="338" y2="133" stroke="#3a3a38" strokeWidth="0.5" />
+              {/* Holz-Kern (außenliegend, schmal) */}
+              <ellipse cx="172" cy="100" rx="48" ry="44" fill="#6b4a2a" />
 
-            {/* Head — metal block, 65 × 22 px, bottom at y=153 */}
-            <rect x="297" y="131" width="65" height="22" fill="url(#headMetal)" stroke="#2e2c28" strokeWidth="1.5" rx="2" />
-            {/* Top bevel */}
-            <rect x="297" y="131" width="65" height="4"  fill="#363430" rx="2" />
-            {/* Bottom shadow */}
-            <rect x="297" y="149" width="65" height="4"  fill="#0e0e0c" rx="1" />
+              {/* Belag-Schicht (rote Vorhand-Seite) */}
+              <ellipse cx="172" cy="98" rx="46" ry="42" fill="url(#rubberRed)" />
 
-            {/* Striking face — left end of head */}
-            <rect x="292" y="133" width="9" height="16" fill="#1c1a18" stroke="#383633" strokeWidth="1" rx="2" />
-            {/* Heat mark / ember glow on striking face */}
-            <rect x="293" y="135" width="6" height="12" fill="#ff6b35" opacity="0.22" rx="1" />
+              {/* Highlight für Tiefe */}
+              <ellipse cx="160" cy="88" rx="22" ry="16" fill="url(#rubberRedHi)" />
 
-            {/* Peen — right end, slightly tapered */}
-            <path d="M360 133 L368 138 L368 148 L360 151 Z" fill="#1a1917" stroke="#2e2c28" strokeWidth="0.8" />
+              {/* Belag-Textur: Noppen-Andeutung als feines Punktraster */}
+              <g opacity="0.18" fill="#000">
+                <circle cx="155" cy="85"  r="0.9" />
+                <circle cx="165" cy="83"  r="0.9" />
+                <circle cx="175" cy="83"  r="0.9" />
+                <circle cx="185" cy="85"  r="0.9" />
+                <circle cx="195" cy="88"  r="0.9" />
+                <circle cx="150" cy="95"  r="0.9" />
+                <circle cx="160" cy="93"  r="0.9" />
+                <circle cx="170" cy="93"  r="0.9" />
+                <circle cx="180" cy="93"  r="0.9" />
+                <circle cx="190" cy="95"  r="0.9" />
+                <circle cx="155" cy="105" r="0.9" />
+                <circle cx="165" cy="103" r="0.9" />
+                <circle cx="175" cy="103" r="0.9" />
+                <circle cx="185" cy="105" r="0.9" />
+                <circle cx="160" cy="115" r="0.9" />
+                <circle cx="170" cy="113" r="0.9" />
+                <circle cx="180" cy="113" r="0.9" />
+              </g>
 
-            {/* Etch line across head face */}
-            <line x1="303" y1="141" x2="357" y2="141" stroke="#3a3830" strokeWidth="0.6" opacity="0.45" />
+              {/* ITTF-Logo-Andeutung (kleines weißes Quadrat, dezent) */}
+              <rect x="190" y="115" width="6" height="3" fill="#fff" opacity="0.35" rx="0.5" />
 
+            </g>
           </g>
+
         </svg>
       </div>
 
