@@ -257,13 +257,13 @@ async function main() {
         }
 
         // DB aktualisieren
-        const localUrl = `/products/${product.slug}.${result.ext}`;
+        const localUrl = `/products/${product.slug}.${result.ext!}`;
         if (product.kind === "rubber") {
           await db.update(rubbers).set({ imageUrl: localUrl }).where(eq(rubbers.slug, product.slug));
         } else {
           await db.update(blades).set({ imageUrl: localUrl }).where(eq(blades.slug, product.slug));
         }
-        console.log(`✓ ${result.ext.toUpperCase()}`);
+        console.log(`✓ ${result.ext!.toUpperCase()}`);
         success++;
       } catch (err) {
         const msg = (err as Error).message.substring(0, 80);

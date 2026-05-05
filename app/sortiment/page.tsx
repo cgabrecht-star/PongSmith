@@ -83,22 +83,104 @@ function playStyleColor(s: string | null) {
 // ─── Bild-Komponente ─────────────────────────────────────────────────────────
 // `size` und `hovered` steuerbar von außen — Hover-Effekt kommt vom Parent.
 
+// Hersteller-Farben für Fallback-Karten
+const MANUFACTURER_COLORS: Record<string, [string, string]> = {
+  butterfly:    ["#ff7a35", "#c8331a"],
+  stiga:        ["#1a4f8b", "#0d2c4f"],
+  donic:        ["#c8331a", "#7a1d0c"],
+  tibhar:       ["#3d5a40", "#1c2a1e"],
+  joola:        ["#1f3a78", "#0f1f44"],
+  xiom:         ["#2a2a2a", "#0e0e0e"],
+  yasaka:       ["#1c5a96", "#0e2c4a"],
+  andro:        ["#c41e3a", "#6e0d20"],
+  dhs:          ["#c4191e", "#6e0c10"],
+  nittaku:      ["#1a3b6e", "#0d1f3a"],
+  victas:       ["#c4191e", "#6e0c10"],
+  sanwei:       ["#3a3a3a", "#1a1a1a"],
+  yinhe:        ["#5c2a8e", "#2c0e4a"],
+  juic:         ["#7a1d0c", "#3d0e06"],
+  friendship:   ["#c41e3a", "#6e0d20"],
+  dawei:        ["#3d3d3d", "#1c1c1c"],
+  spinlord:     ["#5a2c1e", "#2c1408"],
+  "dr-neubauer": ["#1c2c1c", "#0a140a"],
+};
+
+function getManufacturerStyle(manufacturerSlug: string): { gradient: string; initial: string } {
+  const colors = MANUFACTURER_COLORS[manufacturerSlug.toLowerCase()] ?? ["#3a3835", "#1c1b18"];
+  return {
+    gradient: `linear-gradient(135deg, ${colors[0]} 0%, ${colors[1]} 100%)`,
+    initial: manufacturerSlug.charAt(0).toUpperCase(),
+  };
+}
+
 function ProductImage({
-  url, name, size = 72, hovered = false,
-}: { url: string | null; name: string; size?: number; hovered?: boolean }) {
+  url, name, manufacturerSlug = "", size = 72, hovered = false,
+}: { url: string | null; name: string; manufacturerSlug?: string; size?: number; hovered?: boolean }) {
   const [error, setError] = useState(false);
   const scale = hovered ? 1.06 : 1;
   const baseStyle: React.CSSProperties = {
-    width: size, height: size, flexShrink: 0, borderRadius: 4,
+    width: size, height: size, flexShrink: 0, borderRadius: 6,
     background: "var(--ps-bg-3)", border: "1px solid var(--ps-line-2)",
-    transition: "transform 220ms ease, border-color 220ms",
+    transition: "transform 220ms ease, border-color 220ms, box-shadow 220ms",
     transform: `scale(${scale})`,
     transformOrigin: "left center",
+    overflow: "hidden",
   };
+
   if (!url || error) {
+    // Stilisierter Fallback: Manufacturer-Initial in Hersteller-Farb-Gradient
+    const { gradient, initial } = getManufacturerStyle(manufacturerSlug);
+    // Kurzname (1-3 Großbuchstaben aus dem Produktnamen)
+    const shortCode = name
+      .replace(/^(Butterfly|Stiga|Donic|Tibhar|Joola|Xiom|Yasaka|Andro|DHS|Nittaku|Victas|Sanwei|Yinhe|Juic|Friendship|Dawei|SpinLord|Dr\.\s*Neubauer)\s*/i, "")
+      .split(/\s+/)
+      .filter((w) => w.length > 0)
+      .slice(0, 2)
+      .map((w) => w.charAt(0).toUpperCase())
+      .join("") || initial;
+
     return (
-      <div style={{ ...baseStyle, display: "flex", alignItems: "center", justifyContent: "center", fontSize: size / 3 }}>
-        🏓
+      <div style={{
+        ...baseStyle,
+        background: gradient,
+        border: "1px solid rgba(255,255,255,0.08)",
+        display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center",
+        position: "relative",
+      }}>
+        {/* Subtle pattern overlay */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 60%)",
+          pointerEvents: "none",
+        }} />
+        <span
+          className="ff-display"
+          style={{
+            fontSize: size / 2.4,
+            color: "rgba(255,255,255,0.92)",
+            letterSpacing: "0.02em",
+            lineHeight: 1,
+            textShadow: "0 2px 8px rgba(0,0,0,0.3)",
+            position: "relative",
+          }}
+        >
+          {shortCode}
+        </span>
+        {size >= 100 && (
+          <span
+            className="ff-mono"
+            style={{
+              fontSize: 8, letterSpacing: "0.18em",
+              color: "rgba(255,255,255,0.55)",
+              textTransform: "uppercase",
+              marginTop: 4,
+              position: "relative",
+            }}
+          >
+            {manufacturerSlug}
+          </span>
+        )}
       </div>
     );
   }
@@ -155,7 +237,7 @@ function ProductCard({ item, onClick }: { item: ProductItem; onClick: () => void
     >
       {/* Header mit Bild */}
       <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-        <ProductImage url={item.imageUrl} name={item.name} hovered={hovered} />
+        <ProductImage url={item.imageUrl} name={item.name} manufacturerSlug={item.manufacturerSlug} hovered={hovered} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.14em", color: "var(--ps-ink-4)", textTransform: "uppercase", marginBottom: 4 }}>
             {item.manufacturer}
@@ -250,7 +332,7 @@ function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void
       >
         {/* Header */}
         <div style={{ padding: "24px 28px", borderBottom: "1px solid var(--ps-line-2)", display: "flex", gap: 24, alignItems: "flex-start", flexWrap: "wrap" }}>
-          <ProductImage url={item.imageUrl} name={item.name} size={140} />
+          <ProductImage url={item.imageUrl} name={item.name} manufacturerSlug={item.manufacturerSlug} size={140} />
           <div style={{ flex: 1, minWidth: 240 }}>
             <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", color: "var(--ps-ink-4)", textTransform: "uppercase", marginBottom: 6 }}>
               {item.manufacturer}
