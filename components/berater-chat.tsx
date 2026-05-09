@@ -235,6 +235,32 @@ export function BeraterChat() {
     });
   }, [lang, t.berater.greeting]);
 
+  // Pre-Fill-Listener: Schnell-Check kann TTR + Stil rüberreichen
+  useEffect(() => {
+    function onPrefill(e: Event) {
+      const detail = (e as CustomEvent<{
+        ttr: number;
+        playStyle: string;
+        styleLabel: string;
+        lang: "de" | "en";
+      }>).detail;
+      if (!detail) return;
+      const text = detail.lang === "en"
+        ? `My TTR is ${detail.ttr}, I play ${detail.styleLabel.toLowerCase()}. `
+        : `Mein TTR ist ${detail.ttr}, ich spiele ${detail.styleLabel.toLowerCase()}. `;
+      setInput(text);
+      // Kurz warten bis Scroll fertig + Section sichtbar, dann fokussieren
+      setTimeout(() => {
+        inputRef.current?.focus();
+        // Cursor ans Ende
+        const len = text.length;
+        inputRef.current?.setSelectionRange(len, len);
+      }, 700);
+    }
+    window.addEventListener("pongsmith:prefill", onPrefill);
+    return () => window.removeEventListener("pongsmith:prefill", onPrefill);
+  }, []);
+
   useEffect(() => {
     const el = messagesRef.current;
     if (el) el.scrollTop = el.scrollHeight;

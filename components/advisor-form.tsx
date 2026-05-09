@@ -319,8 +319,65 @@ export function AdvisorForm() {
           <p className="ff-mono" style={{ textAlign: "center", fontSize: 9.5, color: "var(--ps-ink-4)", letterSpacing: "0.1em" }}>
             {t.sortiment.sourceNote}
           </p>
+
+          {/* Bridge zum Berater — Hauptzweck der Schnell-Check-Sektion */}
+          <BridgeToAdvisor ttr={ttr} playStyle={playStyle} styleLabel={styles.find((s) => s.id === playStyle)?.label ?? playStyle} />
         </div>
       )}
+    </div>
+  );
+}
+
+// ─── Bridge: vom Schnell-Check zum Berater ────────────────────────────────
+function BridgeToAdvisor({ ttr, playStyle, styleLabel }: { ttr: number; playStyle: PlayStyle; styleLabel: string }) {
+  const { t, lang } = useLanguage();
+
+  function handleClick() {
+    // 1. Pre-Fill-Event an Berater-Chat
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("pongsmith:prefill", {
+        detail: { ttr, playStyle, styleLabel, lang },
+      }));
+      // 2. Scrollen
+      const el = document.getElementById("berater-section");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  return (
+    <div
+      style={{
+        marginTop: 12,
+        padding: "20px 22px",
+        borderRadius: 4,
+        background: "linear-gradient(135deg, rgba(255,107,53,0.10), rgba(255,107,53,0.03))",
+        border: "1px solid rgba(255,107,53,0.35)",
+        display: "flex",
+        flexDirection: "column",
+        gap: 14,
+        textAlign: "center",
+      }}
+    >
+      <div className="ff-display" style={{ fontSize: 22, color: "var(--ps-ink-0)", lineHeight: 1.2 }}>
+        {t.check.bridgeTitle}
+      </div>
+      <p style={{ margin: 0, color: "var(--ps-ink-2)", fontSize: 14.5, lineHeight: 1.55, maxWidth: 560, alignSelf: "center" }}>
+        {t.check.bridgeText}
+      </p>
+      <button
+        onClick={handleClick}
+        className="ember-btn ember-btn-glow"
+        style={{
+          alignSelf: "center",
+          padding: "12px 22px",
+          fontSize: 14,
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 8,
+        }}
+      >
+        🔨 {t.check.bridgeCta} →
+      </button>
     </div>
   );
 }

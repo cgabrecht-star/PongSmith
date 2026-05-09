@@ -80,7 +80,7 @@ const translations = {
     check: {
       kicker: "Schnell-Check",
       title: "TTR + Spielstil → Top 3 Setups.",
-      sub: "Kein Chat, kein Warten. Schieb den Regler auf deinen TTR, wähl deinen Stil — fertig.",
+      sub: "Erste Orientierung in 10 Sekunden. Für die echte Empfehlung mit Budget, Problemen und Marken-Wünschen sprich mit dem Berater.",
       ttrLabel: "Q-TTR Spielstärke",
       ttrHint: "Nicht sicher? 1.300 ist ein guter Startpunkt.",
       styleLabel: "Spielstil",
@@ -98,6 +98,10 @@ const translations = {
       tempoMatch: "Tempo-Abstimmung",
       controlReserve: "Kontrollreserve",
       spinPotential: "Spin-Potenzial",
+      // Bridge zum Berater
+      bridgeTitle: "Diese Setups passen für TTR und Stil.",
+      bridgeText: "Aber passt eines wirklich zu DIR? Budget, Problem-Beläge, Markenwünsche — das beantwortet nur der Berater.",
+      bridgeCta: "Frag den Berater",
     },
 
     // FAQ
@@ -241,7 +245,7 @@ const translations = {
     check: {
       kicker: "Quick Pick",
       title: "TTR + Play style → Top 3 setups.",
-      sub: "No chat, no waiting. Slide to your TTR, pick your style — done.",
+      sub: "Quick orientation in 10 seconds. For the real recommendation with budget, problems and brand preferences, talk to the advisor.",
       ttrLabel: "Q-TTR rating",
       ttrHint: "Not sure? 1,300 is a good starting point.",
       styleLabel: "Play style",
@@ -259,6 +263,10 @@ const translations = {
       tempoMatch: "Speed match",
       controlReserve: "Control reserve",
       spinPotential: "Spin potential",
+      // Bridge to advisor
+      bridgeTitle: "These setups match TTR and style.",
+      bridgeText: "But does one really fit YOU? Budget, problem rubbers, brand preferences — only the advisor can answer that.",
+      bridgeCta: "Ask the advisor",
     },
 
     faq: {
