@@ -371,6 +371,215 @@ function AffiliateBlock() {
 }
 
 // ─────────────────────────────────────────────
+// Demo / Beispielberatung — vor dem echten Berater
+// ─────────────────────────────────────────────
+function DemoSection() {
+  const t = useLanguage().t.demo;
+  const scrollToBerater = () => {
+    const el = document.getElementById("berater-section");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  // Inline-Renderer für **fett** und Zeilenumbrüche
+  const renderInline = (text: string) => {
+    const lines = text.split("\n");
+    return lines.map((line, li) => {
+      if (line.trim() === "") return <br key={li} />;
+      const parts: React.ReactNode[] = [];
+      const re = /\*\*(.+?)\*\*/g;
+      let last = 0;
+      let m: RegExpExecArray | null;
+      let ki = 0;
+      while ((m = re.exec(line)) !== null) {
+        if (m.index > last) parts.push(line.slice(last, m.index));
+        parts.push(<strong key={ki++} style={{ color: "var(--ps-ink-0)" }}>{m[1]}</strong>);
+        last = m.index + m[0].length;
+      }
+      if (last < line.length) parts.push(line.slice(last));
+      const isBullet = line.trim().startsWith("·");
+      return (
+        <span
+          key={li}
+          style={{
+            display: "block",
+            marginTop: li === 0 ? 0 : 4,
+            paddingLeft: isBullet ? "1em" : 0,
+          }}
+        >
+          {parts}
+        </span>
+      );
+    });
+  };
+
+  return (
+    <section style={{ padding: "70px 20px 50px", background: "var(--ps-bg-0)", borderBottom: "1px solid var(--ps-line-2)" }}>
+      <div style={{ maxWidth: 800, margin: "0 auto" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18 }}>
+          <span className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.2em", color: "var(--ps-ember-2)", textTransform: "uppercase" }}>
+            {t.kicker}
+          </span>
+          <div style={{ flex: 1, height: 1, background: "var(--ps-line-2)" }} />
+        </div>
+        <h2 className="ff-display" style={{ fontSize: "clamp(28px, 4vw, 42px)", margin: "0 0 10px", lineHeight: 1.1, fontWeight: 400 }}>{t.title}</h2>
+        <p style={{ color: "var(--ps-ink-2)", fontSize: 15.5, margin: "0 0 28px", maxWidth: 560 }}>{t.sub}</p>
+
+        {/* Mock-Chat */}
+        <div className="card-forged" style={{ position: "relative", padding: "28px 24px", display: "flex", flexDirection: "column", gap: 18 }}>
+          {/* Demo-Badge oben rechts */}
+          <span
+            className="ff-mono"
+            style={{
+              position: "absolute", top: 14, right: 14,
+              fontSize: 9, letterSpacing: "0.2em",
+              padding: "3px 8px", borderRadius: 3,
+              background: "rgba(255,107,53,0.10)",
+              border: "1px solid rgba(255,107,53,0.35)",
+              color: "var(--ps-ember-2)",
+            }}
+          >
+            {t.badge}
+          </span>
+
+          {t.messages.map((msg, i) => {
+            const isUser = msg.role === "user";
+            return (
+              <div key={i} style={{ display: "flex", gap: 10, justifyContent: isUser ? "flex-end" : "flex-start" }}>
+                {!isUser && (
+                  <div style={{
+                    flexShrink: 0, width: 32, height: 32, borderRadius: 4,
+                    background: "linear-gradient(180deg, rgba(255,107,53,0.18), rgba(255,107,53,0.06))",
+                    border: "1px solid rgba(255,107,53,0.3)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: "var(--ps-ember-2)", fontSize: 14,
+                  }}>🔨</div>
+                )}
+                <div style={{
+                  maxWidth: "82%",
+                  padding: "12px 14px",
+                  background: isUser ? "linear-gradient(180deg, #ff7a45, var(--ps-ember-deep))" : "var(--ps-bg-2)",
+                  color: isUser ? "#1a0d05" : "var(--ps-ink-0)",
+                  border: isUser ? "1px solid #ff8b56" : "1px solid var(--ps-line)",
+                  borderRadius: isUser ? "12px 4px 12px 12px" : "4px 12px 12px 12px",
+                  fontSize: 14.5, lineHeight: 1.55,
+                }}>
+                  {renderInline(msg.text)}
+                </div>
+                {isUser && (
+                  <div style={{
+                    flexShrink: 0, width: 32, height: 32, borderRadius: 4,
+                    background: "var(--ps-bg-3)", border: "1px solid var(--ps-line)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: "var(--ps-ink-2)", fontSize: 10, fontWeight: 600,
+                    fontFamily: "var(--font-jetbrains), monospace",
+                  }}>M</div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
+          <button
+            onClick={scrollToBerater}
+            className="ember-btn ember-btn-glow"
+            style={{ padding: "12px 22px", fontSize: 14, display: "inline-flex", alignItems: "center", gap: 8 }}
+          >
+            {t.tryNowLabel} →
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────
+// Founder-Sektion — wer steht dahinter
+// ─────────────────────────────────────────────
+function FounderSection() {
+  const t = useLanguage().t.founder;
+  const [imgError, setImgError] = useState(false);
+
+  // Initialen aus Namen ableiten
+  const initials = t.name.split(/\s+/).map((w) => w[0] ?? "").join("").slice(0, 2).toUpperCase();
+
+  return (
+    <section className="forge-bg" style={{ padding: "70px 20px 60px", borderBottom: "1px solid var(--ps-line-2)" }}>
+      <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18 }}>
+          <span className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.2em", color: "var(--ps-ember-2)", textTransform: "uppercase" }}>
+            {t.kicker}
+          </span>
+          <div style={{ flex: 1, height: 1, background: "var(--ps-line-2)" }} />
+        </div>
+        <h2 className="ff-display" style={{ fontSize: "clamp(28px, 4vw, 42px)", margin: "0 0 28px", lineHeight: 1.1, fontWeight: 400 }}>{t.title}</h2>
+
+        <div className="card-forged" style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 28,
+          padding: 28,
+          alignItems: "flex-start",
+        }}>
+          {/* Avatar */}
+          <div style={{
+            width: 160, height: 160,
+            borderRadius: 4,
+            background: imgError
+              ? "linear-gradient(135deg, var(--ps-ember-deep), var(--ps-ember))"
+              : "var(--ps-bg-2)",
+            border: "1px solid var(--ps-line)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            overflow: "hidden",
+            flexShrink: 0,
+          }}>
+            {imgError ? (
+              <span className="ff-display" style={{ fontSize: 72, color: "#1a0d05", lineHeight: 1, letterSpacing: "0.04em" }}>
+                {initials}
+              </span>
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src="/founder-chris.jpg"
+                alt={t.name}
+                onError={() => setImgError(true)}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            )}
+          </div>
+
+          {/* Inhalt */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 12, minWidth: 0, flex: "1 1 320px" }}>
+            <div>
+              <div className="ff-display" style={{ fontSize: 28, color: "var(--ps-ink-0)", lineHeight: 1.15 }}>
+                {t.name}
+              </div>
+              <div style={{ color: "var(--ps-ember-2)", fontSize: 13.5, marginTop: 4 }}>
+                {t.role}
+              </div>
+              <div className="ff-mono" style={{ fontSize: 11, letterSpacing: "0.1em", color: "var(--ps-ink-3)", textTransform: "uppercase", marginTop: 6 }}>
+                {t.ageLine}
+              </div>
+            </div>
+            <p style={{ color: "var(--ps-ink-2)", fontSize: 15.5, lineHeight: 1.65, margin: 0 }}>
+              {t.story}
+            </p>
+            <div style={{ marginTop: 6, display: "flex", alignItems: "center", gap: 8 }}>
+              <span className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", color: "var(--ps-ink-3)", textTransform: "uppercase" }}>
+                {t.contactLabel}
+              </span>
+              <a href={`mailto:${t.contactValue}`} style={{ color: "var(--ps-ember-2)", fontSize: 13.5, textDecoration: "none", borderBottom: "1px solid rgba(255,107,53,0.4)", paddingBottom: 1 }}>
+                {t.contactValue}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────
 // "Was wir nicht tun" — Selbstverpflichtung
 // ─────────────────────────────────────────────
 function PromisesBlock() {
@@ -661,9 +870,11 @@ export default function Home() {
       <AffiliateBlock />
       <HowItWorks />
       <Trust />
+      <DemoSection />
       <BeraterSection />
       <SchnellCheckSection />
       <PromisesBlock />
+      <FounderSection />
       <FAQ />
       <Footer />
       <MobileBottomBar />

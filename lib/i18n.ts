@@ -72,6 +72,31 @@ const translations = {
       ],
     },
 
+    // Founder-Sektion (zwischen Promises und FAQ)
+    founder: {
+      kicker: "Hinter PongSmith",
+      title: "Eine Person. Kein Konzern.",
+      name: "Christoph Gabrecht",
+      role: "Vereinsspieler · Mitgründer Shakehands e.V. Dresden",
+      ageLine: "38 Jahre · Q-TTR 1.280",
+      story: "PongSmith soll genau die Frustration verhindern, die ich selbst und viele Vereinskollegen durchgemacht haben: 200 € in ein Setup stecken, das nicht passt — und dadurch die Freude am Sport verlieren. Die Seite wird laufend mit neuen Daten gefüttert: Beläge, Hölzer, Community-Stimmen, eigene Test-Erfahrungen. Wenn dir was auffällt oder fehlt, schreib mich an.",
+      contactLabel: "E-Mail",
+      contactValue: "hello@pongsmith.de",
+    },
+
+    // Demo / Beispielberatung (vor BeraterSection)
+    demo: {
+      kicker: "So sieht eine Beratung aus",
+      title: "Beispiel: Marco, Q-TTR 1.280, Allround.",
+      sub: "Echte Berater-Logik, fixiertes Profil — damit du siehst was rauskommt bevor du selbst tippst.",
+      badge: "BEISPIEL",
+      tryNowLabel: "Jetzt eigenes Profil checken",
+      messages: [
+        { role: "user", text: "Ich habe TTR 1280, spiele Allround mit leichter VH-Tendenz. Mein Sriver fühlt sich zu langsam an, aber ich will keine Rakete. Budget ~80 € pro Belag." },
+        { role: "assistant", text: "Verstehe — du willst mehr Tempo ohne Kontrollverlust, und der Sriver hat dir das nie ganz gegeben. Klassische Marco-Situation: Belag, der dich nicht ärgert, aber auch nicht trägt.\n\n**Drei Setups, die für dich passen würden:**\n\n1. **Stiga Allround Classic + Donic Acuda S2**\n   · Holz spielt sich wie der Sriver, aber kontrolliertes Tempo. Acuda S2 (40°) gibt dir Spin-Reserven die du noch nicht ausreizt.\n\n2. **Andro Treiber Q + Tibhar Aurus Soft**\n   · Etwas spritziger im Holz. Aurus Soft hat genau die Verzeih-Eigenschaft die du brauchst, ohne langsam zu wirken.\n\n3. **Yasaka Sweden Extra + Yasaka Rakza X Soft**\n   · Geheimtipp im Allround-Bereich. Komplettes Setup unter 130 €.\n\nZum Budget: 80 € pro Belag passt für alle drei. Wenn du wissen willst warum kein Tenergy 05 dabei ist — gerne, ich erklär's." },
+      ],
+    },
+
     // "Was wir nicht tun" (zwischen Problem-Express und FAQ)
     promises: {
       kicker: "Selbstverpflichtung",
@@ -296,6 +321,29 @@ const translations = {
         { t: "Manufacturer data", d: "Speed, spin, control numbers straight from spec sheets. We do not round up." },
         { t: "Community reviews", d: "Aggregated from forums and rating sites. We weight individual opinions with care." },
         { t: "Club players", d: "Real reports from the 1,000–1,700 TTR corridor. Not pro-tour fantasy." },
+      ],
+    },
+
+    founder: {
+      kicker: "Behind PongSmith",
+      title: "One person. No corporation.",
+      name: "Christoph Gabrecht",
+      role: "Club player · co-founder Shakehands e.V. Dresden",
+      ageLine: "38 years · Q-TTR 1,280",
+      story: "PongSmith exists to prevent exactly the frustration I and many of my club mates have lived through: dropping €200 on a setup that doesn't fit — and losing the joy of playing because of it. The site is fed continuously with new data: rubbers, blades, community voices, my own test sessions. If you spot something missing or off, message me.",
+      contactLabel: "Email",
+      contactValue: "hello@pongsmith.de",
+    },
+
+    demo: {
+      kicker: "What a consultation looks like",
+      title: "Example: Marco, Q-TTR 1,280, allround.",
+      sub: "Real advisor logic, fixed profile — so you see the output before typing yourself.",
+      badge: "EXAMPLE",
+      tryNowLabel: "Now check your own profile",
+      messages: [
+        { role: "user", text: "I'm TTR 1280, allround with a slight FH lean. My Sriver feels too slow, but I don't want a rocket. Budget ~€80 per rubber." },
+        { role: "assistant", text: "Got it — you want more speed without losing control, and the Sriver never quite gave you that. Classic Marco situation: a rubber that doesn't annoy you, but doesn't carry you either.\n\n**Three setups that would fit:**\n\n1. **Stiga Allround Classic + Donic Acuda S2**\n   · Blade plays like the Sriver but with controlled speed. Acuda S2 (40°) gives spin reserves you're not yet using.\n\n2. **Andro Treiber Q + Tibhar Aurus Soft**\n   · Slightly punchier blade. Aurus Soft has exactly the forgiving feel you need, without being slow.\n\n3. **Yasaka Sweden Extra + Yasaka Rakza X Soft**\n   · Hidden gem in the allround range. Complete setup under €130.\n\nOn budget: €80 per rubber works for all three. If you want to know why no Tenergy 05 is in here — happy to explain." },
       ],
     },
 
