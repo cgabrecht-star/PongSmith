@@ -303,7 +303,7 @@ function Hero() {
             onClick={scrollToBerater}
             style={{ display: "inline-flex", alignItems: "center", gap: 10, fontSize: 15, padding: "14px 24px" }}
           >
-            🔨 {t.cta} →
+            {t.cta} →
           </button>
           <button
             onClick={scrollToHow}
@@ -328,6 +328,81 @@ function Hero() {
             <div key={i} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
               <div className="ff-display" style={{ fontSize: 36, color: "var(--ps-ink-0)", lineHeight: 1 }}>{s.v}</div>
               <div className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--ps-ink-3)" }}>{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────
+// Affiliate-Transparenz (direkt unter Hero, beantwortet "verdient ihr was?")
+// ─────────────────────────────────────────────
+function AffiliateBlock() {
+  const t = useLanguage().t.affiliate;
+  return (
+    <section style={{ padding: "60px 20px", background: "var(--ps-bg-1)", borderBottom: "1px solid var(--ps-line-2)" }}>
+      <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
+        <span className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.2em", color: "var(--ps-ember-2)", textTransform: "uppercase" }}>
+          {t.kicker}
+        </span>
+        <h2 className="ff-display" style={{ fontSize: "clamp(28px, 4vw, 42px)", margin: "12px 0 18px", lineHeight: 1.15, fontWeight: 400, color: "var(--ps-ink-0)" }}>
+          {t.title}
+        </h2>
+        <p style={{ color: "var(--ps-ink-2)", fontSize: 16, lineHeight: 1.65, maxWidth: 720, margin: "0 auto 18px" }}>
+          {t.body}
+        </p>
+        <a
+          href="/datenschutz#affiliates"
+          style={{
+            color: "var(--ps-ember-2)",
+            fontSize: 13,
+            textDecoration: "none",
+            borderBottom: "1px solid rgba(255,107,53,0.4)",
+            paddingBottom: 1,
+          }}
+        >
+          {t.moreLink} →
+        </a>
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────
+// "Was wir nicht tun" — Selbstverpflichtung
+// ─────────────────────────────────────────────
+function PromisesBlock() {
+  const t = useLanguage().t.promises;
+  return (
+    <section style={{ padding: "90px 20px", background: "var(--ps-bg-0)", borderBottom: "1px solid var(--ps-line-2)" }}>
+      <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+        <SectionLabel n="05">{t.kicker}</SectionLabel>
+        <h2 className="ff-display" style={{ fontSize: "clamp(36px, 5vw, 64px)", margin: "0 0 10px", lineHeight: 1, fontWeight: 400 }}>{t.title}</h2>
+        <p style={{ color: "var(--ps-ink-2)", fontSize: 17, margin: "0 0 40px" }}>{t.sub}</p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 14 }}>
+          {t.items.map((p, i) => (
+            <div
+              key={i}
+              className="card-forged"
+              style={{
+                padding: 24,
+                display: "flex",
+                flexDirection: "column",
+                gap: 12,
+                borderLeft: "3px solid rgba(217,106,90,0.5)",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ fontSize: 20 }}>{p.icon}</span>
+                <span className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.16em", color: "var(--ps-ink-3)", textTransform: "uppercase" }}>
+                  {String(i + 1).padStart(2, "0")} / {String(t.items.length).padStart(2, "0")}
+                </span>
+              </div>
+              <div className="ff-display" style={{ fontSize: 20, color: "var(--ps-ink-0)", lineHeight: 1.2 }}>{p.t}</div>
+              <p style={{ color: "var(--ps-ink-2)", margin: 0, fontSize: 14, lineHeight: 1.55 }}>{p.d}</p>
             </div>
           ))}
         </div>
@@ -457,7 +532,7 @@ function FAQ() {
     <section style={{ padding: "90px 20px", background: "var(--ps-bg-1)", borderBottom: "1px solid var(--ps-line-2)" }}>
       <div style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "minmax(0, 280px) minmax(0, 1fr)", gap: 60 }}>
         <div>
-          <SectionLabel n="05">FAQ</SectionLabel>
+          <SectionLabel n="06">FAQ</SectionLabel>
           <h2 className="ff-display" style={{ fontSize: "clamp(36px, 4vw, 56px)", margin: 0, lineHeight: 1, fontWeight: 400 }}>{t.title}</h2>
         </div>
         <div style={{ display: "flex", flexDirection: "column", borderTop: "1px solid var(--ps-line-2)" }}>
@@ -583,10 +658,12 @@ export default function Home() {
     <div className="pb-mobile" style={{ backgroundColor: "var(--ps-bg-0)", color: "var(--ps-ink-0)", minHeight: "100vh" }}>
       <TopBar />
       <Hero />
+      <AffiliateBlock />
       <HowItWorks />
       <Trust />
       <BeraterSection />
       <SchnellCheckSection />
+      <PromisesBlock />
       <FAQ />
       <Footer />
       <MobileBottomBar />

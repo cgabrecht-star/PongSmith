@@ -28,11 +28,11 @@ const translations = {
     // Hero
     hero: {
       kicker: "Die Tischtennis-Schmiede",
-      line1: "Dein Schläger,",
-      line2: "in 3 Minuten",
-      line3: "ehrlich beraten.",
+      line1: "Finde heraus,",
+      line2: "ob dein Setup",
+      line3: "zu dir passt.",
       sub: "Damit du nie wieder 200 € in ein Setup steckst, das nicht zu dir passt. Unabhängig. Kostenlos. Ohne Marken-Bias.",
-      cta: "Jetzt beraten lassen",
+      cta: "Profil checken",
       ctaSecondary: "So funktioniert's",
       stat1v: "1.000–1.700",
       stat1l: "Q-TTR Spielstärke",
@@ -42,13 +42,21 @@ const translations = {
       stat3l: "Hersteller im Index",
     },
 
+    // Affiliate-Transparenz (zwischen Hero und HowItWorks)
+    affiliate: {
+      kicker: "Wie wir Geld verdienen",
+      title: "Affiliate-Provision, kein Verkaufsdruck.",
+      body: "Wenn du nach unserer Empfehlung über einen unserer Links kaufst, bekommen wir eine kleine Provision vom Shop. Du zahlst keinen Cent mehr. Was wir verdienen, hängt vom Shop ab — nicht vom konkreten Produkt. Unsere Empfehlung wird nicht angepasst um die Provision zu maximieren.",
+      moreLink: "Details im Datenschutz",
+    },
+
     // How it works
     how: {
       title: "Drei Schritte. Kein Verkaufsdruck.",
-      sub: "Wir hören dir zu — und sagen dir, was wir wirklich denken.",
+      sub: "Wir hören dir zu. Und manchmal lautet die Empfehlung: bleib bei dem, was du hast.",
       steps: [
         { n: "01", t: "Erzählen", d: "Du beschreibst deine Spielstärke, Frustpunkte und worauf du im Match warten musst." },
-        { n: "02", t: "Spiegeln", d: "Wir fassen dein Profil zusammen, damit Missverständnisse vorm Geldausgeben sterben." },
+        { n: "02", t: "Spiegeln", d: "Wir fassen dein Profil zusammen, damit Missverständnisse weg sind, bevor du Geld ausgibst." },
         { n: "03", t: "Empfehlen", d: "Drei begründete Setups mit Synergie-Score, Preisvergleich und ehrlichem „warum nicht\"." },
       ],
     },
@@ -56,11 +64,24 @@ const translations = {
     // Trust
     trust: {
       title: "Woher kommt unser Wissen?",
-      sub: "Drei Säulen. Keine Schiebung.",
+      sub: "Drei Säulen. Volle Transparenz.",
       pillars: [
         { t: "Hersteller-Daten", d: "Speed-, Spin- und Control-Werte direkt aus Datenblättern. Wir kürzen nichts schön." },
-        { t: "Community-Reviews", d: "Aggregiert aus Foren und Bewertungsportalen. Wir filtern Schreihälse heraus." },
+        { t: "Community-Reviews", d: "Aggregiert aus Foren und Bewertungsportalen. Wir gewichten Einzelmeinungen mit Vorsicht." },
         { t: "Vereinsspieler", d: "Echte Erfahrungsberichte aus dem TTR-Korridor 1.000–1.700, nicht Bundesliga-Phantasie." },
+      ],
+    },
+
+    // "Was wir nicht tun" (zwischen Problem-Express und FAQ)
+    promises: {
+      kicker: "Selbstverpflichtung",
+      title: "Was wir bewusst nicht tun.",
+      sub: "Negative Versprechen wirken stärker als positive. Hier sind unsere.",
+      items: [
+        { icon: "🚫", t: "Keine Bundesliga-Beläge pushen", d: "Tenergy 05 unter 1.700 TTR macht Frust statt Spin. Wir empfehlen das Setup, mit dem du nächsten Dienstag besser spielst." },
+        { icon: "🚫", t: "Keine Hersteller-Werbedeals", d: "Kein Hersteller bezahlt uns für bessere Platzierung. Adcell, Awin und Amazon — Provision allein vom Shop, niemals vom Marken-Lobby." },
+        { icon: "🚫", t: "Keine Provisions-Optimierung", d: "Die Empfehlung richtet sich nach deinem Profil, nicht nach der Provision. Wir sortieren nicht nach Shop-Marge." },
+        { icon: "🚫", t: "Kein Newsletter-Spam", d: "Es gibt keinen Newsletter. Wenn du wiederkommst, dann weil's geholfen hat — nicht weil wir nerven." },
       ],
     },
 
@@ -142,7 +163,7 @@ const translations = {
     faq: {
       title: "Häufige Fragen",
       items: [
-        { q: "Verdient ihr an meinem Kauf?", a: "Ja, über Affiliate-Links — aber nur, wenn du aus eigener Überzeugung kaufst. Unsere Empfehlung ändert sich nicht durch Provisionen. Wir markieren das transparent." },
+        { q: "Verdient ihr an meinem Kauf?", a: "Ja, über Affiliate-Provisionen vom Shop. Du zahlst keinen Cent mehr. Was wir verdienen hängt vom Shop ab, nicht vom konkreten Produkt — wir sortieren also nicht nach Marge. Wenn ein günstigerer Belag besser zu dir passt, kriegst du den empfohlen." },
         { q: "Warum keine Bundesliga-Beläge?", a: "Weil ein Tenergy 05 unter 1.700 TTR meist mehr Frust als Spin liefert. Wir empfehlen das Setup, mit dem du nächsten Dienstag besser spielst." },
         { q: "Reicht eine KI für sowas Persönliches?", a: "Die KI hört strukturiert zu, vergleicht dein Profil mit hunderten Beläg-Holz-Kombinationen und legt die Begründung offen. Du entscheidest." },
         { q: "Was ist mit Defensiv-Setups?", a: "Voll abgedeckt. Sag uns einfach, du spielst hinter dem Tisch — die Empfehlungen drehen sich entsprechend." },
@@ -196,7 +217,7 @@ const translations = {
       qualityCompleteHint: "Specs + ≥3 Community-Reviews + Beschreibung",
       qualityPartial: "Wenig Community-Daten",
       qualityPartialHint: "Specs vorhanden, aber wenig Reviews oder ohne Beschreibung",
-      consultBtn: "🔨 Beraten lassen",
+      consultBtn: "Profil checken",
       // Modal
       specs: "Spezifikationen",
       reviews: "Community-Reviews",
@@ -237,11 +258,11 @@ const translations = {
 
     hero: {
       kicker: "The Table-Tennis Forge",
-      line1: "Your racket,",
-      line2: "honestly built,",
-      line3: "in 3 minutes.",
+      line1: "Find out",
+      line2: "if your setup",
+      line3: "actually fits you.",
       sub: "So you never burn another €200 on a setup that doesn't fit you. Independent. Free. Zero brand bias.",
-      cta: "Get my setup",
+      cta: "Check my profile",
       ctaSecondary: "How it works",
       stat1v: "1,000–1,700",
       stat1l: "Q-TTR rating range",
@@ -251,23 +272,42 @@ const translations = {
       stat3l: "Brands indexed",
     },
 
+    affiliate: {
+      kicker: "How we make money",
+      title: "Affiliate commission, no sales pressure.",
+      body: "If you buy through one of our links after our recommendation, we get a small commission from the shop. You don't pay a cent more. What we earn depends on the shop, not the specific product — our recommendation isn't tweaked to maximise commission.",
+      moreLink: "Details in privacy policy",
+    },
+
     how: {
       title: "Three steps. No sales pressure.",
-      sub: "We listen — then tell you what we actually think.",
+      sub: "We listen. And sometimes the answer is: stick with what you have.",
       steps: [
         { n: "01", t: "Tell us", d: "Describe your level, your frustrations, the shot you keep waiting for in matches." },
-        { n: "02", t: "Mirror", d: "We summarise your profile back so misunderstandings die before you spend money." },
+        { n: "02", t: "Mirror", d: "We summarise your profile back so misunderstandings are gone before you spend money." },
         { n: "03", t: "Recommend", d: "Three reasoned setups with a synergy score, price comparison, and honest 'why not'." },
       ],
     },
 
     trust: {
       title: "Where our knowledge comes from",
-      sub: "Three pillars. No funny business.",
+      sub: "Three pillars. Full transparency.",
       pillars: [
         { t: "Manufacturer data", d: "Speed, spin, control numbers straight from spec sheets. We do not round up." },
-        { t: "Community reviews", d: "Aggregated from forums and rating sites. We filter out the loudest yellers." },
+        { t: "Community reviews", d: "Aggregated from forums and rating sites. We weight individual opinions with care." },
         { t: "Club players", d: "Real reports from the 1,000–1,700 TTR corridor. Not pro-tour fantasy." },
+      ],
+    },
+
+    promises: {
+      kicker: "Self-commitment",
+      title: "What we deliberately don't do.",
+      sub: "Negative promises are stronger than positive ones. Here are ours.",
+      items: [
+        { icon: "🚫", t: "No pro-tour rubbers pushed", d: "Tenergy 05 under 1,700 TTR creates frustration, not spin. We recommend the setup that helps you play better next Tuesday." },
+        { icon: "🚫", t: "No manufacturer ad deals", d: "No brand pays us for better placement. Adcell, Awin, Amazon — commission only from the shop, never from brand lobbying." },
+        { icon: "🚫", t: "No commission optimisation", d: "Recommendations follow your profile, not the commission. We don't sort by shop margin." },
+        { icon: "🚫", t: "No newsletter spam", d: "There is no newsletter. If you come back it's because we helped — not because we nagged." },
       ],
     },
 
@@ -345,7 +385,7 @@ const translations = {
     faq: {
       title: "Common questions",
       items: [
-        { q: "Do you make money on my purchase?", a: "Yes, via affiliate links — but only when you buy out of conviction. Our pick does not change because of commissions. We label it openly." },
+        { q: "Do you make money on my purchase?", a: "Yes, via affiliate commissions from the shop. You don't pay a cent more. What we earn depends on the shop, not the specific product — so we don't sort by margin. If a cheaper rubber fits you better, that's the one you'll get recommended." },
         { q: "Why no pro-tour rubbers?", a: "Because a Tenergy 05 under 1,700 TTR usually delivers more frustration than spin. We recommend the setup that lets you play better next Tuesday." },
         { q: "Can an AI really do this?", a: "The AI listens with structure, compares your profile to hundreds of blade/rubber combinations, and shows the reasoning. You decide." },
         { q: "What about defensive setups?", a: "Fully covered. Just tell us you play behind the table and the picks rotate accordingly." },
@@ -396,7 +436,7 @@ const translations = {
       qualityCompleteHint: "Specs + ≥3 community reviews + description",
       qualityPartial: "Limited community data",
       qualityPartialHint: "Has specs, but few reviews or no description",
-      consultBtn: "🔨 Get advice",
+      consultBtn: "Check my profile",
       // Modal
       specs: "Specifications",
       reviews: "Community reviews",
