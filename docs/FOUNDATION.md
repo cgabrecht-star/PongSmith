@@ -95,12 +95,27 @@ PongSmith ist die unabhängige Online-Schmiede für Tischtennis-Setups. Vereinss
 
 **Monetarisierung:** Affiliate-Provisionen (5%) auf Hölzer und Beläge über Adcell/Awin/eigene Shop-Partnerschaften.
 
-**Geplante Affiliate-Partner (Phase 1-2):**
+**Affiliate-Netzwerke — Bewerbungsstatus (Stand: Mai 2026):**
+
+| Netzwerk | Status | Hinweis |
+|---|---|---|
+| Amazon Partnernet | ✅ Zugesagt | Aktiv — Tracking-ID: `pongsmith-21` |
+| Awin | ✅ Zugesagt | Aktiv — Publisher-ID: `2883847` |
+| Adcell | ⏳ Ausstehend | Problem: Impressum stimmte nicht mit Bewerbung überein — nach Korrektur erneut einreichen |
+
+**Aktive Advertiser-Programme (Stand: Mai 2026):**
+
+| Shop | Netzwerk | Advertiser-ID | Provision | Cookie |
+|---|---|---|---|---|
+| JOOLA DE | Awin | `101601` | 4–6% | 30 Tage |
+| Amazon.de | Amazon Partnernet | — | 3–5% | 24 Stunden |
+
+**Geplante Affiliate-Partner (Phase 3):**
 - TT-Shop.de (über Adcell)
 - Tischtennis.biz (über Adcell)
 - Contra Sport
 - Sportschreiner
-- Ggf. Megaspin (international)
+- Ggf. Megaspin (international, über Awin)
 
 **Realistische Ertragsprognose:**
 - Jahr 1: 2.000-8.000 €

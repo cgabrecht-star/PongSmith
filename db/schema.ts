@@ -408,3 +408,36 @@ export const recommendationFeedback = pgTable("recommendation_feedback", {
   kommentar: text("kommentar"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
+
+// ---------------------------------------------------------------------------
+// Affiliate-Click-Tracking
+// Jeder Klick auf einen "Zum Shop"-Button geht durch /api/click und wird hier
+// geloggt — anonym, ohne Cookies. Spätere Conversion-Attribution möglich
+// über sessionId + Affiliate-Netzwerk-Reports.
+// ---------------------------------------------------------------------------
+
+export const clicks = pgTable(
+  "clicks",
+  {
+    id: serial("id").primaryKey(),
+    /** Welcher Shop wurde angeklickt (amazon, joola, tt-shop, ...) */
+    shopId: varchar("shop_id", { length: 30 }).notNull(),
+    /** "blade" oder "rubber" */
+    productType: varchar("product_type", { length: 10 }).notNull(),
+    /** DB-ID des Produkts */
+    productId: integer("product_id").notNull(),
+    /** Session-ID der Recommendation (optional, fürs Attribution-Tracking) */
+    sessionId: varchar("session_id", { length: 100 }),
+    /** Referrer-Pfad (welche Seite hat den Klick ausgelöst) */
+    referrer: varchar("referrer", { length: 200 }),
+    /** User-Agent (gekürzt — DSGVO-freundlich, keine eindeutige Kennung) */
+    userAgentShort: varchar("user_agent_short", { length: 50 }),
+    clickedAt: timestamp("clicked_at").defaultNow().notNull(),
+  },
+  (t) => [
+    index("clicks_shop_idx").on(t.shopId),
+    index("clicks_product_idx").on(t.productType, t.productId),
+    index("clicks_session_idx").on(t.sessionId),
+    index("clicks_clicked_at_idx").on(t.clickedAt),
+  ]
+);

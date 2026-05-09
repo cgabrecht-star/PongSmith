@@ -17,6 +17,8 @@ import Anthropic from "@anthropic-ai/sdk";
 import { db } from "@/db";
 import { blades, rubbers, synergies, manufacturers } from "@/db/schema";
 import { and, desc, eq, gte, inArray, lte, sql as drizzleSql } from "drizzle-orm";
+import { detectProducts } from "@/lib/product-detector";
+import { getShopLinks, buildTrackingUrl } from "@/lib/affiliate";
 
 export const runtime   = "nodejs";
 export const dynamic   = "force-dynamic";
@@ -928,7 +930,26 @@ export async function POST(req: NextRequest) {
           .filter((b): b is Anthropic.TextBlock => b.type === "text")
           .map((b) => b.text)
           .join("");
-        return NextResponse.json({ text });
+
+        // Erkannte Produkte → Shop-Links generieren (für UI-Buttons)
+        const detected = await detectProducts(text);
+        const products = detected.map((p) => {
+          const ref = { type: p.type, id: p.id, name: p.name, manufacturer: p.manufacturer };
+          const shops = getShopLinks(ref).map((l) => ({
+            id: l.shop.id,
+            name: l.shop.name,
+            url: buildTrackingUrl({ shopId: l.shop.id, productType: p.type, productId: p.id }),
+          }));
+          return {
+            type: p.type,
+            id: p.id,
+            name: p.name,
+            manufacturer: p.manufacturer,
+            shops,
+          };
+        });
+
+        return NextResponse.json({ text, products });
       }
 
       if (response.stop_reason === "tool_use") {

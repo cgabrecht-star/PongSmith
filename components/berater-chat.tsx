@@ -3,9 +3,25 @@
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/lib/language-context";
 
+interface ShopLink {
+  id: string;
+  name: string;
+  url: string;
+}
+
+interface DetectedProduct {
+  type: "blade" | "rubber";
+  id: number;
+  name: string;
+  manufacturer: string;
+  shops: ShopLink[];
+}
+
 interface Message {
   role: "user" | "assistant";
   content: string;
+  /** Nur bei assistant-Nachrichten: erkannte Produkte mit Shop-Links */
+  products?: DetectedProduct[];
 }
 
 // Rendert **fett**, *kursiv* und einfache Listen aus Markdown-Text
@@ -82,7 +98,75 @@ function TypingDots() {
   );
 }
 
-function Bubble({ msg, userLabel }: { msg: Message; userLabel: string }) {
+function ShopButtons({ products, lang }: { products: DetectedProduct[]; lang: "de" | "en" }) {
+  if (!products || products.length === 0) return null;
+  const heading = lang === "de" ? "Hier kaufen" : "Buy here";
+  const adLabel = lang === "de" ? "Werbung · Affiliate-Links" : "Ad · affiliate links";
+
+  return (
+    <div style={{
+      marginTop: 14,
+      paddingTop: 12,
+      borderTop: "1px dashed var(--ps-line)",
+    }}>
+      <div className="ff-mono" style={{
+        fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase",
+        color: "var(--ps-ink-3)", marginBottom: 8,
+        display: "flex", justifyContent: "space-between", alignItems: "center",
+      }}>
+        <span>🛒 {heading}</span>
+        <span style={{ color: "var(--ps-ink-4)", fontSize: 9 }}>{adLabel}</span>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        {products.map((p) => (
+          <div
+            key={`${p.type}:${p.id}`}
+            style={{
+              display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center",
+              fontSize: 12.5,
+            }}
+          >
+            <span style={{ color: "var(--ps-ink-1)", marginRight: 4, flexShrink: 0 }}>
+              <strong style={{ color: "var(--ps-ink-0)", fontWeight: 600 }}>{p.name}</strong>
+              <span style={{ color: "var(--ps-ink-3)", marginLeft: 6, fontSize: 11 }}>
+                {p.manufacturer}
+              </span>
+            </span>
+            {p.shops.length === 0 ? (
+              <span style={{ color: "var(--ps-ink-4)", fontSize: 11 }}>
+                {lang === "de" ? "Shop folgt" : "shop coming"}
+              </span>
+            ) : (
+              p.shops.map((s) => (
+                <a
+                  key={s.id}
+                  href={s.url}
+                  target="_blank"
+                  rel="sponsored noopener"
+                  style={{
+                    background: "var(--ps-bg-3)",
+                    border: "1px solid var(--ps-line)",
+                    color: "var(--ps-ember-2)",
+                    padding: "3px 9px",
+                    borderRadius: 3,
+                    fontSize: 11.5,
+                    textDecoration: "none",
+                    fontFamily: "var(--font-jetbrains), monospace",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {s.name} →
+                </a>
+              ))
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Bubble({ msg, userLabel, lang }: { msg: Message; userLabel: string; lang: "de" | "en" }) {
   const isUser = msg.role === "user";
   return (
     <div style={{ display: "flex", gap: 10, justifyContent: isUser ? "flex-end" : "flex-start" }}>
@@ -111,6 +195,9 @@ function Bubble({ msg, userLabel }: { msg: Message; userLabel: string }) {
         boxShadow: isUser ? "0 4px 16px rgba(255,107,53,0.25)" : "none",
       }}>
         {formatText(msg.content)}
+        {!isUser && msg.products && msg.products.length > 0 && (
+          <ShopButtons products={msg.products} lang={lang} />
+        )}
       </div>
 
       {isUser && (
@@ -173,11 +260,19 @@ export function BeraterChat() {
           lang,
         }),
       });
-      const data = (await res.json()) as { text?: string; error?: string };
+      const data = (await res.json()) as {
+        text?: string;
+        error?: string;
+        products?: DetectedProduct[];
+      };
       if (data.error) {
         setApiError(data.error);
       } else {
-        setMessages((prev) => [...prev, { role: "assistant", content: data.text ?? "" }]);
+        setMessages((prev) => [...prev, {
+          role: "assistant",
+          content: data.text ?? "",
+          products: data.products,
+        }]);
       }
     } catch {
       setApiError(t.berater.error);
@@ -243,7 +338,7 @@ export function BeraterChat() {
         style={{ flex: 1, overflowY: "auto", padding: "20px", display: "flex", flexDirection: "column", gap: 16 }}
       >
         {messages.map((msg, i) => (
-          <Bubble key={i} msg={msg} userLabel={userLabel} />
+          <Bubble key={i} msg={msg} userLabel={userLabel} lang={lang} />
         ))}
         {loading && (
           <div style={{ display: "flex", gap: 10 }}>

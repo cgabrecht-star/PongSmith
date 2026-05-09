@@ -1,0 +1,1814 @@
+{
+  "id": "cc00891a-995e-4825-aa8d-d38a2193f7d5",
+  "prevId": "cff446a2-94de-45b4-8700-b1fff08547be",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.blades": {
+      "name": "blades",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "manufacturer_id": {
+          "name": "manufacturer_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(150)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "varchar(150)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "speed_raw": {
+          "name": "speed_raw",
+          "type": "numeric(5, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "control_raw": {
+          "name": "control_raw",
+          "type": "numeric(5, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "speed_raw_scale": {
+          "name": "speed_raw_scale",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "speed_norm": {
+          "name": "speed_norm",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "control_norm": {
+          "name": "control_norm",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_speed": {
+          "name": "community_speed",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_control": {
+          "name": "community_control",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_review_count": {
+          "name": "community_review_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "layers": {
+          "name": "layers",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "composition": {
+          "name": "composition",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "weight_min": {
+          "name": "weight_min",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "weight_max": {
+          "name": "weight_max",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "stiffness": {
+          "name": "stiffness",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "play_style": {
+          "name": "play_style",
+          "type": "play_style",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ttr_min": {
+          "name": "ttr_min",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ttr_max": {
+          "name": "ttr_max",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ttr_optimal": {
+          "name": "ttr_optimal",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description_en": {
+          "name": "description_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_description": {
+          "name": "community_description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_description_en": {
+          "name": "community_description_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "source_url": {
+          "name": "source_url",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "blades_manufacturer_idx": {
+          "name": "blades_manufacturer_idx",
+          "columns": [
+            {
+              "expression": "manufacturer_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "blades_play_style_idx": {
+          "name": "blades_play_style_idx",
+          "columns": [
+            {
+              "expression": "play_style",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "blades_ttr_idx": {
+          "name": "blades_ttr_idx",
+          "columns": [
+            {
+              "expression": "ttr_min",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "ttr_max",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "blades_manufacturer_id_manufacturers_id_fk": {
+          "name": "blades_manufacturer_id_manufacturers_id_fk",
+          "tableFrom": "blades",
+          "tableTo": "manufacturers",
+          "columnsFrom": [
+            "manufacturer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "blades_slug_unique": {
+          "name": "blades_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.clicks": {
+      "name": "clicks",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "shop_id": {
+          "name": "shop_id",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "product_type": {
+          "name": "product_type",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "product_id": {
+          "name": "product_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "session_id": {
+          "name": "session_id",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "referrer": {
+          "name": "referrer",
+          "type": "varchar(200)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_agent_short": {
+          "name": "user_agent_short",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "clicked_at": {
+          "name": "clicked_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "clicks_shop_idx": {
+          "name": "clicks_shop_idx",
+          "columns": [
+            {
+              "expression": "shop_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "clicks_product_idx": {
+          "name": "clicks_product_idx",
+          "columns": [
+            {
+              "expression": "product_type",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "product_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "clicks_session_idx": {
+          "name": "clicks_session_idx",
+          "columns": [
+            {
+              "expression": "session_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "clicks_clicked_at_idx": {
+          "name": "clicks_clicked_at_idx",
+          "columns": [
+            {
+              "expression": "clicked_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.manufacturers": {
+      "name": "manufacturers",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "country": {
+          "name": "country",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "website": {
+          "name": "website",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "manufacturers_name_unique": {
+          "name": "manufacturers_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        },
+        "manufacturers_slug_unique": {
+          "name": "manufacturers_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.observations": {
+      "name": "observations",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "player_id": {
+          "name": "player_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "beobachtete_staerken": {
+          "name": "beobachtete_staerken",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "defizite": {
+          "name": "defizite",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "eigene_empfehlung": {
+          "name": "eigene_empfehlung",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "observations_player_id_players_id_fk": {
+          "name": "observations_player_id_players_id_fk",
+          "tableFrom": "observations",
+          "tableTo": "players",
+          "columnsFrom": [
+            "player_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.player_setups": {
+      "name": "player_setups",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "player_id": {
+          "name": "player_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "player_setup_status",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'current'"
+        },
+        "blade_id": {
+          "name": "blade_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rubber_vh_id": {
+          "name": "rubber_vh_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rubber_rh_id": {
+          "name": "rubber_rh_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "schlaegergewicht": {
+          "name": "schlaegergewicht",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "score_tempo": {
+          "name": "score_tempo",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "score_spin": {
+          "name": "score_spin",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "score_kontrolle": {
+          "name": "score_kontrolle",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "score_gesamtzufriedenheit": {
+          "name": "score_gesamtzufriedenheit",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wechselgrund": {
+          "name": "wechselgrund",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kommentar": {
+          "name": "kommentar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "player_setups_player_idx": {
+          "name": "player_setups_player_idx",
+          "columns": [
+            {
+              "expression": "player_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "player_setups_player_id_players_id_fk": {
+          "name": "player_setups_player_id_players_id_fk",
+          "tableFrom": "player_setups",
+          "tableTo": "players",
+          "columnsFrom": [
+            "player_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "player_setups_blade_id_blades_id_fk": {
+          "name": "player_setups_blade_id_blades_id_fk",
+          "tableFrom": "player_setups",
+          "tableTo": "blades",
+          "columnsFrom": [
+            "blade_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "player_setups_rubber_vh_id_rubbers_id_fk": {
+          "name": "player_setups_rubber_vh_id_rubbers_id_fk",
+          "tableFrom": "player_setups",
+          "tableTo": "rubbers",
+          "columnsFrom": [
+            "rubber_vh_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "player_setups_rubber_rh_id_rubbers_id_fk": {
+          "name": "player_setups_rubber_rh_id_rubbers_id_fk",
+          "tableFrom": "player_setups",
+          "tableTo": "rubbers",
+          "columnsFrom": [
+            "rubber_rh_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.players": {
+      "name": "players",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "ttr_actual": {
+          "name": "ttr_actual",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ttr_range": {
+          "name": "ttr_range",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "jahre_aktiv": {
+          "name": "jahre_aktiv",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "spielstil": {
+          "name": "spielstil",
+          "type": "play_style",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hand": {
+          "name": "hand",
+          "type": "hand",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "notizen": {
+          "name": "notizen",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.prices": {
+      "name": "prices",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "shop_product_id": {
+          "name": "shop_product_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "price": {
+          "name": "price",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "in_stock": {
+          "name": "in_stock",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "scraped_at": {
+          "name": "scraped_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "prices_shop_product_idx": {
+          "name": "prices_shop_product_idx",
+          "columns": [
+            {
+              "expression": "shop_product_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "prices_scraped_at_idx": {
+          "name": "prices_scraped_at_idx",
+          "columns": [
+            {
+              "expression": "scraped_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "prices_shop_product_id_shop_products_id_fk": {
+          "name": "prices_shop_product_id_shop_products_id_fk",
+          "tableFrom": "prices",
+          "tableTo": "shop_products",
+          "columnsFrom": [
+            "shop_product_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.recommendation_feedback": {
+      "name": "recommendation_feedback",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "recommendation_id": {
+          "name": "recommendation_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rating": {
+          "name": "rating",
+          "type": "recommendation_rating",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "kommentar": {
+          "name": "kommentar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "recommendation_feedback_recommendation_id_recommendations_id_fk": {
+          "name": "recommendation_feedback_recommendation_id_recommendations_id_fk",
+          "tableFrom": "recommendation_feedback",
+          "tableTo": "recommendations",
+          "columnsFrom": [
+            "recommendation_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.recommendations": {
+      "name": "recommendations",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "session_id": {
+          "name": "session_id",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "eingaben_jsonb": {
+          "name": "eingaben_jsonb",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "empfohlenes_setup_jsonb": {
+          "name": "empfohlenes_setup_jsonb",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "generated_at": {
+          "name": "generated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "recommendations_session_idx": {
+          "name": "recommendations_session_idx",
+          "columns": [
+            {
+              "expression": "session_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.rubber_variants": {
+      "name": "rubber_variants",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "rubber_id": {
+          "name": "rubber_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "thickness": {
+          "name": "thickness",
+          "type": "numeric(3, 1)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hardness": {
+          "name": "hardness",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        }
+      },
+      "indexes": {
+        "rubber_variants_rubber_idx": {
+          "name": "rubber_variants_rubber_idx",
+          "columns": [
+            {
+              "expression": "rubber_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "rubber_variants_rubber_id_rubbers_id_fk": {
+          "name": "rubber_variants_rubber_id_rubbers_id_fk",
+          "tableFrom": "rubber_variants",
+          "tableTo": "rubbers",
+          "columnsFrom": [
+            "rubber_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "rubber_variants_unique": {
+          "name": "rubber_variants_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "rubber_id",
+            "thickness",
+            "hardness"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.rubbers": {
+      "name": "rubbers",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "manufacturer_id": {
+          "name": "manufacturer_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(150)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "varchar(150)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "rubber_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'smooth'"
+        },
+        "speed_raw": {
+          "name": "speed_raw",
+          "type": "numeric(5, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "spin_raw": {
+          "name": "spin_raw",
+          "type": "numeric(5, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "control_raw": {
+          "name": "control_raw",
+          "type": "numeric(5, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "speed_raw_scale": {
+          "name": "speed_raw_scale",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "speed_norm": {
+          "name": "speed_norm",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "spin_norm": {
+          "name": "spin_norm",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "control_norm": {
+          "name": "control_norm",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_speed": {
+          "name": "community_speed",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_spin": {
+          "name": "community_spin",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_control": {
+          "name": "community_control",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_review_count": {
+          "name": "community_review_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "topsheet_character": {
+          "name": "topsheet_character",
+          "type": "topsheet_character",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hardness_min": {
+          "name": "hardness_min",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hardness_max": {
+          "name": "hardness_max",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "play_style": {
+          "name": "play_style",
+          "type": "play_style",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ttr_min": {
+          "name": "ttr_min",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ttr_max": {
+          "name": "ttr_max",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ttr_optimal": {
+          "name": "ttr_optimal",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description_en": {
+          "name": "description_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_description": {
+          "name": "community_description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_description_en": {
+          "name": "community_description_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "source_url": {
+          "name": "source_url",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "rubbers_manufacturer_idx": {
+          "name": "rubbers_manufacturer_idx",
+          "columns": [
+            {
+              "expression": "manufacturer_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "rubbers_type_idx": {
+          "name": "rubbers_type_idx",
+          "columns": [
+            {
+              "expression": "type",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "rubbers_ttr_idx": {
+          "name": "rubbers_ttr_idx",
+          "columns": [
+            {
+              "expression": "ttr_min",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "ttr_max",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "rubbers_manufacturer_id_manufacturers_id_fk": {
+          "name": "rubbers_manufacturer_id_manufacturers_id_fk",
+          "tableFrom": "rubbers",
+          "tableTo": "manufacturers",
+          "columnsFrom": [
+            "manufacturer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "rubbers_slug_unique": {
+          "name": "rubbers_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.shop_products": {
+      "name": "shop_products",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "shop_id": {
+          "name": "shop_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "product_type": {
+          "name": "product_type",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "product_id": {
+          "name": "product_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "shop_product_url": {
+          "name": "shop_product_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "affiliate_url": {
+          "name": "affiliate_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "shop_products_product_idx": {
+          "name": "shop_products_product_idx",
+          "columns": [
+            {
+              "expression": "product_type",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "product_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "shop_products_shop_id_shops_id_fk": {
+          "name": "shop_products_shop_id_shops_id_fk",
+          "tableFrom": "shop_products",
+          "tableTo": "shops",
+          "columnsFrom": [
+            "shop_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "shop_products_unique": {
+          "name": "shop_products_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "shop_id",
+            "product_type",
+            "product_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.shops": {
+      "name": "shops",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "domain": {
+          "name": "domain",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "affiliate_program": {
+          "name": "affiliate_program",
+          "type": "affiliate_program",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'none'"
+        },
+        "commission_percent": {
+          "name": "commission_percent",
+          "type": "numeric(4, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cookie_days": {
+          "name": "cookie_days",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "affiliate_tracking_id": {
+          "name": "affiliate_tracking_id",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "shops_domain_unique": {
+          "name": "shops_domain_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "domain"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.synergies": {
+      "name": "synergies",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "blade_id": {
+          "name": "blade_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rubber_id": {
+          "name": "rubber_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "synergy_score": {
+          "name": "synergy_score",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tempo_match": {
+          "name": "tempo_match",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "control_reserve": {
+          "name": "control_reserve",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "spin_potential": {
+          "name": "spin_potential",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "weight_balance": {
+          "name": "weight_balance",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "style_fit": {
+          "name": "style_fit",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "play_style_target": {
+          "name": "play_style_target",
+          "type": "play_style",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ttr_target": {
+          "name": "ttr_target",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "score_offensive": {
+          "name": "score_offensive",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "score_allround": {
+          "name": "score_allround",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "score_defensive": {
+          "name": "score_defensive",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "score_material": {
+          "name": "score_material",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "begruendung_text": {
+          "name": "begruendung_text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "synergies_blade_idx": {
+          "name": "synergies_blade_idx",
+          "columns": [
+            {
+              "expression": "blade_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "synergies_rubber_idx": {
+          "name": "synergies_rubber_idx",
+          "columns": [
+            {
+              "expression": "rubber_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "synergies_score_idx": {
+          "name": "synergies_score_idx",
+          "columns": [
+            {
+              "expression": "synergy_score",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "synergies_blade_id_blades_id_fk": {
+          "name": "synergies_blade_id_blades_id_fk",
+          "tableFrom": "synergies",
+          "tableTo": "blades",
+          "columnsFrom": [
+            "blade_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "synergies_rubber_id_rubbers_id_fk": {
+          "name": "synergies_rubber_id_rubbers_id_fk",
+          "tableFrom": "synergies",
+          "tableTo": "rubbers",
+          "columnsFrom": [
+            "rubber_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "synergies_unique": {
+          "name": "synergies_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "blade_id",
+            "rubber_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.affiliate_program": {
+      "name": "affiliate_program",
+      "schema": "public",
+      "values": [
+        "adcell",
+        "awin",
+        "direct",
+        "none"
+      ]
+    },
+    "public.hand": {
+      "name": "hand",
+      "schema": "public",
+      "values": [
+        "right",
+        "left"
+      ]
+    },
+    "public.play_style": {
+      "name": "play_style",
+      "schema": "public",
+      "values": [
+        "offensive_topspin",
+        "allround",
+        "defensive",
+        "material"
+      ]
+    },
+    "public.player_setup_status": {
+      "name": "player_setup_status",
+      "schema": "public",
+      "values": [
+        "current",
+        "previous"
+      ]
+    },
+    "public.recommendation_rating": {
+      "name": "recommendation_rating",
+      "schema": "public",
+      "values": [
+        "good",
+        "medium",
+        "bad"
+      ]
+    },
+    "public.rubber_type": {
+      "name": "rubber_type",
+      "schema": "public",
+      "values": [
+        "smooth",
+        "short_pips",
+        "long_pips",
+        "anti"
+      ]
+    },
+    "public.topsheet_character": {
+      "name": "topsheet_character",
+      "schema": "public",
+      "values": [
+        "sticky",
+        "grippy",
+        "neutral"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
