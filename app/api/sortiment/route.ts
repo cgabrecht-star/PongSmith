@@ -17,6 +17,29 @@ import { and, eq, ilike, inArray } from "drizzle-orm";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+/**
+ * Datenqualität-Tier eines Produkts:
+ *   - "complete": Specs + ≥3 Community-Reviews + Beschreibung
+ *   - "partial":  hat Specs, aber irgendwo fehlt was
+ */
+type DataQuality = "complete" | "partial";
+
+function computeRubberQuality(r: typeof rubbers.$inferSelect): DataQuality {
+  const hasSpecs = r.communitySpeed !== null || r.speedNorm !== null;
+  const hasCommunity = (r.communityReviewCount ?? 0) >= 3 && r.communitySpeed !== null;
+  const hasDescription = r.description !== null && r.description.length > 50;
+  if (hasSpecs && hasCommunity && hasDescription) return "complete";
+  return "partial";
+}
+
+function computeBladeQuality(b: typeof blades.$inferSelect): DataQuality {
+  const hasSpecs = b.communitySpeed !== null || b.speedNorm !== null;
+  const hasCommunity = (b.communityReviewCount ?? 0) >= 3 && b.communitySpeed !== null;
+  const hasDescription = b.description !== null && b.description.length > 50;
+  if (hasSpecs && hasCommunity && hasDescription) return "complete";
+  return "partial";
+}
+
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const type = searchParams.get("type"); // "rubber" | "blade" | null (= beide)
@@ -25,6 +48,8 @@ export async function GET(req: NextRequest) {
   const manufacturerSlug = searchParams.get("manufacturer");
   const q = searchParams.get("q");
   const lang = searchParams.get("lang") === "en" ? "en" : "de";
+  // Datenqualität-Filter: "complete" zeigt nur voll dokumentierte
+  const qualityFilter = searchParams.get("quality") === "complete" ? "complete" : "all";
 
   try {
     // ── Hersteller-Cache ──────────────────────────────────────────────────
@@ -85,7 +110,14 @@ export async function GET(req: NextRequest) {
     }
 
     // ── Antwort zusammenbauen ─────────────────────────────────────────────
-    const mappedRubbers = rubberRows.map((r) => ({
+    // Sortier-Schlüssel: complete vor partial, dann nach Review-Count desc
+    const sortByQuality = <T extends { dataQuality: DataQuality; reviewCount: number | null }>(rows: T[]): T[] =>
+      [...rows].sort((a, b) => {
+        if (a.dataQuality !== b.dataQuality) return a.dataQuality === "complete" ? -1 : 1;
+        return (b.reviewCount ?? 0) - (a.reviewCount ?? 0);
+      });
+
+    let mappedRubbers = rubberRows.map((r) => ({
       id: r.id,
       kind: "rubber" as const,
       name: r.name,
@@ -102,12 +134,13 @@ export async function GET(req: NextRequest) {
       ttrMax: r.ttrMax,
       ttrOptimal: r.ttrOptimal,
       reviewCount: r.communityReviewCount,
+      dataQuality: computeRubberQuality(r),
       description: lang === "en" ? (r.descriptionEn ?? r.description) : r.description,
       communityDescription: lang === "en" ? (r.communityDescriptionEn ?? r.communityDescription) : r.communityDescription,
       imageUrl: r.imageUrl,
     }));
 
-    const mappedBlades = bladeRows.map((b) => ({
+    let mappedBlades = bladeRows.map((b) => ({
       id: b.id,
       kind: "blade" as const,
       name: b.name,
@@ -126,10 +159,21 @@ export async function GET(req: NextRequest) {
       ttrMax: b.ttrMax,
       ttrOptimal: b.ttrOptimal,
       reviewCount: b.communityReviewCount,
+      dataQuality: computeBladeQuality(b),
       description: lang === "en" ? (b.descriptionEn ?? b.description) : b.description,
       communityDescription: lang === "en" ? (b.communityDescriptionEn ?? b.communityDescription) : b.communityDescription,
       imageUrl: b.imageUrl,
     }));
+
+    // Filter "Nur voll dokumentierte"
+    if (qualityFilter === "complete") {
+      mappedRubbers = mappedRubbers.filter((r) => r.dataQuality === "complete");
+      mappedBlades = mappedBlades.filter((b) => b.dataQuality === "complete");
+    }
+
+    // Sortierung: complete first, dann nach Reviews
+    mappedRubbers = sortByQuality(mappedRubbers);
+    mappedBlades = sortByQuality(mappedBlades);
 
     return NextResponse.json({
       rubbers: mappedRubbers,

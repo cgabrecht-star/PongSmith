@@ -7,6 +7,8 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 
 // ─── Typen ────────────────────────────────────────────────────────────────────
 
+type DataQuality = "complete" | "partial";
+
 interface RubberItem {
   id: number;
   kind: "rubber";
@@ -24,6 +26,7 @@ interface RubberItem {
   ttrMax: number | null;
   ttrOptimal: number | null;
   reviewCount: number | null;
+  dataQuality: DataQuality;
   description: string | null;
   communityDescription: string | null;
   imageUrl: string | null;
@@ -48,6 +51,7 @@ interface BladeItem {
   ttrMax: number | null;
   ttrOptimal: number | null;
   reviewCount: number | null;
+  dataQuality: DataQuality;
   description: string | null;
   communityDescription: string | null;
   imageUrl: string | null;
@@ -220,6 +224,32 @@ function StatRow({ label, value, color }: { label: string; value: string | null;
 
 // ─── Karten ───────────────────────────────────────────────────────────────────
 
+function QualityBadge({ q, t }: { q: DataQuality; t: ReturnType<typeof useLanguage>["t"] }) {
+  const isComplete = q === "complete";
+  return (
+    <span
+      title={isComplete ? t.sortiment.qualityCompleteHint : t.sortiment.qualityPartialHint}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 4,
+        padding: "2px 7px",
+        borderRadius: 999,
+        fontSize: 9,
+        fontFamily: "var(--font-jetbrains), monospace",
+        letterSpacing: "0.04em",
+        whiteSpace: "nowrap",
+        background: isComplete ? "rgba(34,197,94,0.10)" : "rgba(234,179,8,0.10)",
+        border: isComplete ? "1px solid rgba(34,197,94,0.35)" : "1px solid rgba(234,179,8,0.35)",
+        color: isComplete ? "#4ade80" : "#facc15",
+      }}
+    >
+      <span style={{ fontSize: 8 }}>{isComplete ? "●" : "◐"}</span>
+      {isComplete ? t.sortiment.qualityComplete : t.sortiment.qualityPartial}
+    </span>
+  );
+}
+
 function ProductCard({ item, onClick }: { item: ProductItem; onClick: () => void }) {
   const { t } = useLanguage();
   const [hovered, setHovered] = useState(false);
@@ -231,6 +261,7 @@ function ProductCard({ item, onClick }: { item: ProductItem; onClick: () => void
       style={{
         padding: "16px 18px",
         cursor: "pointer",
+        position: "relative",
         transition: "border-color 220ms, transform 220ms, box-shadow 220ms",
         transform: hovered ? "translateY(-2px)" : "translateY(0)",
         borderColor: hovered ? "rgba(255,107,53,0.45)" : "var(--ps-line)",
@@ -240,8 +271,13 @@ function ProductCard({ item, onClick }: { item: ProductItem; onClick: () => void
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+      {/* Quality-Badge oben rechts */}
+      <div style={{ position: "absolute", top: 10, right: 10, zIndex: 1 }}>
+        <QualityBadge q={item.dataQuality} t={t} />
+      </div>
+
       {/* Header mit Bild */}
-      <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+      <div style={{ display: "flex", gap: 12, alignItems: "flex-start", paddingRight: 90 }}>
         <ProductImage url={item.imageUrl} name={item.name} manufacturerSlug={item.manufacturerSlug} hovered={hovered} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.14em", color: "var(--ps-ink-4)", textTransform: "uppercase", marginBottom: 4 }}>
@@ -370,6 +406,7 @@ function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void
               {!isRubber && (item as BladeItem).weightMin && (item as BladeItem).weightMax && (
                 <span className="tag-line" style={{ fontSize: 10 }}>{(item as BladeItem).weightMin}–{(item as BladeItem).weightMax} g</span>
               )}
+              <QualityBadge q={item.dataQuality} t={t} />
             </div>
           </div>
           <button
@@ -495,6 +532,8 @@ export default function SortimentPage() {
   const [manufacturers, setManufacturers] = useState<Manufacturer[]>([]);
   const [manufacturer, setManufacturer] = useState<string>("");
   const [activeItem, setActiveItem] = useState<ProductItem | null>(null);
+  // Datenqualität-Filter — Default: alle anzeigen (Light-Variante)
+  const [qualityOnlyComplete, setQualityOnlyComplete] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -503,6 +542,7 @@ export default function SortimentPage() {
     if (playStyle) params.set("play_style", playStyle);
     if (manufacturer) params.set("manufacturer", manufacturer);
     if (search) params.set("q", search);
+    if (qualityOnlyComplete) params.set("quality", "complete");
     params.set("lang", lang);
 
     const res = await fetch(`/api/sortiment?${params}`);
@@ -511,7 +551,7 @@ export default function SortimentPage() {
     setBladeItems(data.blades ?? []);
     if (data.manufacturers) setManufacturers(data.manufacturers);
     setLoading(false);
-  }, [rubberType, playStyle, manufacturer, search, tab, lang]);
+  }, [rubberType, playStyle, manufacturer, search, tab, lang, qualityOnlyComplete]);
 
   useEffect(() => { void load(); }, [load]);
 
@@ -634,9 +674,33 @@ export default function SortimentPage() {
             ))}
           </select>
 
-          {(rubberType || playStyle || manufacturer || search) && (
+          {/* Datenqualitäts-Toggle */}
+          <button
+            onClick={() => setQualityOnlyComplete((v) => !v)}
+            title={t.sortiment.qualityCompleteHint}
+            style={{
+              padding: "5px 12px",
+              borderRadius: 999,
+              fontSize: 11.5,
+              cursor: "pointer",
+              fontFamily: "inherit",
+              whiteSpace: "nowrap",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              background: qualityOnlyComplete ? "rgba(34,197,94,0.10)" : "var(--ps-bg-2)",
+              border: qualityOnlyComplete ? "1px solid rgba(34,197,94,0.4)" : "1px solid var(--ps-line)",
+              color: qualityOnlyComplete ? "#4ade80" : "var(--ps-ink-2)",
+              transition: "all 160ms",
+            }}
+          >
+            <span style={{ fontSize: 9 }}>{qualityOnlyComplete ? "●" : "○"}</span>
+            {t.sortiment.qualityToggleLabel}
+          </button>
+
+          {(rubberType || playStyle || manufacturer || search || qualityOnlyComplete) && (
             <button
-              onClick={() => { setRubberType(""); setPlayStyle(""); setManufacturer(""); setSearch(""); }}
+              onClick={() => { setRubberType(""); setPlayStyle(""); setManufacturer(""); setSearch(""); setQualityOnlyComplete(false); }}
               style={{
                 background: "transparent", border: "1px solid var(--ps-line-2)",
                 color: "var(--ps-ink-4)", padding: "5px 10px", borderRadius: 4,

@@ -190,6 +190,12 @@ const translations = {
       foundRubbers: "Beläge gefunden",
       foundBlades: "Hölzer gefunden",
       sourceNote: "DATEN: HERSTELLER-DATENBLÄTTER + AGGREGIERTE COMMUNITY-STIMMEN · NORMIERT AUF 1.0–10.0",
+      // Datenqualitäts-Filter + Badges
+      qualityToggleLabel: "Nur voll dokumentierte",
+      qualityComplete: "Voll dokumentiert",
+      qualityCompleteHint: "Specs + ≥3 Community-Reviews + Beschreibung",
+      qualityPartial: "Wenig Community-Daten",
+      qualityPartialHint: "Specs vorhanden, aber wenig Reviews oder ohne Beschreibung",
       consultBtn: "🔨 Beraten lassen",
       // Modal
       specs: "Spezifikationen",
@@ -385,6 +391,11 @@ const translations = {
       foundRubbers: "rubbers found",
       foundBlades: "blades found",
       sourceNote: "DATA: MANUFACTURER SPEC SHEETS + AGGREGATED COMMUNITY VOICES · NORMALISED 1.0–10.0",
+      qualityToggleLabel: "Fully documented only",
+      qualityComplete: "Fully documented",
+      qualityCompleteHint: "Specs + ≥3 community reviews + description",
+      qualityPartial: "Limited community data",
+      qualityPartialHint: "Has specs, but few reviews or no description",
       consultBtn: "🔨 Get advice",
       // Modal
       specs: "Specifications",
