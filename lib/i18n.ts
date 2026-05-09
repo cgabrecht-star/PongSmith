@@ -20,7 +20,7 @@ const translations = {
     nav: {
       start: "Start",
       berater: "Berater",
-      check: "Schnell-Check",
+      check: "Probleme",
       sortiment: "Sortiment",
       guide: "Ratgeber",
     },
@@ -76,11 +76,45 @@ const translations = {
       error: "Etwas ist schiefgegangen. Bitte erneut versuchen.",
     },
 
-    // Schnell-Check
+    // Problem-Express (ehemals Schnell-Check)
     check: {
-      kicker: "Schnell-Check",
-      title: "TTR + Spielstil → Top 3 Setups.",
-      sub: "Erste Orientierung in 10 Sekunden. Für die echte Empfehlung mit Budget, Problemen und Marken-Wünschen sprich mit dem Berater.",
+      kicker: "Problem-Express",
+      title: "Wo drückt der Schuh?",
+      sub: "Klick dein Problem an — der Berater fragt direkt nach den fehlenden Details und gibt dir die passende Empfehlung.",
+      // Problem-Buttons (Label + Text der an den Berater geschickt wird)
+      problems: [
+        {
+          icon: "🛡️",
+          label: "Block ist instabil",
+          message: "Mein Block ist instabil — der Ball springt mir zu oft weg oder fliegt zu lang. Was kann ich am Setup ändern?",
+        },
+        {
+          icon: "🎯",
+          label: "Topspin fällt zu kurz",
+          message: "Mein Topspin fällt zu oft ins Netz oder zu kurz auf den Tisch. Liegt das am Belag?",
+        },
+        {
+          icon: "🐌",
+          label: "Zu langsam",
+          message: "Mein Setup fühlt sich zu langsam an, ich will aber keine Rakete. Was passt für mich?",
+        },
+        {
+          icon: "💪",
+          label: "Arm wird müde",
+          message: "Mein Schlagarm wird beim Spielen schnell müde. Liegt das an einem zu schweren oder zu harten Setup?",
+        },
+        {
+          icon: "🔄",
+          label: "Von Noppen wechseln",
+          message: "Ich spiele aktuell mit Noppen und überlege auf glatte Beläge zu wechseln. Wie gehe ich das an?",
+        },
+        {
+          icon: "🆕",
+          label: "Erstes Vereins-Setup",
+          message: "Ich bin neu im Verein und brauche mein erstes vernünftiges Setup. Budget ist überschaubar.",
+        },
+      ],
+      hint: "Oder schreib dein Anliegen direkt im Berater oben.",
       ttrLabel: "Q-TTR Spielstärke",
       ttrHint: "Nicht sicher? 1.300 ist ein guter Startpunkt.",
       styleLabel: "Spielstil",
@@ -190,7 +224,7 @@ const translations = {
     nav: {
       start: "Home",
       berater: "Advisor",
-      check: "Quick Pick",
+      check: "Issues",
       sortiment: "Products",
       guide: "Guide",
     },
@@ -243,9 +277,42 @@ const translations = {
     },
 
     check: {
-      kicker: "Quick Pick",
-      title: "TTR + Play style → Top 3 setups.",
-      sub: "Quick orientation in 10 seconds. For the real recommendation with budget, problems and brand preferences, talk to the advisor.",
+      kicker: "Problem Express",
+      title: "Where's the issue?",
+      sub: "Tap your problem — the advisor asks for the missing details and gives you the matching recommendation.",
+      problems: [
+        {
+          icon: "🛡️",
+          label: "Block is unstable",
+          message: "My block is unstable — the ball flies too long or jumps off. What can I change about my setup?",
+        },
+        {
+          icon: "🎯",
+          label: "Topspin falls short",
+          message: "My topspin falls too often into the net or short on the table. Is the rubber to blame?",
+        },
+        {
+          icon: "🐌",
+          label: "Too slow",
+          message: "My setup feels too slow, but I don't want a rocket. What fits for me?",
+        },
+        {
+          icon: "💪",
+          label: "Arm gets tired",
+          message: "My playing arm gets tired quickly. Is that from a too-heavy or too-hard setup?",
+        },
+        {
+          icon: "🔄",
+          label: "Switch from pips",
+          message: "I currently play with pips and consider switching to inverted rubbers. How do I approach this?",
+        },
+        {
+          icon: "🆕",
+          label: "First club setup",
+          message: "I'm new to the club and need my first proper setup. Budget is limited.",
+        },
+      ],
+      hint: "Or just type your concern directly in the advisor above.",
       ttrLabel: "Q-TTR rating",
       ttrHint: "Not sure? 1,300 is a good starting point.",
       styleLabel: "Play style",

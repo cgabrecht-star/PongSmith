@@ -235,7 +235,7 @@ export function BeraterChat() {
     });
   }, [lang, t.berater.greeting]);
 
-  // Pre-Fill-Listener: Schnell-Check kann TTR + Stil rüberreichen
+  // Pre-Fill-Listener: alter Schnell-Check (TTR + Stil) — nur Text vorbefüllen
   useEffect(() => {
     function onPrefill(e: Event) {
       const detail = (e as CustomEvent<{
@@ -249,10 +249,8 @@ export function BeraterChat() {
         ? `My TTR is ${detail.ttr}, I play ${detail.styleLabel.toLowerCase()}. `
         : `Mein TTR ist ${detail.ttr}, ich spiele ${detail.styleLabel.toLowerCase()}. `;
       setInput(text);
-      // Kurz warten bis Scroll fertig + Section sichtbar, dann fokussieren
       setTimeout(() => {
         inputRef.current?.focus();
-        // Cursor ans Ende
         const len = text.length;
         inputRef.current?.setSelectionRange(len, len);
       }, 700);
@@ -266,8 +264,25 @@ export function BeraterChat() {
     if (el) el.scrollTop = el.scrollHeight;
   }, [messages, loading]);
 
-  async function send() {
-    const text = input.trim();
+  // Ref auf die aktuelle send-Funktion (für Event-Listener mit stabiler Identität)
+  const sendRef = useRef<(text?: string) => Promise<void>>(async () => {});
+
+  // Auto-Send-Listener: Problem-Express schickt direkt eine Start-Nachricht
+  useEffect(() => {
+    function onSendDirect(e: Event) {
+      const detail = (e as CustomEvent<{ message: string }>).detail;
+      if (!detail?.message) return;
+      // Kurz warten bis Scroll fertig
+      setTimeout(() => {
+        void sendRef.current(detail.message);
+      }, 500);
+    }
+    window.addEventListener("pongsmith:send-direct", onSendDirect);
+    return () => window.removeEventListener("pongsmith:send-direct", onSendDirect);
+  }, []);
+
+  async function send(directText?: string) {
+    const text = (directText ?? input).trim();
     if (!text || loading) return;
 
     const userMsg: Message = { role: "user", content: text };
@@ -314,6 +329,10 @@ export function BeraterChat() {
       void send();
     }
   }
+
+  // sendRef nach jedem Render aktualisieren — die Event-Listener nutzen dann
+  // immer die aktuelle Closure (mit aktuellem messages/loading-State)
+  sendRef.current = send;
 
   // Quick suggestions je Sprache
   const suggestions = lang === "de"
