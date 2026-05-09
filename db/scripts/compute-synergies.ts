@@ -1,5 +1,7 @@
 /**
  * Berechnet alle Holz × Belag Synergien und schreibt sie in Supabase.
+ * v2: Nutzt Synergie-Engine v2 mit stil-spezifischen Scores + Härte-Match.
+ *
  * Idempotent — bei erneutem Ausführen werden bestehende Scores überschrieben.
  *
  * Usage: npm run compute:synergies
@@ -10,13 +12,22 @@ import { blades, rubbers, synergies } from "../schema";
 import { computeSynergy } from "../../lib/synergy";
 import { sql } from "drizzle-orm";
 
-const BATCH_SIZE = 100;
+// Größere Batches = weniger DB-Round-trips
+const BATCH_SIZE = 500;
+
+// Nur Produkte mit mindestens einem echten Community-Rating (kein reiner Fallback)
+const MIN_REVIEW_COUNT = 3;
 
 async function main() {
-  console.log("=== Synergie-Berechnung ===");
+  console.log("=== Synergie-Berechnung v2 (Vollkatalog + Stil-Scores) ===");
+  console.log(`  Qualitätsfilter: >= ${MIN_REVIEW_COUNT} Community-Reviews\n`);
 
-  const allBlades = await db.select().from(blades);
-  const allRubbers = await db.select().from(rubbers);
+  const allBlades = await db.select().from(blades).where(
+    sql`community_review_count >= ${MIN_REVIEW_COUNT} AND (community_speed IS NOT NULL OR speed_norm IS NOT NULL)`
+  );
+  const allRubbers = await db.select().from(rubbers).where(
+    sql`community_review_count >= ${MIN_REVIEW_COUNT} AND (community_speed IS NOT NULL OR speed_norm IS NOT NULL)`
+  );
 
   const total = allBlades.length * allRubbers.length;
   console.log(
@@ -39,6 +50,7 @@ async function main() {
           controlNorm: blade.controlNorm ? parseFloat(blade.controlNorm) : null,
           communitySpeed: blade.communitySpeed ? parseFloat(blade.communitySpeed) : null,
           communityControl: blade.communityControl ? parseFloat(blade.communityControl) : null,
+          stiffness: blade.stiffness as "soft" | "medium" | "stiff" | "very_stiff" | null ?? null,
         },
         {
           id: rubber.id,
@@ -49,6 +61,8 @@ async function main() {
           communitySpeed: rubber.communitySpeed ? parseFloat(rubber.communitySpeed) : null,
           communitySpin: rubber.communitySpin ? parseFloat(rubber.communitySpin) : null,
           communityControl: rubber.communityControl ? parseFloat(rubber.communityControl) : null,
+          hardnessMin: rubber.hardnessMin ?? null,
+          topsheetCharacter: rubber.topsheetCharacter as "sticky" | "grippy" | "neutral" | null ?? null,
         },
       );
 
@@ -56,6 +70,12 @@ async function main() {
         bladeId: result.bladeId,
         rubberId: result.rubberId,
         synergyScore: result.synergyScore,
+        // v2: stil-spezifische Scores
+        scoreOffensive: result.scoreOffensive,
+        scoreAllround: result.scoreAllround,
+        scoreDefensive: result.scoreDefensive,
+        scoreMaterial: result.scoreMaterial,
+        // Sub-Scores
         tempoMatch: result.tempoMatch,
         controlReserve: result.controlReserve,
         spinPotential: result.spinPotential,
@@ -70,7 +90,10 @@ async function main() {
       if (batch.length >= BATCH_SIZE) {
         await db.insert(synergies).values(batch);
         batch = [];
-        process.stdout.write(`\r  ${count} / ${total} (${Math.round((count / total) * 100)}%)`);
+        // Fortschritt nur alle 5000 ausgeben (nicht bei jedem Batch)
+        if (count % 5000 < BATCH_SIZE) {
+          process.stdout.write(`\r  ${count} / ${total} (${Math.round((count / total) * 100)}%) ...`);
+        }
       }
     }
   }

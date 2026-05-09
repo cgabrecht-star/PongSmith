@@ -241,6 +241,13 @@ export const synergies = pgTable(
     playStyleTarget: playStyleEnum("play_style_target"),
     ttrTarget: smallint("ttr_target"),
 
+    // Stil-spezifische Scores — jeder Wert ist der synergyScore wenn der
+    // Spieler diesen Stil hat. Erlaubt präzise Filterung ohne Recompute.
+    scoreOffensive: smallint("score_offensive"),    // Gewichtung: Tempo+Spin dominant
+    scoreAllround: smallint("score_allround"),       // Gewichtung: Control+Spin+Tempo ausgewogen
+    scoreDefensive: smallint("score_defensive"),     // Gewichtung: Control dominant
+    scoreMaterial: smallint("score_material"),       // Gewichtung: Kontrolle + Stil dominant
+
     begruendungText: text("begruendung_text"),
     createdAt: timestamp("created_at").defaultNow().notNull(),
   },

@@ -38,7 +38,15 @@
     "db:backfill-play-styles": "dotenv -e .env.local -- tsx db/scripts/backfill-play-styles.ts",
     "db:download-images": "dotenv -e .env.local -- tsx db/scripts/download-product-images.ts",
     "db:download-images-v2": "dotenv -e .env.local -- tsx db/scripts/download-product-images-v2.ts",
-    "db:export-missing-images": "dotenv -e .env.local -- tsx db/scripts/export-missing-images.ts"
+    "db:export-missing-images": "dotenv -e .env.local -- tsx db/scripts/export-missing-images.ts",
+    "scrape:rubbers-full": "dotenv -e .env.local -- tsx db/scrapers/revspin-full.ts",
+    "scrape:blades-full": "dotenv -e .env.local -- tsx db/scrapers/revspin-full-blades.ts",
+    "db:import-revspin-full": "dotenv -e .env.local -- tsx db/scripts/import-revspin-full.ts",
+    "db:import-revspin-full-blades": "dotenv -e .env.local -- tsx db/scripts/import-revspin-full-blades.ts",
+    "db:fix-cookie-descriptions": "dotenv -e .env.local -- tsx db/scripts/fix-cookie-descriptions.ts",
+    "db:backfill-descriptions": "dotenv -e .env.local -- tsx db/scripts/backfill-descriptions.ts",
+    "db:fix-bad-manufacturers": "dotenv -e .env.local -- tsx db/scripts/fix-bad-manufacturers.ts",
+    "db:backfill-hardness": "dotenv -e .env.local -- tsx db/scripts/backfill-hardness-topsheet.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",
