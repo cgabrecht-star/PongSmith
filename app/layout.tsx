@@ -67,16 +67,23 @@ export const metadata: Metadata = {
     siteName: config.siteName,
     title: `${config.siteName} — ${config.siteTagline}`,
     description: config.siteDescription,
+    // Bild wird automatisch aus app/opengraph-image.tsx generiert
   },
   twitter: {
     card: "summary_large_image",
     title: `${config.siteName} — ${config.siteTagline}`,
     description: config.siteDescription,
+    // Twitter nutzt automatisch das OG-Bild
   },
   alternates: {
     canonical: config.siteUrl,
   },
   category: "sports",
+  // Google Search Console Verification — Token kommt aus ENV
+  // Setze GOOGLE_SITE_VERIFICATION in Vercel (Wert aus Search Console)
+  ...(process.env.GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
+    : {}),
 };
 
 export default function RootLayout({
@@ -98,6 +105,52 @@ export default function RootLayout({
           minHeight: "100vh",
         }}
       >
+        {/* Schema.org JSON-LD — Organization + WebSite für Sitelinks/Knowledge-Panel */}
+        <Script
+          id="schema-org-root"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": `${config.siteUrl}/#organization`,
+                  name: config.siteName,
+                  url: config.siteUrl,
+                  logo: `${config.siteUrl}/founder-chris.jpg`,
+                  description: config.siteDescription,
+                  founder: {
+                    "@type": "Person",
+                    name: "Christoph Gabrecht",
+                  },
+                  sameAs: [],
+                  contactPoint: {
+                    "@type": "ContactPoint",
+                    email: "hallo@pongsmith.de",
+                    contactType: "customer support",
+                    availableLanguage: ["German", "English"],
+                  },
+                  areaServed: {
+                    "@type": "Country",
+                    name: "DE",
+                  },
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": `${config.siteUrl}/#website`,
+                  url: config.siteUrl,
+                  name: config.siteName,
+                  description: config.siteTagline,
+                  publisher: { "@id": `${config.siteUrl}/#organization` },
+                  inLanguage: ["de", "en"],
+                },
+              ],
+            }),
+          }}
+        />
+
         <LanguageProvider>
           {children}
         </LanguageProvider>

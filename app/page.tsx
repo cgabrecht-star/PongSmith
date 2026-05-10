@@ -737,8 +737,27 @@ function SchnellCheckSection() {
 function FAQ() {
   const t = useLanguage().t.faq;
   const [open, setOpen] = useState(-1);
+
+  // Schema.org FAQPage JSON-LD — für Rich-Snippets in Google-Suche
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: t.items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+
   return (
     <section style={{ padding: "90px 20px", background: "var(--ps-bg-1)", borderBottom: "1px solid var(--ps-line-2)" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "minmax(0, 280px) minmax(0, 1fr)", gap: 60 }}>
         <div>
           <SectionLabel n="06">FAQ</SectionLabel>

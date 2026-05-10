@@ -3,11 +3,19 @@ import { config } from "@/lib/config";
 
 /**
  * /sitemap.xml — generiert dynamisch.
- * Statische Routen + alle aktiven Produkt-Detail-URLs (sobald die Routen existieren).
  *
- * Hinweis: Detail-Seiten /belag/[slug] und /holz/[slug] sind noch nicht gebaut
- * (Roadmap C.1). Sobald sie da sind, hier die DB-Slugs einlesen.
+ * Aktuell:
+ *  - Statische Routen (Startseite, Sortiment)
+ *  - Impressum/Datenschutz sind noindex → NICHT in Sitemap
+ *
+ * Später (wenn Detail-Routen /belag/[slug] und /holz/[slug] existieren):
+ *  - Alle aktiven Produkt-Slugs aus der DB einlesen und ergänzen
  */
+
+// Sitemap-Generierung läuft beim Build — DB-Verbindung kann scheitern in der
+// Build-Phase. Daher schützen wir dynamische Daten mit try/catch.
+export const revalidate = 86400; // 24 h Cache für Sitemap
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
@@ -23,18 +31,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
-    },
-    {
-      url: `${config.siteUrl}/impressum`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${config.siteUrl}/datenschutz`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.3,
     },
   ];
 
