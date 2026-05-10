@@ -140,34 +140,43 @@ export interface ShopLink {
 }
 
 /**
- * Liefert alle aktiven Affiliate-Links für ein Produkt, sortiert nach
- * erwartetem Wert (Provision × Cookie-Laufzeit).
+ * Liefert alle aktiven Affiliate-Links für ein Produkt.
  *
- * Reihenfolge: TT-Shop > JOOLA > Amazon
+ * Reihenfolge (Index 0 = primärer Shop für Direct-Click-CTA):
+ *   1. TT-Shop (Adcell, sobald aktiv) — höchste Provision + 30 Tage Cookie
+ *   2. Tischtennis.biz (Adcell, sobald aktiv) — wie TT-Shop
+ *   3. JOOLA via Awin — bei JOOLA-Produkten
+ *   4. Andere Awin-Partner (zukünftig)
+ *   5. Amazon — IMMER als Letztes (kürzeste Cookie, niedrigste Provision)
+ *
+ * Regel: Partner haben immer Vorrang vor Amazon. Amazon nur als universeller
+ * Fallback wenn kein Spezial-Shop verfügbar ist.
  */
 export function getShopLinks(product: ProductRef): ShopLink[] {
-  const links: ShopLink[] = [];
+  const partnerLinks: ShopLink[] = [];
+  const amazonLinks: ShopLink[] = [];
 
-  // 1. TT-Shop (Adcell, später) — wird hier ergänzt sobald aktiv
+  // 1. TT-Shop (Adcell) — wird ergänzt sobald aktiv
   // if (SHOPS["tt-shop"].active) { ... }
 
-  // 2. JOOLA — nur sinnvoll wenn JOOLA-eigenes Produkt
+  // 2. JOOLA via Awin — nur sinnvoll bei JOOLA-eigenen Produkten
   if (SHOPS.joola.active && isJoolaProduct(product.manufacturer)) {
     const url = buildJoolaSearchLink(product.name);
     if (url) {
-      links.push({ shop: SHOPS.joola, url, linkType: "search" });
+      partnerLinks.push({ shop: SHOPS.joola, url, linkType: "search" });
     }
   }
 
-  // 3. Amazon — Fallback für alle Produkte
+  // 3. Amazon — IMMER ans Ende
   if (SHOPS.amazon.active) {
     const url = buildAmazonSearchLink(product.name, product.manufacturer);
     if (url) {
-      links.push({ shop: SHOPS.amazon, url, linkType: "search" });
+      amazonLinks.push({ shop: SHOPS.amazon, url, linkType: "search" });
     }
   }
 
-  return links;
+  // Partner zuerst, Amazon als Letztes
+  return [...partnerLinks, ...amazonLinks];
 }
 
 /**

@@ -932,26 +932,85 @@ export async function POST(req: NextRequest) {
           .map((b) => b.text)
           .join("");
 
-        // Produkte erkennen + Shop-Links anhängen
+        // Produkte erkennen
         const detected = await detectProducts(text);
+
+        // Bild-URLs + Review-Counts pro Produkt nachladen
+        const bladeIds = detected.filter((p) => p.type === "blade").map((p) => p.id);
+        const rubberIds = detected.filter((p) => p.type === "rubber").map((p) => p.id);
+
+        const [bladeMeta, rubberMeta] = await Promise.all([
+          bladeIds.length > 0
+            ? db.select({
+                id: blades.id,
+                imageUrl: blades.imageUrl,
+                reviewCount: blades.communityReviewCount,
+              }).from(blades).where(inArray(blades.id, bladeIds))
+            : Promise.resolve([]),
+          rubberIds.length > 0
+            ? db.select({
+                id: rubbers.id,
+                imageUrl: rubbers.imageUrl,
+                reviewCount: rubbers.communityReviewCount,
+              }).from(rubbers).where(inArray(rubbers.id, rubberIds))
+            : Promise.resolve([]),
+        ]);
+
+        const bladeMetaById = new Map(bladeMeta.map((b) => [b.id, b]));
+        const rubberMetaById = new Map(rubberMeta.map((r) => [r.id, r]));
+
         const enrichProduct = (p: typeof detected[0]) => {
+          const meta = p.type === "blade" ? bladeMetaById.get(p.id) : rubberMetaById.get(p.id);
           const ref = { type: p.type, id: p.id, name: p.name, manufacturer: p.manufacturer };
           const shops = getShopLinks(ref).map((l) => ({
             id: l.shop.id,
             name: l.shop.name,
             url: buildTrackingUrl({ shopId: l.shop.id, productType: p.type, productId: p.id }),
           }));
-          return { type: p.type, id: p.id, name: p.name, manufacturer: p.manufacturer, shops };
+          return {
+            type: p.type,
+            id: p.id,
+            name: p.name,
+            manufacturer: p.manufacturer,
+            imageUrl: meta?.imageUrl ?? null,
+            reviewCount: meta?.reviewCount ?? 0,
+            shops,
+          };
         };
 
         const products = detected.map(enrichProduct);
 
-        // Setup-Gruppen erkennen (für Setup-Karten in der UI)
+        // Setup-Gruppen erkennen + Synergie-Scores pro Setup nachladen
         const setupGroups = groupProductsBySetup(text, detected);
-        const setups = setupGroups.map((g) => ({
-          index: g.index,
-          title: g.title,
-          products: g.products.map(enrichProduct),
+
+        const setups = await Promise.all(setupGroups.map(async (g) => {
+          const blade = g.products.find((p) => p.type === "blade");
+          const setupRubbers = g.products.filter((p) => p.type === "rubber");
+
+          // Synergie-Score: Durchschnitt der Holz×Belag-Synergien dieses Setups
+          let synergyScore: number | null = null;
+          if (blade && setupRubbers.length > 0) {
+            const synRows = await db.select({
+              score: synergies.synergyScore,
+            }).from(synergies).where(
+              and(
+                eq(synergies.bladeId, blade.id),
+                inArray(synergies.rubberId, setupRubbers.map((r) => r.id)),
+              ),
+            );
+            if (synRows.length > 0) {
+              const avg = synRows.reduce((s, r) => s + r.score, 0) / synRows.length;
+              synergyScore = Math.round(avg);
+            }
+          }
+
+          return {
+            index: g.index,
+            title: g.title,
+            description: g.description,
+            synergyScore,
+            products: g.products.map(enrichProduct),
+          };
         }));
 
         return NextResponse.json({ text, products, setups });

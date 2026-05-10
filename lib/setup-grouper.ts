@@ -17,6 +17,10 @@ export interface SetupGroup {
   title: string;
   /** Produkte die zu diesem Setup gehören (Holz + Beläge) */
   products: DetectedProduct[];
+  /** Begründungstext: alles was zwischen dem Setup-Titel und dem nächsten
+   *  Setup-Marker steht (oder bis zum Ende). Wird auf der Karte als Mini-
+   *  Quote angezeigt. */
+  description: string;
 }
 
 /**
@@ -68,10 +72,23 @@ export function groupProductsBySetup(
       (p) => p.position >= start && p.position < end,
     );
     if (productsInRange.length > 0) {
+      // Begründung extrahieren: Text zwischen Setup-Titel-Ende und nächstem Setup
+      const sectionText = text.substring(start, end).trim();
+      // Erste Zeile (= title) entfernen, Rest ist Begründung
+      const lines = sectionText.split("\n").map((l) => l.trim()).filter(Boolean);
+      // Markdown-Decorations + Bullet-Marker ("·", "-") entfernen
+      const description = lines
+        .slice(1)
+        .map((l) => l.replace(/^[·\-•*]\s*/, "").replace(/\*\*/g, "").trim())
+        .filter(Boolean)
+        .join(" ")
+        .substring(0, 280);
+
       groups.push({
         index: valid[i]!.index,
         title: valid[i]!.title.substring(0, 100),
         products: productsInRange,
+        description,
       });
     }
   }

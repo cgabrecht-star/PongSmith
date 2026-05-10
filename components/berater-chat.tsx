@@ -14,12 +14,16 @@ interface DetectedProduct {
   id: number;
   name: string;
   manufacturer: string;
+  imageUrl?: string | null;
+  reviewCount?: number;
   shops: ShopLink[];
 }
 
 interface SetupGroup {
   index: number;
   title: string;
+  description?: string;
+  synergyScore?: number | null;
   products: DetectedProduct[];
 }
 
@@ -107,9 +111,87 @@ function TypingDots() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
-// SetupCards — die primäre Affiliate-Conversion-Komponente
-// Eine Karte pro empfohlenem Setup, mit "Hier gibts dein Setup"-CTA der
-// ein Modal mit allen Produkten + Buy-Buttons öffnet.
+// Mini-Komponenten für SetupCard v2
+// ─────────────────────────────────────────────────────────────────────────
+
+/** Mini-Synergie-Ring für die Karte. Visualisiert 0-100. */
+function MiniSynergyRing({ value }: { value: number }) {
+  const size = 56;
+  const stroke = 4;
+  const r = (size - stroke) / 2;
+  const c = 2 * Math.PI * r;
+  const off = c - (value / 100) * c;
+  return (
+    <div style={{ position: "relative", width: size, height: size, flexShrink: 0 }}>
+      <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
+        <circle cx={size / 2} cy={size / 2} r={r} stroke="var(--ps-bg-3)" strokeWidth={stroke} fill="none" />
+        <circle
+          cx={size / 2} cy={size / 2} r={r}
+          stroke="url(#miniRingGrad)" strokeWidth={stroke} fill="none"
+          strokeDasharray={c} strokeDashoffset={off} strokeLinecap="round"
+        />
+        <defs>
+          <linearGradient id="miniRingGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#ff8c5a" />
+            <stop offset="100%" stopColor="#c84a1e" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div style={{
+        position: "absolute", inset: 0,
+        display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+      }}>
+        <div style={{ fontSize: 16, fontWeight: 700, color: "var(--ps-ink-0)", lineHeight: 1, fontFamily: "var(--font-bebas), sans-serif" }}>{value}</div>
+        <div className="ff-mono" style={{ fontSize: 7, color: "var(--ps-ink-3)", letterSpacing: "0.08em", marginTop: 1 }}>/100</div>
+      </div>
+    </div>
+  );
+}
+
+/** Mini-Produktbild mit Fallback auf Manufacturer-Initiale. */
+function MiniProductImage({ url, manufacturer, size = 36 }: { url?: string | null; manufacturer: string; size?: number }) {
+  const [errored, setErrored] = useState(false);
+  const initial = manufacturer.charAt(0).toUpperCase();
+
+  if (!url || errored) {
+    return (
+      <div style={{
+        width: size, height: size, borderRadius: 3,
+        background: "linear-gradient(135deg, rgba(255,107,53,0.15), rgba(255,107,53,0.05))",
+        border: "1px solid var(--ps-line)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        color: "var(--ps-ember-2)", fontSize: size * 0.45, fontWeight: 600,
+        flexShrink: 0,
+        fontFamily: "var(--font-bebas), sans-serif",
+      }}>{initial}</div>
+    );
+  }
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={url}
+      alt={manufacturer}
+      onError={() => setErrored(true)}
+      style={{
+        width: size, height: size,
+        borderRadius: 3,
+        objectFit: "cover",
+        border: "1px solid var(--ps-line)",
+        background: "var(--ps-bg-2)",
+        flexShrink: 0,
+      }}
+    />
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// SetupCards v2 — Conversion-optimiert
+// - Synergie-Score-Ring (Authority)
+// - Mini-Bilder + Reviews-Counts (Visualisierung + Social Proof)
+// - Begründungstext (Personalisierung)
+// - Direct-Click zum besten Shop (weniger Reibung)
+// - Sub-Link "Andere Shops" → Modal (Wahlfreiheit)
+// - Trust-Mikrotext direkt am Button (Transparenz)
 // ─────────────────────────────────────────────────────────────────────────
 
 function SetupCards({
@@ -121,20 +203,19 @@ function SetupCards({
 }) {
   const [openSetup, setOpenSetup] = useState<SetupGroup | null>(null);
 
-  const ctaPrimary = lang === "de" ? "Hier gibts dein Setup" : "Get this setup";
   const adLabel = lang === "de" ? "Werbung · Affiliate" : "Ad · affiliate";
 
-  // Wenn der Berater Setups strukturiert ausgibt → Karten zeigen
+  // Wenn der Berater Setups strukturiert ausgibt → v2 Karten zeigen
   if (setups && setups.length > 0) {
     return (
       <>
         <div style={{
-          marginTop: 16,
+          marginTop: 18,
           paddingTop: 14,
           borderTop: "1px dashed var(--ps-line)",
           display: "flex",
           flexDirection: "column",
-          gap: 10,
+          gap: 12,
         }}>
           <div className="ff-mono" style={{
             fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase",
@@ -148,7 +229,19 @@ function SetupCards({
 
           {setups.map((setup) => {
             const blade = setup.products.find((p) => p.type === "blade");
-            const rubbers = setup.products.filter((p) => p.type === "rubber");
+            const setupRubbers = setup.products.filter((p) => p.type === "rubber");
+            const primaryShop = setup.products.find((p) => p.shops.length > 0)?.shops[0];
+
+            // Aller Produkte in einem Direkt-Click öffnen (mit Verzögerung um Popup-Blocker zu umgehen)
+            const openAllInTabs = () => {
+              setup.products.forEach((p, i) => {
+                if (p.shops.length === 0) return;
+                setTimeout(() => {
+                  window.open(p.shops[0]!.url, "_blank", "noopener");
+                }, i * 150);
+              });
+            };
+
             return (
               <div
                 key={setup.index}
@@ -156,57 +249,103 @@ function SetupCards({
                   background: "var(--ps-bg-2)",
                   border: "1px solid var(--ps-line)",
                   borderRadius: 4,
-                  padding: "14px 16px",
+                  padding: "16px 18px",
                   display: "flex",
                   flexDirection: "column",
-                  gap: 10,
+                  gap: 14,
                 }}
               >
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12 }}>
+                {/* Header: Setup-Nummer + Title + Synergie-Ring */}
+                <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
                   <div style={{ minWidth: 0, flex: 1 }}>
                     <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.16em", color: "var(--ps-ember-2)", textTransform: "uppercase", marginBottom: 4 }}>
                       Setup 0{setup.index}
                     </div>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: "var(--ps-ink-0)", lineHeight: 1.3 }}>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ps-ink-0)", lineHeight: 1.3 }}>
                       {setup.title}
                     </div>
+                    {setup.description && setup.description.length > 10 && (
+                      <p style={{
+                        margin: "8px 0 0", fontSize: 12.5,
+                        color: "var(--ps-ink-2)", lineHeight: 1.5,
+                        fontStyle: "italic",
+                      }}>
+                        {setup.description}
+                      </p>
+                    )}
                   </div>
-                </div>
-
-                {/* Komponentenliste */}
-                <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 12, color: "var(--ps-ink-2)" }}>
-                  {blade && (
-                    <div>
-                      <span className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.1em", color: "var(--ps-ink-4)", marginRight: 8, textTransform: "uppercase" }}>Holz</span>
-                      <span style={{ color: "var(--ps-ink-1)" }}>{blade.name}</span>
+                  {setup.synergyScore != null && (
+                    <div style={{ flexShrink: 0 }}>
+                      <MiniSynergyRing value={setup.synergyScore} />
                     </div>
                   )}
-                  {rubbers.map((r, i) => (
-                    <div key={`${r.id}-${i}`}>
-                      <span className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.1em", color: "var(--ps-ink-4)", marginRight: 8, textTransform: "uppercase" }}>
-                        {rubbers.length === 1 ? (lang === "de" ? "Belag" : "Rubber") : i === 0 ? "VH" : "RH"}
-                      </span>
-                      <span style={{ color: "var(--ps-ink-1)" }}>{r.name}</span>
-                    </div>
+                </div>
+
+                {/* Komponentenliste mit Bildern + Reviews */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  {blade && <SetupComponentRow product={blade} label={lang === "de" ? "Holz" : "Blade"} />}
+                  {setupRubbers.map((r, i) => (
+                    <SetupComponentRow
+                      key={`${r.id}-${i}`}
+                      product={r}
+                      label={setupRubbers.length === 1 ? (lang === "de" ? "Belag" : "Rubber") : i === 0 ? "VH" : "RH"}
+                    />
                   ))}
                 </div>
 
-                {/* Hauptbutton */}
-                <button
-                  onClick={() => setOpenSetup(setup)}
-                  className="ember-btn ember-btn-glow"
-                  style={{
-                    padding: "10px 14px",
-                    fontSize: 13,
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 8,
-                    width: "100%",
-                  }}
-                >
-                  {ctaPrimary} →
-                </button>
+                {/* Direct-Click-Hauptbutton + Sub-Link */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  {primaryShop ? (
+                    <button
+                      onClick={openAllInTabs}
+                      className="ember-btn ember-btn-glow"
+                      style={{
+                        padding: "12px 14px",
+                        fontSize: 13,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: 8,
+                        width: "100%",
+                      }}
+                    >
+                      {lang === "de"
+                        ? `Setup bei ${primaryShop.name} holen`
+                        : `Get this setup at ${primaryShop.name}`} →
+                    </button>
+                  ) : (
+                    <div style={{
+                      padding: "10px 14px", textAlign: "center",
+                      background: "var(--ps-bg-3)", border: "1px dashed var(--ps-line)",
+                      color: "var(--ps-ink-3)", fontSize: 12, borderRadius: 3,
+                    }}>
+                      {lang === "de" ? "Shop folgt" : "Shop coming soon"}
+                    </div>
+                  )}
+
+                  <button
+                    onClick={() => setOpenSetup(setup)}
+                    style={{
+                      background: "transparent", border: 0,
+                      color: "var(--ps-ink-3)", fontSize: 11.5, padding: "4px",
+                      cursor: "pointer", textDecoration: "underline",
+                      fontFamily: "inherit",
+                    }}
+                  >
+                    {lang === "de" ? "Andere Shops vergleichen" : "Compare other shops"} →
+                  </button>
+                </div>
+
+                {/* Trust-Mikrotext */}
+                <div className="ff-mono" style={{
+                  fontSize: 9, letterSpacing: "0.1em",
+                  color: "var(--ps-ink-4)", textAlign: "center",
+                  textTransform: "uppercase",
+                }}>
+                  {lang === "de"
+                    ? "Werbung · Du zahlst nichts mehr · 30 Tage Bedenkzeit"
+                    : "Ad · You pay nothing extra · 30 days to decide"}
+                </div>
               </div>
             );
           })}
@@ -258,6 +397,31 @@ function SetupCards({
             )}
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+// Eine Komponenten-Zeile (Holz oder Belag) mit Bild, Name, Reviews
+function SetupComponentRow({ product, label }: { product: DetectedProduct; label: string }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <MiniProductImage url={product.imageUrl} manufacturer={product.manufacturer} size={36} />
+      <div style={{ minWidth: 0, flex: 1 }}>
+        <div className="ff-mono" style={{
+          fontSize: 9, letterSpacing: "0.12em",
+          color: "var(--ps-ink-4)", textTransform: "uppercase", marginBottom: 2,
+        }}>
+          {label}
+        </div>
+        <div style={{ fontSize: 12.5, color: "var(--ps-ink-1)", lineHeight: 1.25 }}>
+          <strong style={{ color: "var(--ps-ink-0)", fontWeight: 600 }}>{product.name}</strong>
+          {(product.reviewCount ?? 0) > 0 && (
+            <span style={{ color: "var(--ps-ink-4)", marginLeft: 8, fontSize: 10.5 }}>
+              ★ {product.reviewCount}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );
