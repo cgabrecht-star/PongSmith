@@ -416,6 +416,35 @@ export const recommendationFeedback = pgTable("recommendation_feedback", {
 // über sessionId + Affiliate-Netzwerk-Reports.
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Interview-Submissions (Audit-Log für /mithelfen-Form)
+// Speichert ALLE eingehenden Submissions inkl. Spam — players-Tabelle bleibt
+// dadurch sauber. Bei "valid"-Verdict wird zusätzlich in players + setups +
+// observations geschrieben und insertedPlayerId hier verlinkt.
+// ---------------------------------------------------------------------------
+
+export const interviewSubmissions = pgTable(
+  "interview_submissions",
+  {
+    id: serial("id").primaryKey(),
+    /** Komplette Roh-Submission als JSON (für Audit + Re-Processing) */
+    rawData: jsonb("raw_data").notNull(),
+    /** AI-Verdict: "valid" | "suspect" | "spam" */
+    aiVerdict: varchar("ai_verdict", { length: 20 }),
+    /** Kurzbegründung der AI (deutsch) */
+    aiReason: text("ai_reason"),
+    /** Wenn valid und insertet: FK auf den entstandenen Spieler-Eintrag */
+    insertedPlayerId: integer("inserted_player_id").references(() => players.id),
+    /** IP-Hash (SHA256) für Rate-Limiting nachträglich, NICHT die echte IP */
+    ipHash: varchar("ip_hash", { length: 64 }),
+    submittedAt: timestamp("submitted_at").defaultNow().notNull(),
+  },
+  (t) => [
+    index("submissions_verdict_idx").on(t.aiVerdict),
+    index("submissions_at_idx").on(t.submittedAt),
+  ]
+);
+
 export const clicks = pgTable(
   "clicks",
   {

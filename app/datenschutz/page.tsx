@@ -112,7 +112,24 @@ export default function DatenschutzPage() {
 
           <Divider />
 
-          <Section title="8. Deine Rechte">
+          <Section title="8. Mithelfen-Formular (anonyme Spieler-Daten)">
+            <p style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.7 }}>
+              Über das Formular unter <Link href="/mithelfen" style={{ color: "var(--ps-ember-2)" }}>/mithelfen</Link>{" "}
+              können Spieler freiwillig Daten zu ihrem Setup beisteuern. Erfasst werden:
+              TTR/LPZ, Spielstil, Schlaghand, Holz und Beläge, Selbst-Bewertung sowie
+              optionale Freitext-Antworten. <strong style={{ color: "var(--ps-ink-1)" }}>Wir
+              speichern weder Namen, E-Mail-Adressen noch IP-Adressen</strong> — die IP wird
+              ausschließlich als kryptographischer SHA256-Hash für temporäres Rate-Limiting
+              gegen Spam genutzt und nicht zurückführbar gespeichert. Die Daten werden für die
+              Verbesserung der Empfehlungs-Engine ausgewertet. Eingaben durchlaufen vor dem
+              Import einen automatischen Spam-Filter via Anthropic-API. Rechtsgrundlage:
+              Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch Absenden).
+            </p>
+          </Section>
+
+          <Divider />
+
+          <Section title="9. Deine Rechte">
             <ul style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.9, paddingLeft: 20, margin: 0 }}>
               <li>Auskunft über gespeicherte Daten (Art. 15 DSGVO)</li>
               <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
@@ -132,7 +149,7 @@ export default function DatenschutzPage() {
 
           <Divider />
 
-          <Section title="9. Aktualität">
+          <Section title="10. Aktualität">
             <p style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.7 }}>
               Diese Datenschutzerklärung hat den Stand Mai 2026. Wir behalten uns vor, sie bei
               technischen oder rechtlichen Änderungen zu aktualisieren.

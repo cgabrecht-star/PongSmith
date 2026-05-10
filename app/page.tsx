@@ -580,6 +580,50 @@ function FounderSection() {
 }
 
 // ─────────────────────────────────────────────
+// Mithelfen-CTA — sympathischer Aufruf zum Daten-Beitragen
+// ─────────────────────────────────────────────
+function ContributeCta() {
+  const tc = useLanguage().t.contribute;
+  return (
+    <section style={{ padding: "70px 20px", background: "var(--ps-bg-1)", borderBottom: "1px solid var(--ps-line-2)" }}>
+      <div style={{ maxWidth: 800, margin: "0 auto" }}>
+        <div className="card-forged" style={{
+          padding: "32px 28px",
+          background: "linear-gradient(135deg, rgba(255,107,53,0.10), rgba(255,107,53,0.03))",
+          border: "1px solid rgba(255,107,53,0.35)",
+          display: "flex", flexDirection: "column", gap: 18,
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <span style={{ fontSize: 32 }}>🤝</span>
+            <div className="ff-display" style={{ fontSize: 26, color: "var(--ps-ink-0)", lineHeight: 1.15 }}>
+              {tc.ctaSection}
+            </div>
+          </div>
+          <p style={{ margin: 0, color: "var(--ps-ink-2)", fontSize: 15, lineHeight: 1.6 }}>
+            {tc.sub}
+          </p>
+          <a
+            href="/mithelfen"
+            className="ember-btn ember-btn-glow"
+            style={{
+              alignSelf: "flex-start",
+              padding: "12px 22px",
+              fontSize: 14,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              textDecoration: "none",
+            }}
+          >
+            {tc.ctaButton} →
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────
 // "Was wir nicht tun" — Selbstverpflichtung
 // ─────────────────────────────────────────────
 function PromisesBlock() {
@@ -816,7 +860,10 @@ function Footer() {
     },
     {
       t: t.colWorkshop,
-      items: [{ id: "guide", label: t.itemGuide }],
+      items: [
+        { id: "contribute", label: t.itemContribute },
+        { id: "guide", label: t.itemGuide },
+      ],
     },
     {
       t: t.colLegal,
@@ -851,6 +898,7 @@ function Footer() {
                     : it.id === "sortiment" ? "/sortiment"
                     : it.id === "advisor" ? "/#berater-section"
                     : it.id === "quickpick" ? "/#check-section"
+                    : it.id === "contribute" ? "/mithelfen"
                     : "#";
                   return (
                     <li key={j}>
@@ -892,6 +940,7 @@ export default function Home() {
       <DemoSection />
       <BeraterSection />
       <SchnellCheckSection />
+      <ContributeCta />
       <PromisesBlock />
       <FounderSection />
       <FAQ />

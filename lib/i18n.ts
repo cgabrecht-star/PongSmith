@@ -72,6 +72,68 @@ const translations = {
       ],
     },
 
+    // /mithelfen — Anonyme Spieler-Datenerfassung
+    contribute: {
+      // Page-Header
+      kicker: "Mithelfen",
+      title: "Mach die Beratung für alle besser.",
+      sub: "Drei Minuten. Komplett anonym. Kein Login, kein Name. Nur deine TT-Daten — und der Berater wird mit jedem Datensatz präziser. Auch für deine nächste Anfrage.",
+      ctaSection: "Hilf der Schmiede",
+      ctaSectionSub: "3 Minuten anonym ausfüllen — danke!",
+      ctaButton: "Daten beisteuern",
+
+      // Progress
+      stepLabel: "Schritt",
+      timeEstimate: "ca. 3 Min",
+      back: "Zurück",
+      next: "Weiter",
+      submit: "Anonym senden",
+      submitting: "Wird gesendet",
+      optional: "optional",
+
+      // Step 1
+      step1Title: "Wer spielst du?",
+      ttrLabel: "Q-TTR / LPZ",
+      styleLabel: "Spielstil",
+      styles: [
+        { id: "offensive_topspin", label: "Offensiv-Topspin" },
+        { id: "allround", label: "Allround" },
+        { id: "defensive", label: "Defensiv" },
+        { id: "material", label: "Material (Noppen/Anti)" },
+      ],
+      handLabel: "Schlaghand",
+      handRight: "Rechts",
+      handLeft: "Links",
+
+      // Step 2
+      step2Title: "Was spielst du aktuell?",
+      step2Hint: "Tipp den Anfang ein — wir schlagen passende Produkte vor.",
+      bladeLabel: "Holz",
+      bladePlaceholder: "z.B. Stiga Allround…",
+      rubberVhLabel: "Belag Vorhand",
+      rubberRhLabel: "Belag Rückhand",
+      rubberPlaceholder: "z.B. Donic Bluefire…",
+      rhSameAsVh: "gleicher Belag wie VH",
+
+      // Step 3
+      step3Title: "Wie passt es zu dir?",
+      satisfactionLabel: "Gesamt-Zufriedenheit",
+      goodLabel: "Was funktioniert gut?",
+      goodPlaceholder: "z.B. Block ist stabil, Kontrolle in langen Ballwechseln",
+      badLabel: "Was nervt?",
+      badPlaceholder: "z.B. zu langsam für Topspin, Aufschlag-Spin schwach",
+
+      // Step 4
+      step4Title: "Hattest du was anderes davor?",
+      step4Hint: "Komplett optional — aber genau diese Wechsel-Geschichten machen den Berater richtig gut.",
+      previousPlaceholder: "z.B. Vorher Andro Gauzy mit 2× Tibhar MX-P — zu schwer und anspruchsvoll, Topspin fiel ständig zu kurz.",
+      privacyNote: "Wir speichern: TTR, Spielstil, Hand, dein Setup, deine Bewertung, deine Texte. Wir speichern NICHT: Name, E-Mail, IP-Adresse, Cookies. Daten werden anonymisiert in unserer Datenbank gespeichert und für die Beratungs-Engine genutzt. Mehr im Datenschutz.",
+
+      // Erfolg
+      successTitle: "Danke. Im Ernst.",
+      successBack: "Zurück zur Startseite",
+    },
+
     // Founder-Sektion (zwischen Promises und FAQ)
     founder: {
       kicker: "Hinter PongSmith",
@@ -206,6 +268,7 @@ const translations = {
       itemQuickPick: "Schnell-Check",
       itemSortiment: "Sortiment",
       itemGuide: "Ratgeber",
+      itemContribute: "Mithelfen",
       itemImprint: "Impressum",
       itemPrivacy: "Datenschutz",
       itemAffiliate: "Affiliate-Hinweis",
@@ -322,6 +385,60 @@ const translations = {
         { t: "Community reviews", d: "Aggregated from forums and rating sites. We weight individual opinions with care." },
         { t: "Club players", d: "Real reports from the 1,000–1,700 TTR corridor. Not pro-tour fantasy." },
       ],
+    },
+
+    contribute: {
+      kicker: "Help out",
+      title: "Make the advisor better for everyone.",
+      sub: "Three minutes. Fully anonymous. No login, no name. Just your TT data — and the advisor gets sharper with every record. Including your next request.",
+      ctaSection: "Help the forge",
+      ctaSectionSub: "3 minutes anonymous — thanks!",
+      ctaButton: "Contribute data",
+
+      stepLabel: "Step",
+      timeEstimate: "~3 min",
+      back: "Back",
+      next: "Next",
+      submit: "Submit anonymously",
+      submitting: "Sending",
+      optional: "optional",
+
+      step1Title: "Who do you play?",
+      ttrLabel: "Q-TTR / LPZ",
+      styleLabel: "Play style",
+      styles: [
+        { id: "offensive_topspin", label: "Offensive topspin" },
+        { id: "allround", label: "Allround" },
+        { id: "defensive", label: "Defensive" },
+        { id: "material", label: "Material (pips/anti)" },
+      ],
+      handLabel: "Playing hand",
+      handRight: "Right",
+      handLeft: "Left",
+
+      step2Title: "What do you play right now?",
+      step2Hint: "Type the start — we'll suggest matching products.",
+      bladeLabel: "Blade",
+      bladePlaceholder: "e.g. Stiga Allround…",
+      rubberVhLabel: "Forehand rubber",
+      rubberRhLabel: "Backhand rubber",
+      rubberPlaceholder: "e.g. Donic Bluefire…",
+      rhSameAsVh: "same as forehand",
+
+      step3Title: "How does it fit?",
+      satisfactionLabel: "Overall satisfaction",
+      goodLabel: "What works well?",
+      goodPlaceholder: "e.g. block is stable, control in long rallies",
+      badLabel: "What annoys?",
+      badPlaceholder: "e.g. too slow for topspin, weak serve spin",
+
+      step4Title: "Anything different before?",
+      step4Hint: "Fully optional — but these switch stories make the advisor really good.",
+      previousPlaceholder: "e.g. Before: Andro Gauzy with 2× Tibhar MX-P — too heavy and demanding, topspin kept falling short.",
+      privacyNote: "We store: TTR, play style, hand, your setup, your rating, your text. We DON'T store: name, email, IP address, cookies. Data is stored anonymously and used for the recommendation engine. More in the privacy policy.",
+
+      successTitle: "Thank you. Truly.",
+      successBack: "Back to homepage",
     },
 
     founder: {
@@ -450,6 +567,7 @@ const translations = {
       itemQuickPick: "Quick Pick",
       itemSortiment: "Products",
       itemGuide: "Guide",
+      itemContribute: "Help out",
       itemImprint: "Imprint",
       itemPrivacy: "Privacy",
       itemAffiliate: "Affiliate disclosure",
