@@ -19,6 +19,7 @@ import { blades, rubbers, synergies, manufacturers } from "@/db/schema";
 import { and, desc, eq, gte, inArray, lte, sql as drizzleSql } from "drizzle-orm";
 import { detectProducts } from "@/lib/product-detector";
 import { getShopLinks, buildTrackingUrl } from "@/lib/affiliate";
+import { groupProductsBySetup } from "@/lib/setup-grouper";
 
 export const runtime   = "nodejs";
 export const dynamic   = "force-dynamic";
@@ -931,25 +932,29 @@ export async function POST(req: NextRequest) {
           .map((b) => b.text)
           .join("");
 
-        // Erkannte Produkte → Shop-Links generieren (für UI-Buttons)
+        // Produkte erkennen + Shop-Links anhängen
         const detected = await detectProducts(text);
-        const products = detected.map((p) => {
+        const enrichProduct = (p: typeof detected[0]) => {
           const ref = { type: p.type, id: p.id, name: p.name, manufacturer: p.manufacturer };
           const shops = getShopLinks(ref).map((l) => ({
             id: l.shop.id,
             name: l.shop.name,
             url: buildTrackingUrl({ shopId: l.shop.id, productType: p.type, productId: p.id }),
           }));
-          return {
-            type: p.type,
-            id: p.id,
-            name: p.name,
-            manufacturer: p.manufacturer,
-            shops,
-          };
-        });
+          return { type: p.type, id: p.id, name: p.name, manufacturer: p.manufacturer, shops };
+        };
 
-        return NextResponse.json({ text, products });
+        const products = detected.map(enrichProduct);
+
+        // Setup-Gruppen erkennen (für Setup-Karten in der UI)
+        const setupGroups = groupProductsBySetup(text, detected);
+        const setups = setupGroups.map((g) => ({
+          index: g.index,
+          title: g.title,
+          products: g.products.map(enrichProduct),
+        }));
+
+        return NextResponse.json({ text, products, setups });
       }
 
       if (response.stop_reason === "tool_use") {

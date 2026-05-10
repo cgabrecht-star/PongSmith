@@ -17,11 +17,19 @@ interface DetectedProduct {
   shops: ShopLink[];
 }
 
+interface SetupGroup {
+  index: number;
+  title: string;
+  products: DetectedProduct[];
+}
+
 interface Message {
   role: "user" | "assistant";
   content: string;
-  /** Nur bei assistant-Nachrichten: erkannte Produkte mit Shop-Links */
+  /** Nur bei assistant-Nachrichten: erkannte Produkte mit Shop-Links (Fallback) */
   products?: DetectedProduct[];
+  /** Setup-Gruppen wenn der Berater 1./2./3. Setups vorgeschlagen hat */
+  setups?: SetupGroup[];
 }
 
 // Rendert **fett**, *kursiv* und einfache Listen aus Markdown-Text
@@ -98,10 +106,119 @@ function TypingDots() {
   );
 }
 
-function ShopButtons({ products, lang }: { products: DetectedProduct[]; lang: "de" | "en" }) {
-  if (!products || products.length === 0) return null;
-  const heading = lang === "de" ? "Hier kaufen" : "Buy here";
-  const adLabel = lang === "de" ? "Werbung · Affiliate-Links" : "Ad · affiliate links";
+// ─────────────────────────────────────────────────────────────────────────
+// SetupCards — die primäre Affiliate-Conversion-Komponente
+// Eine Karte pro empfohlenem Setup, mit "Hier gibts dein Setup"-CTA der
+// ein Modal mit allen Produkten + Buy-Buttons öffnet.
+// ─────────────────────────────────────────────────────────────────────────
+
+function SetupCards({
+  setups, fallbackProducts, lang,
+}: {
+  setups?: SetupGroup[];
+  fallbackProducts?: DetectedProduct[];
+  lang: "de" | "en";
+}) {
+  const [openSetup, setOpenSetup] = useState<SetupGroup | null>(null);
+
+  const ctaPrimary = lang === "de" ? "Hier gibts dein Setup" : "Get this setup";
+  const adLabel = lang === "de" ? "Werbung · Affiliate" : "Ad · affiliate";
+
+  // Wenn der Berater Setups strukturiert ausgibt → Karten zeigen
+  if (setups && setups.length > 0) {
+    return (
+      <>
+        <div style={{
+          marginTop: 16,
+          paddingTop: 14,
+          borderTop: "1px dashed var(--ps-line)",
+          display: "flex",
+          flexDirection: "column",
+          gap: 10,
+        }}>
+          <div className="ff-mono" style={{
+            fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase",
+            color: "var(--ps-ink-3)", display: "flex", justifyContent: "space-between",
+          }}>
+            <span style={{ color: "var(--ps-ember-2)" }}>
+              {lang === "de" ? `${setups.length} Setup${setups.length > 1 ? "s" : ""} zur Auswahl` : `${setups.length} setup${setups.length > 1 ? "s" : ""} to choose from`}
+            </span>
+            <span style={{ color: "var(--ps-ink-4)", fontSize: 9 }}>{adLabel}</span>
+          </div>
+
+          {setups.map((setup) => {
+            const blade = setup.products.find((p) => p.type === "blade");
+            const rubbers = setup.products.filter((p) => p.type === "rubber");
+            return (
+              <div
+                key={setup.index}
+                style={{
+                  background: "var(--ps-bg-2)",
+                  border: "1px solid var(--ps-line)",
+                  borderRadius: 4,
+                  padding: "14px 16px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 10,
+                }}
+              >
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12 }}>
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.16em", color: "var(--ps-ember-2)", textTransform: "uppercase", marginBottom: 4 }}>
+                      Setup 0{setup.index}
+                    </div>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: "var(--ps-ink-0)", lineHeight: 1.3 }}>
+                      {setup.title}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Komponentenliste */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 12, color: "var(--ps-ink-2)" }}>
+                  {blade && (
+                    <div>
+                      <span className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.1em", color: "var(--ps-ink-4)", marginRight: 8, textTransform: "uppercase" }}>Holz</span>
+                      <span style={{ color: "var(--ps-ink-1)" }}>{blade.name}</span>
+                    </div>
+                  )}
+                  {rubbers.map((r, i) => (
+                    <div key={`${r.id}-${i}`}>
+                      <span className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.1em", color: "var(--ps-ink-4)", marginRight: 8, textTransform: "uppercase" }}>
+                        {rubbers.length === 1 ? (lang === "de" ? "Belag" : "Rubber") : i === 0 ? "VH" : "RH"}
+                      </span>
+                      <span style={{ color: "var(--ps-ink-1)" }}>{r.name}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Hauptbutton */}
+                <button
+                  onClick={() => setOpenSetup(setup)}
+                  className="ember-btn ember-btn-glow"
+                  style={{
+                    padding: "10px 14px",
+                    fontSize: 13,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 8,
+                    width: "100%",
+                  }}
+                >
+                  {ctaPrimary} →
+                </button>
+              </div>
+            );
+          })}
+        </div>
+
+        {openSetup && <SetupModal setup={openSetup} lang={lang} onClose={() => setOpenSetup(null)} />}
+      </>
+    );
+  }
+
+  // Fallback: keine Setups erkennbar → flache Produktliste (alt)
+  if (!fallbackProducts || fallbackProducts.length === 0) return null;
 
   return (
     <div style={{
@@ -114,53 +231,183 @@ function ShopButtons({ products, lang }: { products: DetectedProduct[]; lang: "d
         color: "var(--ps-ink-3)", marginBottom: 8,
         display: "flex", justifyContent: "space-between", alignItems: "center",
       }}>
-        <span>🛒 {heading}</span>
+        <span>🛒 {lang === "de" ? "Erwähnte Produkte" : "Mentioned products"}</span>
         <span style={{ color: "var(--ps-ink-4)", fontSize: 9 }}>{adLabel}</span>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-        {products.map((p) => (
-          <div
-            key={`${p.type}:${p.id}`}
-            style={{
-              display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center",
-              fontSize: 12.5,
-            }}
-          >
-            <span style={{ color: "var(--ps-ink-1)", marginRight: 4, flexShrink: 0 }}>
+        {fallbackProducts.map((p) => (
+          <div key={`${p.type}:${p.id}`} style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center", fontSize: 12.5 }}>
+            <span style={{ color: "var(--ps-ink-1)", marginRight: 4 }}>
               <strong style={{ color: "var(--ps-ink-0)", fontWeight: 600 }}>{p.name}</strong>
-              <span style={{ color: "var(--ps-ink-3)", marginLeft: 6, fontSize: 11 }}>
-                {p.manufacturer}
-              </span>
+              <span style={{ color: "var(--ps-ink-3)", marginLeft: 6, fontSize: 11 }}>{p.manufacturer}</span>
             </span>
             {p.shops.length === 0 ? (
-              <span style={{ color: "var(--ps-ink-4)", fontSize: 11 }}>
-                {lang === "de" ? "Shop folgt" : "shop coming"}
-              </span>
+              <span style={{ color: "var(--ps-ink-4)", fontSize: 11 }}>{lang === "de" ? "Shop folgt" : "shop coming"}</span>
             ) : (
               p.shops.map((s) => (
-                <a
-                  key={s.id}
-                  href={s.url}
-                  target="_blank"
-                  rel="sponsored noopener"
+                <a key={s.id} href={s.url} target="_blank" rel="sponsored noopener"
                   style={{
-                    background: "var(--ps-bg-3)",
-                    border: "1px solid var(--ps-line)",
-                    color: "var(--ps-ember-2)",
-                    padding: "3px 9px",
-                    borderRadius: 3,
-                    fontSize: 11.5,
-                    textDecoration: "none",
-                    fontFamily: "var(--font-jetbrains), monospace",
-                    whiteSpace: "nowrap",
-                  }}
-                >
+                    background: "var(--ps-bg-3)", border: "1px solid var(--ps-line)",
+                    color: "var(--ps-ember-2)", padding: "3px 9px", borderRadius: 3,
+                    fontSize: 11.5, textDecoration: "none",
+                    fontFamily: "var(--font-jetbrains), monospace", whiteSpace: "nowrap",
+                  }}>
                   {s.name} →
                 </a>
               ))
             )}
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// SetupModal — Kauf-Funnel-Step nach Setup-Auswahl
+// ─────────────────────────────────────────────────────────────────────────
+
+function SetupModal({ setup, lang, onClose }: { setup: SetupGroup; lang: "de" | "en"; onClose: () => void }) {
+  // ESC schließt
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose();
+    }
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  const headline = lang === "de" ? "Hier gibts dein Setup" : "Here's your setup";
+  const subline = lang === "de"
+    ? "Drei Teile — drei Klicks. Wir kassieren eine Provision vom Shop, du zahlst nichts extra."
+    : "Three parts — three clicks. We get a commission from the shop, you pay nothing extra.";
+  const productLabel = (p: DetectedProduct, idx: number, total: number) => {
+    if (p.type === "blade") return lang === "de" ? "Holz" : "Blade";
+    if (total === 1) return lang === "de" ? "Belag" : "Rubber";
+    return idx === 0 ? "VH" : "RH";
+  };
+  const rubbers = setup.products.filter((p) => p.type === "rubber");
+  const blade = setup.products.find((p) => p.type === "blade");
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 100,
+        background: "rgba(8,8,10,0.78)", backdropFilter: "blur(6px)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: 20, overflowY: "auto",
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="card-forged"
+        style={{
+          background: "var(--ps-bg-1)",
+          maxWidth: 540, width: "100%",
+          padding: 0,
+          display: "flex", flexDirection: "column",
+          maxHeight: "90vh",
+        }}
+      >
+        {/* Header */}
+        <div style={{ padding: "24px 28px 16px", borderBottom: "1px solid var(--ps-line-2)", position: "relative" }}>
+          <button
+            onClick={onClose}
+            style={{
+              position: "absolute", top: 14, right: 14,
+              background: "transparent", border: "1px solid var(--ps-line-2)",
+              color: "var(--ps-ink-3)", borderRadius: 4, padding: "4px 9px",
+              cursor: "pointer", fontSize: 14,
+            }}
+            aria-label="close"
+          >✕</button>
+          <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.16em", color: "var(--ps-ember-2)", textTransform: "uppercase", marginBottom: 8 }}>
+            Setup 0{setup.index}
+          </div>
+          <h3 className="ff-display" style={{ fontSize: 26, lineHeight: 1.1, margin: "0 0 8px", color: "var(--ps-ink-0)" }}>
+            {headline}
+          </h3>
+          <p style={{ margin: 0, color: "var(--ps-ink-2)", fontSize: 13.5, lineHeight: 1.55 }}>
+            {subline}
+          </p>
+        </div>
+
+        {/* Produktliste */}
+        <div style={{ padding: "18px 28px", overflowY: "auto", display: "flex", flexDirection: "column", gap: 14 }}>
+          {[blade, ...rubbers].filter(Boolean).map((p, i, arr) => {
+            if (!p) return null;
+            const rubberIdx = p.type === "rubber" ? rubbers.indexOf(p) : 0;
+            const label = productLabel(p, rubberIdx, rubbers.length);
+            return (
+              <div key={`${p.type}-${p.id}-${i}`} style={{
+                background: "var(--ps-bg-2)",
+                border: "1px solid var(--ps-line)",
+                borderRadius: 4,
+                padding: "14px 16px",
+                display: "flex", flexDirection: "column", gap: 10,
+              }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 10 }}>
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.16em", color: "var(--ps-ember-2)", textTransform: "uppercase", marginBottom: 3 }}>
+                      {String(i + 1).padStart(2, "0")} · {label}
+                    </div>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ps-ink-0)" }}>
+                      {p.name}
+                    </div>
+                    <div style={{ fontSize: 11, color: "var(--ps-ink-3)", marginTop: 2 }}>
+                      {p.manufacturer}
+                    </div>
+                  </div>
+                </div>
+                {p.shops.length === 0 ? (
+                  <div className="ff-mono" style={{ fontSize: 10, color: "var(--ps-ink-4)", letterSpacing: "0.1em" }}>
+                    {lang === "de" ? "Shop folgt" : "shop coming"}
+                  </div>
+                ) : (
+                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                    {p.shops.map((s, si) => (
+                      <a
+                        key={s.id}
+                        href={s.url}
+                        target="_blank"
+                        rel="sponsored noopener"
+                        className={si === 0 ? "ember-btn" : undefined}
+                        style={si === 0
+                          ? { padding: "8px 14px", fontSize: 12, display: "inline-flex", alignItems: "center", gap: 6, textDecoration: "none" }
+                          : {
+                              background: "var(--ps-bg-3)", border: "1px solid var(--ps-line)",
+                              color: "var(--ps-ink-1)", padding: "8px 12px", borderRadius: 3,
+                              fontSize: 12, textDecoration: "none",
+                              display: "inline-flex", alignItems: "center", gap: 6,
+                            }}
+                      >
+                        {s.name} →
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Footer */}
+        <div className="ff-mono" style={{
+          padding: "12px 28px 18px",
+          borderTop: "1px solid var(--ps-line-2)",
+          fontSize: 9.5, letterSpacing: "0.14em",
+          color: "var(--ps-ink-4)", textTransform: "uppercase",
+          textAlign: "center",
+        }}>
+          {lang === "de"
+            ? "Werbung · Affiliate-Links · Du zahlst keinen Cent extra"
+            : "Ad · affiliate links · You pay nothing extra"}
+        </div>
       </div>
     </div>
   );
@@ -195,8 +442,11 @@ function Bubble({ msg, userLabel, lang }: { msg: Message; userLabel: string; lan
         boxShadow: isUser ? "0 4px 16px rgba(255,107,53,0.25)" : "none",
       }}>
         {formatText(msg.content)}
-        {!isUser && msg.products && msg.products.length > 0 && (
-          <ShopButtons products={msg.products} lang={lang} />
+        {!isUser && (
+          (msg.setups && msg.setups.length > 0) ||
+          (msg.products && msg.products.length > 0)
+        ) && (
+          <SetupCards setups={msg.setups} fallbackProducts={msg.products} lang={lang} />
         )}
       </div>
 
@@ -305,6 +555,7 @@ export function BeraterChat() {
         text?: string;
         error?: string;
         products?: DetectedProduct[];
+        setups?: SetupGroup[];
       };
       if (data.error) {
         setApiError(data.error);
@@ -313,6 +564,7 @@ export function BeraterChat() {
           role: "assistant",
           content: data.text ?? "",
           products: data.products,
+          setups: data.setups,
         }]);
       }
     } catch {
