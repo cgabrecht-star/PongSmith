@@ -40,6 +40,13 @@ export default function ImpressumPage() {
               >
                 hallo@pongsmith.de
               </a>
+              <br />
+              <a
+                href="mailto:c.gabrecht@icloud.com"
+                style={{ color: "var(--ps-ember-2)", textDecoration: "none" }}
+              >
+                c.gabrecht@icloud.com
+              </a>
             </Field>
           </Section>
 
