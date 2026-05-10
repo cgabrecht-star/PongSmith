@@ -81,7 +81,7 @@ const translations = {
       ageLine: "38 Jahre · Q-TTR 1.280",
       story: "PongSmith soll genau die Frustration verhindern, die ich selbst und viele Vereinskollegen durchgemacht haben: 200 € in ein Setup stecken, das nicht passt — und dadurch die Freude am Sport verlieren. Die Seite wird laufend mit neuen Daten gefüttert: Beläge, Hölzer, Community-Stimmen, eigene Test-Erfahrungen. Wenn dir was auffällt oder fehlt, schreib mich an.",
       contactLabel: "E-Mail",
-      contactValue: "hello@pongsmith.de",
+      contactValue: "hallo@pongsmith.de",
     },
 
     // Demo / Beispielberatung (vor BeraterSection)
