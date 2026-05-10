@@ -86,7 +86,12 @@ function isJoolaProduct(manufacturer: string): boolean {
  */
 function buildAmazonSearchLink(productName: string, manufacturer?: string): string | null {
   if (!AMAZON_TAG) return null;
-  const query = manufacturer ? `${manufacturer} ${productName}` : productName;
+  // Hersteller nur voranstellen wenn er nicht bereits im Produktnamen vorkommt
+  // (z.B. "Butterfly Tenergy 05" → nicht "Butterfly Butterfly Tenergy 05")
+  const nameLower = productName.toLowerCase();
+  const mfgLower = (manufacturer ?? "").toLowerCase().trim();
+  const needsMfg = mfgLower && !nameLower.includes(mfgLower);
+  const query = needsMfg ? `${manufacturer} ${productName}` : productName;
   const encoded = encodeURIComponent(query);
   return `https://www.amazon.de/s?k=${encoded}&tag=${AMAZON_TAG}`;
 }
