@@ -666,7 +666,7 @@ function Bubble({ msg, userLabel, lang }: { msg: Message; userLabel: string; lan
   );
 }
 
-export function BeraterChat() {
+export function BeraterChat({ initialMessage }: { initialMessage?: string | null } = {}) {
   const { lang, t } = useLanguage();
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: t.berater.greeting },
@@ -676,6 +676,7 @@ export function BeraterChat() {
   const [apiError, setApiError] = useState<string | null>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const initialSentRef = useRef(false);
 
   // Greeting nachladen wenn Sprache wechselt UND noch keine User-Nachricht da ist
   useEffect(() => {
@@ -731,6 +732,17 @@ export function BeraterChat() {
     window.addEventListener("pongsmith:send-direct", onSendDirect);
     return () => window.removeEventListener("pongsmith:send-direct", onSendDirect);
   }, []);
+
+  // Initial-Message: wenn der BeraterFlow eine vorbefüllte Nachricht übergibt
+  // (z.B. aus dem Vorab-Setup-Form), einmalig automatisch senden.
+  useEffect(() => {
+    if (initialMessage && !initialSentRef.current) {
+      initialSentRef.current = true;
+      setTimeout(() => {
+        void sendRef.current(initialMessage);
+      }, 350);
+    }
+  }, [initialMessage]);
 
   async function send(directText?: string) {
     const text = (directText ?? input).trim();

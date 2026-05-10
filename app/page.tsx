@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
-import { BeraterChat } from "@/components/berater-chat";
+import { BeraterFlow } from "@/components/berater-flow";
 import { ProblemExpress } from "@/components/problem-express";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useLanguage } from "@/lib/language-context";
@@ -749,7 +749,7 @@ function BeraterSection() {
         </h2>
         <p style={{ color: "var(--ps-ink-2)", fontSize: 17, margin: "0 0 40px", maxWidth: 560 }}>{t.sub}</p>
         <div style={{ height: 560 }}>
-          <BeraterChat />
+          <BeraterFlow />
         </div>
       </div>
     </section>
