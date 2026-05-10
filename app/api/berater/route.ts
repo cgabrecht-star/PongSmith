@@ -935,7 +935,7 @@ export async function POST(req: NextRequest) {
         // Produkte erkennen
         const detected = await detectProducts(text);
 
-        // Bild-URLs + Review-Counts pro Produkt nachladen
+        // Bild-URLs + Review-Counts + Slugs pro Produkt nachladen
         const bladeIds = detected.filter((p) => p.type === "blade").map((p) => p.id);
         const rubberIds = detected.filter((p) => p.type === "rubber").map((p) => p.id);
 
@@ -943,6 +943,7 @@ export async function POST(req: NextRequest) {
           bladeIds.length > 0
             ? db.select({
                 id: blades.id,
+                slug: blades.slug,
                 imageUrl: blades.imageUrl,
                 reviewCount: blades.communityReviewCount,
               }).from(blades).where(inArray(blades.id, bladeIds))
@@ -950,6 +951,7 @@ export async function POST(req: NextRequest) {
           rubberIds.length > 0
             ? db.select({
                 id: rubbers.id,
+                slug: rubbers.slug,
                 imageUrl: rubbers.imageUrl,
                 reviewCount: rubbers.communityReviewCount,
               }).from(rubbers).where(inArray(rubbers.id, rubberIds))
@@ -972,6 +974,7 @@ export async function POST(req: NextRequest) {
             id: p.id,
             name: p.name,
             manufacturer: p.manufacturer,
+            slug: meta?.slug ?? null,
             imageUrl: meta?.imageUrl ?? null,
             reviewCount: meta?.reviewCount ?? 0,
             shops,

@@ -254,20 +254,34 @@ function ProductCard({ item, onClick }: { item: ProductItem; onClick: () => void
   const { t } = useLanguage();
   const [hovered, setHovered] = useState(false);
   const isRubber = item.kind === "rubber";
+  const detailHref = isRubber ? `/belag/${item.slug}` : `/holz/${item.slug}`;
+
+  // Click → Modal. Ctrl/Cmd+Click oder Mittelklick → echte Navigation zur
+  // Detail-Seite. Sauber für SEO-Crawler (echter <a>-Tag im DOM) + behält
+  // die Modal-UX bei normalem Click.
+  function handleClick(e: React.MouseEvent) {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return; // normale Navigation lassen
+    e.preventDefault();
+    onClick();
+  }
 
   return (
-    <div
+    <a
+      href={detailHref}
       className="card-forged"
       style={{
         padding: "16px 18px",
         cursor: "pointer",
         position: "relative",
+        display: "block",
+        textDecoration: "none",
+        color: "inherit",
         transition: "border-color 220ms, transform 220ms, box-shadow 220ms",
         transform: hovered ? "translateY(-2px)" : "translateY(0)",
         borderColor: hovered ? "rgba(255,107,53,0.45)" : "var(--ps-line)",
         boxShadow: hovered ? "0 12px 32px rgba(0,0,0,0.35)" : "none",
       }}
-      onClick={onClick}
+      onClick={handleClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -335,7 +349,7 @@ function ProductCard({ item, onClick }: { item: ProductItem; onClick: () => void
               ? `★ ${item.reviewCount} ${t.sortiment.reviewCount}`
               : t.sortiment.defaultHint)}
       </div>
-    </div>
+    </a>
   );
 }
 
@@ -473,11 +487,22 @@ function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void
           )}
         </div>
 
-        {/* Footer / Future-CTA */}
-        <div style={{ padding: "16px 28px", borderTop: "1px solid var(--ps-line-2)", background: "var(--ps-bg-1)" }}>
-          <div className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.1em", color: "var(--ps-ink-4)", textAlign: "center", textTransform: "uppercase" }}>
-            {t.sortiment.futureCta}
-          </div>
+        {/* Footer mit Detail-Seite-Link */}
+        <div style={{ padding: "16px 28px", borderTop: "1px solid var(--ps-line-2)", background: "var(--ps-bg-1)", display: "flex", justifyContent: "center" }}>
+          <Link
+            href={item.kind === "rubber" ? `/belag/${item.slug}` : `/holz/${item.slug}`}
+            className="ember-btn"
+            style={{
+              padding: "10px 20px",
+              fontSize: 12.5,
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            {lang === "de" ? "Volle Detail-Seite öffnen" : "Open full detail page"} →
+          </Link>
         </div>
       </div>
 

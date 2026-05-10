@@ -14,6 +14,7 @@ interface DetectedProduct {
   id: number;
   name: string;
   manufacturer: string;
+  slug?: string | null;
   imageUrl?: string | null;
   reviewCount?: number;
   shops: ShopLink[];
@@ -404,8 +405,12 @@ function SetupCards({
 
 // Eine Komponenten-Zeile (Holz oder Belag) mit Bild, Name, Reviews
 function SetupComponentRow({ product, label }: { product: DetectedProduct; label: string }) {
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+  const detailHref = product.slug
+    ? (product.type === "blade" ? `/holz/${product.slug}` : `/belag/${product.slug}`)
+    : null;
+
+  const inner = (
+    <>
       <MiniProductImage url={product.imageUrl} manufacturer={product.manufacturer} size={36} />
       <div style={{ minWidth: 0, flex: 1 }}>
         <div className="ff-mono" style={{
@@ -423,7 +428,39 @@ function SetupComponentRow({ product, label }: { product: DetectedProduct; label
           )}
         </div>
       </div>
-    </div>
+      {detailHref && (
+        <span style={{ color: "var(--ps-ember-2)", fontSize: 13, flexShrink: 0 }}>→</span>
+      )}
+    </>
+  );
+
+  if (detailHref) {
+    return (
+      <a
+        href={detailHref}
+        target="_blank"
+        rel="noopener"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          textDecoration: "none",
+          color: "inherit",
+          padding: "4px 6px",
+          margin: "-4px -6px",
+          borderRadius: 3,
+          transition: "background 140ms",
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,107,53,0.06)")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+      >
+        {inner}
+      </a>
+    );
+  }
+
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>{inner}</div>
   );
 }
 
