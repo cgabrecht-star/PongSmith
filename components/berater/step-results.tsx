@@ -53,6 +53,8 @@ interface ShopLink {
   id: string;
   name: string;
   url: string;
+  /** Hat dieser Shop einen aktiven Affiliate-Vertrag mit uns? */
+  affiliateActive: boolean;
 }
 
 interface DetectedProduct {
@@ -136,6 +138,24 @@ function MiniImg({ url, manufacturer }: { url?: string | null; manufacturer: str
   );
 }
 
+function ShopPill({ shop }: { shop: ShopLink }) {
+  return (
+    <a
+      href={shop.url}
+      target="_blank"
+      rel={shop.affiliateActive ? "sponsored noopener" : "noopener"}
+      className={`inline-flex items-center gap-1 whitespace-nowrap rounded-md border px-2.5 py-1.5 text-[11px] font-medium transition-colors ${
+        shop.affiliateActive
+          ? "border-primary/40 bg-primary/5 text-primary hover:bg-primary/15"
+          : "border-neutral-700 bg-neutral-800 text-neutral-200 hover:bg-surface-hover"
+      }`}
+      title={shop.affiliateActive ? "Affiliate-Partner (Werbung)" : "Externer Shop-Link"}
+    >
+      {shop.name} <span aria-hidden>→</span>
+    </a>
+  );
+}
+
 function ComponentRow({ product, label }: { product: DetectedProduct; label: string }) {
   const detailHref = product.slug
     ? product.type === "blade"
@@ -143,28 +163,40 @@ function ComponentRow({ product, label }: { product: DetectedProduct; label: str
       : `/belag/${product.slug}`
     : null;
   return (
-    <div className="flex items-center gap-3 p-2">
-      <MiniImg url={product.imageUrl} manufacturer={product.manufacturer} />
-      <div className="min-w-0 flex-1">
-        <div className="font-mono text-[9px] uppercase tracking-widest text-neutral-400">
-          {label}
-        </div>
-        <div className="text-sm font-semibold text-neutral-50">{product.name}</div>
-        <div className="mt-0.5 flex items-center gap-3 text-[10px]">
-          {(product.reviewCount ?? 0) > 0 && (
-            <span className="text-neutral-400">★ {product.reviewCount} Reviews</span>
-          )}
-          {detailHref && (
-            <Link
-              href={detailHref}
-              target="_blank"
-              className="text-neutral-400 underline-offset-2 transition-colors hover:text-primary hover:underline"
-            >
-              Specs ansehen ↗
-            </Link>
-          )}
+    <div className="flex flex-col gap-3 rounded-md border border-neutral-700/50 bg-neutral-900/40 p-3">
+      <div className="flex items-center gap-3">
+        <MiniImg url={product.imageUrl} manufacturer={product.manufacturer} />
+        <div className="min-w-0 flex-1">
+          <div className="font-mono text-[9px] uppercase tracking-widest text-neutral-400">
+            {label}
+          </div>
+          <div className="text-sm font-semibold text-neutral-50">{product.name}</div>
+          <div className="mt-0.5 flex items-center gap-3 text-[10px]">
+            <span className="text-neutral-500">{product.manufacturer}</span>
+            {(product.reviewCount ?? 0) > 0 && (
+              <span className="text-neutral-400">★ {product.reviewCount}</span>
+            )}
+            {detailHref && (
+              <Link
+                href={detailHref}
+                target="_blank"
+                className="text-neutral-400 underline-offset-2 transition-colors hover:text-primary hover:underline"
+              >
+                Specs ↗
+              </Link>
+            )}
+          </div>
         </div>
       </div>
+
+      {/* Shop-Liste */}
+      {product.shops.length > 0 && (
+        <div className="flex flex-wrap gap-1.5 pl-12">
+          {product.shops.map((s) => (
+            <ShopPill key={s.id} shop={s} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -172,16 +204,12 @@ function ComponentRow({ product, label }: { product: DetectedProduct; label: str
 function SetupCard({ setup, rank }: { setup: SetupGroupResult; rank: number }) {
   const blade = setup.products.find((p) => p.type === "blade");
   const rubbers = setup.products.filter((p) => p.type === "rubber");
-  const primaryShop = setup.products.find((p) => p.shops.length > 0)?.shops[0];
-
-  const openAllInTabs = () => {
-    setup.products.forEach((p, i) => {
-      if (p.shops.length === 0) return;
-      setTimeout(() => {
-        window.open(p.shops[0]!.url, "_blank", "noopener");
-      }, i * 150);
-    });
-  };
+  const totalShops = new Set(
+    setup.products.flatMap((p) => p.shops.map((s) => s.id)),
+  ).size;
+  const hasAffiliate = setup.products.some((p) =>
+    p.shops.some((s) => s.affiliateActive),
+  );
 
   return (
     <motion.div
@@ -204,8 +232,15 @@ function SetupCard({ setup, rank }: { setup: SetupGroupResult; rank: number }) {
         {setup.synergyScore != null && <SynergyRing value={setup.synergyScore} />}
       </div>
 
-      {/* Komponenten */}
-      <div className="flex flex-col gap-1 p-4">
+      {/* Hinweis: pro Produkt selber Shop wählen */}
+      <div className="border-b border-neutral-700 bg-neutral-900/30 px-6 py-3">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+          🛒 Pro Komponente — wähl deinen Shop ({totalShops} verfügbar)
+        </p>
+      </div>
+
+      {/* Komponenten mit Shop-Pills */}
+      <div className="flex flex-col gap-3 p-4">
         {blade && <ComponentRow product={blade} label="Holz" />}
         {rubbers.map((r, i) => (
           <ComponentRow
@@ -216,23 +251,12 @@ function SetupCard({ setup, rank }: { setup: SetupGroupResult; rank: number }) {
         ))}
       </div>
 
-      {/* Buy-Buttons */}
+      {/* Trust-Mikrotext */}
       <div className="border-t border-neutral-700 p-4">
-        {primaryShop ? (
-          <button
-            type="button"
-            onClick={openAllInTabs}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-3 text-sm font-medium text-on-primary shadow-lg shadow-primary/20 transition-colors duration-150 hover:bg-primary-hover"
-          >
-            Setup bei {primaryShop.name} holen <span aria-hidden>→</span>
-          </button>
-        ) : (
-          <div className="rounded-md border border-dashed border-neutral-700 px-4 py-3 text-center text-sm text-neutral-400">
-            Shop folgt
-          </div>
-        )}
-        <p className="mt-3 text-center font-mono text-[9px] uppercase tracking-widest text-neutral-500">
-          Werbung · Du zahlst nichts mehr · 30 Tage Bedenkzeit
+        <p className="text-center font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+          {hasAffiliate
+            ? "Orange Buttons = Affiliate-Partner (Werbung · du zahlst nichts mehr)"
+            : "Externe Shop-Links · noch keine Affiliate-Provision · Preise direkt im Shop"}
         </p>
       </div>
     </motion.div>

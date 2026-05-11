@@ -11,6 +11,7 @@
 
 import Link from "next/link";
 import type { ProductDetail, SynergyPartner, SimilarProduct } from "@/lib/product-detail";
+import { getShopLinks, buildTrackingUrl } from "@/lib/affiliate";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────
 
@@ -156,6 +157,15 @@ export function ProductDetailView({ product, synergies, similar }: DetailViewPro
   const isRubber = product.type === "rubber";
   const breadcrumbCategory = isRubber ? "Beläge" : "Hölzer";
   const breadcrumbCategorySlug = isRubber ? "belag" : "holz";
+
+  // Shop-Links für diesen Produkt
+  const shopLinks = getShopLinks({
+    type: product.type,
+    id: product.id,
+    name: product.name,
+    manufacturer: product.manufacturer.name,
+  });
+  const hasAffiliate = shopLinks.some((l) => l.affiliateActive);
 
   return (
     <article className="forge-bg" style={{ minHeight: "100vh", padding: "40px 20px 80px" }}>
@@ -340,6 +350,78 @@ export function ProductDetailView({ product, synergies, similar }: DetailViewPro
                 <SimilarCard key={p.id} p={{ ...p, type: product.type }} />
               ))}
             </div>
+          </section>
+        )}
+
+        {/* Wo kaufen? — Shop-Vergleich */}
+        {shopLinks.length > 0 && (
+          <section
+            style={{
+              marginTop: 40,
+              marginBottom: 40,
+              padding: "26px 24px",
+              borderRadius: 8,
+              border: "1px solid var(--ps-line)",
+              background: "var(--ps-bg-2)",
+            }}
+          >
+            <h2 className="ff-display" style={{ fontSize: 24, color: "var(--ps-ink-0)", margin: 0, lineHeight: 1.2 }}>
+              Wo kaufen?
+            </h2>
+            <p style={{ margin: "8px 0 16px", color: "var(--ps-ink-2)", fontSize: 13.5, lineHeight: 1.6 }}>
+              Verlinkungen zu allen relevanten Tischtennis-Shops. Such-Treffer im jeweiligen Shop —
+              dort siehst du den aktuellen Preis und Verfügbarkeit.
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+              {shopLinks.map((l) => {
+                const trackingUrl = buildTrackingUrl({
+                  shopId: l.shop.id,
+                  productType: product.type,
+                  productId: product.id,
+                });
+                return (
+                  <a
+                    key={l.shop.id}
+                    href={trackingUrl}
+                    target="_blank"
+                    rel={l.affiliateActive ? "sponsored noopener" : "noopener"}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 6,
+                      padding: "8px 14px",
+                      borderRadius: 6,
+                      border: l.affiliateActive
+                        ? "1px solid rgba(255,107,53,0.5)"
+                        : "1px solid var(--ps-line)",
+                      background: l.affiliateActive
+                        ? "rgba(255,107,53,0.10)"
+                        : "var(--ps-bg-3)",
+                      color: l.affiliateActive
+                        ? "var(--ps-ember-2)"
+                        : "var(--ps-ink-1)",
+                      fontSize: 13,
+                      fontWeight: 500,
+                      textDecoration: "none",
+                      whiteSpace: "nowrap",
+                      transition: "all 140ms",
+                    }}
+                    title={
+                      l.affiliateActive
+                        ? `${l.shop.name} (Werbung · Affiliate-Partner)`
+                        : `${l.shop.name} (externer Shop-Link)`
+                    }
+                  >
+                    {l.shop.name} →
+                  </a>
+                );
+              })}
+            </div>
+            <p className="ff-mono" style={{ marginTop: 14, fontSize: 9, color: "var(--ps-ink-4)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+              {hasAffiliate
+                ? "Orange = Affiliate-Partner (Werbung · du zahlst nichts mehr)"
+                : "Externe Shop-Links · noch keine Affiliate-Provision"}
+            </p>
           </section>
         )}
 

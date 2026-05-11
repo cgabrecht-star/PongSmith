@@ -26,7 +26,15 @@ import { getShopLinks, type ShopId, type ProductRef } from "@/lib/affiliate";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const VALID_SHOPS: ShopId[] = ["amazon", "joola", "tt-shop"];
+const VALID_SHOPS: ShopId[] = [
+  "tt-shop",
+  "tischtennis-biz",
+  "contra",
+  "schoeler-micke",
+  "sportschreiner",
+  "joola",
+  "amazon",
+];
 
 /** Verkürzt User-Agent auf grobe Kategorie — DSGVO-freundlich, kein Fingerprint. */
 function shortenUserAgent(ua: string | null): string | null {

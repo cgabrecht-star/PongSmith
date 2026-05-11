@@ -1,195 +1,236 @@
 /**
- * Affiliate-Link-Generator
+ * Multi-Shop-Affiliate-Link-Generator.
  *
- * Strategie: Search-Deeplinks statt Produkt-URL-Mapping.
- * Wir generieren on-the-fly Such-Links zu den Shops — funktioniert für alle
- * Produkte sofort, kein manuelles Mapping nötig.
+ * Strategie: Wir verlinken zu ALLEN relevanten DE-TT-Shops, nicht nur zu
+ * denen mit denen wir aktuell einen Affiliate-Vertrag haben. Sobald ein
+ * Affiliate-Programm aktiv wird (z.B. Adcell-TT-Shop), wird der Link
+ * automatisch um den Tracking-Code erweitert.
  *
- * - Amazon: Suche mit Produktname + Tracking-Tag
- * - Awin/JOOLA: JOOLA-Suche, gewrapped in Awin-Tracking-URL
- * - Adcell/TT-Shop: Slot vorhanden, Aktivierung sobald Adcell-Bewerbung durch ist
+ * Für nicht-Affiliate-Shops liefern wir saubere Such-URLs ohne Tracking.
+ * Diese werden trotzdem durch /api/click geleitet, damit wir intern
+ * messen welche Shops am meisten geklickt werden (Daten für künftige
+ * Affiliate-Verhandlungen).
  */
-
-// ---------------------------------------------------------------------------
-// Konfiguration aus ENV
-// ---------------------------------------------------------------------------
 
 const AMAZON_TAG = process.env.AFFILIATE_AMAZON_TAG ?? "";
 const AWIN_PUBLISHER_ID = process.env.AFFILIATE_AWIN_PUBLISHER_ID ?? "";
 
-// Bekannte Awin-Advertiser. Sobald weitere Programme genehmigt werden,
-// hier ergänzen — Code muss sonst nicht angefasst werden.
+// Awin-Advertiser (Erweitern wenn weitere Awin-Partner kommen)
 const AWIN_ADVERTISERS = {
   joola: { id: "101601", domain: "joola.de", name: "JOOLA" },
 } as const;
 
 type AwinAdvertiserKey = keyof typeof AWIN_ADVERTISERS;
 
-// ---------------------------------------------------------------------------
-// Shop-Definition (für UI + Tracking)
-// ---------------------------------------------------------------------------
+// ─── Shop-Pool: alle 7 DE-TT-relevanten Shops ─────────────────────────────
 
-export type ShopId = "amazon" | "joola" | "tt-shop"; // tt-shop = später via Adcell
+export type ShopId =
+  | "tt-shop"
+  | "tischtennis-biz"
+  | "contra"
+  | "schoeler-micke"
+  | "sportschreiner"
+  | "joola"
+  | "amazon";
 
 export interface ShopMeta {
   id: ShopId;
   name: string;
-  active: boolean;
-  network: "amazon" | "awin" | "adcell";
-  commissionPercent: number; // grobe Schätzung
-  cookieDays: number;
+  domain: string;
+  /** Wie der Affiliate-Link aktuell zustandekommt */
+  affiliate: "amazon" | "awin" | "adcell" | "none";
+  /** Aktueller Status — beeinflusst nur die Anzeige (z.B. "Provision aktiv") */
+  affiliateActive: boolean;
 }
 
 export const SHOPS: Record<ShopId, ShopMeta> = {
-  amazon: {
-    id: "amazon",
-    name: "Amazon",
-    active: Boolean(AMAZON_TAG),
-    network: "amazon",
-    commissionPercent: 4,
-    cookieDays: 1,
+  "tt-shop": {
+    id: "tt-shop",
+    name: "TT-Shop",
+    domain: "tt-shop.de",
+    affiliate: "adcell",
+    affiliateActive: false, // Adcell-Bewerbung ausstehend
+  },
+  "tischtennis-biz": {
+    id: "tischtennis-biz",
+    name: "Tischtennis.biz",
+    domain: "tischtennis.biz",
+    affiliate: "adcell",
+    affiliateActive: false,
+  },
+  contra: {
+    id: "contra",
+    name: "Contra Sport",
+    domain: "contra.de",
+    affiliate: "none",
+    affiliateActive: false,
+  },
+  "schoeler-micke": {
+    id: "schoeler-micke",
+    name: "Schöler+Micke",
+    domain: "schoeler-micke.de",
+    affiliate: "none",
+    affiliateActive: false,
+  },
+  sportschreiner: {
+    id: "sportschreiner",
+    name: "Sportschreiner",
+    domain: "sportschreiner.de",
+    affiliate: "none",
+    affiliateActive: false,
   },
   joola: {
     id: "joola",
     name: "JOOLA",
-    active: Boolean(AWIN_PUBLISHER_ID),
-    network: "awin",
-    commissionPercent: 5,
-    cookieDays: 30,
+    domain: "joola.de",
+    affiliate: "awin",
+    affiliateActive: Boolean(AWIN_PUBLISHER_ID),
   },
-  "tt-shop": {
-    id: "tt-shop",
-    name: "TT-Shop",
-    active: false, // wird auf true sobald Adcell genehmigt + ID gesetzt
-    network: "adcell",
-    commissionPercent: 8,
-    cookieDays: 30,
+  amazon: {
+    id: "amazon",
+    name: "Amazon",
+    domain: "amazon.de",
+    affiliate: "amazon",
+    affiliateActive: Boolean(AMAZON_TAG),
   },
 };
 
-// ---------------------------------------------------------------------------
-// Marken-Erkennung — welche Marken passen zu welchem Shop?
-// ---------------------------------------------------------------------------
-
-/** JOOLA-Suche bei JOOLA selbst macht nur Sinn für JOOLA-Produkte. */
-function isJoolaProduct(manufacturer: string): boolean {
-  return manufacturer.trim().toLowerCase() === "joola";
-}
-
-// ---------------------------------------------------------------------------
-// Link-Generatoren
-// ---------------------------------------------------------------------------
-
 /**
- * Amazon-Suchlink mit Tracking-Tag.
- * Amazon credits ALLES was der User in 24h kauft — auch andere Produkte als das gesuchte.
+ * Reihenfolge in der Shop-Liste:
+ * 1. TT-Spezialisten (höchste Conversion bei TT-Produkten)
+ * 2. JOOLA (nur JOOLA-Produkte)
+ * 3. Amazon (Universal-Fallback, kürzeste Cookie)
  */
-function buildAmazonSearchLink(productName: string, manufacturer?: string): string | null {
-  if (!AMAZON_TAG) return null;
-  // Hersteller nur voranstellen wenn er nicht bereits im Produktnamen vorkommt
-  // (z.B. "Butterfly Tenergy 05" → nicht "Butterfly Butterfly Tenergy 05")
+export const SHOP_ORDER: ShopId[] = [
+  "tt-shop",
+  "tischtennis-biz",
+  "contra",
+  "schoeler-micke",
+  "sportschreiner",
+  "joola",
+  "amazon",
+];
+
+// ─── URL-Generatoren pro Shop ─────────────────────────────────────────────
+
+function searchQuery(productName: string, manufacturer?: string): string {
   const nameLower = productName.toLowerCase();
   const mfgLower = (manufacturer ?? "").toLowerCase().trim();
   const needsMfg = mfgLower && !nameLower.includes(mfgLower);
-  const query = needsMfg ? `${manufacturer} ${productName}` : productName;
-  const encoded = encodeURIComponent(query);
-  return `https://www.amazon.de/s?k=${encoded}&tag=${AMAZON_TAG}`;
+  return needsMfg ? `${manufacturer} ${productName}` : productName;
 }
 
-/**
- * Awin-Deeplink zu einer Ziel-URL des Advertisers.
- * Format: https://www.awin1.com/cread.php?awinmid=ADV_ID&awinaffid=PUB_ID&p=ENCODED_URL
- */
-function buildAwinDeeplink(advertiserKey: AwinAdvertiserKey, targetUrl: string): string | null {
+function buildSearchUrl(shop: ShopId, productName: string, manufacturer?: string): string | null {
+  const query = searchQuery(productName, manufacturer);
+  const q = encodeURIComponent(query);
+
+  switch (shop) {
+    case "tt-shop":
+      return `https://www.tt-shop.de/de/search?text=${q}`;
+    case "tischtennis-biz":
+      return `https://www.tischtennis.biz/?s=${q}`;
+    case "contra":
+      return `https://www.contra.de/de/search?sSearch=${q}`;
+    case "schoeler-micke":
+      return `https://www.schoeler-micke.de/search?q=${q}`;
+    case "sportschreiner":
+      return `https://www.sportschreiner.de/search?q=${q}`;
+    case "joola":
+      return `https://joola.de/de/search?q=${q}`;
+    case "amazon":
+      if (!AMAZON_TAG) return null;
+      return `https://www.amazon.de/s?k=${q}&tag=${AMAZON_TAG}`;
+  }
+}
+
+/** Wrappt eine Ziel-URL in einen Awin-Deeplink (nur für aktive Awin-Advertiser). */
+function wrapAwinDeeplink(advertiserKey: AwinAdvertiserKey, targetUrl: string): string | null {
   if (!AWIN_PUBLISHER_ID) return null;
   const adv = AWIN_ADVERTISERS[advertiserKey];
   const encoded = encodeURIComponent(targetUrl);
   return `https://www.awin1.com/cread.php?awinmid=${adv.id}&awinaffid=${AWIN_PUBLISHER_ID}&p=${encoded}`;
 }
 
-/**
- * JOOLA-Suchlink, gewrapped in Awin-Tracking.
- */
-function buildJoolaSearchLink(productName: string): string | null {
-  // joola.de Suchpfad — fallback auf Startseite wenn Suche schwach ist
-  const targetUrl = `https://www.joola.de/search?q=${encodeURIComponent(productName)}`;
-  return buildAwinDeeplink("joola", targetUrl);
-}
-
-// ---------------------------------------------------------------------------
-// Public API: Shop-Links für ein Produkt generieren
-// ---------------------------------------------------------------------------
+// ─── Public API ────────────────────────────────────────────────────────────
 
 export interface ProductRef {
-  /** "blade" oder "rubber" — für Tracking */
   type: "blade" | "rubber";
-  /** DB-ID — für Click-Tracking */
   id: number;
-  /** Anzeigename, z.B. "Bluestorm Z1" */
   name: string;
-  /** Hersteller, z.B. "Donic" */
   manufacturer: string;
 }
 
-export interface ShopLink {
+export interface ShopLinkOut {
   shop: ShopMeta;
-  /** Direkt-URL zum Shop (kann zum Tracking durch /api/click geleitet werden) */
+  /** Finale Ziel-URL (mit Affiliate-Wrap falls vorhanden) */
   url: string;
-  /** Wie der Link erzeugt wurde — "search" oder "direct" (manuelles Mapping später) */
+  /** Wie der Link erzeugt wurde */
   linkType: "search" | "direct";
+  /** Hat der User Affiliate-Schutz (== bringt uns Provision)? */
+  affiliateActive: boolean;
 }
 
 /**
- * Liefert alle aktiven Affiliate-Links für ein Produkt.
+ * Liefert Shop-Links für ein Produkt — eine Liste über alle relevanten
+ * DE-TT-Shops. Reihenfolge nach SHOP_ORDER.
  *
- * Reihenfolge (Index 0 = primärer Shop für Direct-Click-CTA):
- *   1. TT-Shop (Adcell, sobald aktiv) — höchste Provision + 30 Tage Cookie
- *   2. Tischtennis.biz (Adcell, sobald aktiv) — wie TT-Shop
- *   3. JOOLA via Awin — bei JOOLA-Produkten
- *   4. Andere Awin-Partner (zukünftig)
- *   5. Amazon — IMMER als Letztes (kürzeste Cookie, niedrigste Provision)
- *
- * Regel: Partner haben immer Vorrang vor Amazon. Amazon nur als universeller
- * Fallback wenn kein Spezial-Shop verfügbar ist.
+ * Regel: JOOLA-Shop wird nur für JOOLA-eigene Produkte verlinkt
+ * (sonst Awin-Verlinkung sinnlos).
  */
-export function getShopLinks(product: ProductRef): ShopLink[] {
-  const partnerLinks: ShopLink[] = [];
-  const amazonLinks: ShopLink[] = [];
+export function getShopLinks(product: ProductRef): ShopLinkOut[] {
+  const out: ShopLinkOut[] = [];
 
-  // 1. TT-Shop (Adcell) — wird ergänzt sobald aktiv
-  // if (SHOPS["tt-shop"].active) { ... }
+  for (const shopId of SHOP_ORDER) {
+    const shop = SHOPS[shopId];
 
-  // 2. JOOLA via Awin — nur sinnvoll bei JOOLA-eigenen Produkten
-  if (SHOPS.joola.active && isJoolaProduct(product.manufacturer)) {
-    const url = buildJoolaSearchLink(product.name);
-    if (url) {
-      partnerLinks.push({ shop: SHOPS.joola, url, linkType: "search" });
+    // JOOLA-Shop nur bei JOOLA-Produkten
+    if (shopId === "joola") {
+      const isJoola = product.manufacturer.trim().toLowerCase() === "joola";
+      if (!isJoola) continue;
+
+      const targetUrl = buildSearchUrl("joola", product.name, product.manufacturer);
+      if (!targetUrl) continue;
+
+      // Wenn Awin aktiv: durch Awin-Deeplink wrappen, sonst direkter Link
+      const finalUrl = shop.affiliateActive
+        ? wrapAwinDeeplink("joola", targetUrl)
+        : targetUrl;
+
+      if (finalUrl) {
+        out.push({
+          shop,
+          url: finalUrl,
+          linkType: "search",
+          affiliateActive: shop.affiliateActive,
+        });
+      }
+      continue;
     }
+
+    // Alle anderen Shops: einfache Such-URL
+    const url = buildSearchUrl(shopId, product.name, product.manufacturer);
+    if (!url) continue;
+
+    out.push({
+      shop,
+      url,
+      linkType: "search",
+      affiliateActive: shop.affiliateActive,
+    });
   }
 
-  // 3. Amazon — IMMER ans Ende
-  if (SHOPS.amazon.active) {
-    const url = buildAmazonSearchLink(product.name, product.manufacturer);
-    if (url) {
-      amazonLinks.push({ shop: SHOPS.amazon, url, linkType: "search" });
-    }
-  }
-
-  // Partner zuerst, Amazon als Letztes
-  return [...partnerLinks, ...amazonLinks];
+  return out;
 }
 
 /**
- * Erzeugt eine interne Tracking-URL die durch /api/click läuft.
- * Vorteile: Wir sehen welche Produkte/Shops geklickt werden, der User
- * sieht eine pongsmith.de-URL (Vertrauen), und wir können später Logik
- * dazwischenschalten (A/B, Rate-Limiting, etc.).
+ * Interne Tracking-URL — durchläuft /api/click bevor sie zum Shop führt.
+ * Damit messen wir welche Shops geklickt werden (auch ohne Affiliate),
+ * Daten helfen bei künftigen Programm-Verhandlungen.
  */
 export function buildTrackingUrl(opts: {
   shopId: ShopId;
   productType: "blade" | "rubber";
   productId: number;
-  /** Recommendation-Session-ID für spätere Conversion-Attribution */
   sessionId?: string;
 }): string {
   const params = new URLSearchParams({

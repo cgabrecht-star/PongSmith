@@ -985,6 +985,7 @@ export async function POST(req: NextRequest) {
             id: l.shop.id,
             name: l.shop.name,
             url: buildTrackingUrl({ shopId: l.shop.id, productType: p.type, productId: p.id }),
+            affiliateActive: l.affiliateActive,
           }));
           return {
             type: p.type,
