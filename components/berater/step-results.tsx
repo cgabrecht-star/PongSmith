@@ -4,6 +4,51 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 
+/**
+ * Rendert Berater-Text mit minimalem Markdown-Support.
+ * - **fett** → <strong>
+ * - Em-Dashes/En-Dashes werden entfernt (zu "Sales-Sprech")
+ * - Bullet-Marker (·, -, *) am Zeilenanfang werden zu echten Listen
+ */
+function renderBeraterText(raw: string): React.ReactNode {
+  // Zeile-für-Zeile, Em/En-Dashes raus
+  const cleaned = raw
+    .replace(/[—–]/g, "")          // Em-/En-Dash entfernen
+    .replace(/\s{2,}/g, " ")        // Mehrfach-Leerzeichen normalisieren
+    .replace(/\*\*\*/g, "**");      // Tripple-Sterne defensiv
+
+  const lines = cleaned.split("\n");
+
+  return lines.map((rawLine, lineIdx) => {
+    const line = rawLine.trim();
+    if (!line) return <div key={lineIdx} className="h-3" />;
+
+    // **bold** Inline-Parser
+    const parts: React.ReactNode[] = [];
+    const re = /\*\*([^*]+)\*\*/g;
+    let last = 0;
+    let m: RegExpExecArray | null;
+    let k = 0;
+    while ((m = re.exec(line)) !== null) {
+      if (m.index > last) parts.push(line.slice(last, m.index));
+      parts.push(
+        <strong key={k++} className="font-semibold text-neutral-50">
+          {m[1]}
+        </strong>,
+      );
+      last = m.index + m[0].length;
+    }
+    if (last < line.length) parts.push(line.slice(last));
+    if (parts.length === 0) parts.push(line);
+
+    return (
+      <p key={lineIdx} className="mb-2 last:mb-0">
+        {parts}
+      </p>
+    );
+  });
+}
+
 interface ShopLink {
   id: string;
   name: string;
@@ -97,34 +142,31 @@ function ComponentRow({ product, label }: { product: DetectedProduct; label: str
       ? `/holz/${product.slug}`
       : `/belag/${product.slug}`
     : null;
-  const inner = (
-    <>
+  return (
+    <div className="flex items-center gap-3 p-2">
       <MiniImg url={product.imageUrl} manufacturer={product.manufacturer} />
       <div className="min-w-0 flex-1">
         <div className="font-mono text-[9px] uppercase tracking-widest text-neutral-400">
           {label}
         </div>
         <div className="text-sm font-semibold text-neutral-50">{product.name}</div>
-        {(product.reviewCount ?? 0) > 0 && (
-          <div className="text-[10px] text-neutral-400">★ {product.reviewCount} Reviews</div>
-        )}
+        <div className="mt-0.5 flex items-center gap-3 text-[10px]">
+          {(product.reviewCount ?? 0) > 0 && (
+            <span className="text-neutral-400">★ {product.reviewCount} Reviews</span>
+          )}
+          {detailHref && (
+            <Link
+              href={detailHref}
+              target="_blank"
+              className="text-neutral-400 underline-offset-2 transition-colors hover:text-primary hover:underline"
+            >
+              Specs ansehen ↗
+            </Link>
+          )}
+        </div>
       </div>
-      {detailHref && <span className="shrink-0 text-primary">→</span>}
-    </>
+    </div>
   );
-
-  if (detailHref) {
-    return (
-      <Link
-        href={detailHref}
-        target="_blank"
-        className="flex items-center gap-3 rounded-md p-2 transition-colors hover:bg-surface-hover"
-      >
-        {inner}
-      </Link>
-    );
-  }
-  return <div className="flex items-center gap-3 p-2">{inner}</div>;
 }
 
 function SetupCard({ setup, rank }: { setup: SetupGroupResult; rank: number }) {
@@ -216,11 +258,11 @@ export function StepResults({ result, onRestart }: { result: BeraterResult; onRe
 
       {/* Begründungstext vom Berater */}
       <div className="rounded-lg border border-neutral-700 bg-neutral-800 p-6">
-        <div className="font-mono text-[10px] uppercase tracking-widest text-primary mb-3">
+        <div className="mb-3 font-mono text-[10px] uppercase tracking-widest text-primary">
           KI-Berater
         </div>
-        <div className="whitespace-pre-wrap text-sm leading-relaxed text-neutral-200">
-          {result.text}
+        <div className="text-sm leading-relaxed text-neutral-200">
+          {renderBeraterText(result.text)}
         </div>
       </div>
 

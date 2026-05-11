@@ -88,40 +88,51 @@ function StatBar({ label, value, color }: { label: string; value: number; color:
   );
 }
 
-/** Shop-Preisvergleich für Card 3 */
-function ShopCompare() {
-  const offers = [
-    { shop: "Tabletennis-Shop", price: "73,90 €", best: false },
-    { shop: "Kontra-TT", price: "69,50 €", best: true },
-    { shop: "Schöler+Micke", price: "75,00 €", best: false },
+/** Aktive Shop-Partner — ehrlicher Stand (Mai 2026) */
+function ShopPartners() {
+  const partners = [
+    { name: "Amazon", status: "Aktiv", note: "Universal-Fallback für alle Marken" },
+    { name: "JOOLA", status: "Aktiv", note: "Über Awin für JOOLA-Produkte" },
+    { name: "TT-Shop · Tischtennis.biz", status: "In Anbahnung", note: "Direkter Kontakt läuft" },
   ];
   return (
-    <div className="mt-6 flex flex-col gap-2">
+    <div className="mt-6 flex flex-col gap-3">
       <p className="font-mono text-xs uppercase tracking-widest text-neutral-400">
-        Tibhar Evolution MX-P · 2.1 mm · rot
+        Aktuelle Shop-Partner
       </p>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
-        {offers.map((o) => (
-          <div
-            key={o.shop}
-            className={`rounded-md border px-4 py-3 ${
-              o.best
-                ? "border-primary/40 bg-primary/5"
-                : "border-neutral-700 bg-neutral-900/40"
-            }`}
-          >
-            <div className="text-sm text-neutral-300">{o.shop}</div>
-            <div className="mt-1 flex items-baseline justify-between gap-2">
-              <span className="text-lg font-semibold text-neutral-50">{o.price}</span>
-              {o.best && (
-                <span className="rounded-full bg-primary px-2 py-0.5 text-xs font-medium text-on-primary">
-                  günstigster
+        {partners.map((p) => {
+          const active = p.status === "Aktiv";
+          return (
+            <div
+              key={p.name}
+              className={`rounded-md border px-4 py-3 ${
+                active
+                  ? "border-primary/30 bg-primary/5"
+                  : "border-neutral-700 bg-neutral-900/40"
+              }`}
+            >
+              <div className="flex items-baseline justify-between gap-2">
+                <span className="text-sm font-semibold text-neutral-50">{p.name}</span>
+                <span
+                  className={`rounded-full px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest ${
+                    active
+                      ? "bg-primary text-on-primary"
+                      : "border border-neutral-700 text-neutral-400"
+                  }`}
+                >
+                  {p.status}
                 </span>
-              )}
+              </div>
+              <div className="mt-1 text-xs text-neutral-400">{p.note}</div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
+      <p className="text-xs text-neutral-400">
+        Sobald weitere Shops verfügbar sind, vergleichen wir Preise und schicken dich zum
+        günstigsten Anbieter.
+      </p>
     </div>
   );
 }
@@ -169,10 +180,10 @@ export function Features() {
           <BentoCard className="lg:col-span-3">
             <h3 className="text-xl font-semibold text-neutral-50">Unabhängig vom Shop</h3>
             <p className="mt-2 text-sm text-neutral-300">
-              Wir vergleichen die Preise und schicken Dich zum günstigsten Anbieter. Kein
-              Aufpreis für Dich — wir verdienen über die Affiliate-Provision der Shops.
+              Wir verlinken zu echten Shops, transparent gekennzeichnet als Affiliate. Du
+              zahlst keinen Aufpreis. Aktuell zwei aktive Partner, weitere in Anbahnung.
             </p>
-            <ShopCompare />
+            <ShopPartners />
           </BentoCard>
         </div>
       </div>
