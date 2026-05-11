@@ -92,7 +92,7 @@ const translations = {
       optional: "optional",
 
       // Step 1
-      step1Title: "Wer spielst du?",
+      step1Title: "Wie spielst du?",
       ttrLabel: "Q-TTR / LPZ",
       styleLabel: "Spielstil",
       styles: [
@@ -194,7 +194,7 @@ const translations = {
       ctaChatSub: "Wie bisher — Berater fragt nach",
       privacyNote: "Setup-Daten werden anonym gespeichert. Kein Name, keine IP. Hilft die Beratung für alle zu verbessern.",
       // Form
-      formStep1Title: "Wer spielst du?",
+      formStep1Title: "Wie spielst du?",
       formStep2Title: "Was spielst du aktuell?",
       formTtrLabel: "Q-TTR / LPZ",
       formStyleLabel: "Spielstil",
@@ -435,7 +435,7 @@ const translations = {
       submitting: "Sending",
       optional: "optional",
 
-      step1Title: "Who do you play?",
+      step1Title: "How do you play?",
       ttrLabel: "Q-TTR / LPZ",
       styleLabel: "Play style",
       styles: [
@@ -527,7 +527,7 @@ const translations = {
       ctaChat: "Just chat",
       ctaChatSub: "Like before — advisor will ask",
       privacyNote: "Setup data stored anonymously. No name, no IP. Helps improve recommendations for everyone.",
-      formStep1Title: "Who do you play?",
+      formStep1Title: "How do you play?",
       formStep2Title: "What do you play right now?",
       formTtrLabel: "Q-TTR / Rating",
       formStyleLabel: "Play style",
