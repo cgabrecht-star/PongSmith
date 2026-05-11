@@ -354,47 +354,106 @@ interface SetupFormData {
 
 // ─── Intro-Choice ─────────────────────────────────────────────────────────
 
-function IntroChoice({ onPickForm, onPickChat }: { onPickForm: () => void; onPickChat: () => void }) {
-  const ti = useLanguage().t.beraterIntro;
+function IntroChoice({
+  onPickForm, onPickChat, onPickProblem,
+}: {
+  onPickForm: () => void;
+  onPickChat: () => void;
+  onPickProblem: (message: string) => void;
+}) {
+  const { t, lang } = useLanguage();
+  const ti = t.beraterIntro;
+  const problems = t.check.problems;
+
   return (
-    <div style={{ padding: "28px 24px", display: "flex", flexDirection: "column", gap: 18 }}>
+    <div style={{ padding: "26px 22px", display: "flex", flexDirection: "column", gap: 18, overflowY: "auto" }}>
       <div>
-        <h3 className="ff-display" style={{ fontSize: 24, lineHeight: 1.15, margin: 0, color: "var(--ps-ink-0)" }}>
+        <h3 className="ff-display" style={{ fontSize: 22, lineHeight: 1.15, margin: 0, color: "var(--ps-ink-0)" }}>
           ⚡ {ti.title}
         </h3>
-        <p style={{ margin: "8px 0 0", color: "var(--ps-ink-2)", fontSize: 13.5, lineHeight: 1.55 }}>
+        <p style={{ margin: "8px 0 0", color: "var(--ps-ink-2)", fontSize: 13, lineHeight: 1.55 }}>
           {ti.sub}
         </p>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <button onClick={onPickForm}
-          className="ember-btn ember-btn-glow"
-          style={{
-            padding: "16px 18px", fontSize: 14, textAlign: "left",
-            display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 4,
-            width: "100%",
-          }}
-        >
-          <span style={{ fontWeight: 600 }}>{ti.ctaForm} →</span>
-          <span style={{ fontSize: 11, opacity: 0.85, fontWeight: 400 }}>{ti.ctaFormSub}</span>
-        </button>
+      {/* Primärer Weg: Setup angeben */}
+      <button onClick={onPickForm}
+        className="ember-btn ember-btn-glow"
+        style={{
+          padding: "14px 18px", fontSize: 14, textAlign: "left",
+          display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 3,
+          width: "100%",
+        }}
+      >
+        <span style={{ fontWeight: 600 }}>{ti.ctaForm} →</span>
+        <span style={{ fontSize: 11, opacity: 0.85, fontWeight: 400 }}>{ti.ctaFormSub}</span>
+      </button>
 
-        <button onClick={onPickChat}
-          style={{
-            padding: "14px 18px", fontSize: 13.5, textAlign: "left",
-            background: "var(--ps-bg-2)", border: "1px solid var(--ps-line)",
-            borderRadius: 4, color: "var(--ps-ink-1)", cursor: "pointer", fontFamily: "inherit",
-            display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 3,
-          }}
-        >
-          <span style={{ fontWeight: 500 }}>{ti.ctaChat} →</span>
-          <span style={{ fontSize: 11, color: "var(--ps-ink-4)" }}>{ti.ctaChatSub}</span>
-        </button>
+      {/* Trenner: ODER */}
+      <div style={{ display: "flex", alignItems: "center", gap: 10, margin: "2px 0" }}>
+        <div style={{ flex: 1, height: 1, background: "var(--ps-line-2)" }} />
+        <span className="ff-mono" style={{
+          fontSize: 9, letterSpacing: "0.18em", color: "var(--ps-ink-4)", textTransform: "uppercase",
+        }}>
+          {lang === "de" ? "oder ein häufiges Problem" : "or a common issue"}
+        </span>
+        <div style={{ flex: 1, height: 1, background: "var(--ps-line-2)" }} />
       </div>
 
+      {/* Sekundärer Weg: Quick-Pick-Probleme */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+        gap: 6,
+      }}>
+        {problems.map((p, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => onPickProblem(p.message)}
+            style={{
+              display: "flex", alignItems: "center", gap: 8,
+              padding: "10px 12px",
+              background: "var(--ps-bg-2)",
+              border: "1px solid var(--ps-line)",
+              borderRadius: 4,
+              color: "var(--ps-ink-1)",
+              textAlign: "left",
+              cursor: "pointer",
+              fontFamily: "inherit",
+              transition: "all 140ms",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(255,107,53,0.06)";
+              e.currentTarget.style.borderColor = "rgba(255,107,53,0.4)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "var(--ps-bg-2)";
+              e.currentTarget.style.borderColor = "var(--ps-line)";
+            }}
+          >
+            <span style={{ fontSize: 16, flexShrink: 0 }}>{p.icon}</span>
+            <span style={{ fontSize: 11.5, lineHeight: 1.25, fontWeight: 500 }}>
+              {p.label}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {/* Tertiärer Weg: frei chatten */}
+      <button onClick={onPickChat}
+        style={{
+          background: "transparent", border: 0,
+          color: "var(--ps-ink-3)", fontSize: 12.5, padding: "6px",
+          cursor: "pointer", textDecoration: "underline",
+          fontFamily: "inherit", textAlign: "center",
+        }}
+      >
+        💬 {ti.ctaChat} →
+      </button>
+
       <p className="ff-mono" style={{
-        margin: 0, fontSize: 9.5, color: "var(--ps-ink-4)",
+        margin: 0, fontSize: 9, color: "var(--ps-ink-4)",
         textAlign: "center", letterSpacing: "0.06em", lineHeight: 1.5,
       }}>
         🛡️ {ti.privacyNote}
@@ -469,13 +528,21 @@ export function BeraterFlow() {
     setState("chat");
   }
 
+  // Quick-Pick: User wählt direkt ein Problem → springt in Chat mit dem
+  // Problem-Text als erste Nachricht (gleicher Mechanismus wie Problem-Express)
+  function handlePickProblem(message: string) {
+    setInitialMessage(message);
+    setState("chat");
+  }
+
   // Render je nach State
   if (state === "intro") {
     return (
-      <div className="card-forged" style={{ display: "flex", height: "100%", flexDirection: "column", overflow: "hidden", justifyContent: "center" }}>
+      <div className="card-forged" style={{ display: "flex", height: "100%", flexDirection: "column", overflow: "hidden" }}>
         <IntroChoice
           onPickForm={() => setState("form")}
           onPickChat={() => setState("chat")}
+          onPickProblem={handlePickProblem}
         />
       </div>
     );

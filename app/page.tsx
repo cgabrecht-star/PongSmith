@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { BeraterFlow } from "@/components/berater-flow";
-import { ProblemExpress } from "@/components/problem-express";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useLanguage } from "@/lib/language-context";
 import type { Lang } from "@/lib/i18n";
@@ -131,7 +130,6 @@ function TopBar() {
   const navItems = [
     { id: "hero-section", label: t.nav.start },
     { id: "berater-section", label: t.nav.berater },
-    { id: "check-section", label: t.nav.check },
   ];
 
   const scrollTo = useCallback((id: string) => {
@@ -209,7 +207,6 @@ function MobileBottomBar() {
   const items = [
     { label: t.nav.start, id: "hero-section", icon: "⊙" },
     { label: t.nav.berater, id: "berater-section", icon: "◈" },
-    { label: t.nav.check, id: "check-section", icon: "◐" },
   ];
   const scroll = (id: string) => {
     const el = document.getElementById(id);
@@ -756,24 +753,6 @@ function BeraterSection() {
   );
 }
 
-// ─────────────────────────────────────────────
-// Schnell-Check Section
-// ─────────────────────────────────────────────
-function SchnellCheckSection() {
-  const t = useLanguage().t.check;
-  return (
-    <section id="check-section" className="forge-bg" style={{ padding: "90px 20px", borderBottom: "1px solid var(--ps-line-2)", scrollMarginTop: 64 }}>
-      <div style={{ maxWidth: 900, margin: "0 auto" }}>
-        <SectionLabel n="04">{t.kicker}</SectionLabel>
-        <h2 className="ff-display" style={{ fontSize: "clamp(36px, 5vw, 64px)", margin: "0 0 10px", lineHeight: 1, fontWeight: 400 }}>
-          {t.title}
-        </h2>
-        <p style={{ color: "var(--ps-ink-2)", fontSize: 17, margin: "0 0 40px", maxWidth: 560 }}>{t.sub}</p>
-        <ProblemExpress />
-      </div>
-    </section>
-  );
-}
 
 // ─────────────────────────────────────────────
 // FAQ
@@ -854,7 +833,6 @@ function Footer() {
       t: t.colAdvisory,
       items: [
         { id: "advisor", label: t.itemAdvisor },
-        { id: "quickpick", label: t.itemQuickPick },
         { id: "sortiment", label: t.itemSortiment },
       ],
     },
@@ -899,7 +877,6 @@ function Footer() {
                     : it.id === "affiliate" ? "/datenschutz#affiliates"
                     : it.id === "sortiment" ? "/sortiment"
                     : it.id === "advisor" ? "/#berater-section"
-                    : it.id === "quickpick" ? "/#check-section"
                     : it.id === "contribute" ? "/mithelfen"
                     : "#";
                   return (
@@ -949,7 +926,6 @@ export default function Home() {
       <Trust />
       <DemoSection />
       <BeraterSection />
-      <SchnellCheckSection />
       <ContributeCta />
       <PromisesBlock />
       <FounderSection />

@@ -37,8 +37,8 @@ export default function DatenschutzPage() {
             </p>
             <p style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.7, marginTop: 10 }}>
               Kontakt:{" "}
-              <a href="mailto:datenschutz@pongsmith.de" style={{ color: "var(--ps-ember-2)" }}>
-                datenschutz@pongsmith.de
+              <a href="mailto:hallo@pongsmith.de" style={{ color: "var(--ps-ember-2)" }}>
+                hallo@pongsmith.de
               </a>{" "}
               · weitere Angaben siehe{" "}
               <Link href="/impressum" style={{ color: "var(--ps-ember-2)" }}>Impressum</Link>.
@@ -153,8 +153,8 @@ export default function DatenschutzPage() {
             </ul>
             <p style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.7, marginTop: 12 }}>
               Anfragen per E-Mail an:{" "}
-              <a href="mailto:datenschutz@pongsmith.de" style={{ color: "var(--ps-ember-2)" }}>
-                datenschutz@pongsmith.de
+              <a href="mailto:hallo@pongsmith.de" style={{ color: "var(--ps-ember-2)" }}>
+                hallo@pongsmith.de
               </a>
             </p>
             <p style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.7, marginTop: 12 }}>
