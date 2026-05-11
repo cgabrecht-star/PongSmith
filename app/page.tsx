@@ -870,6 +870,7 @@ function Footer() {
       items: [
         { id: "imprint", label: t.itemImprint },
         { id: "privacy", label: t.itemPrivacy },
+        { id: "agb", label: t.itemAgb },
         { id: "affiliate", label: t.itemAffiliate },
       ],
     },
@@ -894,6 +895,7 @@ function Footer() {
                   const href =
                     it.id === "imprint" ? "/impressum"
                     : it.id === "privacy" ? "/datenschutz"
+                    : it.id === "agb" ? "/agb"
                     : it.id === "affiliate" ? "/datenschutz#affiliates"
                     : it.id === "sortiment" ? "/sortiment"
                     : it.id === "advisor" ? "/#berater-section"

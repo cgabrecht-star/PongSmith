@@ -303,6 +303,7 @@ const translations = {
       itemContribute: "Mithelfen",
       itemImprint: "Impressum",
       itemPrivacy: "Datenschutz",
+      itemAgb: "AGB",
       itemAffiliate: "Affiliate-Hinweis",
     },
 
@@ -632,6 +633,7 @@ const translations = {
       itemContribute: "Help out",
       itemImprint: "Imprint",
       itemPrivacy: "Privacy",
+      itemAgb: "Terms",
       itemAffiliate: "Affiliate disclosure",
     },
 
