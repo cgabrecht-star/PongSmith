@@ -368,3 +368,75 @@ button:focus-visible, input:focus-visible, textarea:focus-visible {
 
 /* Range input accent */
 input[type="range"] { accent-color: var(--ps-ember); }
+/* ─────────────────────────────────────────────────────────────────────────
+ * REDESIGN v2 — "Halle am Spielabend"
+ * Neue Token-Schicht parallel zu bestehenden ps-* Tokens.
+ * Migrations-Strategie: neue Komponenten nutzen --color-*, alte ps-* bleiben.
+ * ───────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Brand */
+  --color-primary: #F97316;
+  --color-primary-hover: #EA580C;
+  --color-on-primary: #0B0F17;
+  --color-accent: #FED7AA;
+
+  /* Neutral-Skala */
+  --color-neutral-50:  #F5F5F5;
+  --color-neutral-100: #E5E5E5;
+  --color-neutral-200: #D4D4D4;
+  --color-neutral-300: #9CA3AF;
+  --color-neutral-400: #6B7280;
+  --color-neutral-500: #4B5563;
+  --color-neutral-600: #374151;
+  --color-neutral-700: #1F2937;
+  --color-neutral-800: #111827;
+  --color-neutral-900: #0B0F17;
+
+  --color-surface-hover: #1A2233;
+
+  /* Typografie-Overrides */
+  --text-lg: 1.25rem;            /* 20 px */
+  --text-lg--line-height: 1.5;
+  --text-3xl: 2rem;              /* 32 px */
+  --text-3xl--line-height: 1.2;
+  --text-5xl: 3rem;              /* 48 px */
+  --text-5xl--line-height: 1.1;
+}
+
+/* ::selection global angepasst aufs neue Brand-Orange */
+::selection {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* Smooth scroll mit prefers-reduced-motion override */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+}
+html { scroll-behavior: smooth; }
+
+/* Reusable: Eyebrow-Pill */
+.eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-neutral-700);
+  background-color: color-mix(in srgb, var(--color-neutral-900) 60%, transparent);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-primary);
+  backdrop-filter: blur(8px);
+}
+.eyebrow-pill::before {
+  content: "";
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--color-primary);
+}
