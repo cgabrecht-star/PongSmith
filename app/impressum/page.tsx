@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LegalPageHeader } from "@/components/legal-page-header";
 
 export const metadata = {
@@ -54,7 +55,17 @@ export default function ImpressumPage() {
 
           <Section title="Verantwortlich für den Inhalt">
             <p style={{ color: "var(--ps-ink-1)", fontSize: 15, lineHeight: 1.6 }}>
-              Gemäß § 18 Abs. 2 MStV: Identisch mit dem Betreiber (s.o.).
+              Gemäß § 18 Abs. 2 MStV: Christoph Gabrecht (identisch mit Betreiber).
+            </p>
+          </Section>
+
+          <Divider />
+
+          <Section title="Rechtliche Dokumente">
+            <p style={{ color: "var(--ps-ink-1)", fontSize: 14, lineHeight: 1.7 }}>
+              <Link href="/datenschutz" style={{ color: "var(--ps-ember-2)" }}>Datenschutzerklärung</Link>
+              {" · "}
+              <Link href="/agb" style={{ color: "var(--ps-ember-2)" }}>Nutzungsbedingungen (AGB)</Link>
             </p>
           </Section>
 
@@ -81,7 +92,12 @@ export default function ImpressumPage() {
               Diese Website enthält Affiliate-Links. Wenn du über einen solchen Link einkaufst,
               erhalten wir eine Provision vom jeweiligen Shop — für dich entstehen dabei keine
               Mehrkosten. Unsere Empfehlungen basieren ausschließlich auf unserem Synergie-Algorithmus
-              und den Spielerprofilen, nicht auf Provisionsraten.
+              und den Spielerprofilen, nicht auf Provisionsraten. Details siehe{" "}
+              <Link href="/datenschutz#affiliates" style={{ color: "var(--ps-ember-2)" }}>
+                Datenschutz §7
+              </Link>{" "}
+              und{" "}
+              <Link href="/agb" style={{ color: "var(--ps-ember-2)" }}>AGB §5</Link>.
             </p>
           </Section>
 

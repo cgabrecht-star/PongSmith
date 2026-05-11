@@ -918,6 +918,14 @@ function Footer() {
             </div>
           ))}
         </div>
+        <div className="anvil-divider-strong" style={{ marginBottom: 18 }} />
+        <p style={{ fontSize: 12, color: "var(--ps-ink-3)", lineHeight: 1.6, margin: "0 0 18px", maxWidth: 720 }}>
+          <strong style={{ color: "var(--ps-ink-1)" }}>Werbekennzeichnung:</strong>{" "}
+          PongSmith enthält Affiliate-Links zu Partner-Shops (z. B. Amazon, JOOLA via Awin).
+          Bei einem Kauf über diese Links erhalten wir eine Provision —{" "}
+          <strong style={{ color: "var(--ps-ink-1)" }}>du zahlst keinen Cent mehr</strong>.
+          Unsere Empfehlungen werden nicht durch Provisionsraten beeinflusst.
+        </p>
         <div className="anvil-divider-strong" style={{ marginBottom: 22 }} />
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
           <span className="ff-mono" style={{ fontSize: 11, color: "var(--ps-ink-3)" }}>{t.copy}</span>

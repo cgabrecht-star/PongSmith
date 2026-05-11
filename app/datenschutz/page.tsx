@@ -27,9 +27,21 @@ export default function DatenschutzPage() {
 
           <Section title="1. Verantwortlicher">
             <p style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.7 }}>
-              Verantwortlicher im Sinne der DSGVO ist Christoph Gabrecht,
-              Institutsgasse 6, 01067 Dresden (siehe{" "}
-              <Link href="/impressum" style={{ color: "var(--ps-ember-2)" }}>Impressum</Link>).
+              Verantwortlicher im Sinne der DSGVO ist:
+            </p>
+            <p style={{ color: "var(--ps-ink-1)", fontSize: 14, lineHeight: 1.7, marginTop: 10 }}>
+              Christoph Gabrecht<br />
+              Institutsgasse 6<br />
+              01067 Dresden<br />
+              Deutschland
+            </p>
+            <p style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.7, marginTop: 10 }}>
+              Kontakt:{" "}
+              <a href="mailto:datenschutz@pongsmith.de" style={{ color: "var(--ps-ember-2)" }}>
+                datenschutz@pongsmith.de
+              </a>{" "}
+              · weitere Angaben siehe{" "}
+              <Link href="/impressum" style={{ color: "var(--ps-ember-2)" }}>Impressum</Link>.
             </p>
           </Section>
 
@@ -145,11 +157,35 @@ export default function DatenschutzPage() {
                 datenschutz@pongsmith.de
               </a>
             </p>
+            <p style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.7, marginTop: 12 }}>
+              Zuständige Aufsichtsbehörde:{" "}
+              <strong style={{ color: "var(--ps-ink-1)" }}>Sächsischer Datenschutzbeauftragter</strong>,
+              Devrientstraße 5, 01067 Dresden ·{" "}
+              <a
+                href="https://www.saechsdsb.de"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "var(--ps-ember-2)" }}
+              >
+                saechsdsb.de
+              </a>
+            </p>
           </Section>
 
           <Divider />
 
-          <Section title="10. Aktualität">
+          <Section title="10. SSL-Verschlüsselung">
+            <p style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.7 }}>
+              Diese Website nutzt durchgehend eine SSL-/TLS-Verschlüsselung (HTTPS).
+              Damit sind alle Datenübertragungen zwischen deinem Browser und unserem
+              Server gegen Mitlesen durch Dritte geschützt — sichtbar am Schloss-Symbol
+              und am „https://" in der Adressleiste.
+            </p>
+          </Section>
+
+          <Divider />
+
+          <Section title="11. Aktualität">
             <p style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.7 }}>
               Diese Datenschutzerklärung hat den Stand Mai 2026. Wir behalten uns vor, sie bei
               technischen oder rechtlichen Änderungen zu aktualisieren.
