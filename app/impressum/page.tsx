@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LegalPageHeader } from "@/components/legal-page-header";
+import { SubPageLayout } from "@/components/landing/sub-page-layout";
 
 export const metadata = {
   title: "Impressum — PongSmith",
@@ -8,169 +8,138 @@ export const metadata = {
 
 export default function ImpressumPage() {
   return (
-    <div className="forge-bg" style={{ minHeight: "100vh", padding: "80px 24px 60px" }}>
-      <div style={{ maxWidth: 680, margin: "0 auto" }}>
+    <SubPageLayout>
+      <span className="eyebrow-pill">Angaben gemäß § 5 TMG</span>
+      <h1 className="mt-4 text-3xl font-semibold tracking-tight text-neutral-50 md:text-5xl">
+        Impressum
+      </h1>
 
-        <LegalPageHeader />
+      <div className="mt-12 flex flex-col gap-10">
+        <Section title="Betreiber">
+          <Field label="Name">Christoph Gabrecht</Field>
+          <Field label="Anschrift">
+            Institutsgasse 6<br />
+            01067 Dresden<br />
+            Deutschland
+          </Field>
+          <Field label="E-Mail">
+            <a
+              href="mailto:hallo@pongsmith.de"
+              className="text-primary transition-colors hover:underline"
+            >
+              hallo@pongsmith.de
+            </a>
+            <br />
+            <a
+              href="mailto:c.gabrecht@icloud.com"
+              className="text-primary transition-colors hover:underline"
+            >
+              c.gabrecht@icloud.com
+            </a>
+          </Field>
+        </Section>
 
-        <h1
-          className="ff-display"
-          style={{ fontSize: 48, color: "var(--ps-ink-0)", lineHeight: 1, marginBottom: 8 }}
-        >
-          Impressum
-        </h1>
-        <p className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.14em", color: "var(--ps-ink-4)", marginBottom: 48, textTransform: "uppercase" }}>
-          Angaben gemäß § 5 TMG
-        </p>
+        <Section title="Verantwortlich für den Inhalt">
+          <p className="text-sm text-neutral-300">
+            Gemäß § 18 Abs. 2 MStV: Christoph Gabrecht (identisch mit Betreiber).
+          </p>
+        </Section>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 36 }}>
+        <Section title="Haftungsausschluss">
+          <p className="text-sm text-neutral-300">
+            Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt.
+            PongSmith übernimmt keine Gewähr für die Aktualität, Vollständigkeit und
+            Richtigkeit der bereitgestellten Empfehlungen. Die Kaufentscheidung
+            liegt allein beim Nutzer.
+          </p>
+          <p className="mt-3 text-sm text-neutral-300">
+            Als Betreiber sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte nach den
+            allgemeinen Gesetzen verantwortlich. Links zu externen Websites Dritter
+            wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße
+            überprüft. Eine permanente inhaltliche Kontrolle der verlinkten Seiten
+            ist ohne konkreten Anhaltspunkt nicht zumutbar.
+          </p>
+        </Section>
 
-          <Section title="Betreiber">
-            <Field label="Name">
-                Christoph Gabrecht
-            </Field>
-            <Field label="Anschrift">
-                Institutsgasse 6<br />
-              01067 Dresden<br />
-              Deutschland
-            </Field>
-            <Field label="E-Mail">
-              <a
-                href="mailto:hallo@pongsmith.de"
-                style={{ color: "var(--ps-ember-2)", textDecoration: "none" }}
-              >
-                hallo@pongsmith.de
-              </a>
-              <br />
-              <a
-                href="mailto:c.gabrecht@icloud.com"
-                style={{ color: "var(--ps-ember-2)", textDecoration: "none" }}
-              >
-                c.gabrecht@icloud.com
-              </a>
-            </Field>
-          </Section>
+        <Section title="Affiliate-Hinweis">
+          <p className="text-sm text-neutral-300">
+            Diese Website enthält Affiliate-Links. Wenn du über einen solchen Link
+            einkaufst, erhalten wir eine Provision vom jeweiligen Shop — für dich
+            entstehen dabei keine Mehrkosten. Unsere Empfehlungen basieren
+            ausschließlich auf unserem Synergie-Algorithmus und den Spielerprofilen,
+            nicht auf Provisionsraten. Details siehe{" "}
+            <Link
+              href="/datenschutz#affiliates"
+              className="text-primary transition-colors hover:underline"
+            >
+              Datenschutz §7
+            </Link>{" "}
+            und{" "}
+            <Link
+              href="/agb"
+              className="text-primary transition-colors hover:underline"
+            >
+              AGB §5
+            </Link>
+            .
+          </p>
+        </Section>
 
-          <Divider />
+        <Section title="Streitbeilegung">
+          <p className="text-sm text-neutral-300">
+            Die Europäische Kommission stellt unter{" "}
+            <a
+              href="https://ec.europa.eu/consumers/odr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary transition-colors hover:underline"
+            >
+              ec.europa.eu/consumers/odr
+            </a>{" "}
+            eine Plattform zur Online-Streitbeilegung (OS) bereit. Wir sind nicht
+            bereit und nicht verpflichtet, an einem Streitbeilegungsverfahren vor
+            einer Verbraucherschlichtungsstelle teilzunehmen.
+          </p>
+        </Section>
 
-          <Section title="Verantwortlich für den Inhalt">
-            <p style={{ color: "var(--ps-ink-1)", fontSize: 15, lineHeight: 1.6 }}>
-              Gemäß § 18 Abs. 2 MStV: Christoph Gabrecht (identisch mit Betreiber).
-            </p>
-          </Section>
-
-          <Divider />
-
-          <Section title="Rechtliche Dokumente">
-            <p style={{ color: "var(--ps-ink-1)", fontSize: 14, lineHeight: 1.7 }}>
-              <Link href="/datenschutz" style={{ color: "var(--ps-ember-2)" }}>Datenschutzerklärung</Link>
-              {" · "}
-              <Link href="/agb" style={{ color: "var(--ps-ember-2)" }}>Nutzungsbedingungen (AGB)</Link>
-            </p>
-          </Section>
-
-          <Divider />
-
-          <Section title="Haftungsausschluss">
-            <p style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.7 }}>
-              Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. PongSmith übernimmt
-              keine Gewähr für die Aktualität, Vollständigkeit und Richtigkeit der bereitgestellten
-              Empfehlungen. Die Kaufentscheidung liegt allein beim Nutzer.
-            </p>
-            <p style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.7, marginTop: 12 }}>
-              Als Betreiber sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte nach den allgemeinen
-              Gesetzen verantwortlich. Links zu externen Websites Dritter wurden zum Zeitpunkt der
-              Verlinkung auf mögliche Rechtsverstöße überprüft. Eine permanente inhaltliche
-              Kontrolle der verlinkten Seiten ist ohne konkreten Anhaltspunkt nicht zumutbar.
-            </p>
-          </Section>
-
-          <Divider />
-
-          <Section title="Affiliate-Hinweis">
-            <p style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.7 }}>
-              Diese Website enthält Affiliate-Links. Wenn du über einen solchen Link einkaufst,
-              erhalten wir eine Provision vom jeweiligen Shop — für dich entstehen dabei keine
-              Mehrkosten. Unsere Empfehlungen basieren ausschließlich auf unserem Synergie-Algorithmus
-              und den Spielerprofilen, nicht auf Provisionsraten. Details siehe{" "}
-              <Link href="/datenschutz#affiliates" style={{ color: "var(--ps-ember-2)" }}>
-                Datenschutz §7
-              </Link>{" "}
-              und{" "}
-              <Link href="/agb" style={{ color: "var(--ps-ember-2)" }}>AGB §5</Link>.
-            </p>
-          </Section>
-
-          <Divider />
-
-          <Section title="Streitbeilegung">
-            <p style={{ color: "var(--ps-ink-2)", fontSize: 14, lineHeight: 1.7 }}>
-              Die Europäische Kommission stellt unter{" "}
-              <a
-                href="https://ec.europa.eu/consumers/odr"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "var(--ps-ember-2)" }}
-              >
-                ec.europa.eu/consumers/odr
-              </a>{" "}
-              eine Plattform zur Online-Streitbeilegung (OS) bereit. Wir sind nicht bereit
-              und nicht verpflichtet, an einem Streitbeilegungsverfahren vor einer
-              Verbraucherschlichtungsstelle teilzunehmen.
-            </p>
-          </Section>
-
-        </div>
-
-        <div
-          className="ff-mono"
-          style={{
-            marginTop: 60, paddingTop: 24, borderTop: "1px solid var(--ps-line-2)",
-            fontSize: 10, color: "var(--ps-ink-4)", letterSpacing: "0.1em",
-          }}
-        >
-          © 2026 PONGSMITH · GESCHMIEDET IN DEUTSCHLAND
-        </div>
+        <Section title="Rechtliche Dokumente">
+          <p className="text-sm text-neutral-300">
+            <Link
+              href="/datenschutz"
+              className="text-primary transition-colors hover:underline"
+            >
+              Datenschutzerklärung
+            </Link>{" "}
+            ·{" "}
+            <Link
+              href="/agb"
+              className="text-primary transition-colors hover:underline"
+            >
+              Nutzungsbedingungen (AGB)
+            </Link>
+          </p>
+        </Section>
       </div>
-    </div>
+    </SubPageLayout>
   );
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div>
-      <h2
-        className="ff-mono"
-        style={{
-          fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase",
-          color: "var(--ps-ember-2)", marginBottom: 16,
-        }}
-      >
-        {title}
-      </h2>
-      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        {children}
-      </div>
-    </div>
+    <section>
+      <h2 className="font-mono text-xs uppercase tracking-widest text-primary">{title}</h2>
+      <div className="mt-4 flex flex-col gap-3">{children}</div>
+    </section>
   );
 }
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div style={{ display: "flex", gap: 16 }}>
-      <span
-        className="ff-mono"
-        style={{ fontSize: 11, color: "var(--ps-ink-4)", minWidth: 80, paddingTop: 2 }}
-      >
+    <div className="flex gap-4">
+      <span className="w-24 shrink-0 pt-0.5 font-mono text-[11px] uppercase tracking-widest text-neutral-400">
         {label}
       </span>
-      <span style={{ fontSize: 15, color: "var(--ps-ink-1)", lineHeight: 1.6 }}>
-        {children}
-      </span>
+      <span className="text-base leading-relaxed text-neutral-200">{children}</span>
     </div>
   );
-}
-
-function Divider() {
-  return <div style={{ height: 1, background: "var(--ps-line-2)" }} />;
 }

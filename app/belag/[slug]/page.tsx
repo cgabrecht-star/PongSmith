@@ -7,6 +7,8 @@ import {
   loadSimilarProducts,
 } from "@/lib/product-detail";
 import { ProductDetailView } from "@/components/product-detail-view";
+import { Navbar } from "@/components/landing/navbar";
+import { Footer } from "@/components/landing/footer";
 import { config } from "@/lib/config";
 
 // Page wird on-demand server-rendered + 24 h Cache (ISR-Light)
@@ -92,7 +94,7 @@ export default async function BelagDetailPage({ params }: PageProps) {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-neutral-900 text-neutral-50 antialiased">
       <Script
         id="schema-product"
         type="application/ld+json"
@@ -103,7 +105,9 @@ export default async function BelagDetailPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      <Navbar />
       <ProductDetailView product={product} synergies={synergies} similar={similar} />
-    </>
+      <Footer />
+    </div>
   );
 }

@@ -585,38 +585,35 @@ export default function SortimentPage() {
   const bladeCount = bladeItems.length;
 
   return (
-    <div className="forge-bg" style={{ minHeight: "100vh" }}>
+    <div className="min-h-screen bg-neutral-900 text-neutral-50 antialiased">
 
-      {/* Top Bar */}
-      <div className="glass-bar" style={{
-        position: "sticky", top: 0, zIndex: 50,
-        padding: "0 24px", borderBottom: "1px solid var(--ps-line-2)",
-      }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", gap: 16, height: 56 }}>
-          <Link href="/" style={{ textDecoration: "none" }}>
-            <span className="ff-display" style={{ fontSize: 22, color: "var(--ps-ember-2)" }}>PS</span>
+      {/* Sticky Top Bar — neuer Look */}
+      <header className="sticky top-0 z-50 border-b border-neutral-800 bg-neutral-900/80 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3 md:px-8">
+          <Link href="/" className="flex items-center gap-2">
+            <span className="block h-2 w-2 rounded-full bg-primary" aria-hidden />
+            <span className="text-base font-semibold tracking-tight text-neutral-50">
+              PongSmith
+            </span>
           </Link>
-          <span style={{ color: "var(--ps-line)", fontSize: 18 }}>·</span>
-          <span className="ff-mono" style={{ fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--ps-ink-3)" }}>
-            {t.sortiment.title}
-          </span>
-          <div style={{ flex: 1 }} />
-          <LanguageSwitcher />
-          <Link
-            href="/#berater-section"
-            className="ember-btn"
-            style={{ padding: "7px 14px", fontSize: 11, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 5 }}
-          >
-            {t.sortiment.consultBtn}
-          </Link>
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher />
+            <Link
+              href="/berater"
+              className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-on-primary shadow-lg shadow-primary/20 transition-colors hover:bg-primary-hover"
+            >
+              {t.sortiment.consultBtn}
+            </Link>
+          </div>
         </div>
-      </div>
+      </header>
 
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 24px 80px" }}>
+      <div className="mx-auto max-w-7xl px-6 py-12 md:px-8 md:py-16">
 
         {/* Titel */}
         <div style={{ marginBottom: 36 }}>
-          <h1 className="ff-display" style={{ fontSize: 52, color: "var(--ps-ink-0)", lineHeight: 1, marginBottom: 8 }}>
+          <span className="eyebrow-pill">Sortiment</span>
+          <h1 className="mt-4 text-3xl font-semibold tracking-tight text-neutral-50 md:text-5xl" style={{ marginBottom: 8 }}>
             {t.sortiment.title}
           </h1>
           <p style={{ fontSize: 15, color: "var(--ps-ink-3)" }}>
