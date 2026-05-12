@@ -79,11 +79,17 @@ export const metadata: Metadata = {
     canonical: config.siteUrl,
   },
   category: "sports",
-  // Google Search Console Verification — Token kommt aus ENV
-  // Setze GOOGLE_SITE_VERIFICATION in Vercel (Wert aus Search Console)
-  ...(process.env.GOOGLE_SITE_VERIFICATION
-    ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
-    : {}),
+  // Search-Engine Verification — Tokens kommen aus ENV-Vars
+  // GOOGLE_SITE_VERIFICATION   (von search.google.com/search-console)
+  // BING_SITE_VERIFICATION     (von bing.com/webmasters)
+  verification: {
+    ...(process.env.GOOGLE_SITE_VERIFICATION && {
+      google: process.env.GOOGLE_SITE_VERIFICATION,
+    }),
+    ...(process.env.BING_SITE_VERIFICATION && {
+      other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION },
+    }),
+  },
 };
 
 export default function RootLayout({
