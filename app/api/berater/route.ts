@@ -20,6 +20,7 @@ import { and, desc, eq, gte, inArray, lte, sql as drizzleSql } from "drizzle-orm
 import { detectProducts } from "@/lib/product-detector";
 import { getShopLinks, buildTrackingUrl } from "@/lib/affiliate";
 import { groupProductsBySetup } from "@/lib/setup-grouper";
+import { config } from "@/lib/config";
 
 export const runtime   = "nodejs";
 export const dynamic   = "force-dynamic";
@@ -934,9 +935,10 @@ export async function POST(req: NextRequest) {
     }));
 
     // Agentic Loop (max. 6 Runden, mehr Tools = mehr mögliche Calls)
+    // Modell aus config.ts — Sonnet 4.7 für Kosteneffizienz (Mai 2026).
     for (let i = 0; i < 6; i++) {
       const response = await client.messages.create({
-        model: "claude-opus-4-7",
+        model: config.modelBerater,
         max_tokens: 1200,
         system: getSystemPrompt(lang),
         tools: TOOLS,
