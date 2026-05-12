@@ -29,7 +29,6 @@ export type ShopId =
   | "tischtennis-biz"
   | "contra"
   | "schoeler-micke"
-  | "sportschreiner"
   | "joola"
   | "amazon";
 
@@ -72,13 +71,6 @@ export const SHOPS: Record<ShopId, ShopMeta> = {
     affiliate: "none",
     affiliateActive: false,
   },
-  sportschreiner: {
-    id: "sportschreiner",
-    name: "Sportschreiner",
-    domain: "sportschreiner.de",
-    affiliate: "none",
-    affiliateActive: false,
-  },
   joola: {
     id: "joola",
     name: "JOOLA",
@@ -106,7 +98,6 @@ export const SHOP_ORDER: ShopId[] = [
   "tischtennis-biz",
   "contra",
   "schoeler-micke",
-  "sportschreiner",
   "joola",
   "amazon",
 ];
@@ -133,8 +124,6 @@ function buildSearchUrl(shop: ShopId, productName: string, manufacturer?: string
       return `https://www.contra.de/de/search?sSearch=${q}`;
     case "schoeler-micke":
       return `https://www.schoeler-micke.de/search?q=${q}`;
-    case "sportschreiner":
-      return `https://www.sportschreiner.de/search?q=${q}`;
     case "joola":
       return `https://joola.de/de/search?q=${q}`;
     case "amazon":

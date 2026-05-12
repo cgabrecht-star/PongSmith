@@ -46,7 +46,8 @@
     "db:fix-cookie-descriptions": "dotenv -e .env.local -- tsx db/scripts/fix-cookie-descriptions.ts",
     "db:backfill-descriptions": "dotenv -e .env.local -- tsx db/scripts/backfill-descriptions.ts",
     "db:fix-bad-manufacturers": "dotenv -e .env.local -- tsx db/scripts/fix-bad-manufacturers.ts",
-    "db:backfill-hardness": "dotenv -e .env.local -- tsx db/scripts/backfill-hardness-topsheet.ts"
+    "db:backfill-hardness": "dotenv -e .env.local -- tsx db/scripts/backfill-hardness-topsheet.ts",
+    "stats:clicks": "dotenv -e .env.local -- tsx db/scripts/click-stats.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",

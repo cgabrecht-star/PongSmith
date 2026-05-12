@@ -31,7 +31,6 @@ const VALID_SHOPS: ShopId[] = [
   "tischtennis-biz",
   "contra",
   "schoeler-micke",
-  "sportschreiner",
   "joola",
   "amazon",
 ];

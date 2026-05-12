@@ -16,8 +16,8 @@ const steps = [
   },
   {
     n: "03",
-    title: "Beim günstigsten Shop kaufen",
-    text: "Wir vergleichen die Preise und schicken Dich zum günstigsten Anbieter. Kein Aufpreis für Dich.",
+    title: "Beim Shop deiner Wahl kaufen",
+    text: "Wir verlinken zu allen relevanten TT-Shops. Du klickst, siehst dort den aktuellen Preis und kaufst beim Shop, der dir am besten passt. Kein Aufpreis für Dich.",
   },
 ];
 
