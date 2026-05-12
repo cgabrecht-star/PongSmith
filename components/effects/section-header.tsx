@@ -7,7 +7,7 @@ export function EyebrowPill({ children }: { children: React.ReactNode }) {
 }
 
 /**
- * Section-Header — Eyebrow + Headline mit Scroll-Reveal-Animation.
+ * Section-Header, Eyebrow + Headline mit Scroll-Reveal-Animation.
  */
 export function SectionHeader({
   eyebrow,

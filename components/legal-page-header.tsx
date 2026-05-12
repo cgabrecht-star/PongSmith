@@ -5,7 +5,7 @@ import { useLanguage } from "@/lib/language-context";
 import { LanguageSwitcher } from "@/components/language-switcher";
 
 /**
- * Header für rechtliche Seiten (Impressum, Datenschutz) — die Inhalte bleiben
+ * Header für rechtliche Seiten (Impressum, Datenschutz), die Inhalte bleiben
  * aus rechtlichen Gründen auf Deutsch, aber der Header zeigt die
  * Back-Navigation in der gewählten Sprache + Sprach-Switcher.
  */

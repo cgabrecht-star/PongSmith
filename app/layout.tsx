@@ -31,7 +31,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(config.siteUrl),
   title: {
-    default: `${config.siteName} — ${config.siteTagline}`,
+    default: `${config.siteName}, ${config.siteTagline}`,
     template: `%s · ${config.siteName}`,
   },
   description: config.siteDescription,
@@ -65,13 +65,13 @@ export const metadata: Metadata = {
     locale: "de_DE",
     url: config.siteUrl,
     siteName: config.siteName,
-    title: `${config.siteName} — ${config.siteTagline}`,
+    title: `${config.siteName}, ${config.siteTagline}`,
     description: config.siteDescription,
     // Bild wird automatisch aus app/opengraph-image.tsx generiert
   },
   twitter: {
     card: "summary_large_image",
-    title: `${config.siteName} — ${config.siteTagline}`,
+    title: `${config.siteName}, ${config.siteTagline}`,
     description: config.siteDescription,
     // Twitter nutzt automatisch das OG-Bild
   },
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     canonical: config.siteUrl,
   },
   category: "sports",
-  // Search-Engine Verification — Tokens kommen aus ENV-Vars
+  // Search-Engine Verification, Tokens kommen aus ENV-Vars
   // GOOGLE_SITE_VERIFICATION   (von search.google.com/search-console)
   // BING_SITE_VERIFICATION     (von bing.com/webmasters)
   verification: {
@@ -111,7 +111,7 @@ export default function RootLayout({
           minHeight: "100vh",
         }}
       >
-        {/* Schema.org JSON-LD — Organization + WebSite für Sitelinks/Knowledge-Panel */}
+        {/* Schema.org JSON-LD, Organization + WebSite für Sitelinks/Knowledge-Panel */}
         <Script
           id="schema-org-root"
           type="application/ld+json"
@@ -161,7 +161,7 @@ export default function RootLayout({
           {children}
         </LanguageProvider>
 
-        {/* Plausible Analytics — cookie-frei, DSGVO-konform, in EU gehostet */}
+        {/* Plausible Analytics, cookie-frei, DSGVO-konform, in EU gehostet */}
         {process.env.NODE_ENV === "production" && (
           <Script
             defer

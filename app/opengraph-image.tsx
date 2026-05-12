@@ -6,7 +6,7 @@ import { ImageResponse } from "next/og";
  * Next.js sucht diese Datei automatisch und nutzt sie als og:image.
  */
 
-export const alt = "PongSmith — Die Tischtennis-Schmiede";
+export const alt = "PongSmith, Die Tischtennis-Schmiede";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -97,7 +97,7 @@ export default async function OpenGraphImage() {
             paddingTop: 24,
           }}
         >
-          <span>Unabhängig · Kostenlos · Q-TTR 1.000–1.700</span>
+          <span>Unabhängig · Kostenlos · Q-TTR 1.000-1.700</span>
           <span style={{ color: "#ff8b56", fontWeight: 600 }}>pongsmith.de</span>
         </div>
       </div>

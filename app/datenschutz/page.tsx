@@ -2,7 +2,7 @@ import Link from "next/link";
 import { SubPageLayout } from "@/components/landing/sub-page-layout";
 
 export const metadata = {
-  title: "Datenschutz — PongSmith",
+  title: "Datenschutz, PongSmith",
   robots: { index: false },
 };
 
@@ -129,7 +129,7 @@ export default function DatenschutzPage() {
             <strong className="text-neutral-200">
               Wir speichern weder Namen, E-Mail-Adressen noch IP-Adressen
             </strong>{" "}
-            — die IP wird ausschließlich als kryptographischer SHA256-Hash für
+           , die IP wird ausschließlich als kryptographischer SHA256-Hash für
             temporäres Rate-Limiting gegen Spam genutzt und nicht zurückführbar
             gespeichert. Die Daten werden für die Verbesserung der
             Empfehlungs-Engine ausgewertet. Eingaben durchlaufen vor dem Import
@@ -178,7 +178,7 @@ export default function DatenschutzPage() {
           <p>
             Diese Website nutzt durchgehend eine SSL-/TLS-Verschlüsselung (HTTPS).
             Damit sind alle Datenübertragungen zwischen deinem Browser und unserem
-            Server gegen Mitlesen durch Dritte geschützt — sichtbar am
+            Server gegen Mitlesen durch Dritte geschützt, sichtbar am
             Schloss-Symbol und am „https://" in der Adressleiste.
           </p>
         </Section>

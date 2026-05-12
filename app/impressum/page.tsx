@@ -2,7 +2,7 @@ import Link from "next/link";
 import { SubPageLayout } from "@/components/landing/sub-page-layout";
 
 export const metadata = {
-  title: "Impressum — PongSmith",
+  title: "Impressum, PongSmith",
   robots: { index: false },
 };
 
@@ -64,7 +64,7 @@ export default function ImpressumPage() {
         <Section title="Affiliate-Hinweis">
           <p className="text-sm text-neutral-300">
             Diese Website enthält Affiliate-Links. Wenn du über einen solchen Link
-            einkaufst, erhalten wir eine Provision vom jeweiligen Shop — für dich
+            einkaufst, erhalten wir eine Provision vom jeweiligen Shop, für dich
             entstehen dabei keine Mehrkosten. Unsere Empfehlungen basieren
             ausschließlich auf unserem Synergie-Algorithmus und den Spielerprofilen,
             nicht auf Provisionsraten. Details siehe{" "}

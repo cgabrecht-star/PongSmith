@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Counter — Number-Counter (0 → Target) mit ease-out cubic.
+ * Counter, Number-Counter (0 → Target) mit ease-out cubic.
  * Startet beim ersten Sichtbarwerden im Viewport (oder sofort wenn trigger="mount").
  */
 

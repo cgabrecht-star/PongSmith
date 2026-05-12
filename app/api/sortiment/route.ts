@@ -2,11 +2,11 @@
  * GET /api/sortiment
  * Gibt alle Beläge und Hölzer aus der DB zurück (mit Hersteller-Info).
  * Query-Parameter:
- *   type=rubber|blade        — Produktkategorie (default: beide)
- *   rubber_type=smooth|long_pips|short_pips|anti   — nur für Beläge
+ *   type=rubber|blade       , Produktkategorie (default: beide)
+ *   rubber_type=smooth|long_pips|short_pips|anti  , nur für Beläge
  *   play_style=offensive_topspin|allround|defensive|material
  *   manufacturer=slug
- *   q=suchbegriff            — Namenssuche
+ *   q=suchbegriff           , Namenssuche
  */
 
 import { NextRequest, NextResponse } from "next/server";

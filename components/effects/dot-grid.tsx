@@ -1,5 +1,5 @@
 /**
- * DotGrid — dezentes Punkt-Raster als Background-Layer.
+ * DotGrid, dezentes Punkt-Raster als Background-Layer.
  * Wird im Hero und auf CTA-Cards eingesetzt.
  */
 

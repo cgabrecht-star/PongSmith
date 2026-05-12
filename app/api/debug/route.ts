@@ -1,5 +1,5 @@
 /**
- * GET /api/debug — prüft ob Umgebungsvariablen ankommen
+ * GET /api/debug, prüft ob Umgebungsvariablen ankommen
  * Nur für interne Diagnose, gibt keine sensitiven Werte zurück.
  */
 export const runtime = "nodejs";

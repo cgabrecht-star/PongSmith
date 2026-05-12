@@ -2,7 +2,7 @@ import Link from "next/link";
 import { SubPageLayout } from "@/components/landing/sub-page-layout";
 
 export const metadata = {
-  title: "AGB — PongSmith",
+  title: "AGB, PongSmith",
   robots: { index: false },
 };
 
@@ -51,7 +51,7 @@ export default function AgbPage() {
           <ul className="mt-3 list-disc space-y-1.5 pl-5">
             <li>Hersteller-Datenblättern (normalisiert auf einheitliche Skalen)</li>
             <li>Aggregierten Community-Bewertungen aus öffentlichen Quellen</li>
-            <li>Einer regelbasierten Empfehlungs-Engine (Synergie-Score 0–100)</li>
+            <li>Einer regelbasierten Empfehlungs-Engine (Synergie-Score 0-100)</li>
             <li>Optionalen anonymen Spieler-Daten aus dem Mithelfen-Formular</li>
           </ul>
           <p className="mt-3">
@@ -59,7 +59,7 @@ export default function AgbPage() {
             <strong className="text-neutral-50">
               keine individuelle, verbindliche Kaufberatung
             </strong>{" "}
-            dar, sondern sind datenbasierte Vorschläge. Spielgefühl ist subjektiv —
+            dar, sondern sind datenbasierte Vorschläge. Spielgefühl ist subjektiv -
             was für andere Spieler im gleichen TTR-Bereich funktioniert, kann für
             den einzelnen Nutzer dennoch nicht optimal sein.
           </p>

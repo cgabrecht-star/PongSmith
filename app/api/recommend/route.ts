@@ -50,13 +50,13 @@ export async function POST(req: NextRequest) {
     const playStyle = body.playStyle as PlayStyle;
 
     if (!ttr || ttr < 600 || ttr > 2500) {
-      return NextResponse.json({ error: "Ungültiger TTR-Wert (600–2500)" }, { status: 400 });
+      return NextResponse.json({ error: "Ungültiger TTR-Wert (600-2500)" }, { status: 400 });
     }
     if (!VALID_STYLES.includes(playStyle)) {
       return NextResponse.json({ error: "Ungültiger Spielstil" }, { status: 400 });
     }
 
-    // TTR auf Daten-Range klemmen (unsere Synergien liegen bei 1000–1700)
+    // TTR auf Daten-Range klemmen (unsere Synergien liegen bei 1000-1700)
     const clampedTtr = Math.max(1000, Math.min(1700, ttr));
 
     // Erst enges Fenster, bei wenig Treffern aufweiten

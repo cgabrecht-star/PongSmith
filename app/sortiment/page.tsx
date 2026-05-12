@@ -63,7 +63,7 @@ interface Manufacturer { name: string; slug: string; }
 
 // ─── Hilfsfunktionen ─────────────────────────────────────────────────────────
 
-// Diese Funktionen erhalten die Übersetzungen als Argument — werden in jeder
+// Diese Funktionen erhalten die Übersetzungen als Argument, werden in jeder
 // Komponente die sie nutzt mit dem aktuellen `t` aufgerufen.
 function rubberTypeLabel(type: string, t: ReturnType<typeof useLanguage>["t"]) {
   return type === "smooth" ? t.sortiment.typeSmooth
@@ -78,7 +78,7 @@ function playStyleLabel(s: string | null, t: ReturnType<typeof useLanguage>["t"]
     : s === "allround" ? t.sortiment.styleAllround
     : s === "defensive" ? t.sortiment.styleDefensive
     : s === "material" ? t.sortiment.styleMaterial
-    : "–";
+    : "-";
 }
 
 function playStyleColor(s: string | null) {
@@ -89,7 +89,7 @@ function playStyleColor(s: string | null) {
 }
 
 // ─── Bild-Komponente ─────────────────────────────────────────────────────────
-// `size` und `hovered` steuerbar von außen — Hover-Effekt kommt vom Parent.
+// `size` und `hovered` steuerbar von außen, Hover-Effekt kommt vom Parent.
 
 // Hersteller-Farben für Fallback-Karten
 const MANUFACTURER_COLORS: Record<string, [string, string]> = {
@@ -216,7 +216,7 @@ function StatRow({ label, value, color }: { label: string; value: string | null;
         <div className="stat-fill" style={{ width: `${v}%`, background: color }} />
       </div>
       <span className="ff-mono" style={{ fontSize: 9, color: "var(--ps-ink-3)", width: 24, textAlign: "right" }}>
-        {value ? parseFloat(value).toFixed(1) : "–"}
+        {value ? parseFloat(value).toFixed(1) : "-"}
       </span>
     </div>
   );
@@ -418,7 +418,7 @@ function DetailModal({ item, onClose }: { item: ProductItem; onClose: () => void
                 <span className="tag-line" style={{ fontSize: 10 }}>{(item as BladeItem).composition}</span>
               )}
               {!isRubber && (item as BladeItem).weightMin && (item as BladeItem).weightMax && (
-                <span className="tag-line" style={{ fontSize: 10 }}>{(item as BladeItem).weightMin}–{(item as BladeItem).weightMax} g</span>
+                <span className="tag-line" style={{ fontSize: 10 }}>{(item as BladeItem).weightMin}-{(item as BladeItem).weightMax} g</span>
               )}
               <QualityBadge q={item.dataQuality} t={t} />
             </div>
@@ -557,7 +557,7 @@ export default function SortimentPage() {
   const [manufacturers, setManufacturers] = useState<Manufacturer[]>([]);
   const [manufacturer, setManufacturer] = useState<string>("");
   const [activeItem, setActiveItem] = useState<ProductItem | null>(null);
-  // Datenqualität-Filter — Default: alle anzeigen (Light-Variante)
+  // Datenqualität-Filter, Default: alle anzeigen (Light-Variante)
   const [qualityOnlyComplete, setQualityOnlyComplete] = useState(false);
 
   const load = useCallback(async () => {
@@ -587,7 +587,7 @@ export default function SortimentPage() {
   return (
     <div className="min-h-screen bg-neutral-900 text-neutral-50 antialiased">
 
-      {/* Sticky Top Bar — neuer Look */}
+      {/* Sticky Top Bar, neuer Look */}
       <header className="sticky top-0 z-50 border-b border-neutral-800 bg-neutral-900/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3 md:px-8">
           <Link href="/" className="flex items-center gap-2">

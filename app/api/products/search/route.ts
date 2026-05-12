@@ -2,7 +2,7 @@
  * GET /api/products/search?q=suchbegriff&type=blade|rubber
  *
  * Schlanker Endpoint für Autocomplete im /mithelfen-Form.
- * Liefert max. 12 Treffer mit ID + Name + Hersteller — keine Specs/Stats.
+ * Liefert max. 12 Treffer mit ID + Name + Hersteller, keine Specs/Stats.
  *
  * Filtert nur Produkte mit Mindest-Datenqualität (= mind. Specs vorhanden),
  * damit User keine Stubs auswählen.

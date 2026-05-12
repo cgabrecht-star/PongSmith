@@ -59,7 +59,7 @@ export function StepSetup({
           Dein aktuelles Setup
         </h2>
         <p className="mt-2 max-w-xl text-sm text-neutral-300">
-          Diese Daten machen die Beratung präzise. Werden anonym gespeichert — kein Name,
+          Diese Daten machen die Beratung präzise. Werden anonym gespeichert, kein Name,
           keine IP. Du hilfst damit, die Empfehlungen für andere Spieler genauer zu machen.
         </p>
       </div>
@@ -207,7 +207,7 @@ export function StepSetup({
           onClick={onSkip}
           className="text-xs text-neutral-500 underline-offset-2 transition-colors hover:text-neutral-300 hover:underline"
         >
-          Überspringen — direkt zum Problem
+          Überspringen, direkt zum Problem
         </button>
         <button
           type="button"

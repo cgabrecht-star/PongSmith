@@ -1,5 +1,5 @@
 /**
- * Synergie-Engine v2 — Bewertet Holz × Belag Kombinationen
+ * Synergie-Engine v2, Bewertet Holz × Belag Kombinationen
  *
  * Verbesserungen gegenüber v1:
  *   - Spielstil-spezifische Gewichtungen (statt fixer 30/25/25/10/10)
@@ -8,12 +8,12 @@
  *   - Topsheet-Match (sticky braucht steifes Holz, griffig ist universell)
  *   - 4 stil-spezifische Scores pro Synergie (für präzise Berater-Queries)
  *
- * Alle Scores 0–100, rein deterministisch — keine KI, pure Mathematik.
- * Primärquelle: Community-Ratings (revspin.net, 1–10, echte Spieler-Erfahrung).
- * Fallback:    speedNorm/spinNorm/controlNorm (Hersteller, auf 1–10 normiert).
+ * Alle Scores 0-100, rein deterministisch, keine KI, pure Mathematik.
+ * Primärquelle: Community-Ratings (revspin.net, 1-10, echte Spieler-Erfahrung).
+ * Fallback:    speedNorm/spinNorm/controlNorm (Hersteller, auf 1-10 normiert).
  * Letzter Fallback: 7.0 (Median für gut bewertete Club-Beläge).
  *
- * Zielgruppe: TTR 1000–1700 (Vereinsspieler, keine Profis)
+ * Zielgruppe: TTR 1000-1700 (Vereinsspieler, keine Profis)
  */
 
 // ---------------------------------------------------------------------------
@@ -115,7 +115,7 @@ const STYLE_WEIGHTS: Record<PlayStyle, Weights> = {
 };
 
 // ---------------------------------------------------------------------------
-// Gauss-Peaks je Spielstil (combined speed = bladeSpeed + rubberSpeed, Bereich 2–20)
+// Gauss-Peaks je Spielstil (combined speed = bladeSpeed + rubberSpeed, Bereich 2-20)
 // ---------------------------------------------------------------------------
 
 const TEMPO_TARGETS: Record<PlayStyle, { peak: number; sigma: number }> = {
@@ -149,7 +149,7 @@ function clamp(v: number, min = 0, max = 100): number {
 
 /**
  * tempoMatch: Stil-spezifisch kalibriert.
- * Gauss-Peak je Spielstil — offensive Spieler brauchen hohe combined speed.
+ * Gauss-Peak je Spielstil, offensive Spieler brauchen hohe combined speed.
  */
 function calcTempoMatch(bladeSpeed: number, rubberSpeed: number, style: PlayStyle): number {
   const combined = bladeSpeed + rubberSpeed;
@@ -159,7 +159,7 @@ function calcTempoMatch(bladeSpeed: number, rubberSpeed: number, style: PlayStyl
 
 /**
  * controlReserve: Kontrollreserve der Kombination.
- * Penalty erst ab Speed > 9.5 für Offensiv-Spieler (war v1: 8.5 — zu aggressiv).
+ * Penalty erst ab Speed > 9.5 für Offensiv-Spieler (war v1: 8.5, zu aggressiv).
  */
 function calcControlReserve(
   bladeSpeed: number, bladeControl: number,
@@ -180,7 +180,7 @@ function calcControlReserve(
 }
 
 /**
- * spinPotential: Unverändert zu v1 — Belag dominiert 70%, Holz 30%.
+ * spinPotential: Unverändert zu v1, Belag dominiert 70%, Holz 30%.
  */
 function calcSpinPotential(bladeSpeed: number, rubberSpin: number): number {
   const raw = rubberSpin * 0.7 + bladeSpeed * 0.3;
@@ -222,7 +222,7 @@ function calcHardnessMatch(hardnessMin: number | null, ttrTarget: number): numbe
 }
 
 /**
- * styleFit: Kohärenz der Kombination — spielen Holz und Belag in dieselbe Richtung?
+ * styleFit: Kohärenz der Kombination, spielen Holz und Belag in dieselbe Richtung?
  * Sticky-Beläge brauchen steifes Holz (sonst kein Spin-Übertrag).
  * v2: getrennte Logik für Material-Spieler.
  */

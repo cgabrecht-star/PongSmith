@@ -38,7 +38,7 @@ export interface ShopMeta {
   domain: string;
   /** Wie der Affiliate-Link aktuell zustandekommt */
   affiliate: "amazon" | "awin" | "adcell" | "none";
-  /** Aktueller Status — beeinflusst nur die Anzeige (z.B. "Provision aktiv") */
+  /** Aktueller Status, beeinflusst nur die Anzeige (z.B. "Provision aktiv") */
   affiliateActive: boolean;
 }
 
@@ -160,7 +160,7 @@ export interface ShopLinkOut {
 }
 
 /**
- * Liefert Shop-Links für ein Produkt — eine Liste über alle relevanten
+ * Liefert Shop-Links für ein Produkt, eine Liste über alle relevanten
  * DE-TT-Shops. Reihenfolge nach SHOP_ORDER.
  *
  * Regel: JOOLA-Shop wird nur für JOOLA-eigene Produkte verlinkt
@@ -212,7 +212,7 @@ export function getShopLinks(product: ProductRef): ShopLinkOut[] {
 }
 
 /**
- * Interne Tracking-URL — durchläuft /api/click bevor sie zum Shop führt.
+ * Interne Tracking-URL, durchläuft /api/click bevor sie zum Shop führt.
  * Damit messen wir welche Shops geklickt werden (auch ohne Affiliate),
  * Daten helfen bei künftigen Programm-Verhandlungen.
  */

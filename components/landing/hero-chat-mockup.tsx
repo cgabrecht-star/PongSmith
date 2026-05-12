@@ -24,13 +24,13 @@ const conversations: Conversation[] = [
     id: "marco",
     user: "TTR 1280, Allround, mein Block fliegt mir zu oft weg.",
     aiIntro:
-      "Klassisch — Setup ist dir zu schnell. Drei Optionen die dir Kontrolle ohne Tempo-Verlust geben:",
+      "Klassisch, Setup ist dir zu schnell. Drei Optionen die dir Kontrolle ohne Tempo-Verlust geben:",
     setup: {
       holz: "Stiga Allround Classic",
       vh: "Donic Acuda S2 (max)",
       rh: "Donic Acuda S2 (max)",
     },
-    meta: { synergy: 87, control: 82, ttr: "1200–1400" },
+    meta: { synergy: 87, control: 82, ttr: "1200-1400" },
   },
   {
     id: "tobias",
@@ -41,7 +41,7 @@ const conversations: Conversation[] = [
       vh: "Tibhar Evolution MX-P (max)",
       rh: "Tibhar Aurus Soft (1.9)",
     },
-    meta: { synergy: 91, control: 76, ttr: "1400–1700" },
+    meta: { synergy: 91, control: 76, ttr: "1400-1700" },
   },
   {
     id: "werner",
@@ -52,7 +52,7 @@ const conversations: Conversation[] = [
       vh: "DHS Hurricane 3 Neo (39°)",
       rh: "TSP Curl P1-R OX (lange Noppen)",
     },
-    meta: { synergy: 84, control: 88, ttr: "1100–1500" },
+    meta: { synergy: 84, control: 88, ttr: "1100-1500" },
   },
 ];
 
@@ -156,7 +156,7 @@ export function HeroChatMockup() {
                   )}
                 </p>
 
-                {/* Setup-Block — fadet staggered ein wenn phase = showing */}
+                {/* Setup-Block, fadet staggered ein wenn phase = showing */}
                 <AnimatePresence>
                   {phase === "showing" && (
                     <motion.div

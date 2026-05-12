@@ -13,7 +13,7 @@ import { useState } from "react";
 function renderBeraterText(raw: string): React.ReactNode {
   // Zeile-für-Zeile, Em/En-Dashes raus
   const cleaned = raw
-    .replace(/[—–]/g, "")          // Em-/En-Dash entfernen
+    .replace(/[--]/g, "")          // Em-/En-Dash entfernen
     .replace(/\s{2,}/g, " ")        // Mehrfach-Leerzeichen normalisieren
     .replace(/\*\*\*/g, "**");      // Tripple-Sterne defensiv
 
@@ -235,7 +235,7 @@ function SetupCard({ setup, rank }: { setup: SetupGroupResult; rank: number }) {
       {/* Hinweis: pro Produkt selber Shop wählen */}
       <div className="border-b border-neutral-700 bg-neutral-900/30 px-6 py-3">
         <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
-          🛒 Pro Komponente — wähl deinen Shop ({totalShops} verfügbar)
+          🛒 Pro Komponente, wähl deinen Shop ({totalShops} verfügbar)
         </p>
       </div>
 
@@ -306,7 +306,7 @@ export function StepResults({ result, onRestart }: { result: BeraterResult; onRe
           onClick={onRestart}
           className="text-sm text-neutral-400 underline-offset-2 transition-colors hover:text-neutral-200 hover:underline"
         >
-          ↺ Nochmal von vorne — anderes Profil testen
+          ↺ Nochmal von vorne, anderes Profil testen
         </button>
       </div>
     </motion.div>

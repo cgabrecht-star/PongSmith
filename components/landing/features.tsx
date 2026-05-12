@@ -88,7 +88,7 @@ function StatBar({ label, value, color }: { label: string; value: number; color:
   );
 }
 
-/** Aktive Shop-Partner — ehrlicher Stand (Mai 2026) */
+/** Aktive Shop-Partner, ehrlicher Stand (Mai 2026) */
 function ShopPartners() {
   const partners = [
     { name: "Amazon", status: "Aktiv", note: "Universal-Fallback für alle Marken" },
@@ -152,7 +152,7 @@ export function Features() {
               Echter Dialog statt Filtermaske
             </h3>
             <p className="mt-2 text-sm text-neutral-300">
-              Wir fragen mit Worten — Du antwortest mit Worten. Die KI versteht, weil sie auf
+              Wir fragen mit Worten, Du antwortest mit Worten. Die KI versteht, weil sie auf
               Tausenden von Spielerprofilen kalibriert ist.
             </p>
             <MiniChatPreview />
@@ -163,8 +163,8 @@ export function Features() {
               Datenbasiert, nicht aus dem Bauch
             </h3>
             <p className="mt-2 text-sm text-neutral-300">
-              Jede Empfehlung kommt mit konkreten Specs — Speed, Spin, Kontrolle. Auf einer
-              normalisierten 1–100-Skala vergleichbar.
+              Jede Empfehlung kommt mit konkreten Specs, Speed, Spin, Kontrolle. Auf einer
+              normalisierten 1-100-Skala vergleichbar.
             </p>
             <div className="mt-6 flex flex-col gap-4">
               <StatBar label="Speed" value={84} color="linear-gradient(90deg, #3b82f6, #60a5fa)" />

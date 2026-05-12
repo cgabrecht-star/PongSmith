@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * /mithelfen Form — anonyme Spieler-Submission.
+ * /mithelfen Form, anonyme Spieler-Submission.
  *
  * 4 Steps. Komplett anonym. Vollautomatischer AI-Check + Auto-Insert
  * via /api/submit-interview.
@@ -34,7 +34,7 @@ interface FormState {
   goodText: string;
   badText: string;
   previousText: string;
-  // Honeypot — bleibt leer
+  // Honeypot, bleibt leer
   website: string;
 }
 
@@ -304,7 +304,7 @@ export function ContributeForm() {
         </div>
       </div>
 
-      {/* Honeypot — versteckt für User, sichtbar für Bots */}
+      {/* Honeypot, versteckt für User, sichtbar für Bots */}
       <input
         type="text"
         name="website"
@@ -316,7 +316,7 @@ export function ContributeForm() {
         style={{ position: "absolute", left: "-9999px", opacity: 0, width: 0, height: 0 }}
       />
 
-      {/* ─── STEP 1 — Du ─── */}
+      {/* ─── STEP 1, Du ─── */}
       {state.step === 1 && (
         <div style={{ display: "flex", flexDirection: "column", gap: 26 }}>
           <h3 className="ff-display" style={{ fontSize: 26, lineHeight: 1.15, margin: 0, color: "var(--ps-ink-0)" }}>
@@ -410,7 +410,7 @@ export function ContributeForm() {
         </div>
       )}
 
-      {/* ─── STEP 2 — Setup ─── */}
+      {/* ─── STEP 2, Setup ─── */}
       {state.step === 2 && (
         <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
           <h3 className="ff-display" style={{ fontSize: 26, lineHeight: 1.15, margin: 0, color: "var(--ps-ink-0)" }}>
@@ -473,7 +473,7 @@ export function ContributeForm() {
         </div>
       )}
 
-      {/* ─── STEP 3 — Bewertung ─── */}
+      {/* ─── STEP 3, Bewertung ─── */}
       {state.step === 3 && (
         <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
           <h3 className="ff-display" style={{ fontSize: 26, lineHeight: 1.15, margin: 0, color: "var(--ps-ink-0)" }}>
@@ -536,7 +536,7 @@ export function ContributeForm() {
         </div>
       )}
 
-      {/* ─── STEP 4 — Wechsel ─── */}
+      {/* ─── STEP 4, Wechsel ─── */}
       {state.step === 4 && (
         <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
           <h3 className="ff-display" style={{ fontSize: 26, lineHeight: 1.15, margin: 0, color: "var(--ps-ink-0)" }}>

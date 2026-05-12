@@ -5,7 +5,7 @@ import { blades, rubbers } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
 /**
- * /sitemap.xml — generiert dynamisch.
+ * /sitemap.xml, generiert dynamisch.
  *
  * Beinhaltet:
  *  - Statische Routen (Start, Sortiment, Mithelfen)
@@ -26,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${config.siteUrl}/mithelfen`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
   ];
 
-  // Produkt-URLs aus DB — robust gegen DB-Ausfall beim Build
+  // Produkt-URLs aus DB, robust gegen DB-Ausfall beim Build
   let productRoutes: MetadataRoute.Sitemap = [];
   try {
     const [rubberRows, bladeRows] = await Promise.all([

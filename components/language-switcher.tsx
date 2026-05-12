@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Sprach-Umschalter — DE / EN Toggle.
+ * Sprach-Umschalter, DE / EN Toggle.
  * Konsistentes Design für TopBar auf allen Seiten.
  */
 

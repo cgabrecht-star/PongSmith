@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * MouseGlow — Cursor-folgender Radial-Glow.
+ * MouseGlow, Cursor-folgender Radial-Glow.
  *
  * Wird typischerweise im Hero als Background-Layer eingesetzt. Nutzt
  * useMotionValue + useSpring für weiches, leicht verzögertes Folgen.

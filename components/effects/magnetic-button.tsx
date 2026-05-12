@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * MagneticButton — CTA, der den Cursor leicht anzieht.
+ * MagneticButton, CTA, der den Cursor leicht anzieht.
  *
  * Funktioniert sowohl als <a href> als auch als <button>.
  */

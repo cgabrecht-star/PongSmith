@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Holz nicht gefunden" };
   }
 
-  const title = `${product.name} — Test, Specs & Empfehlung`;
+  const title = `${product.name}, Test, Specs & Empfehlung`;
   const description = product.description
     ? product.description.substring(0, 155).replace(/\s+\S*$/, "") + "…"
     : `${product.name} von ${product.manufacturer.name}: Speed ${product.speed ?? "?"}/10, Kontrolle ${product.control ?? "?"}/10. ${product.reviewCount} Community-Reviews. Passende Beläge & Empfehlung.`;

@@ -20,7 +20,7 @@ const items: FaqItem[] = [
     q: "Was kostet PongSmith?",
     a: (
       <p>
-        Nichts. Die Beratung ist und bleibt kostenlos — egal wie viele Empfehlungen Du Dir
+        Nichts. Die Beratung ist und bleibt kostenlos, egal wie viele Empfehlungen Du Dir
         holst.
       </p>
     ),
@@ -30,7 +30,7 @@ const items: FaqItem[] = [
     a: (
       <p>
         Affiliate-Provision der Shops, bei denen Du am Ende kaufst. Du zahlst keinen Aufpreis
-        — der Preis ist derselbe, als würdest Du direkt zum Shop gehen. Wenn Du nicht kaufst,
+       , der Preis ist derselbe, als würdest Du direkt zum Shop gehen. Wenn Du nicht kaufst,
         verdienen wir auch nichts. Genau deshalb empfehlen wir nur, was wirklich passt.
       </p>
     ),
@@ -40,7 +40,7 @@ const items: FaqItem[] = [
     a: (
       <p>
         Q-TTR 1000 bis 1700+, also Vereinsspieler vom Anfänger bis Bezirks-Niveau. In dem
-        Bereich entscheidet das passende Material spürbar mit. Darüber hinaus geht's auch —
+        Bereich entscheidet das passende Material spürbar mit. Darüber hinaus geht's auch -
         die Empfehlungen werden nur weniger kritisch, weil die Spieler dann oft schon sehr
         genau wissen, was sie brauchen.
       </p>
@@ -50,9 +50,9 @@ const items: FaqItem[] = [
     q: "Werden alle Marken berücksichtigt oder nur die großen?",
     a: (
       <p>
-        Hunderte Beläge in der Datenbank — Butterfly, Tibhar, Donic, Yasaka, Joola, Andro,
+        Hunderte Beläge in der Datenbank, Butterfly, Tibhar, Donic, Yasaka, Joola, Andro,
         Stiga, Xiom, Nittaku und kleinere Hersteller wie Sauer&Tröger oder air. Empfohlen
-        wird, was zu Dir passt — nicht was die höchste Provision bringt.
+        wird, was zu Dir passt, nicht was die höchste Provision bringt.
       </p>
     ),
   },
@@ -62,7 +62,7 @@ const items: FaqItem[] = [
       <p>
         Materialspieler ist einer der vier hinterlegten Spielstile. Die KI berücksichtigt die
         Charakteristik Deines Belags (lange/kurze Noppen, frictionless, Anti) und schlägt
-        Hölzer vor, die zur Spielweise passen — nicht das Standard-Allround, das man Dir im
+        Hölzer vor, die zur Spielweise passen, nicht das Standard-Allround, das man Dir im
         Shop andrehen würde.
       </p>
     ),
@@ -71,7 +71,7 @@ const items: FaqItem[] = [
     q: "Kann ich auch nur einen Belag oder nur ein Holz tauschen?",
     a: (
       <p>
-        Klar. Sag im Chat, was Du behalten willst — die KI optimiert dann nur die fehlenden
+        Klar. Sag im Chat, was Du behalten willst, die KI optimiert dann nur die fehlenden
         Komponenten und prüft die Synergie zum Bestand. Oft reicht ein neuer VH-Belag, um aus
         einem mittelmäßigen Setup ein gutes zu machen.
       </p>
@@ -128,7 +128,7 @@ const items: FaqItem[] = [
         </div>
         <p>
           PongSmith soll genau die Frustration verhindern, die ich selbst und viele
-          Vereinskollegen durchgemacht haben: 200 € in ein Setup stecken, das nicht passt —
+          Vereinskollegen durchgemacht haben: 200 € in ein Setup stecken, das nicht passt -
           und dadurch die Freude am Sport verlieren. Die Seite wird laufend mit neuen Daten
           gefüttert. Wenn dir was auffällt, schreib mich an:{" "}
           <a href="mailto:hallo@pongsmith.de" className="text-primary hover:underline">

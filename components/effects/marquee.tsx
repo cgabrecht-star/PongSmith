@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Marquee — Infinite horizontaler Scroll-Band.
+ * Marquee, Infinite horizontaler Scroll-Band.
  *
  * Content wird 2× nebeneinander gerendert, dann via Framer Motion
  * linear von 0% bis -50% animiert. Mask-Edges fadet die Ränder aus.

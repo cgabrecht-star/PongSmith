@@ -61,14 +61,14 @@ function formatText(text: string) {
   return text.split("\n").map((line, i) => {
     const trimmed = line.trim();
     const isEmpty = trimmed === "";
-    const isBullet = /^[-–•]/.test(trimmed);
+    const isBullet = /^[--•]/.test(trimmed);
     const isNumbered = /^\d+\./.test(trimmed);
     const isArrow = trimmed.startsWith("→");
 
     if (isEmpty) return <br key={i} />;
 
     const content = isBullet
-      ? trimmed.replace(/^[-–•]\s*/, "")
+      ? trimmed.replace(/^[--•]\s*/, "")
       : isArrow
         ? trimmed
         : line;
@@ -186,7 +186,7 @@ function MiniProductImage({ url, manufacturer, size = 36 }: { url?: string | nul
 }
 
 // ─────────────────────────────────────────────────────────────────────────
-// SetupCards v2 — Conversion-optimiert
+// SetupCards v2, Conversion-optimiert
 // - Synergie-Score-Ring (Authority)
 // - Mini-Bilder + Reviews-Counts (Visualisierung + Social Proof)
 // - Begründungstext (Personalisierung)
@@ -465,7 +465,7 @@ function SetupComponentRow({ product, label }: { product: DetectedProduct; label
 }
 
 // ─────────────────────────────────────────────────────────────────────────
-// SetupModal — Kauf-Funnel-Step nach Setup-Auswahl
+// SetupModal, Kauf-Funnel-Step nach Setup-Auswahl
 // ─────────────────────────────────────────────────────────────────────────
 
 function SetupModal({ setup, lang, onClose }: { setup: SetupGroup; lang: "de" | "en"; onClose: () => void }) {
@@ -484,8 +484,8 @@ function SetupModal({ setup, lang, onClose }: { setup: SetupGroup; lang: "de" | 
 
   const headline = lang === "de" ? "Hier gibts dein Setup" : "Here's your setup";
   const subline = lang === "de"
-    ? "Drei Teile — drei Klicks. Wir kassieren eine Provision vom Shop, du zahlst nichts extra."
-    : "Three parts — three clicks. We get a commission from the shop, you pay nothing extra.";
+    ? "Drei Teile, drei Klicks. Wir kassieren eine Provision vom Shop, du zahlst nichts extra."
+    : "Three parts, three clicks. We get a commission from the shop, you pay nothing extra.";
   const productLabel = (p: DetectedProduct, idx: number, total: number) => {
     if (p.type === "blade") return lang === "de" ? "Holz" : "Blade";
     if (total === 1) return lang === "de" ? "Belag" : "Rubber";
@@ -687,7 +687,7 @@ export function BeraterChat({ initialMessage }: { initialMessage?: string | null
     });
   }, [lang, t.berater.greeting]);
 
-  // Pre-Fill-Listener: alter Schnell-Check (TTR + Stil) — nur Text vorbefüllen
+  // Pre-Fill-Listener: alter Schnell-Check (TTR + Stil), nur Text vorbefüllen
   useEffect(() => {
     function onPrefill(e: Event) {
       const detail = (e as CustomEvent<{
@@ -795,19 +795,19 @@ export function BeraterChat({ initialMessage }: { initialMessage?: string | null
     }
   }
 
-  // sendRef nach jedem Render aktualisieren — die Event-Listener nutzen dann
+  // sendRef nach jedem Render aktualisieren, die Event-Listener nutzen dann
   // immer die aktuelle Closure (mit aktuellem messages/loading-State)
   sendRef.current = send;
 
   // Quick suggestions je Sprache
   const suggestions = lang === "de"
     ? [
-      "1.280 TTR, VH-dominant, 100–200 €",
+      "1.280 TTR, VH-dominant, 100-200 €",
       "Allround, Block hält nicht stabil",
       "Defensiv, Kontrolle wichtiger als Tempo",
     ]
     : [
-      "1,280 TTR, FH-dominant, €100–200 budget",
+      "1,280 TTR, FH-dominant, €100-200 budget",
       "Allround, my block isn't stable",
       "Defensive, control over speed",
     ];

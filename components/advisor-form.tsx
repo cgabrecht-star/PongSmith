@@ -196,7 +196,7 @@ export function AdvisorForm() {
         setSetups(data.setups ?? []);
       }
     } catch {
-      setError(lang === "de" ? "Verbindungsfehler — bitte erneut versuchen." : "Connection error — please try again.");
+      setError(lang === "de" ? "Verbindungsfehler, bitte erneut versuchen." : "Connection error, please try again.");
     } finally {
       setLoading(false);
     }
@@ -295,8 +295,8 @@ export function AdvisorForm() {
       {setups?.length === 0 && (
         <p className="ff-mono" style={{ textAlign: "center", fontSize: 11, color: "var(--ps-ink-3)", letterSpacing: "0.08em" }}>
           {lang === "de"
-            ? "Keine Ergebnisse — versuch einen anderen Spielstil."
-            : "No results — try a different play style."}
+            ? "Keine Ergebnisse, versuch einen anderen Spielstil."
+            : "No results, try a different play style."}
         </p>
       )}
 
@@ -320,7 +320,7 @@ export function AdvisorForm() {
             {t.sortiment.sourceNote}
           </p>
 
-          {/* Bridge zum Berater — Hauptzweck der Schnell-Check-Sektion */}
+          {/* Bridge zum Berater, Hauptzweck der Schnell-Check-Sektion */}
           <BridgeToAdvisor ttr={ttr} playStyle={playStyle} styleLabel={styles.find((s) => s.id === playStyle)?.label ?? playStyle} />
         </div>
       )}

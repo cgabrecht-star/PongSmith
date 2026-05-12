@@ -1,5 +1,5 @@
 /**
- * POST /api/berater — v2
+ * POST /api/berater, v2
  *
  * KI-Ausrüstungsberater mit erweiterter Tool-Architektur:
  *   - query_setups:           Holz × Belag Empfehlungen (stil-spezifische Scores v2,
@@ -26,7 +26,7 @@ export const dynamic   = "force-dynamic";
 export const maxDuration = 60;
 
 // ---------------------------------------------------------------------------
-// Bekannte westliche Marken — bei Allround-Queries bevorzugt
+// Bekannte westliche Marken, bei Allround-Queries bevorzugt
 // ---------------------------------------------------------------------------
 
 const WESTERN_BRANDS = new Set([
@@ -48,32 +48,32 @@ Du bist wie der erfahrene Vereinskollege, der nach dem Training kurz Klartext re
 KRITISCH wichtige Stil-Regeln:
 - Sprache: immer Deutsch, vertrautes "du", kein Kumpel-Slang
 - KEIN MARKDOWN: keine Sternchen für Fett (**), keine Backticks, kein # für Überschriften. Schreibe in normalem Fließtext.
-- KEINE GEDANKENSTRICHE (— oder –). Statt "kontrollierter — schneller" schreib "kontrollierter, schneller" oder mit normalem Bindestrich (-).
+- KEINE GEDANKENSTRICHE (- oder -). Statt "kontrollierter, schneller" schreib "kontrollierter, schneller" oder mit normalem Bindestrich (-).
 - KEIN VERKAUFS-SPRECH: keine Superlative wie "perfekt", "ideal", "genau richtig", "Game-Changer", "Top-Pick". Stattdessen: sachlich-beschreibend ("vergibt mehr im Block", "spielt sich weicher").
 - Länge: lieber 3 präzise Sätze als ein langer Absatz
 - Spiegel-Moment: 1 Satz zeigt dass du verstanden hast, dann sachlich empfehlen.
 
 ## Gesprächsablauf
 
-**Schritt 1 — Profil verstehen:**
+**Schritt 1, Profil verstehen:**
 Finde heraus: TTR (oder Erfahrung), Spielstil, aktuelles Setup (wenn vorhanden), konkretes Problem/Ziel.
 Frage nie alles auf einmal. TTR + Spielstil reichen für den ersten Tool-Call.
 
-**Schritt 2 — Tool aufrufen:**
+**Schritt 2, Tool aufrufen:**
 Sobald TTR + Spielstil klar → query_setups aufrufen. Nicht länger warten.
 Bei konkretem Problem (z.B. "Block instabil") → zuerst query_by_problem.
 Bei Detailfrage zu einem Produkt → get_product_details.
 Bei Materialspielern oder TTR > 1400 + Wunsch nach VH/RH-Trennung → query_rubber_for_side.
 
-**Schritt 3 — Ergebnisse erklären:**
-Für jede Empfehlung 1–2 Sätze WARUM sie zu diesem Spieler passt.
+**Schritt 3, Ergebnisse erklären:**
+Für jede Empfehlung 1-2 Sätze WARUM sie zu diesem Spieler passt.
 Nutze die mitgelieferten Produkt-Infos (Härte, Charakteristik, Beschreibung) für konkrete Begründungen.
 
 ## Spieler-Typen
 
-**Marco-Typ (TTR 1000–1400, Allround/Offensiv):** Unsicher, glaubt Material sei schuld. Braucht vergebendes Setup. Sprache: warm, bestätigend. Bei Markenpräferenz: prefer_known_brands=true setzen.
+**Marco-Typ (TTR 1000-1400, Allround/Offensiv):** Unsicher, glaubt Material sei schuld. Braucht vergebendes Setup. Sprache: warm, bestätigend. Bei Markenpräferenz: prefer_known_brands=true setzen.
 
-**Tobias-Typ (TTR 1400–1700, Offensiv-Topspin):** Weiß was er will. Kann technische Erklärungen. Sprache: direkt, ambitioniert. Kein prefer_known_brands nötig — Performance zählt.
+**Tobias-Typ (TTR 1400-1700, Offensiv-Topspin):** Weiß was er will. Kann technische Erklärungen. Sprache: direkt, ambitioniert. Kein prefer_known_brands nötig, Performance zählt.
 
 **Werner-Typ (Material-Spieler):** Spielt bewusst anders. Kein Belächeln. Nach Noppen-Typ fragen (KN/LP/Anti). Dann query_rubber_for_side für VH und RH separat.
 
@@ -87,7 +87,7 @@ Nutze die mitgelieferten Produkt-Infos (Härte, Charakteristik, Beschreibung) f�
 | "Zu langsam, kein Tempo" | query_by_problem | too_slow |
 | "Zu schnell, keine Kontrolle" | query_by_problem | too_fast |
 | "Arm wird schnell müde" | query_by_problem | tired_arm |
-| "Was ist [Produkt] genau?" | get_product_details | — |
+| "Was ist [Produkt] genau?" | get_product_details |, |
 
 ## Datenbankresultate, strikte Regeln
 
@@ -102,13 +102,13 @@ Bei Material-Spielern: Noppen-Typ klären (KN/LP/Anti). Dann query_rubber_for_si
 
 ## Wichtig zur Formulierung
 
-Falsch: "Der **Donic Vario** ist genau der richtige Ansatz — deutlich kontrollierter als der Hexer Powergrip."
+Falsch: "Der **Donic Vario** ist genau der richtige Ansatz, deutlich kontrollierter als der Hexer Powergrip."
 Richtig: "Der Donic Vario ist kontrollierter als der Hexer Powergrip und vergibt im Block mehr."
 
 Falsch: "Setup-Empfehlung: **Allround-Kombi** mit maximalem Spin-Potenzial!"
 Richtig: "Setup: Stiga Allround Classic mit Donic Acuda S2. Gibt dir Kontrolle ohne Tempo-Verlust."
 
-Falsch: "Drei Wege — perfekt abgestimmt auf dein Profil."
+Falsch: "Drei Wege, perfekt abgestimmt auf dein Profil."
 Richtig: "Drei Setups, die zu deinem Profil passen:"`;
 
 const SYSTEM_PROMPT_EN = `You are PongSmith, the independent table-tennis equipment advisor for club players.
@@ -120,27 +120,27 @@ You are like the experienced club teammate who gives honest advice after practic
 CRITICAL style rules:
 - Language: always English, friendly but not chummy
 - NO MARKDOWN: no asterisks for bold (**), no backticks, no # headings. Plain prose.
-- NO EM-DASHES or EN-DASHES (— or –). Use commas or plain hyphens (-) instead.
+- NO EM-DASHES or EN-DASHES (- or -). Use commas or plain hyphens (-) instead.
 - NO SALES TALK: avoid superlatives like "perfect", "ideal", "game-changer", "top pick". Stay descriptive ("gives more block forgiveness", "plays softer").
 - Length: three precise sentences over one long paragraph.
 - Mirror moment: one sentence showing you understood, then recommend factually.
 
 ## Conversation flow
 
-**Step 1 — Understand the profile:**
+**Step 1, Understand the profile:**
 Find: TTR (or experience), play style, current setup, specific problem/goal. Don't ask everything at once.
 
-**Step 2 — Call the right tool:**
+**Step 2, Call the right tool:**
 TTR + style clear → query_setups. Specific problem → query_by_problem first.
 Detail question → get_product_details. Material player or TTR > 1400 wanting VH/RH split → query_rubber_for_side.
 
-**Step 3 — Explain results:**
-1–2 sentences per recommendation on WHY it fits this player. Use the product info provided (hardness, character, description).
+**Step 3, Explain results:**
+1-2 sentences per recommendation on WHY it fits this player. Use the product info provided (hardness, character, description).
 
 ## Player types
 
-**Mid-level (TTR 1000–1400, allround/offensive):** Unsure, feels gear is to blame. Needs forgiving setup. Tone: warm, affirming. Set prefer_known_brands=true.
-**Ambitious (TTR 1400–1700, offensive):** Knows what they want. Technical explanations OK. Direct, ambitious tone.
+**Mid-level (TTR 1000-1400, allround/offensive):** Unsure, feels gear is to blame. Needs forgiving setup. Tone: warm, affirming. Set prefer_known_brands=true.
+**Ambitious (TTR 1400-1700, offensive):** Knows what they want. Technical explanations OK. Direct, ambitious tone.
 **Material player:** Respect their style. Ask pip type first (LP/SP/Anti). Use query_rubber_for_side for VH and RH.
 
 ## Symptom → Tool mapping
@@ -153,13 +153,13 @@ Detail question → get_product_details. Material player or TTR > 1400 wanting V
 | "Too slow" | query_by_problem | too_slow |
 | "No control" | query_by_problem | too_fast |
 | "Arm tires quickly" | query_by_problem | tired_arm |
-| "Tell me about [product]" | get_product_details | — |
+| "Tell me about [product]" | get_product_details |, |
 
 ## Database result rules
 
 → Only products from results. Max 3, by priority. Nothing from memory.
 → DB_KEIN_ERGEBNIS: honest, brief reason, suggest retry with adjusted params.
-→ DB_ANFAENGER (TTR < 900): starts at TTR 1000, one entry-level tip (pre-made racket €30–60).`;
+→ DB_ANFAENGER (TTR < 900): starts at TTR 1000, one entry-level tip (pre-made racket €30-60).`;
 
 function getSystemPrompt(lang: "de" | "en"): string {
   return lang === "en" ? SYSTEM_PROMPT_EN : SYSTEM_PROMPT_DE;
@@ -176,7 +176,7 @@ const TOOLS: Anthropic.Tool[] = [
     input_schema: {
       type: "object" as const,
       properties: {
-        ttr: { type: "number", description: "TTR des Spielers (600–2000). Schätz 700 für absolute Anfänger." },
+        ttr: { type: "number", description: "TTR des Spielers (600-2000). Schätz 700 für absolute Anfänger." },
         play_style: {
           type: "string",
           enum: ["offensive_topspin", "allround", "defensive", "material"],
@@ -193,7 +193,7 @@ const TOOLS: Anthropic.Tool[] = [
         },
         max_results: {
           type: "number",
-          description: "Maximale Treffer (1–5). Default: 3.",
+          description: "Maximale Treffer (1-5). Default: 3.",
         },
       },
       required: ["ttr", "play_style"],
@@ -201,7 +201,7 @@ const TOOLS: Anthropic.Tool[] = [
   },
   {
     name: "get_product_details",
-    description: "Gibt vollständige Infos zu einem einzelnen Holz oder Belag zurück — Beschreibung, Community-Meinung, alle technischen Werte.",
+    description: "Gibt vollständige Infos zu einem einzelnen Holz oder Belag zurück, Beschreibung, Community-Meinung, alle technischen Werte.",
     input_schema: {
       type: "object" as const,
       properties: {
@@ -288,7 +288,7 @@ function diversify(
   const result: SetupRow[] = [];
 
   // Wenn Westmarken bevorzugt: zuerst Westmarken, dann Rest
-  // (Rows sind bereits nach Score sortiert — Westmarke-Bonus durch Voranstellen)
+  // (Rows sind bereits nach Score sortiert, Westmarke-Bonus durch Voranstellen)
   // Wir gehen einfach durch und sortieren Westmarken-Treffer nach vorne
   // ohne den Score zu ändern.
 
@@ -331,7 +331,7 @@ function diversify(
 function formatHardness(min: number | null, max: number | null): string {
   if (min === null) return "k.A.";
   if (max === null) return `${min}°`;
-  return `${min}–${max}°`;
+  return `${min}-${max}°`;
 }
 
 function formatTopsheet(ts: string | null): string {
@@ -359,7 +359,7 @@ function rowsToText(rows: SetupRow[], ttr: number, styleName: string, lang: "de"
     return [
       `${i + 1}. Holz: ${r.bladeName}${bladeInfo ? ` (${bladeInfo})` : ""}`,
       `   Belag: ${r.rubberName}${rubberInfo ? ` (${rubberInfo})` : ""}`,
-      `   Synergie: ${r.synergyScore}/100 | Tempo: ${r.tempoMatch ?? "–"} | Kontrolle: ${r.controlReserve ?? "–"} | Spin: ${r.spinPotential ?? "–"}`,
+      `   Synergie: ${r.synergyScore}/100 | Tempo: ${r.tempoMatch ?? "-"} | Kontrolle: ${r.controlReserve ?? "-"} | Spin: ${r.spinPotential ?? "-"}`,
     ].join("\n");
   });
 
@@ -593,7 +593,7 @@ async function runGetProductDetails(
     const b = rows[0]!;
     const speed = b.communitySpeed ?? b.speedNorm ?? "k.A.";
     const control = b.communityControl ?? b.controlNorm ?? "k.A.";
-    const weight = b.weightMin && b.weightMax ? `${b.weightMin}–${b.weightMax}g` : "k.A.";
+    const weight = b.weightMin && b.weightMax ? `${b.weightMin}-${b.weightMax}g` : "k.A.";
 
     return [
       `Holz: ${b.name}`,
@@ -647,7 +647,7 @@ async function runGetProductDetails(
 
 function formatHardnessDetail(min: number | null, max: number | null): string {
   if (!min) return "k.A.";
-  return max ? `${min}–${max}°` : `${min}°`;
+  return max ? `${min}-${max}°` : `${min}°`;
 }
 
 // ---------------------------------------------------------------------------
@@ -760,9 +760,9 @@ async function runQueryRubberForSide(
   const lines = filtered.map((r, i) => {
     const hardness = formatHardnessDetail(r.rubberHardnessMin, r.rubberHardnessMax);
     const topsheet = r.rubberTopsheet ? formatTopsheet(r.rubberTopsheet) : "";
-    const speed = r.communitySpeed ?? "–";
-    const spin = r.communitySpin ?? "–";
-    const control = r.communityControl ?? "–";
+    const speed = r.communitySpeed ?? "-";
+    const spin = r.communitySpin ?? "-";
+    const control = r.communityControl ?? "-";
     return `${i + 1}. ${r.rubberName} | Härte: ${hardness} | ${topsheet ? `Topsheet: ${topsheet} | ` : ""}Speed: ${speed}, Spin: ${spin}, Kontrolle: ${control}`;
   });
 
@@ -793,39 +793,39 @@ async function runQueryByProblem(
   }> = {
     block_unstable: {
       orderByCol: "controlReserve",
-      descriptionDE: "Block instabil — Setup mit hoher Kontrollreserve gesucht",
-      descriptionEN: "Unstable block — looking for high control reserve",
+      descriptionDE: "Block instabil, Setup mit hoher Kontrollreserve gesucht",
+      descriptionEN: "Unstable block, looking for high control reserve",
       minControl: 70,
     },
     topspin_falls: {
       orderByCol: "spinPotential",
-      descriptionDE: "Topspin fällt zu kurz — Setup mit höherem Spin-Potenzial gesucht",
-      descriptionEN: "Topspin falls short — higher spin potential needed",
+      descriptionDE: "Topspin fällt zu kurz, Setup mit höherem Spin-Potenzial gesucht",
+      descriptionEN: "Topspin falls short, higher spin potential needed",
       minSpin: 75,
     },
     no_spin: {
       orderByCol: "spinPotential",
-      descriptionDE: "Kein Spin — spinstarkes Setup gesucht",
-      descriptionEN: "No spin — high-spin setup needed",
+      descriptionDE: "Kein Spin, spinstarkes Setup gesucht",
+      descriptionEN: "No spin, high-spin setup needed",
       minSpin: 80,
     },
     too_slow: {
       orderByCol: "tempoMatch",
-      descriptionDE: "Zu langsam — schnelleres Setup gesucht",
-      descriptionEN: "Too slow — faster setup needed",
+      descriptionDE: "Zu langsam, schnelleres Setup gesucht",
+      descriptionEN: "Too slow, faster setup needed",
       minTempo: 60,
     },
     too_fast: {
       orderByCol: "controlReserve",
-      descriptionDE: "Zu schnell — kontrollierbareres Setup gesucht",
-      descriptionEN: "Too fast — more controllable setup needed",
+      descriptionDE: "Zu schnell, kontrollierbareres Setup gesucht",
+      descriptionEN: "Too fast, more controllable setup needed",
       minControl: 75,
       maxTempo: 70,
     },
     tired_arm: {
       orderByCol: "controlReserve",
-      descriptionDE: "Müder Arm — leichteres, weiches Setup gesucht",
-      descriptionEN: "Tired arm — lighter, softer setup needed",
+      descriptionDE: "Müder Arm, leichteres, weiches Setup gesucht",
+      descriptionEN: "Tired arm, lighter, softer setup needed",
       minControl: 70,
       maxTempo: 65,
     },
@@ -899,8 +899,8 @@ async function runQueryByProblem(
 
   if (diverse.length === 0) {
     return lang === "de"
-      ? `DB_KEIN_ERGEBNIS — Kein Setup mit passendem Profil für "${problem}" gefunden. Versuche query_setups mit dem Spielstil.`
-      : `DB_KEIN_ERGEBNIS — No setup found for problem "${problem}". Try query_setups with the play style.`;
+      ? `DB_KEIN_ERGEBNIS, Kein Setup mit passendem Profil für "${problem}" gefunden. Versuche query_setups mit dem Spielstil.`
+      : `DB_KEIN_ERGEBNIS, No setup found for problem "${problem}". Try query_setups with the play style.`;
   }
 
   const styleLabel = lang === "en" ? config.descriptionEN : config.descriptionDE;
@@ -933,7 +933,7 @@ export async function POST(req: NextRequest) {
       content: m.content,
     }));
 
-    // Agentic Loop (max. 6 Runden — mehr Tools = mehr mögliche Calls)
+    // Agentic Loop (max. 6 Runden, mehr Tools = mehr mögliche Calls)
     for (let i = 0; i < 6; i++) {
       const response = await client.messages.create({
         model: "claude-opus-4-7",
@@ -1002,7 +1002,19 @@ export async function POST(req: NextRequest) {
         const products = detected.map(enrichProduct);
 
         // Setup-Gruppen erkennen + Synergie-Scores pro Setup nachladen
-        const setupGroups = groupProductsBySetup(text, detected);
+        let setupGroups = groupProductsBySetup(text, detected);
+
+        // Fallback: Wenn der Berater unstrukturiert geantwortet hat (keine
+        // 1./2./3.-Markierungen), aber Produkte erkannt wurden, baue daraus
+        // eine generische Setup-Gruppe damit der User trotzdem Karten sieht.
+        if (setupGroups.length === 0 && detected.length > 0) {
+          setupGroups = [{
+            index: 1,
+            title: "Empfohlenes Setup",
+            description: "Aus den im Text genannten Produkten zusammengestellt.",
+            products: detected,
+          }];
+        }
 
         const setups = await Promise.all(setupGroups.map(async (g) => {
           const blade = g.products.find((p) => p.type === "blade");

@@ -1,11 +1,11 @@
 "use client";
 
 /**
- * BeraterFlow — Wrapper um BeraterChat mit optionalem Vorab-Setup-Erfassung.
+ * BeraterFlow, Wrapper um BeraterChat mit optionalem Vorab-Setup-Erfassung.
  *
  * Drei States:
  *   1. "intro": User wählt zwischen "Setup angeben" oder "direkt chatten"
- *   2. "form": Mini-2-Step-Form (TTR/Stil + Setup) — schickt Daten anonym an
+ *   2. "form": Mini-2-Step-Form (TTR/Stil + Setup), schickt Daten anonym an
  *      /api/submit-interview UND startet Chat mit vorbefüllter Erst-Nachricht
  *   3. "chat": bisheriger BeraterChat, ggf. mit initialer Nachricht
  *

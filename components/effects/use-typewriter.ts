@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * useTypewriter — char-by-char Text-Reveal-Hook.
+ * useTypewriter, char-by-char Text-Reveal-Hook.
  *
  * @param text   Zieltext
  * @param speed  Millisekunden pro Zeichen (default 28)

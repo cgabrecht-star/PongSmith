@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * LanguageProvider — verwaltet die aktuelle Sprache (de | en) für die ganze App.
+ * LanguageProvider, verwaltet die aktuelle Sprache (de | en) für die ganze App.
  *
  * Persistiert in:
  *  - localStorage (sofort verfügbar nach Reload)

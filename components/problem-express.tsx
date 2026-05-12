@@ -4,7 +4,7 @@
  * Problem-Express
  *
  * Ersatz für den alten Schnell-Check (Filterformular).
- * 6 Buttons mit typischen Spieler-Problemen — Klick auf einen Button
+ * 6 Buttons mit typischen Spieler-Problemen, Klick auf einen Button
  * scrollt zum Berater und schickt die Problem-Beschreibung direkt als
  * erste User-Nachricht. Berater fragt dann selbst nach TTR + Spielstil.
  *

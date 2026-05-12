@@ -7,7 +7,7 @@ const steps = [
   {
     n: "01",
     title: "Spiel beschreiben",
-    text: "Spielstärke, Stil, was Dich nervt. Im Chat, mit eigenen Worten — kein Formular.",
+    text: "Spielstärke, Stil, was Dich nervt. Im Chat, mit eigenen Worten, kein Formular.",
   },
   {
     n: "02",

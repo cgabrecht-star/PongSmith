@@ -5,9 +5,9 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { config } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Berater starten — PongSmith",
+  title: "Berater starten, PongSmith",
   description:
-    "In vier Schritten zur richtigen Setup-Empfehlung. Aktuelles Setup eingeben, Problem beschreiben, datenbasierte Empfehlung erhalten — kostenlos und anonym.",
+    "In vier Schritten zur richtigen Setup-Empfehlung. Aktuelles Setup eingeben, Problem beschreiben, datenbasierte Empfehlung erhalten, kostenlos und anonym.",
   alternates: {
     canonical: `${config.siteUrl}/berater`,
   },

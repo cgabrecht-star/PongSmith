@@ -23,7 +23,7 @@ export interface DetectedProduct {
   position: number;
 }
 
-// In-Memory-Cache — Produktdaten ändern sich selten, kein Bedarf für TTL
+// In-Memory-Cache, Produktdaten ändern sich selten, kein Bedarf für TTL
 let cache: {
   blades: { id: number; name: string; manufacturer: string }[];
   rubbers: { id: number; name: string; manufacturer: string }[];
@@ -60,7 +60,7 @@ async function loadProductCache() {
   return cache;
 }
 
-/** Cache zurücksetzen — z.B. nach DB-Updates in Tests. */
+/** Cache zurücksetzen, z.B. nach DB-Updates in Tests. */
 export function clearProductCache() {
   cache = null;
 }
@@ -102,7 +102,7 @@ export async function detectProducts(text: string): Promise<DetectedProduct[]> {
   for (const p of all) {
     if (p.name.length < 4) continue; // zu kurz → false positives
     const escaped = escapeRegex(p.name);
-    // Wortgrenzen — \b funktioniert nicht für Sonderzeichen, deshalb manuell
+    // Wortgrenzen, \b funktioniert nicht für Sonderzeichen, deshalb manuell
     const re = new RegExp(`(?:^|[^\\w])${escaped}(?:[^\\w]|$)`, "gi");
     let m: RegExpExecArray | null;
     while ((m = re.exec(text)) !== null) {

@@ -1,4 +1,4 @@
-// Zentrale Konfiguration — keine Magic Numbers im Code
+// Zentrale Konfiguration, keine Magic Numbers im Code
 
 export const config = {
   // Site

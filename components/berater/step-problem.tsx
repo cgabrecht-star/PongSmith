@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 const QUICK_PROBLEMS = [
-  { icon: "🛡️", label: "Block ist instabil", message: "Mein Block ist instabil — der Ball springt mir zu oft weg oder fliegt zu lang." },
+  { icon: "🛡️", label: "Block ist instabil", message: "Mein Block ist instabil, der Ball springt mir zu oft weg oder fliegt zu lang." },
   { icon: "🎯", label: "Topspin fällt zu kurz", message: "Mein Topspin fällt zu oft ins Netz oder zu kurz auf den Tisch." },
   { icon: "🐌", label: "Zu langsam", message: "Mein Setup fühlt sich zu langsam an, ich will aber keine Rakete." },
   { icon: "💪", label: "Arm wird müde", message: "Mein Schlagarm wird beim Spielen schnell müde. Setup zu schwer oder zu hart?" },
@@ -49,7 +49,7 @@ export function StepProblem({
           Was ist dein Problem?
         </h2>
         <p className="mt-2 max-w-xl text-sm text-neutral-300">
-          Beschreib's mit eigenen Worten — oder wähl eine der häufigen Situationen unten.
+          Beschreib's mit eigenen Worten, oder wähl eine der häufigen Situationen unten.
           Je konkreter, desto besser die Empfehlung.
         </p>
       </div>

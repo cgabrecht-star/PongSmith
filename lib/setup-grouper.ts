@@ -6,7 +6,7 @@
  * Markierungen die der Berater im Text setzt.
  *
  * Wenn keine Setup-Struktur erkennbar ist, kommt eine leere Liste zurück
- * — die UI fällt dann auf die flache Produktliste zurück.
+ *, die UI fällt dann auf die flache Produktliste zurück.
  */
 
 import type { DetectedProduct } from "./product-detector";

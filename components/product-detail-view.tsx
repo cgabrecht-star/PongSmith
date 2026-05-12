@@ -21,7 +21,7 @@ function formatRubberType(t: string | undefined) {
     case "long_pips": return "Lange Noppen";
     case "short_pips": return "Kurze Noppen";
     case "anti": return "Anti-Topspin";
-    default: return "—";
+    default: return "-";
   }
 }
 
@@ -188,7 +188,7 @@ export function ProductDetailView({ product, synergies, similar }: DetailViewPro
           </ol>
         </nav>
 
-        {/* Hero — Bild + Title + Specs */}
+        {/* Hero, Bild + Title + Specs */}
         <header style={{ marginBottom: 40, display: "grid", gridTemplateColumns: "minmax(180px, 220px) 1fr", gap: 28, alignItems: "flex-start" }}>
           <div>
             <ImgOrInitial url={product.imageUrl} manufacturer={product.manufacturer.name} size={200} />
@@ -231,7 +231,7 @@ export function ProductDetailView({ product, synergies, similar }: DetailViewPro
                 {product.hardnessMin && (
                   <div>
                     <span className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.1em", color: "var(--ps-ink-4)", marginRight: 6, textTransform: "uppercase" }}>Schwammhärte</span>
-                    {product.hardnessMin}{product.hardnessMax && product.hardnessMax !== product.hardnessMin ? `–${product.hardnessMax}` : ""}°
+                    {product.hardnessMin}{product.hardnessMax && product.hardnessMax !== product.hardnessMin ? `-${product.hardnessMax}` : ""}°
                   </div>
                 )}
                 {formatTopsheet(product.topsheet) && (
@@ -259,7 +259,7 @@ export function ProductDetailView({ product, synergies, similar }: DetailViewPro
                 {product.weightMin && product.weightMax && (
                   <div>
                     <span className="ff-mono" style={{ fontSize: 9, letterSpacing: "0.1em", color: "var(--ps-ink-4)", marginRight: 6, textTransform: "uppercase" }}>Gewicht</span>
-                    {product.weightMin}–{product.weightMax} g
+                    {product.weightMin}-{product.weightMax} g
                   </div>
                 )}
                 {product.stiffness && (
@@ -309,7 +309,7 @@ export function ProductDetailView({ product, synergies, similar }: DetailViewPro
               Für welche Spielstärke?
             </h2>
             <p style={{ color: "var(--ps-ink-2)", fontSize: 15, lineHeight: 1.7, margin: 0 }}>
-              Empfohlener TTR-Bereich: <strong style={{ color: "var(--ps-ember-2)" }}>{product.ttrMin}–{product.ttrMax}</strong>
+              Empfohlener TTR-Bereich: <strong style={{ color: "var(--ps-ember-2)" }}>{product.ttrMin}-{product.ttrMax}</strong>
               {product.ttrOptimal && <> · Optimum bei <strong style={{ color: "var(--ps-ember-2)" }}>{product.ttrOptimal}</strong></>}.
               {product.playStyle && formatPlayStyle(product.playStyle) && (
                 <> Spielstil: <strong style={{ color: "var(--ps-ink-1)" }}>{formatPlayStyle(product.playStyle)}</strong>.</>
@@ -325,7 +325,7 @@ export function ProductDetailView({ product, synergies, similar }: DetailViewPro
               {isRubber ? "Top-Hölzer für diesen Belag" : "Top-Beläge für dieses Holz"}
             </h2>
             <p style={{ margin: "0 0 18px", color: "var(--ps-ink-3)", fontSize: 13.5 }}>
-              Die Synergie-Engine bewertet jede Holz-Belag-Kombination 0–100. Hier die besten Treffer aus über 470.000 Kombinationen.
+              Die Synergie-Engine bewertet jede Holz-Belag-Kombination 0-100. Hier die besten Treffer aus über 470.000 Kombinationen.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 10 }}>
               {synergies.map((s) => (
@@ -353,7 +353,7 @@ export function ProductDetailView({ product, synergies, similar }: DetailViewPro
           </section>
         )}
 
-        {/* Wo kaufen? — Shop-Vergleich */}
+        {/* Wo kaufen?, Shop-Vergleich */}
         {shopLinks.length > 0 && (
           <section
             style={{
@@ -369,7 +369,7 @@ export function ProductDetailView({ product, synergies, similar }: DetailViewPro
               Wo kaufen?
             </h2>
             <p style={{ margin: "8px 0 16px", color: "var(--ps-ink-2)", fontSize: 13.5, lineHeight: 1.6 }}>
-              Verlinkungen zu allen relevanten Tischtennis-Shops. Such-Treffer im jeweiligen Shop —
+              Verlinkungen zu allen relevanten Tischtennis-Shops. Such-Treffer im jeweiligen Shop -
               dort siehst du den aktuellen Preis und Verfügbarkeit.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
@@ -441,7 +441,7 @@ export function ProductDetailView({ product, synergies, similar }: DetailViewPro
             Passt {product.name} zu dir?
           </h2>
           <p style={{ margin: 0, color: "var(--ps-ink-2)", fontSize: 14.5, lineHeight: 1.6, maxWidth: 540, alignSelf: "center" }}>
-            Frag den Berater — er kennt deinen TTR-Bereich, deinen Spielstil und gleicht das mit den Stärken und Schwächen dieses Produkts ab.
+            Frag den Berater, er kennt deinen TTR-Bereich, deinen Spielstil und gleicht das mit den Stärken und Schwächen dieses Produkts ab.
           </p>
           <Link
             href="/#berater-section"
@@ -455,7 +455,7 @@ export function ProductDetailView({ product, synergies, similar }: DetailViewPro
         {/* Datenquelle */}
         {product.sourceUrl && (
           <p className="ff-mono" style={{ marginTop: 32, textAlign: "center", fontSize: 9.5, color: "var(--ps-ink-4)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            Daten teils aus revspin.net + Hersteller-Datenblättern · Normiert 1.0–10.0
+            Daten aus Tischtennis-Foren + Hersteller-Datenblättern · Normiert 1.0-10.0
           </p>
         )}
       </div>

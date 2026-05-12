@@ -35,7 +35,7 @@ export default async function OgImage({ params }: { params: { slug: string } }) 
           }}
         />
 
-        {/* Top Bar — Brand */}
+        {/* Top Bar, Brand */}
         <div style={{ display: "flex", alignItems: "center", gap: 12, color: "#fafaf7", fontSize: 22, letterSpacing: "0.06em", fontWeight: 700, textTransform: "uppercase" }}>
           <span style={{ color: "#ff6b35", fontSize: 28 }}>◈</span>
           PongSmith

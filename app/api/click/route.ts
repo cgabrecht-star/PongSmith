@@ -1,5 +1,5 @@
 /**
- * GET /api/click — Affiliate-Click-Tracking + Redirect
+ * GET /api/click, Affiliate-Click-Tracking + Redirect
  *
  * Query-Params:
  *   shop:  ShopId (amazon | joola | tt-shop)
@@ -35,7 +35,7 @@ const VALID_SHOPS: ShopId[] = [
   "amazon",
 ];
 
-/** Verkürzt User-Agent auf grobe Kategorie — DSGVO-freundlich, kein Fingerprint. */
+/** Verkürzt User-Agent auf grobe Kategorie, DSGVO-freundlich, kein Fingerprint. */
 function shortenUserAgent(ua: string | null): string | null {
   if (!ua) return null;
   if (/iPhone|iPad/.test(ua)) return "ios";
@@ -135,7 +135,7 @@ export async function GET(req: NextRequest) {
   const referrer = req.headers.get("referer")?.slice(0, 200) ?? null;
   const userAgent = shortenUserAgent(req.headers.get("user-agent"));
 
-  // Wir warten NICHT auf das DB-Insert — Klick-UX hat Vorrang vor Logging.
+  // Wir warten NICHT auf das DB-Insert, Klick-UX hat Vorrang vor Logging.
   void db
     .insert(clicks)
     .values({

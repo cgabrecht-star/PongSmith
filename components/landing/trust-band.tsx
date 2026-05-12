@@ -6,30 +6,30 @@ import { Counter } from "@/components/effects/counter";
 import { Marquee } from "@/components/effects/marquee";
 
 /**
- * Pillars-Reihenfolge: Chris's Wunsch — Hersteller-Daten auf Position 3
+ * Pillars-Reihenfolge: Chris's Wunsch, Hersteller-Daten auf Position 3
  * (niedrigste Gewichtung in der Engine).
  */
 const pillars = [
   {
     headline: "Vereinsspieler-Erfahrungen",
-    body: "Echte Spieler-Setups aus dem TTR-Korridor 1.000–1.700, anonym beigesteuert. Genau die Daten, die kein Shop hat.",
+    body: "Echte Spieler-Setups aus dem TTR-Korridor 1.000-1.700, anonym beigesteuert. Genau die Daten, die kein Shop hat.",
     weight: "Höchste Gewichtung",
   },
   {
     headline: "Community-Reviews",
-    body: "Aggregiert aus revspin.net, Foren und Bewertungsportalen. Einzelmeinungen werden mit Vorsicht gewichtet.",
+    body: "Aggregiert aus vielen Tischtennis-Foren und Bewertungsportalen. Einzelmeinungen werden mit Vorsicht gewichtet.",
     weight: "Mittlere Gewichtung",
   },
   {
     headline: "Hersteller-Daten",
-    body: "Speed-, Spin- und Control-Werte direkt aus Datenblättern — normalisiert auf einheitliche Skalen. Skelett-Ebene.",
+    body: "Speed-, Spin- und Control-Werte direkt aus Datenblättern, normalisiert auf einheitliche Skalen. Skelett-Ebene.",
     weight: "Niedrigste Gewichtung",
   },
 ];
 
 const stats = [
-  { label: "Beläge in der Datenbank", value: 600, suffix: "+" },
-  { label: "Spielstile berücksichtigt", value: 4, suffix: "" },
+  { label: "Beläge in der Datenbank", value: 700, suffix: "+" },
+  { label: "Hölzer in der Datenbank", value: 500, suffix: "+" },
   { label: "Marken in der Auswahl", value: 25, suffix: "+" },
 ];
 
@@ -45,7 +45,7 @@ export function TrustBand() {
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         <SectionHeader
           eyebrow="Worauf das basiert"
-          headline="Empfehlungen aus echten Daten — nicht aus Marketing-Sheets."
+          headline="Empfehlungen aus echten Daten, nicht aus Marketing-Sheets."
         />
 
         {/* Drei Säulen mit Gewichtung */}
@@ -96,7 +96,7 @@ export function TrustBand() {
         {/* Marken-Marquee */}
         <div className="mt-16">
           <p className="mb-4 text-center font-mono text-xs uppercase tracking-widest text-neutral-400">
-            TTR-Korridor 1000–1700+ · Marken in der Auswahl
+            TTR-Korridor 1000-1700+ · Marken in der Auswahl
           </p>
           <Marquee duration={45} className="py-2">
             <div className="flex items-center gap-8 px-4">

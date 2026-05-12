@@ -67,7 +67,7 @@ interface Submission {
   goodText?: string;
   badText?: string;
   previousText?: string;
-  // Honeypot-Feld — muss leer bleiben
+  // Honeypot-Feld, muss leer bleiben
   website?: string;
 }
 
@@ -132,7 +132,7 @@ async function checkWithAi(s: Submission, productInfo: { blade: string; vh: stri
 
 Beurteile ob diese Submission von einem echten TT-Vereinsspieler stammt oder Spam/Test/Zufalls-Eingaben sind.
 
-Sei eher tolerant — kurze knappe Antworten sind okay. Reject nur bei offensichtlichem Müll (Random-Tippen, Werbung, Beleidigungen, Lorem Ipsum, sinnlose Wortketten).
+Sei eher tolerant, kurze knappe Antworten sind okay. Reject nur bei offensichtlichem Müll (Random-Tippen, Werbung, Beleidigungen, Lorem Ipsum, sinnlose Wortketten).
 
 DATEN:
 TTR: ${s.ttr}
@@ -148,7 +148,7 @@ Wechsel-Story: ${s.previousText || "(leer)"}
 
 Plausibilitäts-Hinweise:
 - TTR < 1000 mit Profi-Belägen (Tenergy 05, Dignics) ist suspekt aber nicht unmöglich
-- Leere Textfelder sind normal — nicht abwerten
+- Leere Textfelder sind normal, nicht abwerten
 
 Antworte AUSSCHLIESSLICH mit valid JSON in diesem Format:
 {"verdict": "valid" | "suspect" | "spam", "reason": "kurze Begründung max 80 Zeichen"}`;
@@ -182,7 +182,7 @@ Antworte AUSSCHLIESSLICH mit valid JSON in diesem Format:
   } catch (err) {
     console.error("[submit-interview] AI check failed:", err);
     // Bei AI-Ausfall: nicht blockieren, aber als suspect markieren
-    return { verdict: "suspect", reason: "AI check failed — fallback" };
+    return { verdict: "suspect", reason: "AI check failed, fallback" };
   }
 }
 
@@ -299,7 +299,7 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Bei suspect/spam: User trotzdem nett antworten — nicht verärgern falls False-Positive
+    // Bei suspect/spam: User trotzdem nett antworten, nicht verärgern falls False-Positive
     return NextResponse.json({
       success: true,
       verdict: ai.verdict,
