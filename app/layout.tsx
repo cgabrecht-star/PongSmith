@@ -4,6 +4,7 @@ import { Bebas_Neue, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { config } from "@/lib/config";
 import { LanguageProvider } from "@/lib/language-context";
+import { safeJsonForScript } from "@/lib/safe-json";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -117,7 +118,7 @@ export default function RootLayout({
           type="application/ld+json"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: safeJsonForScript({
               "@context": "https://schema.org",
               "@graph": [
                 {

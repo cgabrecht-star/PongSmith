@@ -13,6 +13,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import { createHash } from "crypto";
 import Anthropic from "@anthropic-ai/sdk";
 import { db } from "@/db";
 import { blades, rubbers, synergies, manufacturers } from "@/db/schema";
@@ -912,11 +913,77 @@ async function runQueryByProblem(
 // Agentic Loop
 // ---------------------------------------------------------------------------
 
+// ─── Rate-Limiting gegen Cost-DoS auf der Anthropic-API ──────────────────
+//
+// Jeder /api/berater-Call kostet uns echtes Geld. Ohne Limit könnte jemand
+// uns durch Brute-Force in die Insolvenz schicken.
+// In-Memory-Map, OK für Single-Region Vercel.
+
+const RATE_LIMIT_PER_HOUR = 20;
+const RATE_LIMIT_PER_DAY = 100;
+const rateMapHour = new Map<string, { count: number; resetAt: number }>();
+const rateMapDay = new Map<string, { count: number; resetAt: number }>();
+
+function checkRateLimit(ipHash: string): { allowed: boolean; reason?: string } {
+  const now = Date.now();
+
+  // Stündlich
+  const hourEntry = rateMapHour.get(ipHash);
+  if (!hourEntry || now > hourEntry.resetAt) {
+    rateMapHour.set(ipHash, { count: 1, resetAt: now + 3_600_000 });
+  } else {
+    if (hourEntry.count >= RATE_LIMIT_PER_HOUR) {
+      return { allowed: false, reason: "stündlich" };
+    }
+    hourEntry.count++;
+  }
+
+  // Täglich
+  const dayEntry = rateMapDay.get(ipHash);
+  if (!dayEntry || now > dayEntry.resetAt) {
+    rateMapDay.set(ipHash, { count: 1, resetAt: now + 86_400_000 });
+  } else {
+    if (dayEntry.count >= RATE_LIMIT_PER_DAY) {
+      return { allowed: false, reason: "täglich" };
+    }
+    dayEntry.count++;
+  }
+
+  return { allowed: true };
+}
+
+// Periodisch alte Einträge aufräumen
+setInterval(() => {
+  const now = Date.now();
+  for (const [k, v] of rateMapHour.entries()) {
+    if (now > v.resetAt) rateMapHour.delete(k);
+  }
+  for (const [k, v] of rateMapDay.entries()) {
+    if (now > v.resetAt) rateMapDay.delete(k);
+  }
+}, 600_000).unref?.();
+
 export async function POST(req: NextRequest) {
   if (!process.env.ANTHROPIC_API_KEY) {
     return NextResponse.json(
       { error: "ANTHROPIC_API_KEY nicht konfiguriert." },
       { status: 503 },
+    );
+  }
+
+  // Rate-Limit-Check (IP-Hash, keine Klartext-IP gespeichert)
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    req.headers.get("x-real-ip") ??
+    "unknown";
+  const ipHash = createHash("sha256").update(ip).digest("hex");
+  const limit = checkRateLimit(ipHash);
+  if (!limit.allowed) {
+    return NextResponse.json(
+      {
+        error: `Du hast das ${limit.reason}e Limit erreicht. Versuch's später nochmal.`,
+      },
+      { status: 429 },
     );
   }
 

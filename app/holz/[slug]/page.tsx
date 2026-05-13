@@ -10,6 +10,7 @@ import { ProductDetailView } from "@/components/product-detail-view";
 import { Navbar } from "@/components/landing/navbar";
 import { Footer } from "@/components/landing/footer";
 import { config } from "@/lib/config";
+import { safeJsonForScript } from "@/lib/safe-json";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -91,12 +92,12 @@ export default async function HolzDetailPage({ params }: PageProps) {
       <Script
         id="schema-product"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonForScript(productSchema) }}
       />
       <Script
         id="schema-breadcrumb"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonForScript(breadcrumbSchema) }}
       />
       <Navbar />
       <ProductDetailView product={product} synergies={synergies} similar={similar} />
