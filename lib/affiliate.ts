@@ -14,6 +14,7 @@
 
 const AMAZON_TAG = process.env.AFFILIATE_AMAZON_TAG ?? "";
 const AWIN_PUBLISHER_ID = process.env.AFFILIATE_AWIN_PUBLISHER_ID ?? "";
+const ADCELL_PUBLISHER_ID = process.env.AFFILIATE_ADCELL_PUBLISHER_ID ?? "";
 
 // Awin-Advertiser (Erweitern wenn weitere Awin-Partner kommen)
 const AWIN_ADVERTISERS = {
@@ -21,6 +22,21 @@ const AWIN_ADVERTISERS = {
 } as const;
 
 type AwinAdvertiserKey = keyof typeof AWIN_ADVERTISERS;
+
+// Adcell-Advertiser. Pro Programm braucht es eine eindeutige Promo-ID,
+// die Adcell uns nach Programm-Genehmigung gibt.
+const ADCELL_ADVERTISERS = {
+  "tt-shop": {
+    promoId: process.env.AFFILIATE_ADCELL_PROMO_TT_SHOP ?? "",
+    domain: "tt-shop.de",
+  },
+  "tischtennis-biz": {
+    promoId: process.env.AFFILIATE_ADCELL_PROMO_TISCHTENNIS_BIZ ?? "",
+    domain: "tischtennis.biz",
+  },
+} as const;
+
+type AdcellAdvertiserKey = keyof typeof ADCELL_ADVERTISERS;
 
 // ─── Shop-Pool: alle 7 DE-TT-relevanten Shops ─────────────────────────────
 
@@ -42,20 +58,25 @@ export interface ShopMeta {
   affiliateActive: boolean;
 }
 
+// Adcell-Programm aktiv = Publisher-ID + Programm-Promo-ID gesetzt
+function isAdcellProgrammActive(key: AdcellAdvertiserKey): boolean {
+  return Boolean(ADCELL_PUBLISHER_ID) && Boolean(ADCELL_ADVERTISERS[key].promoId);
+}
+
 export const SHOPS: Record<ShopId, ShopMeta> = {
   "tt-shop": {
     id: "tt-shop",
     name: "TT-Shop",
     domain: "tt-shop.de",
     affiliate: "adcell",
-    affiliateActive: false, // Adcell-Bewerbung ausstehend
+    affiliateActive: isAdcellProgrammActive("tt-shop"),
   },
   "tischtennis-biz": {
     id: "tischtennis-biz",
     name: "Tischtennis.biz",
     domain: "tischtennis.biz",
     affiliate: "adcell",
-    affiliateActive: false,
+    affiliateActive: isAdcellProgrammActive("tischtennis-biz"),
   },
   contra: {
     id: "contra",
@@ -140,6 +161,16 @@ function wrapAwinDeeplink(advertiserKey: AwinAdvertiserKey, targetUrl: string): 
   return `https://www.awin1.com/cread.php?awinmid=${adv.id}&awinaffid=${AWIN_PUBLISHER_ID}&p=${encoded}`;
 }
 
+/** Wrappt eine Ziel-URL in einen Adcell-Deeplink mit Tracking. */
+function wrapAdcellDeeplink(advertiserKey: AdcellAdvertiserKey, targetUrl: string): string | null {
+  if (!ADCELL_PUBLISHER_ID) return null;
+  const adv = ADCELL_ADVERTISERS[advertiserKey];
+  if (!adv.promoId) return null;
+  // Adcell-Deeplink-Format: promoId + slotId (= publisher) + Ziel-URL als param0
+  const encoded = encodeURIComponent(targetUrl);
+  return `https://www.adcell.de/promotion/click/promoId/${adv.promoId}/slotId/${ADCELL_PUBLISHER_ID}?param0=${encoded}`;
+}
+
 // ─── Public API ────────────────────────────────────────────────────────────
 
 export interface ProductRef {
@@ -183,6 +214,26 @@ export function getShopLinks(product: ProductRef): ShopLinkOut[] {
       // Wenn Awin aktiv: durch Awin-Deeplink wrappen, sonst direkter Link
       const finalUrl = shop.affiliateActive
         ? wrapAwinDeeplink("joola", targetUrl)
+        : targetUrl;
+
+      if (finalUrl) {
+        out.push({
+          shop,
+          url: finalUrl,
+          linkType: "search",
+          affiliateActive: shop.affiliateActive,
+        });
+      }
+      continue;
+    }
+
+    // TT-Shop und Tischtennis.biz: Adcell-Wrap wenn Programm aktiv
+    if (shopId === "tt-shop" || shopId === "tischtennis-biz") {
+      const targetUrl = buildSearchUrl(shopId, product.name, product.manufacturer);
+      if (!targetUrl) continue;
+
+      const finalUrl = shop.affiliateActive
+        ? wrapAdcellDeeplink(shopId, targetUrl)
         : targetUrl;
 
       if (finalUrl) {
