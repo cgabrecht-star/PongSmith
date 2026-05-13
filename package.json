@@ -47,7 +47,9 @@
     "db:backfill-descriptions": "dotenv -e .env.local -- tsx db/scripts/backfill-descriptions.ts",
     "db:fix-bad-manufacturers": "dotenv -e .env.local -- tsx db/scripts/fix-bad-manufacturers.ts",
     "db:backfill-hardness": "dotenv -e .env.local -- tsx db/scripts/backfill-hardness-topsheet.ts",
-    "stats:clicks": "dotenv -e .env.local -- tsx db/scripts/click-stats.ts"
+    "stats:clicks": "dotenv -e .env.local -- tsx db/scripts/click-stats.ts",
+    "db:check-rls": "dotenv -e .env.local -- tsx db/scripts/check-rls-status.ts",
+    "db:enable-rls": "dotenv -e .env.local -- tsx db/scripts/enable-rls-all.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",
