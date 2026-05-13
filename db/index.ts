@@ -2,19 +2,33 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import * as schema from "./schema";
 
-// Während `next build` (NEXT_PHASE = "phase-production-build") steht DATABASE_URL
-// nicht zur Verfügung. API-Routes mit force-dynamic werden nie beim Build aufgerufen,
-// daher ist es sicher db = null zu setzen — nur zur Laufzeit wird die DB genutzt.
+/**
+ * DB-Initialisierung mit Build-Safe-Fallback.
+ *
+ * Wenn DATABASE_URL gesetzt ist, wird die echte Connection gebaut — auch
+ * während `next build` (z. B. für die Sitemap-Generierung, die alle Produkt-
+ * URLs aus der DB enumeriert).
+ *
+ * Wenn DATABASE_URL fehlt (z. B. lokaler Build ohne `.env.local`), wird ein
+ * Proxy zurückgegeben, der bei jedem Zugriff einen klaren Fehler wirft.
+ * Aufrufer wie `app/sitemap.ts` fangen das im try/catch und liefern einen
+ * Fallback-Stand aus — der Build bricht nicht ab.
+ */
 
 type Db = ReturnType<typeof drizzle<typeof schema>>;
 
 function initDb(): Db {
   const url = process.env.DATABASE_URL;
-  if (!url) throw new Error("DATABASE_URL ist nicht gesetzt");
+  if (!url) {
+    // Lazy fail: nur beim tatsächlichen Zugriff werfen, nicht beim Import.
+    const handler: ProxyHandler<object> = {
+      get() {
+        throw new Error("DATABASE_URL ist nicht gesetzt");
+      },
+    };
+    return new Proxy({}, handler) as Db;
+  }
   return drizzle(postgres(url), { schema });
 }
 
-const isBuild = process.env.NEXT_PHASE === "phase-production-build";
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const db: Db = isBuild ? (null as any) : initDb();
+export const db: Db = initDb();
