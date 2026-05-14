@@ -2,6 +2,7 @@
 
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 import { ProgressBar } from "@/components/berater/progress-bar";
 import { StepSetup, type SetupData } from "@/components/berater/step-setup";
 import { StepProblem, type ProblemData } from "@/components/berater/step-problem";
@@ -59,6 +60,15 @@ export function BeraterPage() {
     setStep(3);
     setError(null);
 
+    // Vercel Analytics: Berater-Submission (Conversion-Funnel Stufe 1)
+    track("berater_submitted", {
+      ttr: setup.ttr,
+      spielstil: setup.spielstil,
+      setupSkipped,
+      hasFreitext: problem.freitext.length > 0,
+      quickPick: problem.quickPicked ?? "none",
+    });
+
     // Anonymes Submit der Setup-Daten (nur wenn nicht geskippt + Pflichtfelder vollständig)
     if (!setupSkipped && setup.blade && setup.rubberVh) {
       void fetch("/api/submit-interview", {
@@ -91,17 +101,29 @@ export function BeraterPage() {
       });
       const data = await res.json();
       if (data.error) {
+        track("berater_failed", { reason: String(data.error).slice(0, 80) });
         setError(data.error);
         setStep(2);
         return;
       }
+      const setups = data.setups ?? [];
       setResult({
         text: data.text ?? "",
-        setups: data.setups ?? [],
+        setups,
       });
       setStep(4);
+
+      // Vercel Analytics: Berater-Success (Conversion-Funnel Stufe 2)
+      track("berater_success", {
+        setupsCount: setups.length,
+        productsCount: setups.reduce(
+          (sum: number, s: { products?: unknown[] }) => sum + (s.products?.length ?? 0),
+          0,
+        ),
+      });
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
+      track("berater_failed", { reason: msg.slice(0, 80) });
       setError(msg);
       setStep(2);
     }

@@ -12,6 +12,7 @@
 import Link from "next/link";
 import type { ProductDetail, SynergyPartner, SimilarProduct } from "@/lib/product-detail";
 import { getShopLinks, buildTrackingUrl } from "@/lib/affiliate";
+import { ShopLinkButton } from "@/components/shop-link-button";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────
 
@@ -380,40 +381,13 @@ export function ProductDetailView({ product, synergies, similar }: DetailViewPro
                   productId: product.id,
                 });
                 return (
-                  <a
+                  <ShopLinkButton
                     key={l.shop.id}
                     href={trackingUrl}
-                    target="_blank"
-                    rel={l.affiliateActive ? "sponsored noopener" : "noopener"}
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 6,
-                      padding: "8px 14px",
-                      borderRadius: 6,
-                      border: l.affiliateActive
-                        ? "1px solid rgba(255,107,53,0.5)"
-                        : "1px solid var(--ps-line)",
-                      background: l.affiliateActive
-                        ? "rgba(255,107,53,0.10)"
-                        : "var(--ps-bg-3)",
-                      color: l.affiliateActive
-                        ? "var(--ps-ember-2)"
-                        : "var(--ps-ink-1)",
-                      fontSize: 13,
-                      fontWeight: 500,
-                      textDecoration: "none",
-                      whiteSpace: "nowrap",
-                      transition: "all 140ms",
-                    }}
-                    title={
-                      l.affiliateActive
-                        ? `${l.shop.name} (Werbung · Affiliate-Partner)`
-                        : `${l.shop.name} (externer Shop-Link)`
-                    }
-                  >
-                    {l.shop.name} →
-                  </a>
+                    shopName={l.shop.name}
+                    affiliateActive={l.affiliateActive}
+                    source="product_detail"
+                  />
                 );
               })}
             </div>

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 
 /**
  * Rendert Berater-Text mit minimalem Markdown-Support.
@@ -144,6 +145,13 @@ function ShopPill({ shop }: { shop: ShopLink }) {
       href={shop.url}
       target="_blank"
       rel={shop.affiliateActive ? "sponsored noopener" : "noopener"}
+      onClick={() =>
+        track("shop_clicked", {
+          shop: shop.name,
+          affiliate: shop.affiliateActive,
+          source: "berater_results",
+        })
+      }
       className={`inline-flex items-center gap-1 whitespace-nowrap rounded-md border px-2.5 py-1.5 text-[11px] font-medium transition-colors ${
         shop.affiliateActive
           ? "border-primary/40 bg-primary/5 text-primary hover:bg-primary/15"
