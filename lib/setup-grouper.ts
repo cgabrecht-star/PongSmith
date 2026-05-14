@@ -24,33 +24,65 @@ export interface SetupGroup {
 }
 
 /**
- * Sucht nach Setup-Markierungen wie "1. ...", "2. ...", "3. ..."
- * (auch hinter "## " oder "### " erlaubt).
+ * Sucht nach Setup-Markierungen in mehreren Formaten:
+ *  - "1. ..." / "1) ..." am Zeilenanfang (auch hinter ##/###)
+ *  - "Setup 1: ..." / "Setup 1, ..." / "Setup 1 - ..." (auch inline)
+ *  - "Erstens: ..." / "Zweitens: ..." / "Drittens: ..." (deutsche Ordinalia)
  *
  * Filtert out: Aufzählungen mit Zahlen >5 (sind sicher keine Setups).
  */
+const ORDINAL_WORDS: Record<string, number> = {
+  erstens: 1, zweitens: 2, drittens: 3, viertens: 4, fünftens: 5, fuenftens: 5,
+  first: 1, second: 2, third: 3, fourth: 4, fifth: 5,
+};
+
 export function groupProductsBySetup(
   text: string,
   products: DetectedProduct[],
 ): SetupGroup[] {
   if (!text || products.length === 0) return [];
 
-  // Marker: optional ##/### + Whitespace, dann "N. " (1-5) am Zeilenanfang
-  // oder direkt nach einem Newline.
-  const markerRe = /(?:^|\n)\s*(?:#{1,3}\s+)?([1-5])\.\s+(.+?)(?=\n|$)/g;
-
   const markers: { index: number; pos: number; title: string }[] = [];
   let m: RegExpExecArray | null;
-  while ((m = markerRe.exec(text)) !== null) {
+
+  // (a) Klassisch: "1. ..." / "1) ..." am Zeilenanfang
+  const classicRe = /(?:^|\n)\s*(?:#{1,3}\s+)?([1-5])[\.\)]\s+(.+?)(?=\n|$)/g;
+  while ((m = classicRe.exec(text)) !== null) {
     const idx = parseInt(m[1]!, 10);
-    // Position ist NACH dem führenden \n falls vorhanden
     const startPos = m[0].startsWith("\n") ? m.index + 1 : m.index;
     const title = (m[2] ?? "").replace(/\*+/g, "").trim();
     markers.push({ index: idx, pos: startPos, title });
   }
 
-  // Mindestens 2 Marker nötig (sonst ist's wahrscheinlich keine echte Liste)
+  // (b) Inline: "Setup N:" / "Setup N," / "Setup N -"
+  const setupInlineRe = /\bSetup\s+([1-5])\s*[:.,\-]\s*(.{0,150})/gi;
+  while ((m = setupInlineRe.exec(text)) !== null) {
+    const idx = parseInt(m[1]!, 10);
+    const title = (m[2] ?? "").split(/[\.\n]/)[0]!.replace(/\*+/g, "").trim();
+    markers.push({ index: idx, pos: m.index, title });
+  }
+
+  // (c) Deutsche/englische Ordinalia
+  const ordinalRe = /\b(erstens|zweitens|drittens|viertens|fünftens|fuenftens|first|second|third|fourth|fifth)\b\s*[:.,]?\s*(.{0,150})/gi;
+  while ((m = ordinalRe.exec(text)) !== null) {
+    const idx = ORDINAL_WORDS[m[1]!.toLowerCase()];
+    if (!idx) continue;
+    const title = (m[2] ?? "").split(/[\.\n]/)[0]!.replace(/\*+/g, "").trim();
+    markers.push({ index: idx, pos: m.index, title });
+  }
+
   if (markers.length < 2) return [];
+
+  // Sortieren nach Position, dedupen (Marker dicht beieinander = derselbe Treffer)
+  markers.sort((a, b) => a.pos - b.pos);
+  const dedup: typeof markers = [];
+  for (const mk of markers) {
+    if (dedup.length === 0 || mk.pos - dedup[dedup.length - 1]!.pos > 20) {
+      dedup.push(mk);
+    }
+  }
+  markers.length = 0;
+  markers.push(...dedup);
 
   // Nur Marker behalten die aufsteigend sind (1, 2, 3, ...)
   const valid: typeof markers = [];

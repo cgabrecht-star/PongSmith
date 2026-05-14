@@ -96,6 +96,25 @@ Nutze die mitgelieferten Produkt-Infos (Härte, Charakteristik, Beschreibung) f�
 Nur Produkte aus den Ergebnissen empfehlen. IMMER zwei bis drei verschiedene Setups vorschlagen, mit unterschiedlichen Hersteller-Marken wenn möglich. Nicht weniger als 2 Setups, ausser bei Anfängern (siehe unten).
 Keine Produkte aus dem Gedächtnis, auch keine "generell guten" Beläge.
 
+## STRUKTUR-PFLICHT bei mehreren Setups
+
+Wenn du 2-3 Setups empfiehlst, formuliere IMMER so, mit echten Zeilenumbrüchen zwischen den Setups:
+
+Setup 1: [Holzname] mit [Belagname]
+[Ein bis zwei Sätze Begründung warum dieses Setup zum Spieler passt.]
+
+Setup 2: [Holzname] mit [Belagname]
+[Ein bis zwei Sätze Begründung.]
+
+Setup 3: [Holzname] mit [Belagname]
+[Ein bis zwei Sätze Begründung.]
+
+Wichtig:
+- Schreibe die Setups NIE als langen Fließtext-Absatz ohne Trennung.
+- Jedes Setup beginnt mit "Setup N:" am Zeilenanfang, gefolgt von Holz + Belag.
+- Pro Setup nur EIN Holz und EIN Belag (oder VH/RH wenn explizit unterschiedlich).
+- Wenn du einen Belag explizit als NICHT passend einordnest: nenne ihn nur im Fließtext mit klarer Negation, NIE im "Setup N:"-Format.
+
 Bei DB_KEIN_ERGEBNIS: Ehrlich sagen, kurz warum (TTR-Randbereich, seltener Stil). Anderen Tool-Call mit leicht anderen Parametern vorschlagen.
 
 Bei DB_ANFAENGER (TTR < 900): Direkt: unsere DB startet bei TTR 1000. Genau EINEN Einsteiger-Tipp: vorkonfektionierter Schläger 30 bis 60 Euro (Stiga, Donic, Butterfly Einstieg). Keine Belag-Namen aus dem Gedächtnis. Einladung in 3 bis 6 Monaten.
@@ -1073,16 +1092,24 @@ export async function POST(req: NextRequest) {
         // Setup-Gruppen erkennen + Synergie-Scores pro Setup nachladen
         let setupGroups = groupProductsBySetup(text, detected);
 
-        // Fallback: Wenn der Berater unstrukturiert geantwortet hat (keine
-        // 1./2./3.-Markierungen), aber Produkte erkannt wurden, baue daraus
-        // eine generische Setup-Gruppe damit der User trotzdem Karten sieht.
+        // Fallback: Wenn keine Setup-Marker erkannt wurden, NUR dann eine
+        // generische Karte zeigen, wenn die Produkt-Liste klar ein einzelnes
+        // Setup ergibt (max 1 Holz + max 2 Beläge). Sonst lieber gar keine
+        // Karte als ein zusammengewürfeltes Frankenstein-Setup aus mehreren
+        // Empfehlungen oder disclaimten Produkten.
         if (setupGroups.length === 0 && detected.length > 0) {
-          setupGroups = [{
-            index: 1,
-            title: "Empfohlenes Setup",
-            description: "Aus den im Text genannten Produkten zusammengestellt.",
-            products: detected,
-          }];
+          const bladeCount = detected.filter((p) => p.type === "blade").length;
+          const rubberCount = detected.filter((p) => p.type === "rubber").length;
+          const looksLikeSingleSetup = bladeCount <= 1 && rubberCount <= 2 && detected.length <= 3;
+          if (looksLikeSingleSetup) {
+            setupGroups = [{
+              index: 1,
+              title: "Empfohlenes Setup",
+              description: "Aus den im Text genannten Produkten zusammengestellt.",
+              products: detected,
+            }];
+          }
+          // Sonst: setupGroups bleibt leer, UI zeigt nur Beratertext ohne Karten.
         }
 
         const setups = await Promise.all(setupGroups.map(async (g) => {
