@@ -20,10 +20,10 @@ export const config = {
   synergyScoreMax: 100,
 
   // KI-Modelle
-  // Berater: Sonnet 4.7 (Mai 2026 von Opus umgestellt, ~5x günstiger,
+  // Berater: Sonnet 4.6 (Mai 2026 von Opus umgestellt, ~5x günstiger,
   // bei unserem Tool-Use-Flow keine Qualitätseinbuße).
   // Falls die Qualität nachgibt: zurück auf "claude-opus-4-7".
-  modelBerater: "claude-sonnet-4-7",
+  modelBerater: "claude-sonnet-4-6",
   modelHintergrund: "claude-haiku-4-5-20251001",
 
   // Analytics (Plausible, cookie-frei, DSGVO-konform)

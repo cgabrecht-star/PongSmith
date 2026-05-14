@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Bebas_Neue, Inter, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { config } from "@/lib/config";
 import { LanguageProvider } from "@/lib/language-context";
@@ -161,6 +163,10 @@ export default function RootLayout({
         <LanguageProvider>
           {children}
         </LanguageProvider>
+
+        {/* Vercel Analytics + Speed Insights, cookie-frei, DSGVO-konform */}
+        <Analytics />
+        <SpeedInsights />
 
         {/* Plausible Analytics, cookie-frei, DSGVO-konform, in EU gehostet */}
         {process.env.NODE_ENV === "production" && (
