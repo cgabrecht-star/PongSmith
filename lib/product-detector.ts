@@ -99,13 +99,39 @@ export async function detectProducts(text: string): Promise<DetectedProduct[]> {
     return taken.some(([ts, te]) => start < te && end > ts);
   }
 
+  // Phase 1: Welche Produkte tauchen überhaupt im Text auf?
+  // Wir bauen eine Set der "etablierten" längeren Namen, damit wir
+  // kürzere Substring-Produkte (z.B. "Marder" bei vorhandenem
+  // "SpinLord Marder II") generell unterdrücken können.
+  const establishedNames = new Set<string>();
+  for (const p of all) {
+    if (p.name.length < 10) continue; // nur lange Namen als Anker
+    const re = new RegExp(`(?<![\\w])${escapeRegex(p.name)}(?![\\w])`, "i");
+    if (re.test(text)) establishedNames.add(p.name.toLowerCase());
+  }
+
+  // Phase 2: Klassische Detection mit Overlap-Filter.
   for (const p of all) {
     if (p.name.length < 4) continue; // zu kurz → false positives
+    // Bug D: Suppress short product if its name is a substring of an already
+    // established longer product name. Verhindert "Marder" bei vorhandenem
+    // "SpinLord Marder II" auch wenn "Marder" in der Position eigenständig
+    // matched (z.B. "Der Marder II hat...").
+    if (p.name.length < 12) {
+      const lower = p.name.toLowerCase();
+      let isShadowed = false;
+      for (const established of establishedNames) {
+        if (established === lower) continue;
+        if (established.includes(lower)) {
+          isShadowed = true;
+          break;
+        }
+      }
+      if (isShadowed) continue;
+    }
     const escaped = escapeRegex(p.name);
     // Lookbehind/Lookahead statt Char-Konsumtion: m.index + m[0].length sind
-    // EXAKT die Grenzen des Produktnamens. Damit ist die Overlap-Mathematik
-    // sauber und Substring-Treffer wie "Marder" innerhalb "Marder II" werden
-    // verlässlich gefiltert (Bug D).
+    // EXAKT die Grenzen des Produktnamens.
     const re = new RegExp(`(?<![\\w])${escaped}(?![\\w])`, "gi");
     let m: RegExpExecArray | null;
     while ((m = re.exec(text)) !== null) {
