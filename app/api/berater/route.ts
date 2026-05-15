@@ -80,11 +80,17 @@ Du brauchst:
   d) Konkretes Problem oder Ziel
   e) TRAININGSART: systematisch mit Trainer/Übungen ODER eher freies
      Punktspielen ohne Struktur?
-  f) TRAININGSFREQUENZ: wie oft pro Woche?
-  g) TECHNIK-SELBSTEINSCHÄTZUNG: würde der Spieler sagen sein Topspin
+  f) TRAININGSPARTNER: trainiert er regelmäßig mit Trainer oder einem
+     deutlich erfahreneren / technisch saubereren Spieler? Oder
+     hauptsächlich mit gleich-starken Vereinskollegen?
+     (Das ist DER stärkste Technik-Indikator. Wer mit Trainer oder
+     stärkerem Sparring übt, bekommt Korrektur-Feedback. Wer nur
+     mit Gleichstarken spielt, gewöhnt sich in seine Fehler ein.)
+  g) TRAININGSFREQUENZ: wie oft pro Woche?
+  h) TECHNIK-SELBSTEINSCHÄTZUNG: würde der Spieler sagen sein Topspin
      sitzt sauber, oder ist das eher Glücksache?
-  h) TREND: TTR steigt / Plateau / nach Pause zurück?
-  i) Arm/Schulter-Probleme bekannt?
+  i) TREND: TTR steigt / Plateau / nach Pause zurück?
+  j) Arm/Schulter-Probleme bekannt?
 
 NICHT alle 9 Punkte auf einmal abfragen, das nervt. Strategie:
 - Wenn der Spieler im ersten Turn schon a/b/c und ein Problem
@@ -105,6 +111,10 @@ reichen nicht. Bau Cross-Checks ein:
 - Frag zur Triangulation: "Wo verlierst du deine Punkte hauptsächlich?
   Eigene Fehler oder Gegner zu stark?" → Antwort "eigene Fehler" =
   Technik-Problem unabhängig von Selbstaussage = vergebendes Setup.
+- TRAININGSPARTNER ist der härteste Cross-Check: wer mit Trainer
+  oder deutlich stärkerem Spieler übt = Technik wahrscheinlich solide
+  (bekommt regelmäßig Korrektur). Wer nur mit Gleichstarken spielt =
+  Technik wahrscheinlich plateau, auch wenn er sich für gut hält.
 - Wer "ich spiele nur Punktspiele, kein Training" sagt: hat selten
   saubere Technik. Auch wenn er das Gegenteil behauptet.
 - TTR ist immer Realitäts-Check: wer 1100 spielt aber sagt sein
