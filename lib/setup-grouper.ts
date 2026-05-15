@@ -101,17 +101,24 @@ export function groupProductsBySetup(
   // Empfehlungen als Karte an, das ist verwirrend).
   const NEGATION_RE = /\b(weglassen|weg lassen|nicht empfohlen|nicht empfehl|w[üu]rde ich (eher )?nicht|w[üu]rde ich (dir |hier )?(eher )?weg|lasse ich weg|passt (eher )?nicht|trifft.*nicht.*Profil|hier passt der Name (bereits )?nicht|geh[öo]rt eher in den|fällt für dich raus|wäre (zu|für) dich)/i;
 
-  // Pro Marker: alle Produkte deren Position innerhalb dieses Setup-Bereichs liegt
+  // Pro Marker: Produkte aus der TITEL-ZEILE des Setups (nicht der ganzen
+  // Description). Sonst landen Bonus-Tipps oder disclaimte Produkte aus dem
+  // Erklärtext fälschlich als Komponente in der Card.
   const groups: SetupGroup[] = [];
   for (let i = 0; i < valid.length; i++) {
     const start = valid[i]!.pos;
     const end = i + 1 < valid.length ? valid[i + 1]!.pos : text.length;
+    // Title-Range: vom Marker bis zum ersten Newline (oder max 250 Chars)
+    const sectionText = text.substring(start, end).trim();
+    const firstNewline = text.indexOf("\n", start);
+    const titleEnd = firstNewline === -1 || firstNewline > end
+      ? Math.min(start + 250, end)
+      : Math.min(firstNewline, end);
     const productsInRange = products.filter(
-      (p) => p.position >= start && p.position < end,
+      (p) => p.position >= start && p.position < titleEnd,
     );
 
     // Begründung extrahieren: Text zwischen Setup-Titel-Ende und nächstem Setup
-    const sectionText = text.substring(start, end).trim();
     const lines = sectionText.split("\n").map((l) => l.trim()).filter(Boolean);
     const description = lines
       .slice(1)
