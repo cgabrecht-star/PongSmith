@@ -102,8 +102,11 @@ export async function detectProducts(text: string): Promise<DetectedProduct[]> {
   for (const p of all) {
     if (p.name.length < 4) continue; // zu kurz → false positives
     const escaped = escapeRegex(p.name);
-    // Wortgrenzen, \b funktioniert nicht für Sonderzeichen, deshalb manuell
-    const re = new RegExp(`(?:^|[^\\w])${escaped}(?:[^\\w]|$)`, "gi");
+    // Lookbehind/Lookahead statt Char-Konsumtion: m.index + m[0].length sind
+    // EXAKT die Grenzen des Produktnamens. Damit ist die Overlap-Mathematik
+    // sauber und Substring-Treffer wie "Marder" innerhalb "Marder II" werden
+    // verlässlich gefiltert (Bug D).
+    const re = new RegExp(`(?<![\\w])${escaped}(?![\\w])`, "gi");
     let m: RegExpExecArray | null;
     while ((m = re.exec(text)) !== null) {
       const start = m.index;

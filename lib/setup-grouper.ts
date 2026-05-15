@@ -95,6 +95,12 @@ export function groupProductsBySetup(
   }
   if (valid.length < 2) return [];
 
+  // Negations-Marker, die ein Setup als "nicht empfohlen" kennzeichnen.
+  // Wenn diese im Titel ODER ersten 80 Zeichen der Begründung vorkommen,
+  // verwerfen wir das Setup komplett (sonst zeigen wir disclaimte
+  // Empfehlungen als Karte an, das ist verwirrend).
+  const NEGATION_RE = /\b(weglassen|weg lassen|nicht empfohlen|nicht empfehl|w[üu]rde ich (eher )?nicht|w[üu]rde ich (dir |hier )?(eher )?weg|lasse ich weg|passt (eher )?nicht|trifft.*nicht.*Profil|hier passt der Name (bereits )?nicht|geh[öo]rt eher in den|fällt für dich raus|wäre (zu|für) dich)/i;
+
   // Pro Marker: alle Produkte deren Position innerhalb dieses Setup-Bereichs liegt
   const groups: SetupGroup[] = [];
   for (let i = 0; i < valid.length; i++) {
@@ -103,26 +109,48 @@ export function groupProductsBySetup(
     const productsInRange = products.filter(
       (p) => p.position >= start && p.position < end,
     );
-    if (productsInRange.length > 0) {
-      // Begründung extrahieren: Text zwischen Setup-Titel-Ende und nächstem Setup
-      const sectionText = text.substring(start, end).trim();
-      // Erste Zeile (= title) entfernen, Rest ist Begründung
-      const lines = sectionText.split("\n").map((l) => l.trim()).filter(Boolean);
-      // Markdown-Decorations + Bullet-Marker ("·", "-") entfernen
-      const description = lines
-        .slice(1)
-        .map((l) => l.replace(/^[·\-•*]\s*/, "").replace(/\*\*/g, "").trim())
-        .filter(Boolean)
-        .join(" ")
-        .substring(0, 280);
 
-      groups.push({
-        index: valid[i]!.index,
-        title: valid[i]!.title.substring(0, 100),
-        products: productsInRange,
-        description,
-      });
+    // Begründung extrahieren: Text zwischen Setup-Titel-Ende und nächstem Setup
+    const sectionText = text.substring(start, end).trim();
+    const lines = sectionText.split("\n").map((l) => l.trim()).filter(Boolean);
+    const description = lines
+      .slice(1)
+      .map((l) => l.replace(/^[·\-•*]\s*/, "").replace(/\*\*/g, "").trim())
+      .filter(Boolean)
+      .join(" ")
+      .substring(0, 280);
+
+    // Bug A: Disclaimed Setup verwerfen
+    const titleAndStart = (valid[i]!.title + " " + description.substring(0, 80)).toLowerCase();
+    if (NEGATION_RE.test(titleAndStart)) {
+      continue;
     }
+
+    // Bug C: Holz/Belag aus Setup-Titel ergänzen, falls die Position-basierte
+    // Zuordnung sie verpasst hat (z.B. wenn Holz schon im Pre-Text erwähnt war).
+    // Wir scannen Titel + erste 200 Zeichen der Begründung nach allen bekannten
+    // Produkten aus der globalen Liste und fügen Treffer hinzu, die noch fehlen.
+    const scanText = (valid[i]!.title + " " + description.substring(0, 200)).toLowerCase();
+    const existingIds = new Set(productsInRange.map((p) => `${p.type}:${p.id}`));
+    const enriched = [...productsInRange];
+    for (const p of products) {
+      const key = `${p.type}:${p.id}`;
+      if (existingIds.has(key)) continue;
+      // Tolerant gegen Klammer-Suffixe wie "(VH)" / "(RH)"
+      if (scanText.includes(p.name.toLowerCase())) {
+        enriched.push({ ...p, position: start });
+        existingIds.add(key);
+      }
+    }
+
+    if (enriched.length === 0) continue;
+
+    groups.push({
+      index: valid[i]!.index,
+      title: valid[i]!.title.substring(0, 100),
+      products: enriched,
+      description,
+    });
   }
 
   return groups;

@@ -308,11 +308,6 @@ function diversify(
   const seenRubber = new Set<string>();
   const result: SetupRow[] = [];
 
-  // Wenn Westmarken bevorzugt: zuerst Westmarken, dann Rest
-  // (Rows sind bereits nach Score sortiert, Westmarke-Bonus durch Voranstellen)
-  // Wir gehen einfach durch und sortieren Westmarken-Treffer nach vorne
-  // ohne den Score zu ändern.
-
   const processRow = (row: SetupRow): boolean => {
     if (seenManufacturer.has(row.bladeManufacturerId)) return false;
     if (seenRubber.has(row.rubberName)) return false;
@@ -322,18 +317,31 @@ function diversify(
     return true;
   };
 
+  const isWestern = (row: SetupRow): boolean => {
+    const firstWord = row.bladeName.split(" ")[0] ?? "";
+    if (!WESTERN_BRANDS.has(firstWord)) return false;
+    // Auch der Belag-Hersteller sollte westlich sein.
+    // Wir greifen den ersten Token vom Belag-Namen ab.
+    const rubberFirstWord = row.rubberName.split(" ")[0] ?? "";
+    return WESTERN_BRANDS.has(rubberFirstWord);
+  };
+
   if (preferWestern) {
-    // Zuerst Westmarken
+    // STRIKT: Nur Westmarken. Keine Auffüll-Logik mit chinesischen Beläge mehr,
+    // weil die für die Kern-Zielgruppe (Vereinsspieler ohne Spezial-Vorliebe)
+    // nicht zur Spielerfahrung passen und beim Kauf bei DE-Shops oft nicht
+    // verfügbar sind.
     for (const row of rows) {
       if (result.length >= maxResults) break;
-      if (WESTERN_BRANDS.has(row.bladeName.split(" ")[0] ?? "")) {
+      if (isWestern(row)) processRow(row);
+    }
+    // Notfall-Fallback nur wenn 0 Western-Treffer existieren: dann zumindest
+    // irgendwas zurückgeben, damit der Berater nicht "DB leer" sagt.
+    if (result.length === 0) {
+      for (const row of rows) {
+        if (result.length >= maxResults) break;
         processRow(row);
       }
-    }
-    // Dann Rest auffüllen
-    for (const row of rows) {
-      if (result.length >= maxResults) break;
-      if (!result.includes(row)) processRow(row);
     }
   } else {
     for (const row of rows) {
