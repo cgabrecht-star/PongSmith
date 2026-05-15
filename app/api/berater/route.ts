@@ -17,7 +17,7 @@ import { createHash } from "crypto";
 import Anthropic from "@anthropic-ai/sdk";
 import { db } from "@/db";
 import { blades, rubbers, synergies, manufacturers } from "@/db/schema";
-import { and, desc, eq, gte, inArray, lte, sql as drizzleSql } from "drizzle-orm";
+import { and, desc, eq, gte, inArray, lte, or, sql as drizzleSql } from "drizzle-orm";
 import { detectProducts } from "@/lib/product-detector";
 import { getShopLinks, buildTrackingUrl } from "@/lib/affiliate";
 import { groupProductsBySetup } from "@/lib/setup-grouper";
@@ -542,6 +542,7 @@ interface SetupRow {
   bladeStiffness: string | null;
   bladePriceEur: string | null;
   bladeReviewCount: number | null;
+  bladeIsCurated: boolean | null;
   rubberName: string;
   rubberHardnessMin: number | null;
   rubberHardnessMax: number | null;
@@ -633,7 +634,8 @@ function formatPrice(eur: string | null): string {
   return `${Math.round(n)} EUR`;
 }
 
-function formatPopularity(reviewCount: number | null): string {
+function formatPopularity(reviewCount: number | null, isCurated?: boolean | null): string {
+  if (isCurated) return "DE-Klassiker, redaktionell ergänzt";
   const n = reviewCount ?? 0;
   if (n >= 100) return "Klassiker";
   if (n >= 30) return "etabliert";
@@ -664,7 +666,7 @@ function rowsToText(rows: SetupRow[], ttr: number, styleName: string, lang: "de"
       : `   PREIS: ${bladePrice} (Holz) + ${rubberPrice} (Belag) — Gesamt unbekannt`;
 
     return [
-      `${i + 1}. Holz: ${r.bladeName} [${formatPopularity(r.bladeReviewCount)}]${bladeInfo ? ` (${bladeInfo})` : ""}`,
+      `${i + 1}. Holz: ${r.bladeName} [${formatPopularity(r.bladeReviewCount, r.bladeIsCurated)}]${bladeInfo ? ` (${bladeInfo})` : ""}`,
       `   Belag: ${r.rubberName} [${formatPopularity(r.rubberReviewCount)}]${rubberInfo ? ` (${rubberInfo})` : ""}`,
       totalLine,
       `   Synergie: ${r.synergyScore}/100 | Tempo: ${r.tempoMatch ?? "-"} | Kontrolle: ${r.controlReserve ?? "-"} | Spin: ${r.spinPotential ?? "-"}`,
@@ -693,6 +695,7 @@ const SETUP_ROW_SELECT = {
   bladeStiffness: blades.stiffness,
   bladePriceEur: blades.priceEur,
   bladeReviewCount: blades.communityReviewCount,
+  bladeIsCurated: blades.isManuallyCurated,
   rubberName: rubbers.name,
   rubberHardnessMin: rubbers.hardnessMin,
   rubberHardnessMax: rubbers.hardnessMax,
@@ -705,6 +708,12 @@ const SETUP_ROW_SELECT = {
 /** Filter: nur Produkte mit minimalem Review-Count (Verfügbarkeits-Proxy
  *  gegen discontinued/Nische-Hölzer die niemand mehr kaufen kann). */
 const MIN_REVIEW_COUNT = 10;
+
+/** Holz-Filter: bekanntes Produkt ODER redaktionell ergänzter DE-Klassiker. */
+const bladeAvailabilityFilter = or(
+  gte(blades.communityReviewCount, MIN_REVIEW_COUNT),
+  eq(blades.isManuallyCurated, true),
+);
 
 /** Setup-Preis (Holz + Belag). null wenn ein Preis fehlt. */
 function setupPrice(row: SetupRow): number | null {
@@ -800,7 +809,7 @@ async function runQuerySetups(
         lte(synergies.ttrTarget, clamped + 300),
         eq(synergies.playStyleTarget, validStyle),
         eq(rubbers.type, "smooth"),
-        gte(blades.communityReviewCount, MIN_REVIEW_COUNT),
+        bladeAvailabilityFilter,
         gte(rubbers.communityReviewCount, MIN_REVIEW_COUNT),
       ),
     )
@@ -823,7 +832,7 @@ async function runQuerySetups(
           gte(synergies.ttrTarget, clamped - 300),
           lte(synergies.ttrTarget, clamped + 300),
           eq(rubbers.type, "smooth"),
-          gte(blades.communityReviewCount, MIN_REVIEW_COUNT),
+          bladeAvailabilityFilter,
           gte(rubbers.communityReviewCount, MIN_REVIEW_COUNT),
         ),
       )
@@ -874,7 +883,7 @@ async function runMaterialQuery(
         lte(synergies.ttrTarget, clamped + 300),
         eq(synergies.playStyleTarget, "material"),
         rubberTypeFilter,
-        gte(blades.communityReviewCount, MIN_REVIEW_COUNT),
+        bladeAvailabilityFilter,
         gte(rubbers.communityReviewCount, MIN_REVIEW_COUNT),
       ),
     )
@@ -925,6 +934,7 @@ async function runGetProductDetails(
         ttrMin: blades.ttrMin,
         ttrMax: blades.ttrMax,
         priceEur: blades.priceEur,
+        isManuallyCurated: blades.isManuallyCurated,
         description: blades.description,
         communityDescription: blades.communityDescription,
       })
@@ -946,7 +956,7 @@ async function runGetProductDetails(
     return [
       `Holz: ${b.name}`,
       `Aufbau: ${b.composition ?? "k.A."} | Steifigkeit: ${b.stiffness ?? "k.A."} | Furniere: ${b.layers ?? "k.A."} | Gewicht: ${weight}`,
-      `Speed: ${speed} | Kontrolle: ${control} (Community, ${b.communityReviewCount ?? 0} Reviews) [${formatPopularity(b.communityReviewCount)}]`,
+      `Speed: ${speed} | Kontrolle: ${control} (Community, ${b.communityReviewCount ?? 0} Reviews) [${formatPopularity(b.communityReviewCount, b.isManuallyCurated)}]`,
       `PREIS: ${formatPrice(b.priceEur)}`,
       b.description ? `\nHersteller-Info: ${b.description.substring(0, 400)}` : "",
       b.communityDescription ? `\nSpieler-Fazit: ${b.communityDescription.substring(0, 300)}` : "",
@@ -1208,7 +1218,7 @@ async function runQueryByProblem(
     lte(synergies.ttrTarget, clamped + 300),
     eq(synergies.playStyleTarget, validStyle),
     eq(rubbers.type, "smooth"),
-    gte(blades.communityReviewCount, MIN_REVIEW_COUNT),
+    bladeAvailabilityFilter,
     gte(rubbers.communityReviewCount, MIN_REVIEW_COUNT),
   ];
 

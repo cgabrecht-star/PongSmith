@@ -123,6 +123,10 @@ export const blades = pgTable(
     imageUrl: varchar("image_url", { length: 500 }),
     sourceUrl: varchar("source_url", { length: 500 }), // URL der Datenquelle
     priceEur: numeric("price_eur", { precision: 6, scale: 2 }), // UVP DE-Markt
+    /** True wenn das Holz manuell von uns ergänzt wurde (DE-Klassiker die in den
+     *  Quell-Daten aus revspin etc. fehlen). Umgeht den community_review_count >=
+     *  10 Filter, damit z.B. Yasaka Sweden Classic im Berater erscheinen kann. */
+    isManuallyCurated: boolean("is_manually_curated").default(false).notNull(),
     isActive: boolean("is_active").default(true).notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
