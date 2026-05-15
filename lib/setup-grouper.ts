@@ -128,16 +128,40 @@ export function groupProductsBySetup(
 
     // Bug C: Holz/Belag aus Setup-Titel ergänzen, falls die Position-basierte
     // Zuordnung sie verpasst hat (z.B. wenn Holz schon im Pre-Text erwähnt war).
-    // Wir scannen Titel + erste 200 Zeichen der Begründung nach allen bekannten
-    // Produkten aus der globalen Liste und fügen Treffer hinzu, die noch fehlen.
-    const scanText = (valid[i]!.title + " " + description.substring(0, 200)).toLowerCase();
+    // Wir scannen NUR den Titel (nicht die Description, da die KI dort gerne
+    // andere Setups oder Listen referenziert). Word-Boundary-Match verhindert
+    // dass "Marder" in "Marder II" als zusätzliches Produkt landet.
+    const titleOnly = " " + valid[i]!.title.toLowerCase() + " ";
     const existingIds = new Set(productsInRange.map((p) => `${p.type}:${p.id}`));
     const enriched = [...productsInRange];
-    for (const p of products) {
+    // Längere Namen zuerst, damit z.B. "SpinLord Marder II" vor "Marder" matched
+    // und sich danach im "matchedRanges"-Bereich versperrt.
+    const sortedByLen = [...products].sort((a, b) => b.name.length - a.name.length);
+    const matchedRanges: Array<[number, number]> = [];
+    const isOverlap = (s: number, e: number) =>
+      matchedRanges.some(([ms, me]) => s < me && e > ms);
+    for (const p of sortedByLen) {
       const key = `${p.type}:${p.id}`;
       if (existingIds.has(key)) continue;
-      // Tolerant gegen Klammer-Suffixe wie "(VH)" / "(RH)"
-      if (scanText.includes(p.name.toLowerCase())) {
+      const lname = p.name.toLowerCase();
+      // Word-Boundary: vor und nach dem Namen muss ein Nicht-Wort-Zeichen sein.
+      // Suche alle Vorkommen im Titel.
+      let from = 0;
+      let found = false;
+      while (true) {
+        const idx = titleOnly.indexOf(lname, from);
+        if (idx === -1) break;
+        const before = titleOnly.charAt(idx - 1);
+        const after = titleOnly.charAt(idx + lname.length);
+        const isWord = (c: string) => /[\w]/.test(c);
+        if (!isWord(before) && !isWord(after) && !isOverlap(idx, idx + lname.length)) {
+          matchedRanges.push([idx, idx + lname.length]);
+          found = true;
+          break;
+        }
+        from = idx + 1;
+      }
+      if (found) {
         enriched.push({ ...p, position: start });
         existingIds.add(key);
       }
