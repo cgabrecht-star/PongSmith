@@ -26,9 +26,12 @@ export const rubberTypeEnum = pgEnum("rubber_type", [
 ]);
 
 export const topsheetCharacterEnum = pgEnum("topsheet_character", [
-  "sticky",   // klebrig (z.B. chinesische Beläge)
-  "grippy",   // griffig (z.B. europäische Beläge)
-  "neutral",
+  "sticky",   // klebrig klassisch chinesisch (z.B. Hurricane 3, Skyline, Big Dipper)
+  "grippy",   // griffig europäisch-tensioniert (z.B. Tenergy, Rakza, Acuda)
+  "neutral",  // weder klebrig noch ausgeprägt griffig
+  "hybrid",   // chinesisches klebriges Topsheet + europäischer Tensor-Schwamm
+              // (z.B. Tibhar K3, DHS Hurricane Neo Blue Sponge, JOOLA Dynaryz CMD)
+              // Aktueller Markttrend seit ~2022
 ]);
 
 export const playStyleEnum = pgEnum("play_style", [

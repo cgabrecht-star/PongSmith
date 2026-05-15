@@ -200,11 +200,21 @@ unbedingt fragen. Bei Senior: Arm-Belastung mitdenken.
 
 ## FACHWISSEN-BIBLIOTHEK (nutz das aktiv beim Erklären, NIE als Marketing-Sprech)
 
-### Belag-Topsheets
-- Tensioniert europäisch (griffig, eingebaute Spannung): Tenergy, Rakza, Dignics, Hexer, Acuda, Rasanter, Evolution, Bluefire. Moderner Standard, gut spielbar ab TTR ~1300.
-- Klebrig chinesisch (sticky, ohne Spannung): Hurricane Neo 3, Hurricane 9, Skyline 3, Big Dipper, Ka Long. Höchstes Spinpotenzial, anspruchsvoller (braucht aktives Spiel), für Topspin-Spieler ab TTR ~1500. Pro-Belag-Charakter.
-- Hybrid-Beläge (chinesisches Topsheet + europäischer Schwamm) - AKTUELLER TREND 2024-2026: Tibhar K3, Big Dipper Pro, Yinhe Pro 13, Hurricane mit Blue/Orange Sponge, Joola Dynaryz CMD. Verbinden chinesischen Spin mit europäischer Spielbarkeit.
-- Neutral griffig / vergebend: Donic Slice, Acuda S3, Friendship 729 FX, Rakza 7. Anfängerfreundlich, gutmütig im Block.
+### Belag-Topsheets (DB liefert Tag, nutze ihn aktiv)
+
+- **grippy** = tensioniert europäisch (griffig, eingebaute Spannung): Tenergy, Rakza, Dignics, Hexer, Acuda, Rasanter, Evolution, Bluefire. Moderner Standard, gut spielbar ab TTR ~1300. Funktioniert mit fast jedem Holz.
+
+- **sticky** = klebrig klassisch chinesisch (ungespannt): Hurricane Neo 3, Hurricane 9, Skyline 3, klassische Big Dipper, Ka Long. Höchstes Spinpotenzial, anspruchsvoller (braucht aktives Spiel mit ganzem Körper), für Topspin-Spieler ab TTR ~1500. **BRAUCHT STEIFES HOLZ** (stiff oder very_stiff Klassifikation), sonst kein sauberer Spin-Übertrag. NICHT für Vereinsspieler-Mittelklasse.
+
+- **hybrid** = chinesisches Topsheet + europäischer Tensor-Schwamm (AKTUELLER TREND 2022-2026): Tibhar K3 / Hybrid MK, DHS Hurricane Neo Provincial/National (Blue/Orange Sponge), JOOLA Dynaryz CMD/Inferno, Friendship 729 Cross/Battle, Sanwei Target National, Andro Rasanter C53. Kombinieren chinesischen Spin mit europäischer Spielbarkeit. **BRAUCHT MITTLERES BIS STEIFES HOLZ** (medium-stiff bis stiff ist ideal, NICHT very_stiff wie classic sticky). Tolerant gegenüber Mittelklasse-Spielern (TTR ab ~1400 sinnvoll). Wenn ein Spieler nach "mehr Spin aber Hexer/Tenergy ist mir zu zahm" fragt → Hybrid ist oft die Antwort.
+
+- **neutral** = weder klebrig noch ausgeprägt griffig: Donic Slice, Acuda S3, Friendship 729 FX, Rakza 7. Anfängerfreundlich, gutmütig im Block.
+
+**Wann Hybrid empfehlen:**
+- Spieler hat tensionierten Belag (Tenergy, Hexer, Acuda) und sucht "mehr Spin" → Hybrid testen
+- Spieler hat sticky chinesisch und sagt "zu langsam, zu viel Eigeninitiative nötig" → Hybrid als Mittelweg
+- Spieler ist neugierig auf chinesisches Spielgefühl aber will keine 30 Trainingseinheiten Umgewöhnung → Hybrid als sanfter Einstieg
+- TTR <1400 oder Spieler trainiert nur mit Gleichstarken: kein Hybrid, bleib bei tensioniert europäisch
 
 ### Belag-Kategorien
 - Inverted (smooth, glatt): Standard, > 90 Prozent aller Spieler.
@@ -611,8 +621,9 @@ function formatHardness(min: number | null, max: number | null): string {
 
 function formatTopsheet(ts: string | null): string {
   if (!ts) return "";
-  if (ts === "sticky") return "klebrig (chinesisch)";
-  if (ts === "grippy") return "griffig (europäisch)";
+  if (ts === "sticky") return "klebrig klassisch (chinesisch, ungespannt)";
+  if (ts === "grippy") return "griffig (europäisch tensioniert)";
+  if (ts === "hybrid") return "HYBRID (chin. Topsheet + europ. Tensor-Schwamm)";
   return "neutral";
 }
 
@@ -713,6 +724,33 @@ function applyBudget(rows: SetupRow[], budgetMaxEur?: number): SetupRow[] {
   });
 }
 
+/** Confidence-Discount: Setups mit niedrigen Review-Counts werden in der
+ *  Sortierung leicht abgewertet, damit [Klassiker] systematisch vor
+ *  [bekannt] angezeigt werden. Der angezeigte synergyScore bleibt unverändert
+ *  - wir verändern nur die Sortier-Reihenfolge.
+ */
+function confidenceFactor(reviewCount: number | null): number {
+  const n = reviewCount ?? 0;
+  if (n >= 100) return 1.0;   // Klassiker: voller Score
+  if (n >= 30) return 0.97;   // etabliert: minimaler Abschlag
+  if (n >= 10) return 0.90;   // bekannt: 10% Abschlag
+  return 0.75;                // Nische: 25% Abschlag (kommt durch Filter eh selten)
+}
+
+function sortByConfidenceAdjustedScore(rows: SetupRow[]): SetupRow[] {
+  return [...rows].sort((a, b) => {
+    const aFactor = Math.min(
+      confidenceFactor(a.bladeReviewCount),
+      confidenceFactor(a.rubberReviewCount),
+    );
+    const bFactor = Math.min(
+      confidenceFactor(b.bladeReviewCount),
+      confidenceFactor(b.rubberReviewCount),
+    );
+    return b.synergyScore * bFactor - a.synergyScore * aFactor;
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Tool: query_setups
 // ---------------------------------------------------------------------------
@@ -770,7 +808,8 @@ async function runQuerySetups(
     .limit(120); // großes Pool für Diversitäts- + Budget-Filter
 
   const budgetFiltered = applyBudget(rows as SetupRow[], budgetMaxEur);
-  const diverse = diversify(budgetFiltered, Math.min(maxResults, 5), preferKnownBrands);
+  const confidenceSorted = sortByConfidenceAdjustedScore(budgetFiltered);
+  const diverse = diversify(confidenceSorted, Math.min(maxResults, 5), preferKnownBrands);
 
   if (diverse.length === 0) {
     // Fallback: Spielstil auf allround lockern, Review-Filter beibehalten
@@ -792,7 +831,8 @@ async function runQuerySetups(
       .limit(120);
 
     const fallbackBudgeted = applyBudget(fallback as SetupRow[], budgetMaxEur);
-    const diverseFallback = diversify(fallbackBudgeted, 5, preferKnownBrands);
+    const fallbackSorted = sortByConfidenceAdjustedScore(fallbackBudgeted);
+    const diverseFallback = diversify(fallbackSorted, 5, preferKnownBrands);
     if (diverseFallback.length === 0) {
       const budgetHint = budgetMaxEur ? ` (Budget: max ${budgetMaxEur} EUR)` : "";
       return `DB_KEIN_ERGEBNIS (TTR: ${ttr}, Stil: ${validStyle}${budgetHint})`;
@@ -842,7 +882,8 @@ async function runMaterialQuery(
     .limit(120);
 
   const budgetFiltered = applyBudget(rows as SetupRow[], budgetMaxEur);
-  const diverse = diversify(budgetFiltered, maxResults, preferKnownBrands);
+  const confidenceSorted = sortByConfidenceAdjustedScore(budgetFiltered);
+  const diverse = diversify(confidenceSorted, maxResults, preferKnownBrands);
 
   if (diverse.length === 0) {
     const budgetHint = budgetMaxEur ? ` (Budget: max ${budgetMaxEur} EUR)` : "";
@@ -1189,7 +1230,8 @@ async function runQueryByProblem(
     return true;
   });
 
-  const diverse = diversify(filtered, 3, true);
+  const filteredAndSorted = sortByConfidenceAdjustedScore(filtered);
+  const diverse = diversify(filteredAndSorted, 3, true);
 
   if (diverse.length === 0) {
     return lang === "de"

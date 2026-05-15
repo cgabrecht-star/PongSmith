@@ -43,7 +43,7 @@ export interface RubberInput {
   communityControl: number | null;
   // Neu in v2: physikalische Eigenschaften
   hardnessMin?: number | null;      // Schwammhärte min in Grad
-  topsheetCharacter?: "sticky" | "grippy" | "neutral" | null;
+  topsheetCharacter?: "sticky" | "grippy" | "neutral" | "hybrid" | null;
 }
 
 export interface SynergyResult {
@@ -254,7 +254,7 @@ function calcStyleFit(
     return 68;
   }
 
-  // Sticky-Topsheet braucht steifes Holz
+  // Sticky-Topsheet (klassisch chinesisch) braucht steifes Holz
   if (topsheetCharacter === "sticky") {
     const stiffnessBonus =
       bladeStiffness === "very_stiff" ? 15 :
@@ -265,6 +265,23 @@ function calcStyleFit(
     if (bladeSpeed >= 8.0 && rubberSpin >= 8.5) return clamp(90 + stiffnessBonus);
     if (bladeSpeed >= 7.0) return clamp(75 + stiffnessBonus);
     return clamp(60 + stiffnessBonus);
+  }
+
+  // Hybrid-Topsheet (chinesisches Topsheet + europäischer Tensor-Schwamm)
+  // Ist toleranter als classic sticky: braucht mittleres bis steifes Holz,
+  // funktioniert aber auch mit "medium". Sweet-Spot ist genau medium-stiff.
+  // Wenn das Holz zu weich (soft) → Spin-Übertrag leidet. Wenn zu steif
+  // (very_stiff) → Vorteil des weicheren Schwamms geht verloren.
+  if (topsheetCharacter === "hybrid") {
+    const stiffnessBonus =
+      bladeStiffness === "stiff" ? 12 :       // ideal
+      bladeStiffness === "medium" ? 8 :       // gut, weniger als sticky-classic
+      bladeStiffness === "very_stiff" ? 4 :   // ok, aber Schwamm-Vorteil verloren
+      -8;                                     // soft = Spin-Übertrag schwach
+
+    if (bladeSpeed >= 7.5 && rubberSpin >= 8.5) return clamp(88 + stiffnessBonus);
+    if (bladeSpeed >= 6.5) return clamp(78 + stiffnessBonus);
+    return clamp(65 + stiffnessBonus);
   }
 
   // Offensiv: zu aggressiv für Vereinsspieler

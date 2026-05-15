@@ -25,7 +25,7 @@ export interface ProductDetail {
   rubberType?: "smooth" | "long_pips" | "short_pips" | "anti";
   hardnessMin?: number | null;
   hardnessMax?: number | null;
-  topsheet?: "sticky" | "grippy" | "neutral" | null;
+  topsheet?: "sticky" | "grippy" | "neutral" | "hybrid" | null;
   // Holz-spezifisch
   composition?: string | null;
   layers?: number | null;
