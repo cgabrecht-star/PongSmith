@@ -58,18 +58,23 @@ KRITISCH wichtige Stil-Regeln:
 ## Gesprächsablauf
 
 **Schritt 1, Profil verstehen:**
-Finde heraus: TTR (oder Erfahrung), Spielstil, aktuelles Setup (wenn vorhanden), konkretes Problem/Ziel.
-Frage nie alles auf einmal. TTR + Spielstil reichen für den ersten Tool-Call.
+Finde heraus: TTR (oder Erfahrung), Spielstil, aktuelles Setup, konkretes Problem/Ziel.
+TTR + Spielstil reichen für den ersten Tool-Call.
 
-**Schritt 2, Tool aufrufen:**
-Sobald TTR + Spielstil klar → query_setups aufrufen. Nicht länger warten.
-Bei konkretem Problem (z.B. "Block instabil") → zuerst query_by_problem.
-Bei Detailfrage zu einem Produkt → get_product_details.
-Bei Materialspielern oder TTR > 1400 + Wunsch nach VH/RH-Trennung → query_rubber_for_side.
+**Schritt 2, BUDGET KLÄREN (PFLICHT bevor du teure Setups empfiehlst):**
+- Wenn der Spieler ein aktuelles Setup angegeben hat: Hol dir die Preise via get_product_details (Holz und Belag separat). Daraus ergibt sich sein Setup-Budget. Default für die folgende query_setups: budget_max_eur = aktuelles Setup × 1.3.
+- Wenn KEIN Setup und KEIN Budget genannt: stell die Budget-Frage explizit, freundlich, vor query_setups. Beispiel: "Damit ich nicht am Geldbeutel vorbei empfehle: hast du ein Budget im Kopf? Typische Setups gehen von 70 Euro Einsteiger über 150 Euro Vereins-Mittelklasse bis 280 Euro ambitioniert."
+- Wenn der Spieler "egal" sagt: kein budget_max setzen, aber Preise im Text trotzdem nennen.
 
-**Schritt 3, Ergebnisse erklären:**
-Für jede Empfehlung 1-2 Sätze WARUM sie zu diesem Spieler passt.
-Nutze die mitgelieferten Produkt-Infos (Härte, Charakteristik, Beschreibung) für konkrete Begründungen.
+**Schritt 3, Tool aufrufen:**
+- TTR + Stil + Budget klar → query_setups MIT budget_max_eur.
+- Konkretes Problem ("Block instabil") → query_by_problem.
+- Detailfrage oder Preis-Berechnung des aktuellen Setups → get_product_details.
+- Materialspieler oder TTR > 1400 + VH/RH-Trennung → query_rubber_for_side.
+
+**Schritt 4, Ergebnisse erklären:**
+Für jede Empfehlung: 1-2 Sätze WARUM sie passt + Preis nennen + Vergleich zum aktuellen Setup wenn vorhanden ("kostet ungefähr 30 Euro mehr / weniger als dein jetziges Setup").
+Nutze die Produkt-Infos (Härte, Aufbau, Beschreibung, Popularität, Preis) für konkrete Begründungen.
 
 ## Spieler-Typen
 
@@ -91,29 +96,71 @@ Nutze die mitgelieferten Produkt-Infos (Härte, Charakteristik, Beschreibung) f�
 | "Arm wird schnell müde" | query_by_problem | tired_arm |
 | "Was ist [Produkt] genau?" | get_product_details |, |
 
-## Datenbankresultate, strikte Regeln
+## FACHWISSEN-BIBLIOTHEK (nutz das aktiv beim Erklären, NIE als Marketing-Sprech)
 
-Nur Produkte aus den Ergebnissen empfehlen. IMMER zwei bis drei verschiedene Setups vorschlagen, mit unterschiedlichen Hersteller-Marken wenn möglich. Nicht weniger als 2 Setups, ausser bei Anfängern (siehe unten).
-Keine Produkte aus dem Gedächtnis, auch keine "generell guten" Beläge.
+### Belag-Topsheets
+- Tensioniert europäisch (griffig, eingebaute Spannung): Tenergy, Rakza, Dignics, Hexer, Acuda, Rasanter, Evolution, Bluefire. Moderner Standard, gut spielbar ab TTR ~1300.
+- Klebrig chinesisch (sticky, ohne Spannung): Hurricane Neo 3, Hurricane 9, Skyline 3, Big Dipper, Ka Long. Höchstes Spinpotenzial, anspruchsvoller (braucht aktives Spiel), für Topspin-Spieler ab TTR ~1500. Pro-Belag-Charakter.
+- Hybrid-Beläge (chinesisches Topsheet + europäischer Schwamm) - AKTUELLER TREND 2024-2026: Tibhar K3, Big Dipper Pro, Yinhe Pro 13, Hurricane mit Blue/Orange Sponge, Joola Dynaryz CMD. Verbinden chinesischen Spin mit europäischer Spielbarkeit.
+- Neutral griffig / vergebend: Donic Slice, Acuda S3, Friendship 729 FX, Rakza 7. Anfängerfreundlich, gutmütig im Block.
+
+### Belag-Kategorien
+- Inverted (smooth, glatt): Standard, > 90 Prozent aller Spieler.
+- Long-Pips (Lange Noppen): Defensivspiel, kehren Spin um.
+- Short-Pips (Kurze Noppen): direktes Konterspiel.
+- Anti-Spin: dämpft Spin komplett, sehr nischig.
+
+### Holz-Konstruktion
+- Allround (5-furnig, Vollholz): Stiga Allround Classic, Tibhar Stratus Power, Donic Persson Powerallround, Andro All Plus. Verzeihend, Anfänger bis Allround.
+- Off- bis Off+ (5-7 furnig, Vollholz): Mehr Tempo. Donic Persson Powerplay, Stiga Offensive Classic, Yasaka Sweden Extra.
+- Carbon AUSSEN (ALC outer, OFF+): direkter, härter, "Klick im Treffmoment". Butterfly Viscaria, Timo Boll ALC, Zhang Jike. Ab TTR ~1400.
+- Carbon INNEN (Innerforce-Prinzip): Carbon im Kern, weichere Holzlagen außen. Behält Holz-Gefühl, dämpft Vibrationen. Butterfly Innerforce ALC/AL, Stiga Carbo Classic. Ab TTR ~1500, gut für Spieler die kein "harter Carbon" mögen.
+- ZLC (Zylon-Carbon, super-schnell): Top-Niveau ab TTR 1700+.
+- Defensiv-Hölzer (große Schlagfläche, langsam): Stiga Defensive, Donic Defplay, Joola Chen Weixing.
+- Balsa-Hölzer: extrem leicht, gut für Senior/Arm-Probleme. TSP Black Balsa, Butterfly Balsa Carbo X5.
+
+### Preisklassen (orientierend)
+- Einsteiger: Holz 25-50 Euro, Belag 15-30 Euro → Setup ca. 70-110 Euro
+- Vereinsspieler Mittelklasse: Holz 60-100 Euro, Belag 35-50 Euro → Setup 130-200 Euro
+- Ambitioniert: Holz 100-150 Euro, Belag 50-70 Euro → Setup 200-290 Euro
+- Pro: Holz 150-280 Euro+, Belag 65-80 Euro (Tenergy/Dignics) → Setup 290-440 Euro+
+
+### Aktuelle Trends (Stand 2025/26)
+- Hybrid-Beläge sehr im Kommen (Tibhar K3, Yinhe Pro 13, Joola Dynaryz CMD)
+- ALC bleibt Pro-Standard für Carbon-Hölzer
+- Donic Slice 40 + günstige Tensoren erleben Renaissance bei Allround-Spielern
+- DHS Hurricane Neo 3 mit Blue/Orange Sponge (Provincial/National) bleibt Top für offensive Spinspieler
+- Innerforce-Prinzip wird wichtiger als Outer-Carbon für ambitioniertes Mittelfeld
+
+## DATENBANKRESULTATE, STRIKTE REGELN
+
+Die Datenbank liefert pro Setup: Hersteller-Tags wie [Klassiker] (100+ Reviews), [etabliert] (30+), [bekannt] (10+). Plus GESAMT-PREIS in Euro (Holz + ein Belag pro Seite).
+
+Wichtig:
+- Nur Produkte aus den Tool-Ergebnissen empfehlen. NICHTS aus dem Gedächtnis, auch wenn dir ein Belag noch im Kopf ist.
+- IMMER zwei bis drei Setups vorschlagen (außer Anfänger).
+- BEVORZUGE [Klassiker] und [etabliert] vor [bekannt]. [Nische] solltest du nur vorschlagen wenn es klar zur Anfrage passt und du das auch begründen kannst.
+- BUDGET-DISZIPLIN: Wenn ein Setup um mehr als 40 Prozent teurer ist als das Spieler-Budget oder das aktuelle Setup, nenne den Mehrpreis EXPLIZIT ("kostet ungefähr 80 Euro mehr, lohnt sich wenn..."). Nie kommentarlos teurer empfehlen.
+- WENN Preis "k.A.": ehrlich sagen, schätze grob aus der Klasse, frag den Spieler ob er es trotzdem will.
 
 ## STRUKTUR-PFLICHT bei mehreren Setups
 
 Wenn du 2-3 Setups empfiehlst, formuliere IMMER so, mit echten Zeilenumbrüchen zwischen den Setups:
 
-Setup 1: [Holzname] mit [Belagname]
-[Ein bis zwei Sätze Begründung warum dieses Setup zum Spieler passt.]
+Setup 1: [Holzname] mit [Belagname] (~XX Euro)
+[Ein bis zwei Sätze Begründung warum dieses Setup zum Spieler passt + ggf. Preis-Vergleich zum aktuellen Setup.]
 
-Setup 2: [Holzname] mit [Belagname]
-[Ein bis zwei Sätze Begründung.]
+Setup 2: [Holzname] mit [Belagname] (~XX Euro)
+[Begründung.]
 
-Setup 3: [Holzname] mit [Belagname]
-[Ein bis zwei Sätze Begründung.]
+Setup 3: [Holzname] mit [Belagname] (~XX Euro)
+[Begründung.]
 
 Wichtig:
 - Schreibe die Setups NIE als langen Fließtext-Absatz ohne Trennung.
-- Jedes Setup beginnt mit "Setup N:" am Zeilenanfang, gefolgt von Holz + Belag.
+- Jedes Setup beginnt mit "Setup N:" am Zeilenanfang, gefolgt von Holz + Belag + Preis in Klammern.
 - Pro Setup nur EIN Holz und EIN Belag (oder VH/RH wenn explizit unterschiedlich).
-- Wenn du einen Belag explizit als NICHT passend einordnest: nenne ihn nur im Fließtext mit klarer Negation, NIE im "Setup N:"-Format.
+- Wenn du einen Belag explizit als NICHT passend einordnest: nenne ihn nur im Fließtext mit klarer Negation ("Den X würde ich hier weglassen, weil..."), NIE im "Setup N:"-Format.
 
 Bei DB_KEIN_ERGEBNIS: Ehrlich sagen, kurz warum (TTR-Randbereich, seltener Stil). Anderen Tool-Call mit leicht anderen Parametern vorschlagen.
 
@@ -121,13 +168,19 @@ Bei DB_ANFAENGER (TTR < 900): Direkt: unsere DB startet bei TTR 1000. Genau EINE
 
 Bei Material-Spielern: Noppen-Typ klären (KN/LP/Anti). Dann query_rubber_for_side für VH und RH separat nutzen. Holz und VH-Belag im selben Response empfehlen wenn möglich.
 
-## Wichtig zur Formulierung
+## Anti-Patterns (NIE machen)
 
-Falsch: "Der **Donic Vario** ist genau der richtige Ansatz, deutlich kontrollierter als der Hexer Powergrip."
+Falsch: "Der **Donic Vario** ist genau der richtige Ansatz, deutlich kontrollierter."
 Richtig: "Der Donic Vario ist kontrollierter als der Hexer Powergrip und vergibt im Block mehr."
 
-Falsch: "Setup-Empfehlung: **Allround-Kombi** mit maximalem Spin-Potenzial!"
-Richtig: "Setup: Stiga Allround Classic mit Donic Acuda S2. Gibt dir Kontrolle ohne Tempo-Verlust."
+Falsch: "Setup-Empfehlung: Allround-Kombi mit maximalem Spin-Potenzial!"
+Richtig: "Setup 1: Stiga Allround Classic mit Donic Acuda S2 (~70 Euro). Gibt dir Kontrolle ohne Tempo-Verlust."
+
+Falsch: User hat 140-Euro-Setup → du empfiehlst 320-Euro-Setup ohne Kommentar.
+Richtig: User hat 140-Euro-Setup → du empfiehlst max ~180 Euro, oder beim teureren Setup explizit "~150 Euro mehr als jetzt, lohnt sich wenn dir Y wichtig ist".
+
+Falsch: User fragt nach Alternative → du empfiehlst Nische-Holz das es kaum noch zu kaufen gibt.
+Richtig: bevorzuge [Klassiker] und [etabliert] aus den Tool-Resultaten.
 
 Falsch: "Drei Wege, perfekt abgestimmt auf dein Profil."
 Richtig: "Drei Setups, die zu deinem Profil passen:"`;
@@ -212,6 +265,10 @@ const TOOLS: Anthropic.Tool[] = [
           type: "boolean",
           description: "true = westliche Marken bevorzugen (Butterfly, Stiga, Donic etc.). Default: true für TTR <1400, false für ambitionierte Spieler.",
         },
+        budget_max_eur: {
+          type: "number",
+          description: "Optional: Maximales Gesamtbudget für Holz+Belag in EUR. Setups die deutlich teurer sind werden gefiltert. Beispiel: 150 für Vereins-Mittelklasse, 250 für ambitioniert. Bei Setup-Wechsel: ungefähr ±30% des aktuellen Setup-Preises.",
+        },
         max_results: {
           type: "number",
           description: "Maximale Treffer (1-5). Default: 3.",
@@ -288,10 +345,14 @@ interface SetupRow {
   bladeManufacturerId: number;
   bladeComposition: string | null;
   bladeStiffness: string | null;
+  bladePriceEur: string | null;
+  bladeReviewCount: number | null;
   rubberName: string;
   rubberHardnessMin: number | null;
   rubberHardnessMax: number | null;
   rubberTopsheet: string | null;
+  rubberPriceEur: string | null;
+  rubberReviewCount: number | null;
   ttrTarget: number;
 }
 
@@ -370,6 +431,20 @@ function formatTopsheet(ts: string | null): string {
   return "neutral";
 }
 
+function formatPrice(eur: string | null): string {
+  if (!eur) return "Preis k.A.";
+  const n = parseFloat(eur);
+  return `${Math.round(n)} EUR`;
+}
+
+function formatPopularity(reviewCount: number | null): string {
+  const n = reviewCount ?? 0;
+  if (n >= 100) return "Klassiker";
+  if (n >= 30) return "etabliert";
+  if (n >= 10) return "bekannt";
+  return "Nische";
+}
+
 function rowsToText(rows: SetupRow[], ttr: number, styleName: string, lang: "de" | "en"): string {
   const isEn = lang === "en";
   const header = isEn
@@ -385,14 +460,72 @@ function rowsToText(rows: SetupRow[], ttr: number, styleName: string, lang: "de"
     const bladeInfo = [composition, stiffness].filter(Boolean).join(", ");
     const rubberInfo = [hardness !== "k.A." ? `Härte: ${hardness}` : "", topsheet].filter(Boolean).join(", ");
 
+    const bladePrice = formatPrice(r.bladePriceEur);
+    const rubberPrice = formatPrice(r.rubberPriceEur);
+    const totalPrice = setupPrice(r);
+    const totalLine = totalPrice
+      ? `   GESAMT-PREIS: ~${totalPrice} EUR (Holz ${bladePrice} + Belag ${rubberPrice}, ein Belag pro Seite gerechnet)`
+      : `   PREIS: ${bladePrice} (Holz) + ${rubberPrice} (Belag) — Gesamt unbekannt`;
+
     return [
-      `${i + 1}. Holz: ${r.bladeName}${bladeInfo ? ` (${bladeInfo})` : ""}`,
-      `   Belag: ${r.rubberName}${rubberInfo ? ` (${rubberInfo})` : ""}`,
+      `${i + 1}. Holz: ${r.bladeName} [${formatPopularity(r.bladeReviewCount)}]${bladeInfo ? ` (${bladeInfo})` : ""}`,
+      `   Belag: ${r.rubberName} [${formatPopularity(r.rubberReviewCount)}]${rubberInfo ? ` (${rubberInfo})` : ""}`,
+      totalLine,
       `   Synergie: ${r.synergyScore}/100 | Tempo: ${r.tempoMatch ?? "-"} | Kontrolle: ${r.controlReserve ?? "-"} | Spin: ${r.spinPotential ?? "-"}`,
     ].join("\n");
   });
 
   return `${header}\n\n${lines.join("\n\n")}`;
+}
+
+// ---------------------------------------------------------------------------
+// Wiederverwendbare Select-Felder + Filter
+// ---------------------------------------------------------------------------
+
+const SETUP_ROW_SELECT = {
+  synergyScore: synergies.synergyScore,
+  scoreOffensive: synergies.scoreOffensive,
+  scoreAllround: synergies.scoreAllround,
+  scoreDefensive: synergies.scoreDefensive,
+  scoreMaterial: synergies.scoreMaterial,
+  tempoMatch: synergies.tempoMatch,
+  controlReserve: synergies.controlReserve,
+  spinPotential: synergies.spinPotential,
+  bladeName: blades.name,
+  bladeManufacturerId: blades.manufacturerId,
+  bladeComposition: blades.composition,
+  bladeStiffness: blades.stiffness,
+  bladePriceEur: blades.priceEur,
+  bladeReviewCount: blades.communityReviewCount,
+  rubberName: rubbers.name,
+  rubberHardnessMin: rubbers.hardnessMin,
+  rubberHardnessMax: rubbers.hardnessMax,
+  rubberTopsheet: rubbers.topsheetCharacter,
+  rubberPriceEur: rubbers.priceEur,
+  rubberReviewCount: rubbers.communityReviewCount,
+  ttrTarget: synergies.ttrTarget,
+} as const;
+
+/** Filter: nur Produkte mit minimalem Review-Count (Verfügbarkeits-Proxy
+ *  gegen discontinued/Nische-Hölzer die niemand mehr kaufen kann). */
+const MIN_REVIEW_COUNT = 10;
+
+/** Setup-Preis (Holz + Belag). null wenn ein Preis fehlt. */
+function setupPrice(row: SetupRow): number | null {
+  const b = row.bladePriceEur ? parseFloat(row.bladePriceEur) : null;
+  const r = row.rubberPriceEur ? parseFloat(row.rubberPriceEur) : null;
+  if (b === null || r === null) return null;
+  return Math.round(b + r);
+}
+
+/** Filter Setups auf Budget-Cap. Setups ohne Preisdaten bleiben drin
+ *  (KI bekommt dann den Hinweis "Preis unbekannt"). */
+function applyBudget(rows: SetupRow[], budgetMaxEur?: number): SetupRow[] {
+  if (!budgetMaxEur) return rows;
+  return rows.filter((r) => {
+    const p = setupPrice(r);
+    return p === null || p <= budgetMaxEur * 1.05; // 5% Toleranz
+  });
 }
 
 // ---------------------------------------------------------------------------
@@ -406,6 +539,7 @@ async function runQuerySetups(
   preferKnownBrands: boolean,
   maxResults: number,
   lang: "de" | "en",
+  budgetMaxEur?: number,
 ): Promise<string> {
   if (ttr < 900) return "DB_ANFAENGER";
 
@@ -419,7 +553,7 @@ async function runQuerySetups(
       : rubberType === "short_pips" ? "short_pips"
       : rubberType === "anti" ? "anti"
       : null;
-    return runMaterialQuery(clamped, dbRubberType, preferKnownBrands, Math.min(maxResults, 5), lang);
+    return runMaterialQuery(clamped, dbRubberType, preferKnownBrands, Math.min(maxResults, 5), lang, budgetMaxEur);
   }
 
   const validStyle = ["offensive_topspin", "allround", "defensive"].includes(playStyle)
@@ -433,25 +567,7 @@ async function runQuerySetups(
     : synergies.scoreAllround;
 
   const rows = await db
-    .select({
-      synergyScore: synergies.synergyScore,
-      scoreOffensive: synergies.scoreOffensive,
-      scoreAllround: synergies.scoreAllround,
-      scoreDefensive: synergies.scoreDefensive,
-      scoreMaterial: synergies.scoreMaterial,
-      tempoMatch: synergies.tempoMatch,
-      controlReserve: synergies.controlReserve,
-      spinPotential: synergies.spinPotential,
-      bladeName: blades.name,
-      bladeManufacturerId: blades.manufacturerId,
-      bladeComposition: blades.composition,
-      bladeStiffness: blades.stiffness,
-      rubberName: rubbers.name,
-      rubberHardnessMin: rubbers.hardnessMin,
-      rubberHardnessMax: rubbers.hardnessMax,
-      rubberTopsheet: rubbers.topsheetCharacter,
-      ttrTarget: synergies.ttrTarget,
-    })
+    .select(SETUP_ROW_SELECT)
     .from(synergies)
     .innerJoin(blades, eq(synergies.bladeId, blades.id))
     .innerJoin(rubbers, eq(synergies.rubberId, rubbers.id))
@@ -461,35 +577,20 @@ async function runQuerySetups(
         lte(synergies.ttrTarget, clamped + 300),
         eq(synergies.playStyleTarget, validStyle),
         eq(rubbers.type, "smooth"),
+        gte(blades.communityReviewCount, MIN_REVIEW_COUNT),
+        gte(rubbers.communityReviewCount, MIN_REVIEW_COUNT),
       ),
     )
     .orderBy(desc(scoreColumn))
-    .limit(80); // großes Pool für Diversitäts-Filter
+    .limit(120); // großes Pool für Diversitäts- + Budget-Filter
 
-  const diverse = diversify(rows as SetupRow[], Math.min(maxResults, 5), preferKnownBrands);
+  const budgetFiltered = applyBudget(rows as SetupRow[], budgetMaxEur);
+  const diverse = diversify(budgetFiltered, Math.min(maxResults, 5), preferKnownBrands);
 
   if (diverse.length === 0) {
-    // Fallback: Spielstil auf allround lockern
+    // Fallback: Spielstil auf allround lockern, Review-Filter beibehalten
     const fallback = await db
-      .select({
-        synergyScore: synergies.synergyScore,
-        scoreOffensive: synergies.scoreOffensive,
-        scoreAllround: synergies.scoreAllround,
-        scoreDefensive: synergies.scoreDefensive,
-        scoreMaterial: synergies.scoreMaterial,
-        tempoMatch: synergies.tempoMatch,
-        controlReserve: synergies.controlReserve,
-        spinPotential: synergies.spinPotential,
-        bladeName: blades.name,
-        bladeManufacturerId: blades.manufacturerId,
-        bladeComposition: blades.composition,
-        bladeStiffness: blades.stiffness,
-        rubberName: rubbers.name,
-        rubberHardnessMin: rubbers.hardnessMin,
-        rubberHardnessMax: rubbers.hardnessMax,
-        rubberTopsheet: rubbers.topsheetCharacter,
-        ttrTarget: synergies.ttrTarget,
-      })
+      .select(SETUP_ROW_SELECT)
       .from(synergies)
       .innerJoin(blades, eq(synergies.bladeId, blades.id))
       .innerJoin(rubbers, eq(synergies.rubberId, rubbers.id))
@@ -498,14 +599,18 @@ async function runQuerySetups(
           gte(synergies.ttrTarget, clamped - 300),
           lte(synergies.ttrTarget, clamped + 300),
           eq(rubbers.type, "smooth"),
+          gte(blades.communityReviewCount, MIN_REVIEW_COUNT),
+          gte(rubbers.communityReviewCount, MIN_REVIEW_COUNT),
         ),
       )
       .orderBy(desc(synergies.scoreAllround))
-      .limit(80);
+      .limit(120);
 
-    const diverseFallback = diversify(fallback as SetupRow[], 5, preferKnownBrands);
+    const fallbackBudgeted = applyBudget(fallback as SetupRow[], budgetMaxEur);
+    const diverseFallback = diversify(fallbackBudgeted, 5, preferKnownBrands);
     if (diverseFallback.length === 0) {
-      return `DB_KEIN_ERGEBNIS (TTR: ${ttr}, Stil: ${validStyle})`;
+      const budgetHint = budgetMaxEur ? ` (Budget: max ${budgetMaxEur} EUR)` : "";
+      return `DB_KEIN_ERGEBNIS (TTR: ${ttr}, Stil: ${validStyle}${budgetHint})`;
     }
 
     const styleName = lang === "en" ? "Allround (Fallback)" : "Allround (Fallback, keine genauen Treffer für gewünschten Stil)";
@@ -527,31 +632,14 @@ async function runMaterialQuery(
   preferKnownBrands: boolean,
   maxResults: number,
   lang: "de" | "en",
+  budgetMaxEur?: number,
 ): Promise<string> {
   const rubberTypeFilter = rubberType
     ? eq(rubbers.type, rubberType)
     : inArray(rubbers.type, ["long_pips", "short_pips", "anti"]);
 
   const rows = await db
-    .select({
-      synergyScore: synergies.synergyScore,
-      scoreOffensive: synergies.scoreOffensive,
-      scoreAllround: synergies.scoreAllround,
-      scoreDefensive: synergies.scoreDefensive,
-      scoreMaterial: synergies.scoreMaterial,
-      tempoMatch: synergies.tempoMatch,
-      controlReserve: synergies.controlReserve,
-      spinPotential: synergies.spinPotential,
-      bladeName: blades.name,
-      bladeManufacturerId: blades.manufacturerId,
-      bladeComposition: blades.composition,
-      bladeStiffness: blades.stiffness,
-      rubberName: rubbers.name,
-      rubberHardnessMin: rubbers.hardnessMin,
-      rubberHardnessMax: rubbers.hardnessMax,
-      rubberTopsheet: rubbers.topsheetCharacter,
-      ttrTarget: synergies.ttrTarget,
-    })
+    .select(SETUP_ROW_SELECT)
     .from(synergies)
     .innerJoin(blades, eq(synergies.bladeId, blades.id))
     .innerJoin(rubbers, eq(synergies.rubberId, rubbers.id))
@@ -561,15 +649,19 @@ async function runMaterialQuery(
         lte(synergies.ttrTarget, clamped + 300),
         eq(synergies.playStyleTarget, "material"),
         rubberTypeFilter,
+        gte(blades.communityReviewCount, MIN_REVIEW_COUNT),
+        gte(rubbers.communityReviewCount, MIN_REVIEW_COUNT),
       ),
     )
     .orderBy(desc(synergies.scoreMaterial))
-    .limit(80);
+    .limit(120);
 
-  const diverse = diversify(rows as SetupRow[], maxResults, preferKnownBrands);
+  const budgetFiltered = applyBudget(rows as SetupRow[], budgetMaxEur);
+  const diverse = diversify(budgetFiltered, maxResults, preferKnownBrands);
 
   if (diverse.length === 0) {
-    return `DB_KEIN_ERGEBNIS (TTR: ${clamped}, Material-Stil: ${rubberType ?? "alle Typen"})`;
+    const budgetHint = budgetMaxEur ? ` (Budget: max ${budgetMaxEur} EUR)` : "";
+    return `DB_KEIN_ERGEBNIS (TTR: ${clamped}, Material-Stil: ${rubberType ?? "alle Typen"}${budgetHint})`;
   }
 
   const typeName = lang === "en"
@@ -606,6 +698,7 @@ async function runGetProductDetails(
         controlNorm: blades.controlNorm,
         ttrMin: blades.ttrMin,
         ttrMax: blades.ttrMax,
+        priceEur: blades.priceEur,
         description: blades.description,
         communityDescription: blades.communityDescription,
       })
@@ -627,7 +720,8 @@ async function runGetProductDetails(
     return [
       `Holz: ${b.name}`,
       `Aufbau: ${b.composition ?? "k.A."} | Steifigkeit: ${b.stiffness ?? "k.A."} | Furniere: ${b.layers ?? "k.A."} | Gewicht: ${weight}`,
-      `Speed: ${speed} | Kontrolle: ${control} (Community, ${b.communityReviewCount ?? 0} Reviews)`,
+      `Speed: ${speed} | Kontrolle: ${control} (Community, ${b.communityReviewCount ?? 0} Reviews) [${formatPopularity(b.communityReviewCount)}]`,
+      `PREIS: ${formatPrice(b.priceEur)}`,
       b.description ? `\nHersteller-Info: ${b.description.substring(0, 400)}` : "",
       b.communityDescription ? `\nSpieler-Fazit: ${b.communityDescription.substring(0, 300)}` : "",
     ].filter(Boolean).join("\n");
@@ -647,6 +741,7 @@ async function runGetProductDetails(
       communityReviewCount: rubbers.communityReviewCount,
       ttrMin: rubbers.ttrMin,
       ttrMax: rubbers.ttrMax,
+      priceEur: rubbers.priceEur,
       description: rubbers.description,
       communityDescription: rubbers.communityDescription,
     })
@@ -668,7 +763,8 @@ async function runGetProductDetails(
   return [
     `Belag: ${r.name} (${typeLabel})`,
     `Härte: ${hardness} | Topsheet: ${topsheet}`,
-    `Speed: ${r.communitySpeed ?? "k.A."} | Spin: ${r.communitySpin ?? "k.A."} | Kontrolle: ${r.communityControl ?? "k.A."} (${r.communityReviewCount ?? 0} Reviews)`,
+    `Speed: ${r.communitySpeed ?? "k.A."} | Spin: ${r.communitySpin ?? "k.A."} | Kontrolle: ${r.communityControl ?? "k.A."} (${r.communityReviewCount ?? 0} Reviews) [${formatPopularity(r.communityReviewCount)}]`,
+    `PREIS: ${formatPrice(r.priceEur)}`,
     r.description ? `\nHersteller-Info: ${r.description.substring(0, 400)}` : "",
     r.communityDescription ? `\nSpieler-Fazit: ${r.communityDescription.substring(0, 300)}` : "",
   ].filter(Boolean).join("\n");
@@ -886,34 +982,18 @@ async function runQueryByProblem(
     lte(synergies.ttrTarget, clamped + 300),
     eq(synergies.playStyleTarget, validStyle),
     eq(rubbers.type, "smooth"),
+    gte(blades.communityReviewCount, MIN_REVIEW_COUNT),
+    gte(rubbers.communityReviewCount, MIN_REVIEW_COUNT),
   ];
 
   const rows = await db
-    .select({
-      synergyScore: synergies.synergyScore,
-      scoreOffensive: synergies.scoreOffensive,
-      scoreAllround: synergies.scoreAllround,
-      scoreDefensive: synergies.scoreDefensive,
-      scoreMaterial: synergies.scoreMaterial,
-      tempoMatch: synergies.tempoMatch,
-      controlReserve: synergies.controlReserve,
-      spinPotential: synergies.spinPotential,
-      bladeName: blades.name,
-      bladeManufacturerId: blades.manufacturerId,
-      bladeComposition: blades.composition,
-      bladeStiffness: blades.stiffness,
-      rubberName: rubbers.name,
-      rubberHardnessMin: rubbers.hardnessMin,
-      rubberHardnessMax: rubbers.hardnessMax,
-      rubberTopsheet: rubbers.topsheetCharacter,
-      ttrTarget: synergies.ttrTarget,
-    })
+    .select(SETUP_ROW_SELECT)
     .from(synergies)
     .innerJoin(blades, eq(synergies.bladeId, blades.id))
     .innerJoin(rubbers, eq(synergies.rubberId, rubbers.id))
     .where(and(...conditions))
     .orderBy(desc(orderCol))
-    .limit(100);
+    .limit(120);
 
   // Zusätzliche Filter nach Problem-Schwellwerten
   const filtered = (rows as SetupRow[]).filter((r) => {
@@ -1169,6 +1249,7 @@ export async function POST(req: NextRequest) {
               play_style: string;
               rubber_type?: string;
               prefer_known_brands?: boolean;
+              budget_max_eur?: number;
               max_results?: number;
             };
             toolResult = await runQuerySetups(
@@ -1178,6 +1259,7 @@ export async function POST(req: NextRequest) {
               inp.prefer_known_brands ?? true,
               inp.max_results ?? 3,
               lang,
+              inp.budget_max_eur,
             );
           } else if (toolBlock.name === "get_product_details") {
             const inp = toolBlock.input as { product_type: "blade" | "rubber"; product_name: string };
