@@ -549,6 +549,7 @@ interface SetupRow {
   rubberTopsheet: string | null;
   rubberPriceEur: string | null;
   rubberReviewCount: number | null;
+  rubberIsCurated: boolean | null;
   ttrTarget: number;
 }
 
@@ -667,7 +668,7 @@ function rowsToText(rows: SetupRow[], ttr: number, styleName: string, lang: "de"
 
     return [
       `${i + 1}. Holz: ${r.bladeName} [${formatPopularity(r.bladeReviewCount, r.bladeIsCurated)}]${bladeInfo ? ` (${bladeInfo})` : ""}`,
-      `   Belag: ${r.rubberName} [${formatPopularity(r.rubberReviewCount)}]${rubberInfo ? ` (${rubberInfo})` : ""}`,
+      `   Belag: ${r.rubberName} [${formatPopularity(r.rubberReviewCount, r.rubberIsCurated)}]${rubberInfo ? ` (${rubberInfo})` : ""}`,
       totalLine,
       `   Synergie: ${r.synergyScore}/100 | Tempo: ${r.tempoMatch ?? "-"} | Kontrolle: ${r.controlReserve ?? "-"} | Spin: ${r.spinPotential ?? "-"}`,
     ].join("\n");
@@ -702,6 +703,7 @@ const SETUP_ROW_SELECT = {
   rubberTopsheet: rubbers.topsheetCharacter,
   rubberPriceEur: rubbers.priceEur,
   rubberReviewCount: rubbers.communityReviewCount,
+  rubberIsCurated: rubbers.isManuallyCurated,
   ttrTarget: synergies.ttrTarget,
 } as const;
 
@@ -713,6 +715,12 @@ const MIN_REVIEW_COUNT = 10;
 const bladeAvailabilityFilter = or(
   gte(blades.communityReviewCount, MIN_REVIEW_COUNT),
   eq(blades.isManuallyCurated, true),
+);
+
+/** Belag-Filter: identisches Konzept. */
+const rubberAvailabilityFilter = or(
+  gte(rubbers.communityReviewCount, MIN_REVIEW_COUNT),
+  eq(rubbers.isManuallyCurated, true),
 );
 
 /** Setup-Preis (Holz + Belag). null wenn ein Preis fehlt. */
@@ -810,7 +818,7 @@ async function runQuerySetups(
         eq(synergies.playStyleTarget, validStyle),
         eq(rubbers.type, "smooth"),
         bladeAvailabilityFilter,
-        gte(rubbers.communityReviewCount, MIN_REVIEW_COUNT),
+        rubberAvailabilityFilter,
       ),
     )
     .orderBy(desc(scoreColumn))
@@ -833,7 +841,7 @@ async function runQuerySetups(
           lte(synergies.ttrTarget, clamped + 300),
           eq(rubbers.type, "smooth"),
           bladeAvailabilityFilter,
-          gte(rubbers.communityReviewCount, MIN_REVIEW_COUNT),
+          rubberAvailabilityFilter,
         ),
       )
       .orderBy(desc(synergies.scoreAllround))
@@ -884,7 +892,7 @@ async function runMaterialQuery(
         eq(synergies.playStyleTarget, "material"),
         rubberTypeFilter,
         bladeAvailabilityFilter,
-        gte(rubbers.communityReviewCount, MIN_REVIEW_COUNT),
+        rubberAvailabilityFilter,
       ),
     )
     .orderBy(desc(synergies.scoreMaterial))
@@ -978,6 +986,7 @@ async function runGetProductDetails(
       ttrMin: rubbers.ttrMin,
       ttrMax: rubbers.ttrMax,
       priceEur: rubbers.priceEur,
+      isManuallyCurated: rubbers.isManuallyCurated,
       description: rubbers.description,
       communityDescription: rubbers.communityDescription,
     })
@@ -999,7 +1008,7 @@ async function runGetProductDetails(
   return [
     `Belag: ${r.name} (${typeLabel})`,
     `Härte: ${hardness} | Topsheet: ${topsheet}`,
-    `Speed: ${r.communitySpeed ?? "k.A."} | Spin: ${r.communitySpin ?? "k.A."} | Kontrolle: ${r.communityControl ?? "k.A."} (${r.communityReviewCount ?? 0} Reviews) [${formatPopularity(r.communityReviewCount)}]`,
+    `Speed: ${r.communitySpeed ?? "k.A."} | Spin: ${r.communitySpin ?? "k.A."} | Kontrolle: ${r.communityControl ?? "k.A."} (${r.communityReviewCount ?? 0} Reviews) [${formatPopularity(r.communityReviewCount, r.isManuallyCurated)}]`,
     `PREIS: ${formatPrice(r.priceEur)}`,
     r.description ? `\nHersteller-Info: ${r.description.substring(0, 400)}` : "",
     r.communityDescription ? `\nSpieler-Fazit: ${r.communityDescription.substring(0, 300)}` : "",
@@ -1219,7 +1228,7 @@ async function runQueryByProblem(
     eq(synergies.playStyleTarget, validStyle),
     eq(rubbers.type, "smooth"),
     bladeAvailabilityFilter,
-    gte(rubbers.communityReviewCount, MIN_REVIEW_COUNT),
+    rubberAvailabilityFilter,
   ];
 
   const rows = await db

@@ -188,6 +188,8 @@ export const rubbers = pgTable(
     imageUrl: varchar("image_url", { length: 500 }),
     sourceUrl: varchar("source_url", { length: 500 }),
     priceEur: numeric("price_eur", { precision: 6, scale: 2 }), // UVP DE-Markt
+    /** True wenn manuell von uns ergänzt (DE-Klassiker die in Quell-Daten fehlten). */
+    isManuallyCurated: boolean("is_manually_curated").default(false).notNull(),
     isActive: boolean("is_active").default(true).notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
