@@ -1,0 +1,1142 @@
+[
+  {
+    "_meta": {
+      "marke": "JOOLA",
+      "anzahl": 39,
+      "scraped_at": "2026-05-16T19:30:00Z",
+      "primary_source": "https://www.joola.de",
+      "notes": "JOOLA-Skala 1-10 fuer Hoelzer, 1-100 fuer Belaege. Hauptbelag-Linien aktuell: Rhyzen, Tronix, Dynaryz, Trinity Hugo Calderano. Dynaryz CMD ist Hybrid (chinesisches Topsheet + europaeischer Tensor-Schwamm). Verfuegbarkeit primaer ueber tischtennis.biz verifiziert; tt-shop.de und contra-sport.de konnten teilweise nicht direkt gefetcht werden. Aeltere Linien (Rhyzer, Maxxx, Rhyzm, Aruna, Energon, Wing) erscheinen 2026 nicht mehr in den DE-Shop-Sortimenten und wurden ausgeschlossen. Andro-Produkte ausgeschlossen (eigenstaendige Marke)."
+    }
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola Hugo Calderano KL-c Inner",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 93,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "5+2: Limba, Ayous, KL-c, Ayous, KL-c, Ayous, Limba",
+      "layers": 7,
+      "weightAvgGrams": 85,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Aramid"
+    },
+    "rubber": null,
+    "uvpEur": 119.90,
+    "imageUrl": null,
+    "descriptionDe": "OFF-Holz mit innerer Aramid-Carbon-Technologie (KL-c). 7-lagiger Aufbau (Limba/Ayous/KL-c) fuer spinorientiertes Offensivspiel mit medium-weichem Anschlag und vergroessertem Sweetspot.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-hugo-calderano-kl-c-inner.html",
+      "https://joola.de/en/products/joola-blade-hugo-calderano-kl-c-inner"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola Hugo Calderano AW-7",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 92,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "7-Schicht Allwood",
+      "layers": 7,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 79.90,
+    "imageUrl": null,
+    "descriptionDe": "7-schichtiges OFF-Vollholz mit weichem Anschlag. Setzt auf Spinkontrolle und Praezision statt purem Tempo; geeignet fuer technisch orientierte Offensivspieler.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-hugo-calderano-aw-7.html"
+    ],
+    "confidence": "medium",
+    "issues": "Gewicht nicht belegt"
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola Proline ONE",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 94,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "Inner Carbon mit Hinoki-Aussenfurnier",
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": 119.90,
+    "imageUrl": null,
+    "descriptionDe": "OFF-Holz mit Inner-Carbon-Aufbau und Hinoki-Aussenfurnier. Liefert ein direktes, spinorientiertes Offensivspiel mit hohem Ballgefuehl.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-proline-one.html"
+    ],
+    "confidence": "medium",
+    "issues": "Lagenzahl und Gewicht nicht belegt"
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola Proline OAC",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 97,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "Outer Aramid-Carbon",
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 129.90,
+    "imageUrl": null,
+    "descriptionDe": "Offensives Carbon-Tischtennisholz mit aeusserer Aramid-Carbon-Lage. Direktes, schnelles Anschlagsgefuehl bei hoher Praezision.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-proline-oac.html"
+    ],
+    "confidence": "medium",
+    "issues": "Lagenzahl und Gewicht nicht belegt"
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola Proline AW5",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": 88,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "5-Schicht Allwood",
+      "layers": 5,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 99.90,
+    "imageUrl": null,
+    "descriptionDe": "5-lagiges ALL+ Holz fuer variable Spielstile mit hoher Kontrolle und fehlerverzeihendem Topspin.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-proline-aw5.html"
+    ],
+    "confidence": "medium",
+    "issues": "Gewicht nicht belegt"
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola Tezzo Warrior",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 97,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "Allwood mit Carbon-Einlage",
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "inner",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 99.90,
+    "imageUrl": null,
+    "descriptionDe": "Weiches Offensivholz mit Carbon-Einlage; kombiniert hohes Tempo mit gefuehlvollem Anschlag.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-tezzo-warrior.html"
+    ],
+    "confidence": "medium",
+    "issues": "Carbon-Typ und Lagenzahl unklar"
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola Tezzo Paladin",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 89,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "Inner Carbon",
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 59.90,
+    "imageUrl": null,
+    "descriptionDe": "Gefuehlvolles Inner-Carbon-Holz im OFF- Bereich, kombiniert Kontrolle und Spinpotential bei moderatem Tempo.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-holz-tezzo-paladin.html"
+    ],
+    "confidence": "medium",
+    "issues": "Carbon-Typ unklar"
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola Tezzo Guardian",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 98,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "Vollholz",
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 59.90,
+    "imageUrl": null,
+    "descriptionDe": "Schnelles, gefuehlvolles Vollholz im OFF Bereich; kontrollierter Offensivanschlag ohne Faserverstaerkung.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-holz-tezzo-guardian.html"
+    ],
+    "confidence": "medium",
+    "issues": "Lagenzahl nicht belegt"
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola BASEline ALL",
+    "category": "ALL",
+    "blade": {
+      "speedRaw": 83,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "Allwood, leicht",
+      "layers": 5,
+      "weightAvgGrams": null,
+      "stiffness": "soft",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 34.90,
+    "imageUrl": null,
+    "descriptionDe": "Leichtes Allroundholz mit viel Kontrolle und hoher Fehlertoleranz, geeignet fuer Einsteiger und Allroundspieler.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-baseline-all.html"
+    ],
+    "confidence": "medium",
+    "issues": "Gewicht nicht belegt, Lagenzahl angenommen"
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola BASEline OFF",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 95,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "5-Schicht mit Koto-Aussenfurnier",
+      "layers": 5,
+      "weightAvgGrams": 83,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 39.90,
+    "imageUrl": null,
+    "descriptionDe": "Leichtes Offensivholz mit Koto-Aussenfurnier (83 g). Schnelle Reaktion, hohes Tempo und praezises Ballgefuehl.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-baseline-off.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola Vyzaryz Freeze",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 98,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "5+2: Limba-Aussenfurnier mit ARY-c Synthetikfaserlagen",
+      "layers": 7,
+      "weightAvgGrams": null,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 189.90,
+    "imageUrl": null,
+    "descriptionDe": "Premium-Offensivholz mit ARY-c (Aramid-Carbon) unter Limba-Furnier. Cold-Cured-Verarbeitung fuer dynamisches Topspinspiel mit sensiblem Anschlag.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-vyzaryz-freeze.html",
+      "https://joola.de/de-eu/products/joola-holz-vyzaryz-freeze"
+    ],
+    "confidence": "medium",
+    "issues": "Gewicht nicht belegt"
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola Nobilis PBO-C",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "5+2: Hinoki Aussen, Kiri Kern, PBO-Carbon-Fasern",
+      "layers": 7,
+      "weightAvgGrams": null,
+      "stiffness": "soft",
+      "carbonPosition": "outer",
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": 189.00,
+    "imageUrl": null,
+    "descriptionDe": "Holz mit dickem Hinoki-Aussenfurnier und PBO-Carbon-Faserlage am Kiri-Kern. Hoher Katapulteffekt mit weichem Anschlag, lange Ballverweilzeit.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-nobilis-pbo-c.html",
+      "https://joola.de/en/products/joola-holz-nobilis-pbo-c"
+    ],
+    "confidence": "medium",
+    "issues": "Speed/Control-Werte nicht numerisch belegt"
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola Zelebro PBO-C",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "7-Lagen: Limba-Aussen, Koto, Kiri, PBO-Carbon-Lagen",
+      "layers": 7,
+      "weightAvgGrams": null,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 149.00,
+    "imageUrl": null,
+    "descriptionDe": "Siebenlagiges Holz mit PBO-Carbon-Gewebe unter Limba-Aussenfurnier. Direkte, explosive Kraftentfaltung bei vergroessertem Sweetspot.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-zelebro-pbo-c.html"
+    ],
+    "confidence": "medium",
+    "issues": "Gewicht nicht belegt"
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola Falcon Medium",
+    "category": "ALL",
+    "blade": {
+      "speedRaw": 85,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "Allwood 5-Schicht",
+      "layers": 5,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 29.90,
+    "imageUrl": null,
+    "descriptionDe": "Variables Allround-Tischtennisholz, 5 Lagen, klassische Allround-Charakteristik fuer Vereinsspieler und Einsteiger.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-falcon-medium.html"
+    ],
+    "confidence": "medium",
+    "issues": "Gewicht nicht belegt"
+  },
+  {
+    "type": "blade",
+    "brand": "JOOLA",
+    "name": "Joola Carbon",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 91,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "Carbon-Verbundholz",
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 37.90,
+    "imageUrl": null,
+    "descriptionDe": "Kontrolliertes Carbon-Tischtennisholz im OFF- Bereich. Klassiker im Einstiegs-Carbon-Segment.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennishoelzer/joola-carbon.html"
+    ],
+    "confidence": "low",
+    "issues": "Lagen, Gewicht, Carbon-Typ nicht belegt"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Dynaryz AGR",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 100,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": 50,
+      "hardnessMax": 50,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 62.90,
+    "imageUrl": null,
+    "descriptionDe": "Hochleistungsbelag mit Hyper-Bounce-Schwamm (50 Grad) und Advanced-Traction-Topsheet. Aggressiver Spin und hohes Tempo fuer den OFF-Bereich.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-dynaryz-agr.html",
+      "https://joola.de/en/products/joola-rubber-dynaryz-agr"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Dynaryz ACC",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 98,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": 47.5,
+      "hardnessMax": 47.5,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 62.90,
+    "imageUrl": null,
+    "descriptionDe": "Mittelharter Topspinbelag mit Advanced-Traction-Topsheet und 47,5 Grad Hyper-Bounce-Schwamm. Ausgewogene Mischung aus Tempo, Spin und Kontrolle.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-dynaryz-acc.html",
+      "https://joola.de/en/products/joola-rubber-dynaryz-acc"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Dynaryz CMD",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 96,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": 43,
+      "hardnessMax": 43,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": "orange",
+      "isHybrid": true
+    },
+    "uvpEur": 62.90,
+    "imageUrl": null,
+    "descriptionDe": "Hybrid-Belag der Dynaryz-Linie: chinesisches Topsheet kombiniert mit weichem 43-Grad-Hyper-Bounce-Schwamm. Weicher Anschlag, gute Kontrolle und Spinpotential.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-dynaryz-cmd.html",
+      "https://joola.de/en/products/joola-rubber-dynaryz-cmd"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Dynaryz ZGR",
+    "category": "OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 100,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": 56,
+      "hardnessMax": 56,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 64.90,
+    "imageUrl": null,
+    "descriptionDe": "Belag mit klebrigem Hyper-Traction-Topsheet und sehr hartem 56-Grad-Hyper-Bounce-Schwamm. China-aehnliche Charakteristik mit direktem Anschlag.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-dynaryz-zgr.html",
+      "https://joola.de/en/products/joola-rubber-dynaryz-zgr"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Dynaryz ZGX",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 100,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 64.90,
+    "imageUrl": null,
+    "descriptionDe": "Extrem griffiger Offensivbelag der Dynaryz-Linie. Hohe Spinwerte bei direktem Anschlag fuer aggressiven Topspin.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-dynaryz-zgx.html"
+    ],
+    "confidence": "medium",
+    "issues": "Haerte nicht eindeutig belegt"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Dynaryz Inferno",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 100,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": 50,
+      "hardnessMax": 50,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 69.90,
+    "imageUrl": null,
+    "descriptionDe": "Explosiver Offensivbelag mit Kinetic-Tension-Topsheet und lilafarbenem Hyper-Bounce-Schwamm (50 Grad). Hoher Katapulteffekt fuer schnellen Topspin.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-dynaryz-inferno.html",
+      "https://joola.de/en/products/joola-rubber-dynaryz-inferno"
+    ],
+    "confidence": "high",
+    "issues": "Schwammfarbe lila/violett, nicht im Standard-Set (rot/blau/orange)"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Tronix CMD",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 94,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": 42.5,
+      "hardnessMax": 43,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 49.90,
+    "imageUrl": null,
+    "descriptionDe": "Weicher Hochleistungsbelag der Tronix-Mittelklasse mit ca. 43-Grad-Schwamm. Geeignet fuer kontrolliertes Topspinspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-tronix-cmd.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Tronix ACC",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 96,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": 47.5,
+      "hardnessMax": 47.5,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 49.90,
+    "imageUrl": null,
+    "descriptionDe": "Mittelharter Topspinbelag der Tronix-Linie mit 47,5-Grad-GigaCell-Schwamm. Ausgewogene Performance fuer Vereinsspieler.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-tronix-acc.html",
+      "https://joola.de/en/products/joola-rubber-tronix-acc"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Tronix ZGR",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 98,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": 55,
+      "hardnessMax": 56,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 49.90,
+    "imageUrl": null,
+    "descriptionDe": "Extrem griffiger Topspinbelag mit hartem Balance-Schwamm (ca. 55 Grad). Direkter Anschlag mit hoher Spinkapazitaet.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-tronix-zgr.html"
+    ],
+    "confidence": "medium",
+    "issues": "Haerte je nach Quelle 55-56 Grad"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Rhyzen Ice",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 91,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": 42,
+      "hardnessMax": 42,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 39.90,
+    "imageUrl": null,
+    "descriptionDe": "Kontrollbelag mit weichem 42-Grad-Momentum-Schwamm und Enhanced-Traction-Oberflaeche. Gut beherrschbarer Allround-Topspinbelag.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-rhyzen-ice.html",
+      "https://joola.de/en/products/joola-rubber-rhyzen-ice"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Rhyzen Fire",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 95,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": 47,
+      "hardnessMax": 47,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 39.90,
+    "imageUrl": null,
+    "descriptionDe": "Direkter Offensivbelag mit mittlerem Momentum-Schwamm. Hohe Flugkurve fuer Topspin- und Looppspiel, mit Sweetzone-Geometrie.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-rhyzen-fire.html"
+    ],
+    "confidence": "medium",
+    "issues": "Genaue Haerte (Medium+) nicht in Grad belegt"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Rhyzen CMD",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 94,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": 42,
+      "hardnessMax": 43,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 39.90,
+    "imageUrl": null,
+    "descriptionDe": "Medium-softer Offensivbelag der Rhyzen-Linie. Ausgewogene Mischung aus Spin, Tempo und Kontrolle mit weichem Schwamm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-rhyzen-cmd.html"
+    ],
+    "confidence": "medium",
+    "issues": "Haerte aus Linien-Logik abgeleitet, nicht exakt belegt"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Rhyzen ZGR",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 97,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": 50,
+      "hardnessMax": 52,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 54.90,
+    "imageUrl": null,
+    "descriptionDe": "Harter, direkter Spinbelag mit Hyper-Traction-Topsheet und hartem Balance-Schwamm. Fuer offensive Spieler mit aggressivem Schlag.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-rhyzen-zgr.html"
+    ],
+    "confidence": "medium",
+    "issues": "Genaue Haerte nicht exakt belegt"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Golden Tango PS",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": true
+    },
+    "uvpEur": 46.90,
+    "imageUrl": null,
+    "descriptionDe": "Klebriger, harter Topspinbelag mit hartem Power-Schwamm. Klassische Hybrid-Charakteristik fuer Spinspieler.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-golden-tango-ps.html"
+    ],
+    "confidence": "low",
+    "issues": "Speed/Spin/Control-Werte nicht numerisch belegt; Haerte unklar"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Trinity Hugo Calderano Dynamic",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 98,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 75.90,
+    "imageUrl": null,
+    "descriptionDe": "Offensiver Highend-Belag mit starkem Katapulteffekt, hohem Spinpotential und schnellem Anschlag, abgestimmt auf modernes Topspinspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-trinity-hugo-calderano-dynamic.html"
+    ],
+    "confidence": "medium",
+    "issues": "Haerte nicht in Grad belegt"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Trinity Hugo Calderano Charged",
+    "category": "OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 100,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 75.90,
+    "imageUrl": null,
+    "descriptionDe": "Harter, schneller Offensivbelag mit direktem Spielgefuehl und hoher Endgeschwindigkeit. Fuer aggressive Angriffsspieler.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-trinity-hugo-calderano-charged.html"
+    ],
+    "confidence": "medium",
+    "issues": "Haerte nicht in Grad belegt"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Samba",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 34.90,
+    "imageUrl": null,
+    "descriptionDe": "Klassischer JOOLA-Allroundbelag fuer Einsteiger und Hobbyspieler. Gute Kontrolle und fehlerverzeihende Charakteristik.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-samba.html"
+    ],
+    "confidence": "low",
+    "issues": "Speed/Spin/Control/Haerte nicht numerisch belegt"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Micron",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 84,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 29.90,
+    "imageUrl": null,
+    "descriptionDe": "Ausgewogener Allroundbelag mit feinporigem lilafarbenem Schwamm und griffigem Topsheet. Hohe Kontrollwerte, geeignet fuer Einsteiger und Fortgeschrittene.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-micron.html",
+      "https://joola.de/en/products/joola-rubber-micron"
+    ],
+    "confidence": "medium",
+    "issues": "Haerte nicht in Grad belegt; Schwammfarbe lila (nicht im Standard-Set)"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Vizon",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 79,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 22.90,
+    "imageUrl": null,
+    "descriptionDe": "Einsteigerbelag mit feinporigem Schwamm. Hervorragende Daempfungseigenschaften und hohe Kontrolle.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-vizon.html",
+      "https://joola.de/en/products/joola-vizon-rubber"
+    ],
+    "confidence": "medium",
+    "issues": "Haerte nicht in Grad belegt"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Zack",
+    "category": "ALL+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 89,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 32.90,
+    "imageUrl": null,
+    "descriptionDe": "Klassischer Belag aus deutscher Produktion mit gutem Kontrollwert und Platzierungsgenauigkeit. Geringer Katapulteffekt.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-zack.html"
+    ],
+    "confidence": "low",
+    "issues": "Haerte nicht belegt"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Axxess",
+    "category": "ALL+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 89,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 24.90,
+    "imageUrl": null,
+    "descriptionDe": "Griffiger Einsteigerbelag der ALL+ Kategorie mit gutem Spinpotential bei moderatem Tempo.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-axxess.html"
+    ],
+    "confidence": "low",
+    "issues": "Haerte und Detailspecs nicht belegt"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Express Ultra",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 46.90,
+    "imageUrl": null,
+    "descriptionDe": "Kurze Noppe fuer Offensivspieler mit BalanceSponge und Tensoreffekt. Hohes Spin- und Tempopotential bei kurzen Schlaegen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-express-ultra.html",
+      "https://joola.de/en/products/joola-rubber-express-ultra"
+    ],
+    "confidence": "medium",
+    "issues": "Haerte nicht in Grad belegt"
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola Tango Ultra",
+    "category": "ALL+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": 37.5,
+      "hardnessMax": 37.5,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 45.90,
+    "imageUrl": null,
+    "descriptionDe": "Direkter Kurznoppenbelag mit weichem 37,5-Grad-Balance-Schwamm und Tensoreffekt. Allround orientiertes Profil mit guter Spin-Variation.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola/tischtennisbelaege/joola-tango-ultra.html",
+      "https://joola.de/en/products/joola-rubber-tango-ultra"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "JOOLA",
+    "name": "Joola CWX",
+    "category": "DEF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 72,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": 50,
+      "hardnessMax": 50,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 49.90,
+    "imageUrl": null,
+    "descriptionDe": "Lange Noppe fuer modernes Defensivspiel, entwickelt mit Chen Weixing. Hartes 50-Grad-Momentum-Schwamm; verfuegbar als OX, 0,5 und 0,9 mm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/joola-tischtennisbelaege/joola-cwx.html",
+      "https://joola.de/en/products/joola-rubber-cwx"
+    ],
+    "confidence": "high",
+    "issues": null
+  }
+]

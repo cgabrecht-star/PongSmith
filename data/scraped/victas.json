@@ -1,0 +1,2009 @@
+[
+  {
+    "_meta": {
+      "marke": "Victas",
+      "anzahl": 62,
+      "scraped_at": "2026-05-16T14:30:00Z",
+      "primary_source": "https://www.victas-shop.de",
+      "notes": "Victas ist Nachfolger der Marke TSP (Umbenennung Feb 2021). Viele Hölzer und Beläge wurden aus dem TSP-Sortiment übernommen (z.B. Curl P-Serie, Spectol, Ventus, Balsa, Hino-Carbon). victas-shop.de ist clientseitig gerendert (kein direkter Scrape möglich), daher Cross-Check über tt-shop.de, tt-shop.com, Schöler & Micke, Megaspin, Revspin und Tabletennis11. Hybrid-Klassifikation: Triple-Serie (Regular, Extra, Double Extra) hat chinesisches/grip-tacky Topsheet auf Tensor-Schwamm. V>20 Double Extra und V>22 Double Extra haben ebenfalls Hybrid-Charakteristik (chinesische Noppengeometrie auf Tensor-Schwamm)."
+    }
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Koji Matsushita Defensive",
+    "category": "DEF",
+    "blade": {
+      "speedRaw": 5,
+      "controlRaw": 10,
+      "speedScale": 10,
+      "composition": "5+0 Holz",
+      "layers": 5,
+      "weightAvgGrams": 85,
+      "stiffness": "soft",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 89.9,
+    "imageUrl": null,
+    "descriptionDe": "5-fach Allholz-Defensivholz mit Silver-Heart-Außenfurnier, das Tempo gegnerischer Angriffe absorbiert. Reduziertes Gewicht von ca. 85g. Made in Japan, handgefertigt.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://revspin.net/blade/victas-koji-matsushita-defensive.html",
+      "https://www.megaspin.net/store/default.asp?pid=victas-matsushita-def"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Koji Matsushita Offensive",
+    "category": "ALL-",
+    "blade": {
+      "speedRaw": 6.5,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "composition": "5+0 Holz",
+      "layers": 5,
+      "weightAvgGrams": 93,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 99.9,
+    "imageUrl": null,
+    "descriptionDe": "5-fach Allholz für moderne Abwehrspieler mit Angriffsoption. Härteres Mahagoni-Außenfurnier, 6.0mm Stärke, ca. 93g Gewicht.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://revspin.net/blade/victas-koji-matsushita-offensive.html",
+      "https://www.megaspin.net/store/default.asp?pid=victas-matsushita-off"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Koji Matsushita Special",
+    "category": "ALL",
+    "blade": {
+      "speedRaw": 7,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "composition": "5+0 Holz",
+      "layers": 5,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Allround-Defensivholz für variables Spiel. Ermöglicht Schupfen, Topspin und Schmettern. Made in Japan.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.com"
+    ],
+    "sources": [
+      "https://www.tt-shop.com/com_eng/victas-koji-matsushita-special.html",
+      "https://www.megaspin.net/store/product-reviews.asp?pid=victas-matsushita-special"
+    ],
+    "confidence": "medium",
+    "issues": "Preis nicht eindeutig in DE-Shops gelistet"
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Swat",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 7.5,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "composition": "7+0 Holz",
+      "layers": 7,
+      "weightAvgGrams": 85,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 79.9,
+    "imageUrl": null,
+    "descriptionDe": "7-fach Allholz mit ausgewogenem Verhältnis von Tempo und Kontrolle. 6.0mm Stärke, 158x150mm Blatt, ca. 85g.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "tischtennis.biz",
+      "contra.de"
+    ],
+    "sources": [
+      "https://www.tt-shop.de/de/victas-swat.html",
+      "https://revspin.net/blade/victas-swat.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Swat 5PW",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": 7,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "composition": "5+0 Holz",
+      "layers": 5,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 79.9,
+    "imageUrl": null,
+    "descriptionDe": "Schlankere 5-Furnier-Variante des Swat für spinorientierte Allrounder mit Fokus auf Kontrolle und Ballgefühl.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "topspeed-tt.com"
+    ],
+    "sources": [
+      "https://revspin.net/blade/victas-swat-5pw.html",
+      "https://topspeed-tt.com/hoelzer/allround/6916/victas-holz-swat-5pw"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Swat Power",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 9,
+      "controlRaw": 7,
+      "speedScale": 10,
+      "composition": "7+0 Holz",
+      "layers": 7,
+      "weightAvgGrams": null,
+      "stiffness": "stiff",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 89.9,
+    "imageUrl": null,
+    "descriptionDe": "Schnellste Variante des Swat als 7-fach Allholz. Speed/Control/Vibration: 9/7/7. Made in China.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://revspin.net/blade/victas-swat-power.html",
+      "https://www.megaspin.net/articles/1592/victas-swat-power"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Swat Spin",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 7.5,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "composition": "7+0 Holz",
+      "layers": 7,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 79.9,
+    "imageUrl": null,
+    "descriptionDe": "Spin-optimierte Variante des Swat als 7-fach Allholz für variables Offensivspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.tt-shop.de/de/tischtennis-belaege/victas-belaege/victas-swat-spin.html",
+      "https://www.tt-shop.com/com_eng/victas-swat-spin.html"
+    ],
+    "confidence": "medium",
+    "issues": "Klassifikation als Holz - im Sortiment teilweise als Swat-Spin Schlägerset verfügbar"
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Swat Carbon",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 9,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "composition": "5+2 Carbon",
+      "layers": 7,
+      "weightAvgGrams": 85,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 99.9,
+    "imageUrl": null,
+    "descriptionDe": "5+2 Holz mit zwei Lagen Fleece-Carbon im Außenbereich. 6.0mm Stärke, 158x150mm Blatt, ca. 85g.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "tischtennis.biz"
+    ],
+    "sources": [
+      "https://revspin.net/blade/victas-swat-carbon.html",
+      "https://www.victas.com/en_gb/products/blade/offensive-shake/swat/swat-carbon"
+    ],
+    "confidence": "high",
+    "issues": "Fleece-Carbon ist kein ALC im klassischen Sinn, aber funktional vergleichbar"
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Quartet AFC",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 8.5,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "composition": "5+4 Carbon",
+      "layers": 9,
+      "weightAvgGrams": 91,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Aramid"
+    },
+    "rubber": null,
+    "uvpEur": 169.9,
+    "imageUrl": null,
+    "descriptionDe": "5 Lagen Holz + 2 Lagen Aramid-Carbon (innen) + 2 Lagen Fleece-Carbon (außen). DSE-Technologie, 91g.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schoeler-micke.de",
+      "contra.de"
+    ],
+    "sources": [
+      "https://revspin.net/blade/victas-quartet-afc.html",
+      "https://www.megaspin.net/store/default.asp?pid=victas-quartet-afc"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Quartet VFC",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 9.5,
+      "controlRaw": 7.5,
+      "speedScale": 10,
+      "composition": "5+2 Carbon",
+      "layers": 7,
+      "weightAvgGrams": 88,
+      "stiffness": "very_stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "ZLC"
+    },
+    "rubber": null,
+    "uvpEur": 169.9,
+    "imageUrl": null,
+    "descriptionDe": "5 Lagen Holz + 2 Lagen V-Carbon (Vectran-Carbon). Sehr hartes Konterholz mit hoher Stabilität, ca. 88g.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "revspin.net (Listung)"
+    ],
+    "sources": [
+      "https://revspin.net/blade/victas-quartet-vfc.html",
+      "https://tabletennis-reference.com/racket/detail/146"
+    ],
+    "confidence": "medium",
+    "issues": "V-Carbon ist Vectran-Carbon; Einordnung als ZLC-ähnlich (sehr direkt)"
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Quartet LFC",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 9,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "composition": "5+2 Carbon",
+      "layers": 7,
+      "weightAvgGrams": 86,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 169.9,
+    "imageUrl": null,
+    "descriptionDe": "Leichtere Carbon-Variante der Quartet-Serie für Beidhand-Topspin-Spieler, ca. 86g.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://tabletennis-reference.com/racket/detail/289",
+      "https://tt-training.de/victas-holz-fuer-kontrollierte-offensive-victas-quartet-lfc/"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Quartet SFC",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 8.5,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "composition": "5+2 Carbon",
+      "layers": 7,
+      "weightAvgGrams": 92,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 129.9,
+    "imageUrl": null,
+    "descriptionDe": "5 Lagen Holz mit Silver-Carbon im Kern und weicherem Fleece-Carbon außen. Fokus auf Stabilität und Ballhalten, ca. 92g.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "funandbike.at"
+    ],
+    "sources": [
+      "https://tabletennis-reference.com/racket/detail/290",
+      "https://revspin.net/blade/victas-quartet-sfc.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Fire Fall AC",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 9.5,
+      "controlRaw": 7,
+      "speedScale": 10,
+      "composition": "5+2 Carbon",
+      "layers": 7,
+      "weightAvgGrams": null,
+      "stiffness": "very_stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "Aramid"
+    },
+    "rubber": null,
+    "uvpEur": 149.9,
+    "imageUrl": null,
+    "descriptionDe": "Schnellstes Holz der Fire-Fall-Serie mit Aramid-Carbon, großer Sweet-Spot, hoher Tempo-Output.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://revspin.net/blade/victas-fire-fall-ac.html",
+      "https://tabletennis-reference.com/racket/detail/199"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Fire Fall VC",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 9,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "composition": "5+2 Carbon",
+      "layers": 7,
+      "weightAvgGrams": null,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "ZLC"
+    },
+    "rubber": null,
+    "uvpEur": 149.9,
+    "imageUrl": null,
+    "descriptionDe": "Fire Fall mit Vectran-Carbon. Hartes Holz mit sauberem Feedback im Topspin- und Konterspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://revspin.net/blade/victas-fire-fall-vc.html",
+      "https://ttgearlab.com/2024/12/02/victas-fire-fall-vc-fire-fall-lc-lab-test-report/comment-page-1/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Fire Fall LC",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 8.5,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "composition": "5+2 Carbon",
+      "layers": 7,
+      "weightAvgGrams": 85,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 149.9,
+    "imageUrl": null,
+    "descriptionDe": "Fire Fall mit Line-Carbon (unidirektional). Leichtes Carbon-Holz mit ca. 85g.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://revspin.net/blade/victas-fire-fall-lc.html",
+      "https://ttgearlab.com/2024/07/16/victas-fire-fall-lc-photos-information/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Fire Fall FC",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 7.5,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "composition": "5+2 Carbon",
+      "layers": 7,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "inner",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 139.9,
+    "imageUrl": null,
+    "descriptionDe": "Fire Fall mit Fleece-Carbon direkt am Kern. Weichste und kontrollierteste Variante der Fire-Fall-Serie.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.megaspin.net/store/default.asp?pid=victas-fire-fall-fc",
+      "https://ttgearlab.com/2026/04/22/victas-fire-fall-fc-photos-information/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "ZX-Gear Out",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 9.5,
+      "controlRaw": 7.5,
+      "speedScale": 10,
+      "composition": "5+2 Carbon",
+      "layers": 7,
+      "weightAvgGrams": 89,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "ZLC"
+    },
+    "rubber": null,
+    "uvpEur": 199.9,
+    "imageUrl": null,
+    "descriptionDe": "5+2 Holz mit Zexion-Carbon (Z-Carb) direkt unter dem Außenfurnier. 5.9mm Stärke, ca. 89g. Made in Japan.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "ttmode.com"
+    ],
+    "sources": [
+      "https://www.tt-shop.com/com_eng/victas-zx-gear-out.html",
+      "https://ttgearlab.com/2024/01/03/victas-zx-gear-out-zx-gear-in-lab-test-report/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "ZX-Gear In",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 9,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "composition": "5+2 Carbon",
+      "layers": 7,
+      "weightAvgGrams": null,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "ZLC"
+    },
+    "rubber": null,
+    "uvpEur": 199.9,
+    "imageUrl": null,
+    "descriptionDe": "5+2 Holz mit Zexion-Carbon (Z-Carb) im inneren Bereich. Limba/Ayous-Aufbau, 5.9mm. Made in Japan.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "megaspin.net"
+    ],
+    "sources": [
+      "https://www.megaspin.net/store/default.asp?pid=victas-zx-gear-in",
+      "https://ttgearlab.com/2023/12/05/victas-zx-gear-in-photos-information/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "ZX-Gear Fiber",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 8,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "composition": "5+2 Fiber",
+      "layers": 7,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "inner",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 179.9,
+    "imageUrl": null,
+    "descriptionDe": "5+2 Inner-Fiber-Holz mit reiner Zexion-Faser (ohne Carbon). Weicher als ZX-Gear In, Allholz-naher Charakter.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://ttgearlab.com/2024/05/07/victas-zx-gear-fiber-photos-information/",
+      "https://revspin.net/blade/victas-zx-gear-fiber.html"
+    ],
+    "confidence": "medium",
+    "issues": "specialMaterial null gesetzt - Zexion-Faser ohne Carbon ist keine Standard-Kategorie"
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Koki Niwa Wood",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 9,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "composition": "7+0 Holz",
+      "layers": 7,
+      "weightAvgGrams": 90,
+      "stiffness": "stiff",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 139.9,
+    "imageUrl": null,
+    "descriptionDe": "7-fach Allholz, 6.5mm Stärke, 157x150mm Blatt, ca. 90g. Entwickelt mit Koki Niwa für tisch-nahes Power-Spiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "tabletennis11.com"
+    ],
+    "sources": [
+      "https://www.tabletennis11.com/other_eng/victas-koki-niwa-wood-new",
+      "https://revspin.net/blade/victas-koki-niwa.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Benedikt Duda AFC",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 9,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "composition": "5+4 Carbon",
+      "layers": 9,
+      "weightAvgGrams": 91,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Aramid"
+    },
+    "rubber": null,
+    "uvpEur": 199.9,
+    "imageUrl": null,
+    "descriptionDe": "5 Lagen Holz + 2 Lagen Aramid-Carbon + 2 Lagen Fleece-Carbon. 5.5mm, 157x150mm, ca. 91g. DSE-Technologie.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schoeler-micke.de",
+      "contra.de"
+    ],
+    "sources": [
+      "https://revspin.net/blade/victas-benedikt-duda-afc.html",
+      "https://www.schoeler-micke.de/hoelzer/spielertyp/offensiv/2542/victas-holz-benedikt-duda-afc"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Hino-Carbon Power",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 9.5,
+      "controlRaw": 7.5,
+      "speedScale": 10,
+      "composition": "3+2 Carbon",
+      "layers": 5,
+      "weightAvgGrams": 85,
+      "stiffness": "very_stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": 119.9,
+    "imageUrl": null,
+    "descriptionDe": "3 Lagen Hinoki + 2 Lagen Carbon, 7.0mm Stärke, ca. 85g. Japanisches Penholder-Holz.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "topspeed-tt.com",
+      "tischtennis.biz"
+    ],
+    "sources": [
+      "https://revspin.net/blade/victas-hino-carbon-power.html",
+      "https://www.schoeler-micke.de/hoelzer/spielertyp/offensiv/1635/victas-holz-hino-carbon-power"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Dynawood",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": 7,
+      "controlRaw": 9.5,
+      "speedScale": 10,
+      "composition": "5+0 Holz",
+      "layers": 5,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 99.9,
+    "imageUrl": null,
+    "descriptionDe": "5-fach Allholz, handgefertigt in Japan. Kontrolliert-dynamischer Charakter mit hohem Ballgefühl.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.tt-shop.de/de/victas-dynawood.html",
+      "https://revspin.net/blade/victas-dynawood.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Dyna Carbon",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 8,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "composition": "5+2 Carbon",
+      "layers": 7,
+      "weightAvgGrams": 85,
+      "stiffness": "medium",
+      "carbonPosition": "outer",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 119.9,
+    "imageUrl": null,
+    "descriptionDe": "5+2 Holz mit Fleece-Carbon. 6.1mm Stärke, 155x146mm Blatt, ca. 85g. Karton-Übergangsholz von Allholz zu Carbon.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "dandoy-sports.com"
+    ],
+    "sources": [
+      "https://www.victas.com/en_gb/products/detail.html?id=116",
+      "https://revspin.net/blade/victas-dyna-carbon.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Balsa 5.5",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": 7.5,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "composition": "Balsa-Kern + Furniere",
+      "layers": 5,
+      "weightAvgGrams": null,
+      "stiffness": "soft",
+      "carbonPosition": "none",
+      "specialMaterial": "Balsa"
+    },
+    "rubber": null,
+    "uvpEur": 64.9,
+    "imageUrl": null,
+    "descriptionDe": "Balsa-Kern-Holz mit 5.5mm Balsa für kontrollierte Offensive.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.tt-shop.de/de/tischtennis-hoelzer/victas-hoelzer/victas-balsa-5-5.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Balsa 8.5",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 9.5,
+      "controlRaw": 7,
+      "speedScale": 10,
+      "composition": "Balsa-Kern + Glasfaser",
+      "layers": 5,
+      "weightAvgGrams": null,
+      "stiffness": "stiff",
+      "carbonPosition": "none",
+      "specialMaterial": "Balsa"
+    },
+    "rubber": null,
+    "uvpEur": 79.9,
+    "imageUrl": null,
+    "descriptionDe": "Sehr schnelles Balsa-Kern-Holz mit Fiberglas-Furnieren für aggressives Angriffsspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.tt-shop.de/de/tischtennis-hoelzer/victas-hoelzer/victas-balsa-8-5.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Balsa 2.5",
+    "category": "ALL-",
+    "blade": {
+      "speedRaw": 5.5,
+      "controlRaw": 9.5,
+      "speedScale": 10,
+      "composition": "Balsa-Kern + Furniere",
+      "layers": 5,
+      "weightAvgGrams": null,
+      "stiffness": "soft",
+      "carbonPosition": "none",
+      "specialMaterial": "Balsa"
+    },
+    "rubber": null,
+    "uvpEur": 64.9,
+    "imageUrl": null,
+    "descriptionDe": "Sehr leichtes Balsa-Holz für Allround-Spiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.tt-shop.de/de/tischtennis-hoelzer/victas-hoelzer/victas-balsa-hoelzer/victas-balsa-2-5.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Victas",
+    "name": "Black Balsa 7.0",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 9,
+      "controlRaw": 7.5,
+      "speedScale": 10,
+      "composition": "3+2 Glasfaser",
+      "layers": 5,
+      "weightAvgGrams": 82,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "Balsa"
+    },
+    "rubber": null,
+    "uvpEur": 89.9,
+    "imageUrl": null,
+    "descriptionDe": "3+2-Holz mit horizontal geschnittenem Balsa-Kern und 2 Lagen Fiberglas. 8.5mm Stärke, ca. 82g.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.tt-shop.de/de/victas-black-balsa-7-0.html",
+      "https://revspin.net/blade/tsp-black-balsa-70.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "V>01",
+    "category": "OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9.5,
+      "spinRaw": 9.5,
+      "controlRaw": 7.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 47.5,
+      "hardnessMax": 47.5,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 54.9,
+    "imageUrl": null,
+    "descriptionDe": "Harter offensiver Tensor-Belag mit 47.5° Schwamm, integrierter Speed-Glue-Effekt, offenporiger Schwamm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "tt-center.de",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://www.tt-shop.com/com_eng/victas-v-01.html",
+      "https://tt-center.de/belaege/noppen-innen/victas-v-01"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "V>01 Stiff",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9,
+      "spinRaw": 9.5,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 45,
+      "hardnessMax": 45,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 54.9,
+    "imageUrl": null,
+    "descriptionDe": "Offensiver Tensor-Belag mit 45° Schwamm. Etwas weicher als V>01 mit höherer Ballkurve.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://www.schoeler-micke.de/belaege/noppen-innen/offensiv/829/victas-belag-v-01-stiff",
+      "https://revspin.net/rubber/victas-v-01-stiff.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "V>01 Limber",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.5,
+      "spinRaw": 9,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 42.5,
+      "hardnessMax": 42.5,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 54.9,
+    "imageUrl": null,
+    "descriptionDe": "Weichere High-End-Variante des V>01 mit mittelhartem Schwamm und hoher Ballkurve.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://www.megaspin.net/store/default.asp?pid=victas-v-01-limber",
+      "https://www.schoeler-micke.de/belaege/noppen-innen/offensiv/827/victas-belag-v-01-limber"
+    ],
+    "confidence": "high",
+    "issues": "Schwammhärte 42.5° aus Victas-Hardness-Tabelle (Regular)"
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "V>11 Extra",
+    "category": "OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9.5,
+      "spinRaw": 9.5,
+      "controlRaw": 7.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 47.5,
+      "hardnessMax": 47.5,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 59.9,
+    "imageUrl": null,
+    "descriptionDe": "Leichtere Variante des V>15 Extra mit 47.5° Schwamm. Spin-optimiertes Topsheet.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-belaege/tischtennis-belag-victas-v-11-extra.html",
+      "https://tabletennisstore.us/products/victas-v-11-extra-offensive-table-tennis-rubber"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "V>15 Extra",
+    "category": "OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9.5,
+      "spinRaw": 9.5,
+      "controlRaw": 7.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 47.5,
+      "hardnessMax": 47.5,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 59.9,
+    "imageUrl": null,
+    "descriptionDe": "High-End Offensiv-Tensor mit 47.5° Schwamm. Made in Germany. 66-68g uncut.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "tabletennis11.com",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://www.tabletennis11.com/other_eng/victas-v-15-extra",
+      "https://www.tt-spin.de/victas-v-15-extra/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "V>15 Limber",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.5,
+      "spinRaw": 9,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 40,
+      "hardnessMax": 40,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 59.9,
+    "imageUrl": null,
+    "descriptionDe": "Weichste Variante der V>15-Serie mit 40° Schwamm. Hohe Kontrolle und Spin.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://www.tt-shop.com/com_eng/victas-v-15-limber-medium-sponge-for-the-controlled-offensive.html",
+      "https://www.schoeler-micke.de/belaege/noppen-innen/offensiv/835/victas-belag-v-15-limber"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "V>15 Stiff",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9,
+      "spinRaw": 9.5,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 45,
+      "hardnessMax": 45,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 59.9,
+    "imageUrl": null,
+    "descriptionDe": "Mittelharter Tensor mit 45° Schwamm. Kombiniert Power des V>15 Extra mit Spin des V>15 Limber.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schoeler-micke.de",
+      "contra.de"
+    ],
+    "sources": [
+      "https://www.schoeler-micke.de/belaege/noppen-innen/offensiv/836/victas-belag-v-15-stiff",
+      "https://www.contra.de/en/victas-rubber-v-15-stiff/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "V>20 Double Extra",
+    "category": "OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9.5,
+      "spinRaw": 10,
+      "controlRaw": 7,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 52.5,
+      "hardnessMax": 52.5,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": "orange",
+      "isHybrid": true
+    },
+    "uvpEur": 64.9,
+    "imageUrl": null,
+    "descriptionDe": "Hybrid-Belag mit chinesischer Noppengeometrie auf europäischem Tensor-Schwamm (52.5°). Kurze, dichte Noppen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "topspeed-tt.com",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://topspeed-tt.com/belaege/noppen-innen/offensive/7041/victas-belag-v-20-double-extra",
+      "https://revspin.net/rubber/victas-v--gt-20-double-extra.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "V>22 Double Extra",
+    "category": "OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9.5,
+      "spinRaw": 10,
+      "controlRaw": 7.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 50,
+      "hardnessMax": 50.3,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": "orange",
+      "isHybrid": true
+    },
+    "uvpEur": 64.9,
+    "imageUrl": null,
+    "descriptionDe": "Hybrid-Belag mit Select-Topsheet und offenporigem 50.3° Schwamm. Mitentwickelt mit Niwa und Pitchford.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "topspeed-tt.com"
+    ],
+    "sources": [
+      "https://www.tabletennis11.com/other_eng/victas-v-22-double-extra",
+      "https://www.mytischtennis.de/public/tests-service/16878/p-Neuer-VICTAS-Belag-ueberzeugt-mit-viel-Spin-und-Tempo--p/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "V>03",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.5,
+      "spinRaw": 9,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 42.5,
+      "hardnessMax": 42.5,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 49.9,
+    "imageUrl": null,
+    "descriptionDe": "Mittelharter Tensor mit 42.5° Schwamm und High-Energy-Tension-Technologie. Spinorientiert mit hoher Ballkurve.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://www.schoeler-micke.de/belaege/noppen-innen/offensiv/841/victas-belag-v-03",
+      "https://www.megaspin.net/store/default.asp?pid=victas-v-03"
+    ],
+    "confidence": "high",
+    "issues": "Laut tt-shop.com Auslaufmodell, jedoch in DE-Shops noch erhältlich"
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "VJ>07 Regular",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.5,
+      "spinRaw": 9,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 47.5,
+      "hardnessMax": 47.5,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 59.9,
+    "imageUrl": null,
+    "descriptionDe": "Made-in-Japan-Tensor mit 47.5° Schwamm. Balancierter Allround-Offensiv-Charakter.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "megaspin.net"
+    ],
+    "sources": [
+      "https://www.megaspin.net/store/default.asp?pid=victas-v-07-regular",
+      "https://www.nishohi.com/us/victas-vj-07-regular-table-tennis-rubber"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "VJ>07 Stiff",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9,
+      "spinRaw": 9.5,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 45,
+      "hardnessMax": 45,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 59.9,
+    "imageUrl": null,
+    "descriptionDe": "Mittelharter Tensor mit ca. 45° Schwamm, offenporig. Made in Japan.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "contra.de"
+    ],
+    "sources": [
+      "https://revspin.net/rubber/victas-vj--gt-07-stiff.html",
+      "https://www.contra.de/en/victas-rubber-vj-07-stiff/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "VJ>07 Limber",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.5,
+      "spinRaw": 8.5,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 40,
+      "hardnessMax": 40,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 59.9,
+    "imageUrl": null,
+    "descriptionDe": "Weichster VJ>07 mit 40° Schwamm. Elastisches Spielgefühl, Made in Japan.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.nishohi.com/us/victas-vj-07-limber-table-tennis-rubber",
+      "https://revspin.net/rubber/victas-vj--gt-07-regular.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "VS>401",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 7.5,
+      "spinRaw": 9.5,
+      "controlRaw": 9.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 57.5,
+      "hardnessMax": 57.5,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": true
+    },
+    "uvpEur": 39.9,
+    "imageUrl": null,
+    "descriptionDe": "Klebriger Belag mit High-Tension-Topsheet und hartem Schwamm. Geeignet für Allround und Defense.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://tabletennis-reviews.com/victas-vs-402-double-extra-and-vs-402-limber/",
+      "https://ooakforum.com/viewtopic.php?f=44&t=32383"
+    ],
+    "confidence": "medium",
+    "issues": "Schwammhärte 57.5° aus OOAK-Quelle, Klassifikation als hybrid (klebriges Topsheet + Tension-Schwamm)"
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "VS>402 Limber",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 7.5,
+      "spinRaw": 9,
+      "controlRaw": 9.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 40,
+      "hardnessMax": 40,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": true
+    },
+    "uvpEur": 49.9,
+    "imageUrl": null,
+    "descriptionDe": "Klebriges Topsheet auf Limber-Tension-Schwamm (40°). Ca. 70-72g je nach Schwammstärke.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "dandoy-sports.com"
+    ],
+    "sources": [
+      "https://www.tabletennis11.com/other_eng/victas-vs-402-limber",
+      "https://revspin.net/rubber/victas-vs-402-limber.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "VS>402 Double Extra",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.5,
+      "spinRaw": 9.5,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 50,
+      "hardnessMax": 50,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": true
+    },
+    "uvpEur": 49.9,
+    "imageUrl": null,
+    "descriptionDe": "Klebriges Topsheet auf hartem 50°-Tension-Schwamm. Offensiv-Hybrid mit hohem Spinpotential.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://revspin.net/rubber/victas-vs-402-double-extra.html",
+      "https://www.megaspin.net/store/default.asp?pid=victas-vs-402-de"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Triple Regular",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8,
+      "spinRaw": 9.5,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 42,
+      "hardnessMax": 42,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": "orange",
+      "isHybrid": true
+    },
+    "uvpEur": 49.9,
+    "imageUrl": null,
+    "descriptionDe": "Griffiges (nicht klebriges) chinesisches Topsheet auf weichem 42°-Tensor-Schwamm. Allround-offensiv.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.tabletennis11.com/other_eng/victas-triple-regular",
+      "https://tabletennis-reference.com/rubber/detail/800"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Triple Extra",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.5,
+      "spinRaw": 10,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 55,
+      "hardnessMax": 55,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": "orange",
+      "isHybrid": true
+    },
+    "uvpEur": 54.9,
+    "imageUrl": null,
+    "descriptionDe": "Chinesisches klebriges Topsheet auf 55°-Tensor-Schwamm. Hybrid für Topspin-Spieler mit Fokus auf Spin.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://www.schoeler-micke.de/belaege/noppen-innen/offensiv/1651/victas-belag-triple-extra",
+      "https://tabletennis-reference.com/rubber/detail/798"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Triple Double Extra",
+    "category": "OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9,
+      "spinRaw": 10,
+      "controlRaw": 7.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 57.5,
+      "hardnessMax": 57.5,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": "orange",
+      "isHybrid": true
+    },
+    "uvpEur": 59.9,
+    "imageUrl": null,
+    "descriptionDe": "Ultra-klebriges chinesisches Topsheet auf 57.5°-Tensor-Schwamm. Stärkster Hybrid der Triple-Serie.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://www.tabletennis11.com/other_eng/victas-triple-double-extra",
+      "https://tabletennis-reference.com/rubber/detail/799"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Ventus Extra",
+    "category": "OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9,
+      "spinRaw": 9,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 47.5,
+      "hardnessMax": 47.5,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 49.9,
+    "imageUrl": null,
+    "descriptionDe": "Tensor-Belag mit 47.5° Pink-Sponge und Optimized-Rotation-Concept. Flacher Ballflug.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://revspin.net/rubber/victas-ventus-extra.html",
+      "https://www.megaspin.net/store/default.asp?pid=victas-ventus-extra"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Ventus Regular",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8,
+      "spinRaw": 9,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 47.5,
+      "hardnessMax": 47.5,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 44.9,
+    "imageUrl": null,
+    "descriptionDe": "Spinorientierter Allrounder mit 47.5° Schwamm. Ehemals TSP Ventus Basic. Optimized-Rotation-Concept.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://tabletennis-reference.com/rubber/detail/525",
+      "https://revspin.net/rubber/victas-ventus-regular.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Ventus Regular Alpha",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8,
+      "spinRaw": 9,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 45,
+      "hardnessMax": 45,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 44.9,
+    "imageUrl": null,
+    "descriptionDe": "Variante des Ventus Regular mit etwas härterem Tensor-Schwamm für mehr Tempo.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://tabletennis-reference.com/rubber/detail/870",
+      "https://revspin.net/rubber/victas-ventus-regular-alpha.html"
+    ],
+    "confidence": "medium",
+    "issues": "Schwammhärte aus Vergleich mit Regular-Variante abgeleitet"
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Spectol S1",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8,
+      "spinRaw": 6,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "rubberType": "short_pips",
+      "hardnessMin": 35,
+      "hardnessMax": 35,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 39.9,
+    "imageUrl": null,
+    "descriptionDe": "Klassiker unter den Kurznoppen. Made in Japan, weicher 35°-Schwamm (japanische Skala).",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://www.schoeler-micke.de/belaege/noppen-aussen/kurze-noppen/1644/victas-belag-spectol-s1",
+      "https://tt-test.de/victas-spectol-s1-test/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Spectol S2",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.5,
+      "spinRaw": 6,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "short_pips",
+      "hardnessMin": 40,
+      "hardnessMax": 40,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 44.9,
+    "imageUrl": null,
+    "descriptionDe": "Weiterentwicklung des Spectol S1 mit High-Energy-Tension-Schwamm und höherem Tempo.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://www.schoeler-micke.de/belaege/noppen-aussen/kurze-noppen/1646/victas-belag-spectol-s2",
+      "https://www.megaspin.net/articles/1595/victas-short-pips-review-vo-102-spectol-s2-spinpips-d2"
+    ],
+    "confidence": "medium",
+    "issues": "Schwammhärte ca. 40° abgeschätzt aus Vergleichen, nicht offiziell publiziert"
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Spectol S3",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9,
+      "spinRaw": 6.5,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "short_pips",
+      "hardnessMin": 42.5,
+      "hardnessMax": 42.5,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 49.9,
+    "imageUrl": null,
+    "descriptionDe": "Weiterentwicklung des Spectol S2 mit dünnerer Noppenstruktur und High-Energy-Tension-Schwamm. Made in Japan.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schoeler-micke.de",
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.schoeler-micke.de/belaege/noppen-aussen/kurze-noppen/1647/victas-belag-spectol-s3",
+      "https://tt-test.de/victas-spectol-s3-test"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "VO>101",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9.5,
+      "spinRaw": 5,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "rubberType": "short_pips",
+      "hardnessMin": 45,
+      "hardnessMax": 45,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 44.9,
+    "imageUrl": null,
+    "descriptionDe": "Sehr schnelle Kurznoppe mit High-Energy-Tension-Schwamm. Optimiert für flache Schläge.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "schuett-sport.de"
+    ],
+    "sources": [
+      "https://www.schuett-sport.de/tischtennis/belaege/kurze-noppe/11296/victas-vo-101",
+      "https://www.megaspin.net/store/default.asp?pid=victas-vo-101"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "VO>102",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.5,
+      "spinRaw": 7,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "rubberType": "short_pips",
+      "hardnessMin": 40,
+      "hardnessMax": 40,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 44.9,
+    "imageUrl": null,
+    "descriptionDe": "Kurznoppe mit breiteren Noppen, etwas mehr Spin und weniger Tempo als VO>101.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://revspin.net/pips/victas-vo-102.html",
+      "https://www.megaspin.net/articles/1595/victas-short-pips-review-vo-102-spectol-s2-spinpips-d2"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "VO>103",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8,
+      "spinRaw": 7,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "short_pips",
+      "hardnessMin": 40,
+      "hardnessMax": 40,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 44.9,
+    "imageUrl": null,
+    "descriptionDe": "Allround-Kurznoppe zwischen VO>101 (Speed) und VO>102 (Spin) positioniert. High-Tension-Schwamm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-belaege/victas-kurze-noppe-vo-103.html",
+      "https://revspin.net/pips/victas-vo--gt-103.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Curl P1V",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 5.5,
+      "spinRaw": 8.5,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "rubberType": "long_pips",
+      "hardnessMin": 35,
+      "hardnessMax": 35,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 34.9,
+    "imageUrl": null,
+    "descriptionDe": "Langnoppe mit langen, dünnen Pips auf weichem Schwamm. ITTF-zugelassen. Schwammstärken 0.5, 1.0, 1.5, OX.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "tabletennis11.com"
+    ],
+    "sources": [
+      "https://revspin.net/pips/victas-curl-p1v.html",
+      "https://www.tt-shop.com/com_eng/victas-curl-p1v.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Curl P2V",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 6,
+      "spinRaw": 7,
+      "controlRaw": 9.5,
+      "speedScale": 10,
+      "rubberType": "long_pips",
+      "hardnessMin": 35,
+      "hardnessMax": 35,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 34.9,
+    "imageUrl": null,
+    "descriptionDe": "Langnoppe mit breiterer Pip-Struktur und weichem Schwamm. Ehemals TSP Curl P2.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.ttmode.com/victas-curl-p2v",
+      "https://tabletennisstore.us/products/victas-curl-p2v-long-pips-table-tennis-rubber"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Curl P3V",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 6,
+      "spinRaw": 8,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 34.9,
+    "imageUrl": null,
+    "descriptionDe": "Langnoppe der Curl-Serie. ITTF-zugelassen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://revspin.net/pips/victas-curl-p3v.html",
+      "https://tabletennisdata.weebly.com/victas-curl-long-pips-rubber-review.html"
+    ],
+    "confidence": "low",
+    "issues": "Schwammhärte nicht eindeutig dokumentiert"
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Curl P3aV",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 6,
+      "spinRaw": 7.5,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "rubberType": "long_pips",
+      "hardnessMin": 55,
+      "hardnessMax": 55,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 34.9,
+    "imageUrl": null,
+    "descriptionDe": "Langnoppe mit härterem Schwamm (55°) für mehr Disruption.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://revspin.net/pips/victas-curl-p3av.html",
+      "https://tabletennisdata.weebly.com/victas-curl-long-pips-rubber-review.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Curl P4V",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 5,
+      "spinRaw": 8,
+      "controlRaw": 9.5,
+      "speedScale": 10,
+      "rubberType": "long_pips",
+      "hardnessMin": 20,
+      "hardnessMax": 20,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 34.9,
+    "imageUrl": null,
+    "descriptionDe": "Sehr weiche Langnoppe mit weicherem Pip-Material als P1V. Schwammstärken 0.5, 1.0, 1.5, OX.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://revspin.net/pips/victas-curl-p4v.html",
+      "https://tabletennisstore.us/products/victas-curl-p4v-long-pips-table-tennis-rubber"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Victas",
+    "name": "Curl P5V",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 6.5,
+      "spinRaw": 7,
+      "controlRaw": 9.5,
+      "speedScale": 10,
+      "rubberType": "long_pips",
+      "hardnessMin": 35,
+      "hardnessMax": 35,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 34.9,
+    "imageUrl": null,
+    "descriptionDe": "Langnoppe mit sehr harten Pips auf weichem Schwamm für flache Block-Trajektorien. Ehemals TSP Curl P-H.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "tt-shop.de",
+      "tabletennis11.com"
+    ],
+    "sources": [
+      "https://www.tabletennis11.com/other_eng/victas-curl-p5v",
+      "https://tabletennisstore.us/products/victas-curl-p5v-long-pips-table-tennis-rubber"
+    ],
+    "confidence": "high",
+    "issues": null
+  }
+]
