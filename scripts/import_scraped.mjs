@@ -105,9 +105,40 @@ async function importProduct(p, brandName) {
   stats.skipped++;
 }
 
+/** Brand-Prefix sicherstellen: "Stratus Powerwood" + brand "Tibhar"
+ *  → "Tibhar Stratus Powerwood". Wenn schon enthalten: unverändert. */
+function canonicalName(name, brand) {
+  const n = name.trim();
+  if (n.toLowerCase().startsWith(brand.toLowerCase())) return n;
+  return `${brand} ${n}`;
+}
+
+/** Fuzzy-Slug: ignoriert alle Trennzeichen + Leerzeichen für Match.
+ *  "tibhar-stratus-power-wood" === "tibhar-stratus-powerwood" (beide → tibharstratuspowerwood) */
+function fuzzySlug(s) {
+  return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+}
+
+async function findExisting(table, name, brand) {
+  const cName = canonicalName(name, brand);
+  const slug = slugify(cName);
+  const fuzzy = fuzzySlug(cName);
+  // 1. exakter Match
+  const exact = await sql`SELECT * FROM ${sql(table)} WHERE name = ${cName} OR slug = ${slug} LIMIT 1`;
+  if (exact.length > 0) return exact[0];
+  // 2. Fuzzy-Match: alle aktiven Einträge dieses Herstellers durchgehen
+  // (klein genug pro Marke, kein Perf-Issue)
+  const mfgId = mfgMap.get(brand.toLowerCase());
+  if (!mfgId) return null;
+  const candidates = await sql`SELECT * FROM ${sql(table)} WHERE manufacturer_id = ${mfgId} AND is_active = true`;
+  return candidates.find(c => fuzzySlug(c.name) === fuzzy) ?? null;
+}
+
 async function importBlade(p, brandName) {
-  const slug = slugify(p.name);
-  const existing = await sql`SELECT * FROM blades WHERE name = ${p.name} OR slug = ${slug} LIMIT 1`;
+  const cName = canonicalName(p.name, brandName);
+  const slug = slugify(cName);
+  const existingRow = await findExisting("blades", p.name, brandName);
+  const existing = existingRow ? [existingRow] : [];
   const b = p.blade ?? {};
   const speedNorm = b.speedRaw != null ? normSpeed(b.speedRaw, b.speedScale ?? 10) : null;
   const ctrlNorm = b.controlRaw != null ? normSpeed(b.controlRaw, b.speedScale ?? 10) : null;
@@ -152,7 +183,7 @@ async function importBlade(p, brandName) {
       price_eur, image_url, description,
       is_active, is_manually_curated
     ) VALUES (
-      ${mfgId}, ${p.name}, ${slug},
+      ${mfgId}, ${cName}, ${slug},
       ${speedNorm}, ${ctrlNorm}, ${speedNorm}, ${ctrlNorm}, 0,
       ${b.composition ?? null}, ${b.stiffness ?? null}, ${b.layers ?? null},
       ${b.weightAvgGrams ? Math.max(60, b.weightAvgGrams - 4) : null},
@@ -168,8 +199,10 @@ async function importBlade(p, brandName) {
 }
 
 async function importRubber(p, brandName) {
-  const slug = slugify(p.name);
-  const existing = await sql`SELECT * FROM rubbers WHERE name = ${p.name} OR slug = ${slug} LIMIT 1`;
+  const cName = canonicalName(p.name, brandName);
+  const slug = slugify(cName);
+  const existingRow = await findExisting("rubbers", p.name, brandName);
+  const existing = existingRow ? [existingRow] : [];
   const r = p.rubber ?? {};
   const speedNorm = r.speedRaw != null ? normSpeed(r.speedRaw, r.speedScale ?? 10) : null;
   const spinNorm = r.spinRaw != null ? normSpeed(r.spinRaw, r.speedScale ?? 10) : null;
@@ -214,7 +247,7 @@ async function importRubber(p, brandName) {
       price_eur, image_url, description,
       is_active, is_manually_curated
     ) VALUES (
-      ${mfgId}, ${p.name}, ${slug}, ${r.rubberType ?? "smooth"},
+      ${mfgId}, ${cName}, ${slug}, ${r.rubberType ?? "smooth"},
       ${speedNorm}, ${spinNorm}, ${ctrlNorm},
       ${speedNorm}, ${spinNorm}, ${ctrlNorm}, 0,
       ${r.topsheetCharacter ?? null}, ${(r.hardnessMin != null ? Math.round(r.hardnessMin) : null) ?? null}, ${(r.hardnessMax != null ? Math.round(r.hardnessMax) : null) ?? (r.hardnessMin != null ? Math.round(r.hardnessMin) : null) ?? null},
