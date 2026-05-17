@@ -1,0 +1,917 @@
+[
+  {
+    "_meta": {
+      "marke": "DHS",
+      "anzahl": 30,
+      "scraped_at": "2026-05-17T12:00:00Z",
+      "primary_source": "https://dhs-shop.de",
+      "notes": "DHS (Double Happiness Shanghai) verwendet eine Härte-Skala 1-100 für Belag-Werte (z.B. PF4 speed 94/spin 99). Härteangaben in Grad beziehen sich auf chinesische ShoreC-Skala (37-41° typisch); europäische ESN-Skala bei Gold Arc Serie (42.5-50°). Hurricane 3 ist in mehreren Qualitätsstufen verfügbar: Commercial (Standard), Provincial (Blue/Orange Sponge), National (Blue/Orange Sponge). Die Provincial Blue Sponge und National Blue Sponge Varianten gelten als Hybrid-Beläge: chinesisches klebriges Topsheet + speziell elastischer Schwamm. Direkt-Fetch von dhs-shop.de, tt-shop.de und tischtennis.biz lieferte leere Antworten; Verfügbarkeitsdaten basieren auf Suchmaschinen-Indexierung von Produktseiten. CONTRA wird in Deutschland als contra-berlin.de und contra.de geführt (statt vom User genannten contra-sport.de)."
+    }
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Hurricane 3",
+    "category": "OFF-/OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.6,
+      "spinRaw": 9.4,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 38,
+      "hardnessMax": 40,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 32.9,
+    "imageUrl": null,
+    "descriptionDe": "Klassischer chinesischer Klebebelag mit hartem Schwamm. Erhältlich in 38° (Soft), 39° (Mid) und 40° (Hard). Spinorientiertes Topsheet mit eingeschränkter Eigendynamik, hoher Rotation bei Aufschlag und Topspin.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de", "contra-berlin.de"],
+    "sources": [
+      "https://www.tt-shop.com/com_eng/dhs-hurricane-3.html",
+      "https://www.contra-berlin.de/conb_de/dhs-belag-hurricane-iii.html",
+      "https://revspin.net/rubber/dhs-hurricane-3.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Neo Hurricane 3",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.7,
+      "spinRaw": 9.5,
+      "controlRaw": 8.4,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 37,
+      "hardnessMax": 41,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 52.9,
+    "imageUrl": null,
+    "descriptionDe": "Weiterentwicklung des Hurricane 3 mit fabrikseitig vorbehandeltem Schwamm (Neo-Behandlung). Erhältlich in 37°, 39° (Mid) und 41° (Hard). Höhere Schwamm-Elastizität als Standard-H3 bei identischem klebrigem Topsheet.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de", "contra-berlin.de"],
+    "sources": [
+      "https://www.tt-shop.com/com_eng/dhs-neo-hurricane-3.html",
+      "https://www.contra-berlin.de/conb_de/dhs-belag-neo-hurricane-iii.html",
+      "https://revspin.net/rubber/dhs-neo-hurricane-3.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Neo Hurricane 3 Provincial Blue Sponge",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9.0,
+      "spinRaw": 9.6,
+      "controlRaw": 8.6,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 39,
+      "hardnessMax": 41,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": "blau",
+      "isHybrid": true
+    },
+    "uvpEur": 68.0,
+    "imageUrl": null,
+    "descriptionDe": "Provincial-Version mit blauem Spezial-Schwamm. Selektiertes Topsheet, höhere Schwamm-Konsistenz und mehr Tempo als Commercial-Variante. Erhältlich in 39°, 40° und 41°. Klebriges Topsheet auf reaktivem Schwamm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-berlin.de"],
+    "sources": [
+      "https://www.contra-berlin.de/conb_de/dhs-belag-hurricane-neo-3-provincial-mid-hard-39-blue.html",
+      "https://tischtennis-billiger.de/belaege/dhs/dhs-hurricane-3-provincial-blue-sponge-39.html",
+      "https://revspin.net/rubber/dhs-neo-hurricane-3-provincial-orange-sponge.html"
+    ],
+    "confidence": "high",
+    "issues": "Klassifikation als hybrid folgt User-Vorgabe (chinesisches klebriges Topsheet + Blue-Sponge mit erhöhter Reaktivität)."
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Neo Hurricane 3 Provincial Orange Sponge",
+    "category": "OFF-/OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.8,
+      "spinRaw": 9.7,
+      "controlRaw": 8.7,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 39,
+      "hardnessMax": 41,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 55.0,
+    "imageUrl": null,
+    "descriptionDe": "Provincial-Version mit orangefarbenem Schwamm. Selektiertes Topsheet mit höherer Klebrigkeit als Commercial. Erhältlich typischerweise in 39°, 40° und 41°. Kontroll- und spinorientierter als Blue-Sponge-Variante.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-berlin.de"],
+    "sources": [
+      "https://revspin.net/rubber/dhs-neo-hurricane-3-provincial-orange-sponge.html",
+      "https://www.megaspin.net/store/product-reviews.asp?pid=dhs-h3-p"
+    ],
+    "confidence": "medium",
+    "issues": "Aktive Listung im deutschen Markt teils nur über Spezialhändler."
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Neo Hurricane 3 National Blue Sponge",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9.2,
+      "spinRaw": 9.8,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 39,
+      "hardnessMax": 41,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": "blau",
+      "isHybrid": true
+    },
+    "uvpEur": 109.0,
+    "imageUrl": null,
+    "descriptionDe": "Höchste Selektionsstufe (National Team Edition) mit blauem Schwamm. Erhältlich in 39°, 40° und 41°. Klebriges Topsheet auf reaktiverem Schwamm; im Vergleich zur Provincial-Variante engere Toleranzen bei Schwamm und Topsheet.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-berlin.de"],
+    "sources": [
+      "https://www.contra-berlin.de/conb_de/dhs-belag-hurricane-neo-3-national-mid-hard-39-blue.html",
+      "https://revspin.net/rubber/dhs-neo-hurricane-3-national-blue-sponge.html"
+    ],
+    "confidence": "high",
+    "issues": "Hybrid-Klassifikation gemäß User-Vorgabe."
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Hurricane 3-50 Mid",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.1,
+      "spinRaw": 9.2,
+      "controlRaw": 8.8,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 37,
+      "hardnessMax": 37,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 44.9,
+    "imageUrl": null,
+    "descriptionDe": "Klebriges Topsheet auf weicherem 50-Schwamm. Charakteristisch niedrige Flugkurve aus mittlerer Distanz, ausgeprägte Spin-Eigenschaften bei Wrist-Beschleunigung.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de", "shop.sport-schreiner-tischtennis.de"],
+    "sources": [
+      "https://shop.tt-xpert.de/belaege/dhs-belag/1877/dhs-skyline-3-60-mid-370",
+      "https://revspin.net/rubber/dhs-hurricane-3-50.html",
+      "https://www.tabletennis11.com/other_eng/dhs-hurricane-3-50"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Hurricane 3-50 Soft",
+    "category": "ALL+/OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 7.8,
+      "spinRaw": 9.0,
+      "controlRaw": 9.0,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 35,
+      "hardnessMax": 36,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 44.9,
+    "imageUrl": null,
+    "descriptionDe": "Weichere Variante des H3-50 mit etwas weniger klebrigem Topsheet als die Mid-Version, ähnlich hoher Spin. Niedrigere Flugkurve, kontrollorientiert für Backhand-Einsatz.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://revspin.net/rubber/dhs-hurricane-3-50-soft.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Hurricane 8 Soft",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.5,
+      "spinRaw": 9.3,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 39,
+      "hardnessMax": 39,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 39.9,
+    "imageUrl": null,
+    "descriptionDe": "Plastikball-Upgrade des H3 mit elastischerem Schwamm (Macro-Cell-Technologie, ca. 15% mehr Elastizität als H3). Klebriges Topsheet, weicherer Schwamm für mehr Spin- als Tempo-Potenzial.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de", "contra-berlin.de"],
+    "sources": [
+      "https://www.contra-berlin.de/conb_de/dhs-belag-hurricane-8-soft.html",
+      "https://www.frija-tt-shop.de/dhs-belag-hurricane-8-soft-39-grad::342591.html",
+      "https://revspin.net/rubber/dhs-hurricane-8-soft.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Hurricane 8 Mid",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.8,
+      "spinRaw": 9.3,
+      "controlRaw": 8.3,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 40,
+      "hardnessMax": 40,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 39.9,
+    "imageUrl": null,
+    "descriptionDe": "Mittelharte Variante des H8 mit 40° Schwamm. Klebriges Topsheet auf High-Density-Schwamm mit Macro-Cell- und High-Elasticity-Particle-Osmosis-Technologie. Mehr Eigendynamik als H3 bei vergleichbarem Spin.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de", "contra-berlin.de"],
+    "sources": [
+      "https://www.contra-berlin.de/conb_de/dhs-belag-hurricane-8.html",
+      "https://revspin.net/rubber/dhs-hurricane-8.html",
+      "https://www.megaspin.net/store/default.asp?pid=dhs-h-80-mid"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Hurricane 8 Hard",
+    "category": "OFF/OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9.1,
+      "spinRaw": 9.4,
+      "controlRaw": 8.0,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 41,
+      "hardnessMax": 41,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 39.9,
+    "imageUrl": null,
+    "descriptionDe": "Härteste H8-Variante mit 41° Schwamm (entspricht ca. 51° ESN-Skala). Klebriges Topsheet, für techniksichere Offensivspieler, mit hoher Eigendynamik und maximaler Spin-Reserve.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de", "contra-berlin.de"],
+    "sources": [
+      "https://www.contra-berlin.de/conb_de/dhs-belag-hurricane-8-hard.html",
+      "https://www.k-unlimited.de/dhs-belag-hurricane-8-hard/",
+      "https://revspin.net/rubber/dhs-hurricane-8-hard.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Hurricane 9 Soft",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.6,
+      "spinRaw": 9.4,
+      "controlRaw": 8.4,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 37,
+      "hardnessMax": 37,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "blau",
+      "isHybrid": false
+    },
+    "uvpEur": 49.9,
+    "imageUrl": null,
+    "descriptionDe": "Neueste Hurricane-Generation mit überarbeitetem Topsheet. Soft-Version 37° in violett und grün. Klebriges Topsheet mit für China-Beläge hoher Eigendynamik.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://shop.tt-xpert.de/belaege/china-belaege/5915/dhs-hurricane-9-380",
+      "https://www.spinfactory.de/tischtennis-belaege/table-tennis-rubber-hurricane-9-green.html",
+      "https://revspin.net/rubber/dhs-hurricane-9.html"
+    ],
+    "confidence": "medium",
+    "issues": "Verfügbarkeit der Soft-Variante in Deutschland teils nur über kleinere Spezialhändler."
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Hurricane 9 Mid",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.9,
+      "spinRaw": 9.4,
+      "controlRaw": 8.2,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 38,
+      "hardnessMax": 38,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "blau",
+      "isHybrid": false
+    },
+    "uvpEur": 49.9,
+    "imageUrl": null,
+    "descriptionDe": "Mid-Version 38° in violett, grün, pink und blau. Klebriges Topsheet, im Vergleich zur älteren H3-Serie spürbar dynamischer und schneller in Konter und Topspin von der Mitteldistanz.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-belaege/tischtennis-belag-dhs-hurricane-9-blue.html",
+      "https://www.40mm-tischtennis.de/shop/dhs-belag-hurricane-9-37-violett/",
+      "https://revspin.net/rubber/dhs-hurricane-9.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Hurricane 9 Hard",
+    "category": "OFF/OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9.2,
+      "spinRaw": 9.4,
+      "controlRaw": 8.0,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 39,
+      "hardnessMax": 39,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "blau",
+      "isHybrid": false
+    },
+    "uvpEur": 49.9,
+    "imageUrl": null,
+    "descriptionDe": "Hard-Version 39° in pink und blau. Härtester Schwamm der H9-Serie, klebriges Topsheet. Hohe Eigendynamik bei Vollstroke, präzise Steuerung in Druckspirale.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/BELAeGE/DHS/DHS-Belag-Hurricane-9-HARD-39-GRAD::345710.html",
+      "https://www.ttshop-ostalb.de/dhs-hurricane-9-blau.html",
+      "https://revspin.net/rubber/dhs-hurricane-9.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Skyline 3-60 Soft",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.0,
+      "spinRaw": 9.2,
+      "controlRaw": 8.7,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 35,
+      "hardnessMax": 35,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": "orange",
+      "isHybrid": true
+    },
+    "uvpEur": 44.9,
+    "imageUrl": null,
+    "descriptionDe": "Klebriges chinesisches Topsheet auf weichem 60-Schwamm (35°). Bindeglied zwischen klassischen China-Belägen und Tensoren. Soft-Version für Allrounder und Nachwuchsspieler.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://shop.tt-xpert.de/belaege/dhs-belag/5008/dhs-skyline-3-60-soft-350",
+      "https://revspin.net/rubber/dhs-skyline-3-60-soft.html"
+    ],
+    "confidence": "medium",
+    "issues": "Hybrid-Klassifikation gemäß User-Vorgabe (klebriges Topsheet + elastischer Schwamm)."
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Skyline 3-60 Mid",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.6,
+      "spinRaw": 9.5,
+      "controlRaw": 8.4,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 37,
+      "hardnessMax": 37,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": "orange",
+      "isHybrid": true
+    },
+    "uvpEur": 44.9,
+    "imageUrl": null,
+    "descriptionDe": "Mid-Variante 37°. Klebriges Topsheet auf 60-Schwamm mit hoher Eigendynamik. Hersteller-Werte (DHS-Skala): Speed 86, Spin 95, Control 70.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://shop.tt-xpert.de/belaege/dhs-belag/1877/dhs-skyline-3-60-mid-370",
+      "https://www.megaspin.net/store/default.asp?pid=dhs-skyline-3-60",
+      "https://revspin.net/rubber/dhs-skyline-3-60-mid-hard.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Skyline 3-60 Hard",
+    "category": "OFF/OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.9,
+      "spinRaw": 9.5,
+      "controlRaw": 8.2,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 39,
+      "hardnessMax": 39,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": "orange",
+      "isHybrid": true
+    },
+    "uvpEur": 44.9,
+    "imageUrl": null,
+    "descriptionDe": "Härteste Variante (39°). Schneller und dynamischer als die anderen Skylines, ausgelegt auf kontinuierliche High-Speed-Angriffe.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://revspin.net/rubber/dhs-skyline-3-60-hard.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Tin Arc 3",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.4,
+      "spinRaw": 9.0,
+      "controlRaw": 9.0,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 35,
+      "hardnessMax": 39,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 39.9,
+    "imageUrl": null,
+    "descriptionDe": "Nicht-klebriger, katapultorientierter Belag mit konstanten Bahneigenschaften. Topsheet eher griffig als klebrig, mit ausgeprägter Brushing-Charakteristik. Erhältlich in Soft 35° und Mid 37°.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://www.tt-shop.com/com_eng/dhs-tin-arc-3.html",
+      "https://shop.tt-xpert.de/belaege/dhs-belag/1855/dhs-tin-arc-iii",
+      "https://revspin.net/rubber/dhs-tin-arc-3.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Tin Arc 5",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.8,
+      "spinRaw": 9.3,
+      "controlRaw": 8.7,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 37,
+      "hardnessMax": 39,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 44.9,
+    "imageUrl": null,
+    "descriptionDe": "Weiterentwicklung des Tin Arc 3 für 40+ Plastikball. Macro-Cell- und High-Elasticity-Particle-Osmosis-Schwamm. Nicht-klebriges Topsheet, ausgelegt auf Topspin von der Mitteldistanz.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://www.tt-shop.com/com_eng/dhs-tin-arc-5.html",
+      "https://shop.tt-xpert.de/belaege/dhs-belag/1870/dhs-tin-arc-5-soft",
+      "https://revspin.net/rubber/dhs-tin-arc-5.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Gold Arc 5",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.5,
+      "spinRaw": 9.0,
+      "controlRaw": 8.6,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 42.5,
+      "hardnessMax": 47.5,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": 49.9,
+    "imageUrl": null,
+    "descriptionDe": "Europäische Co-Produktion mit ESN. Nicht-klebriges, hochelastisches Topsheet auf ESN-Schwamm. Erhältlich in 42.5° und 47.5° ESN-Skala. Spin-elastisch ausgelegt.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra.de"],
+    "sources": [
+      "https://www.contra.de/en/dhs-rubber-gold-arc-5-47.50/",
+      "https://www.contra.de/en/dhs-rubber-gold-arc-5-42.50/",
+      "https://revspin.net/rubber/dhs-gold-arc-5.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "DHS",
+    "name": "Gold Arc 8",
+    "category": "OFF/OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9.2,
+      "spinRaw": 8.9,
+      "controlRaw": 9.3,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 47.5,
+      "hardnessMax": 50,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": 54.9,
+    "imageUrl": null,
+    "descriptionDe": "Offensiver, nicht-klebriger Tensor (DHS-ESN-Coproduktion in Deutschland). Erhältlich in 47.5° und 50° ESN-Skala. Hohe Grip-Werte und Eigendynamik bei voller Tensor-Charakteristik.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra.de", "tt-shop.de"],
+    "sources": [
+      "https://www.contra.de/en/dhs-rubber-gold-arc-8-500/",
+      "https://www.spinfactory.de/tischtennis-belaege/tt-belag-dhs-goldarc-8-47.html",
+      "https://revspin.net/rubber/dhs-gold-arc-8.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "DHS",
+    "name": "Hurricane Long 5",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 8.8,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "composition": "5 Holz + 2 ALC (Arylat-Carbon, inner)",
+      "layers": 7,
+      "weightAvgGrams": 89,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 199.0,
+    "imageUrl": null,
+    "descriptionDe": "Inner-ALC-Holz (5+2) mit Ayous-Kern, ALC-Lagen neben dem Kern, Limba-Außenfurnier. Wird von Ma Long gespielt. Hold-orientiert, mit gutem Sweetspot und konsistentem Katapult.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://shop.tt-xpert.de/hoelzer/off-hoelzer/2296/dhs-hurricane-long-5",
+      "https://www.spinfactory.de/tischtennis-hoelzer/tischtennis-holz-dhs-hurricane-long-5.html",
+      "https://revspin.net/blade/dhs-hurricane-long-5.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "DHS",
+    "name": "Hurricane Long 5X",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 9.2,
+      "controlRaw": 8.0,
+      "speedScale": 10,
+      "composition": "5 Holz + 2 ALC (dickere Kern- und Carbonlagen)",
+      "layers": 7,
+      "weightAvgGrams": 88,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 219.0,
+    "imageUrl": null,
+    "descriptionDe": "2019 eingeführte Plastikball-Version des HL5 mit dickerem Kern und stärkeren ALC-Lagen. Mehr Eigendynamik und Energie als HL5, ausgelegt auf 40+ Bälle.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://shop.tt-xpert.de/hoelzer/off-hoelzer/4989/dhs-hurricane-long-5x",
+      "https://revspin.net/blade/dhs-hurricane-long-5x.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "DHS",
+    "name": "Hurricane Long 3",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 7.8,
+      "controlRaw": 9.0,
+      "speedScale": 10,
+      "composition": "7 Holz (Limba-Außen, Ayous-Kern)",
+      "layers": 7,
+      "weightAvgGrams": 88,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 129.0,
+    "imageUrl": null,
+    "descriptionDe": "Reines 7-Schicht-Vollholz, OFF-/OFF Klasse. Großer Sweetspot, Hold-orientiert, gut für Short Game und Topspin-Eröffnung. Klassiker im DHS-Sortiment.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://tt-finder.net/de/holz/DHS/Hurricane-Long-III",
+      "https://revspin.net/blade/dhs-hurricane-long-3.html",
+      "https://www.dhs-tt.com/en/dhs-hurricane-long"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "DHS",
+    "name": "Hurricane 301",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 8.8,
+      "controlRaw": 8.2,
+      "speedScale": 10,
+      "composition": "5 Holz + 2 ALC (Koto-Außen, Ayous-Kern)",
+      "layers": 7,
+      "weightAvgGrams": 88,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 169.0,
+    "imageUrl": null,
+    "descriptionDe": "5+2-ALC-Holz mit Koto-Außenfurnier (steifer als HL5 mit Limba-Außen). Hohe Eigendynamik bei harten Schlägen, weicher Touch im Kurzspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://blog.tabletennis11.com/dhs-hurricane301",
+      "https://revspin.net/blade/dhs-hurricane-301.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "DHS",
+    "name": "Hurricane 301X",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 9.0,
+      "controlRaw": 8.0,
+      "speedScale": 10,
+      "composition": "5 Holz + 2 ALC (BBT-Technologie, Koto-Außen)",
+      "layers": 7,
+      "weightAvgGrams": 89,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 189.0,
+    "imageUrl": null,
+    "descriptionDe": "2020 vorgestellte Weiterentwicklung des 301 mit BBT (Ballonet-Behandlung). Stabiler in Bezug auf Temperatur und Feuchtigkeit. Direkt und energiegeladen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://shop.tt-xpert.de/hoelzer/off-hoelzer/4558/dhs-holz-hurricane-301x",
+      "https://blog.tabletennis11.com/review-dhs-hurricane-301x",
+      "https://revspin.net/blade/dhs-hurricane-301x.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "DHS",
+    "name": "Hurricane Hao 3",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 8.4,
+      "controlRaw": 8.7,
+      "speedScale": 10,
+      "composition": "5 Holz + 1 Glasfaser-Carbon-Kern (Koto-Außen)",
+      "layers": 5,
+      "weightAvgGrams": 87,
+      "stiffness": "medium",
+      "carbonPosition": "inner",
+      "specialMaterial": "Aramid"
+    },
+    "rubber": null,
+    "uvpEur": 149.0,
+    "imageUrl": null,
+    "descriptionDe": "Wang Hao Signaturmodell: 5-lagig Holz mit Glasfaser-Carbon-Kern. Aufbau Koto - Ayous (quer) - Glasfaser - Ayous (quer) - Koto. Spin- und Kontroll-orientiert mit ordentlicher Eigendynamik.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://tt-finder.net/de/holz/DHS/Hurricane-Hao-III",
+      "https://revspin.net/blade/dhs-hurricane-hao-iii.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "DHS",
+    "name": "Hurricane King 3",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 9.1,
+      "controlRaw": 7.8,
+      "speedScale": 10,
+      "composition": "Wenge + Balsa + Glasfaser-Carbon + Balsa-Kern (7-lagig)",
+      "layers": 7,
+      "weightAvgGrams": 90,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Balsa"
+    },
+    "rubber": null,
+    "uvpEur": 199.0,
+    "imageUrl": null,
+    "descriptionDe": "Wang Liqin Signaturmodell. Aufbau mit Wenge-Außen, dünner Balsa-Lage darunter, Glasfaser-Carbon und dickem Balsa-Kern. Hart aber mit gutem Dwell-Time, direkt und kraftvoll.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://revspin.net/blade/dhs-hurricane-king-iii.html",
+      "https://www.frija-tt-shop.de/HOeLZER/DHS/DHS-Holz-Hurricane-King-Q::344557.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "DHS",
+    "name": "Fang Bo B2",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 9.0,
+      "controlRaw": 7.9,
+      "speedScale": 10,
+      "composition": "5 Holz (Ayous/Limba) + 2 ALC um den Kern",
+      "layers": 7,
+      "weightAvgGrams": 90,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 179.0,
+    "imageUrl": null,
+    "descriptionDe": "5+2-ALC-Holz mit dickem Kern und sehr dünner Außenlage. Ausgelegt auf tischnahes Spiel und Mitteldistanz. Hohe Eigendynamik bei stabilem Loop-Verhalten.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://blog.tabletennis11.com/review-dhs-fang-bo-b2-and-b2x-composite-blades",
+      "https://revspin.net/blade/dhs-fang-bo-b2.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "DHS",
+    "name": "Fang Bo B2X",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 9.2,
+      "controlRaw": 7.8,
+      "speedScale": 10,
+      "composition": "5 Holz + 2 ALC (dickerer Kern als B2)",
+      "layers": 7,
+      "weightAvgGrams": 90,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 189.0,
+    "imageUrl": null,
+    "descriptionDe": "Performance-Variante des Fang Bo B2 mit dickerem Kern (6.0mm). Spürbar mehr Power als B2 bei vergleichbarem Handling. Hauptthema: 3rd-Ball-Attack.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://revspin.net/blade/dhs-fang-bo-b2x.html",
+      "https://www.megaspin.net/store/product-reviews.asp?pid=dhs-fang-bo-b2-x"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "DHS",
+    "name": "Power G PG7",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 8.2,
+      "controlRaw": 8.7,
+      "speedScale": 10,
+      "composition": "7 Holz",
+      "layers": 7,
+      "weightAvgGrams": 88,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 79.9,
+    "imageUrl": null,
+    "descriptionDe": "Klassisches 7-Lagen-Vollholz, OFF- bis OFF Klasse. Flexibel, mittlere Härte, mit gutem Dwell-Time. Topsheet-Behandlung: High Pressure Ballonet.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://revspin.net/blade/dhs-power-g-pg7.html",
+      "https://www.dhs-729.eu/de/holzarten-dhs/94-dhs-pg7-power-g7.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  }
+]

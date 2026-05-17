@@ -1,0 +1,955 @@
+[
+  {
+    "_meta": {
+      "marke": "Sanwei",
+      "anzahl": 30,
+      "scraped_at": "2026-05-17T12:10:00Z",
+      "primary_source": "https://sanwei-shop.com",
+      "notes": "Sanwei wird in DE exklusiv von spinfactory.de vertrieben. Tischtennis.biz fuehrt einige Modelle, tt-shop.de aktuell vor allem Baelle. Direkte Shop-Scrapes blockiert (Proxy-Allowlist); Daten basieren auf Suchsnippets und Herstellerinfos. Preise daher meist null. Sanwei nutzt Speed/Control-Skala 10."
+    }
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei Fextra 7",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 9,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "composition": "7-ply all wood (Limba-Limba-Ayous-Ayous-Ayous-Limba-Limba)",
+      "layers": 7,
+      "weightAvgGrams": 89,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Handgefertigtes 7-Furnier Allholz-Offensivholz, Limba-Aussen mit Ayous-Kern. Aufbau aehnlich Stiga Clipper, ca. 6,0 mm dick, 88 +-5 g. Gutes Preis-Leistungs-Verhaeltnis, klassisches Offensivgefuehl.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/tischtennis/sanwei.html",
+      "https://revspin.net/blade/sanwei-fextra-7.html",
+      "https://www.tabletennisdaily.com/forum/topics/sanwei-fextra-7.27688/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei Fextra One",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "7-ply all wood (3 Ayous Kern, 2 mittlere Lagen, 2 Aussenfurniere)",
+      "layers": 7,
+      "weightAvgGrams": 88,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Weiterentwicklung des Fextra ohne synthetische Fasern. 7 in Japan entwickelte Holzfurniere, 3 Ayous-Lagen bilden den Kern fuer hohe Stabilitaet. Offensives Allholz.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/sanwei-tischtennis-holz-fextra-one.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei F3 Pro",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 9,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "composition": "5-ply wood + 2 ALC (Arylate-Carbon)",
+      "layers": 7,
+      "weightAvgGrams": 88,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Modernes Offensivholz mit Innen-ALC-Konstruktion (Arylate-Carbon), Ayous-Aussenfurnier. Ausgewogene Mischung aus Kraft, Tempo und Spinentfaltung, geeignet fuer Topspinspieler mit 40+ Ball.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/f3-pro.html",
+      "https://sanweisport.com/en/product/blade/pro/f3-pro/",
+      "https://revspin.net/blade/sanwei-f3-pro.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei F3 Classic",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "5-ply Allholz",
+      "layers": 5,
+      "weightAvgGrams": 86,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Klassische 5-furnier Allholz-Variante des F3. Limba-Aussen mit weichem Mittelteil, allroundige Spielcharakteristik mit Tendenz zum Offensivspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/teble-tennis-blade-sanwei-f3-classic.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei Paramid",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "5-ply wood + 2 Aramid-Carbon",
+      "layers": 7,
+      "weightAvgGrams": 86,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Aramid"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Auf F3 Pro basierende Konstruktion mit Para-Aramid-Carbonfaser. Duenneres Kernfurnier verschiebt die Balance leicht in Richtung Griff. Offensives Holz mit hoher Spinentfaltung.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/sanwei-holz-paramid.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei Parla",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "7-ply all wood (Limba-Aussen, Ayous-Kern)",
+      "layers": 7,
+      "weightAvgGrams": 87,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "7-Furnier Offensivholz aus der Trio-Serie. Harmonisches Zusammenspiel von Tempo, Kontrolle und Spinentfaltung, Limba-Aussen mit dickem Ayous-Kern.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/table-tennis-blade-sanwei-parla.html",
+      "https://www.tabletennisdaily.com/forum/topics/sanwei-echo-and-parla-review-2023-new-all-wood-table-tennis-blades.31828/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei Echo",
+    "category": "ALL",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "5-ply Allholz (Ayous-Limba Kombination)",
+      "layers": 5,
+      "weightAvgGrams": 82,
+      "stiffness": "soft",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Klassisches 5-furnier Allroundholz mit Ayous-Limba-Aufbau. Sehr gute Kontrolle und feiner Ballabsprung, Trio-Serie. Geeignet fuer Spieler, die ein hohes Spielgefuehl bevorzugen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/table-tennis-blade-sanwei-echo.html",
+      "https://revspin.net/blade/sanwei-echo.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei Froster PBO EX-C",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "Koto + PBO Carbon + Ayous + Kiri Kern (5+2)",
+      "layers": 7,
+      "weightAvgGrams": 92,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Aramid"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Offensivholz mit PBO-Carbonfaser (Zylon-aehnlich, weicher als Standard-Carbon). Koto-Aussen, Ayous-Mittellage, Kiri-Kern. Ca. 5,91 mm dick, gut fuer offensive Topspinspieler.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://sanweisport.com/en/product/blade/expert-carbon/froster-pbo/",
+      "https://revspin.net/blade/sanwei-froster-ex-c-pbo.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei Hynover",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "3-ply Holz + 2 Carbon-Kevlar + 2 Birken-Zwischenlagen + Hinoki-Aussen",
+      "layers": 7,
+      "weightAvgGrams": 94,
+      "stiffness": "very_stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Sehr schnelles Offensivholz mit Hinoki-Aussen und innenliegender Carbon-Kevlar-Lage, plus paper-thin Birke fuer Vibrationsdaempfung. 6,34 mm, ca. 94 g. Fuer kompromisslose Powerspieler.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/hynover.html",
+      "https://sanweisport.com/en/product/blade/expert-carbon/hynover/",
+      "https://revspin.net/blade/sanwei-hynover.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei HC-3S",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "5-ply Holz + 2 Carbon, Hinoki-Aussen",
+      "layers": 7,
+      "weightAvgGrams": 87,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Hinoki-Carbon-Holz mit Aussenfurnier aus Hinoki und Carbonlage. Direktes Spielgefuehl, schnelles Tempo, fuer Topspin-Offensive geeignet.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/sanwei-tischtennis-holz-hc-3s.html",
+      "https://sanweisport.com/en/product/blade/hc-series/hc-3/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei HC-5S",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "5-ply Holz + 2 weiche Carbon, 2 Hinoki-Aussen",
+      "layers": 7,
+      "weightAvgGrams": 85,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Nachfolger des HC-5 mit Hinoki-Aussen und 2 weichen Carbonlagen. Vergroesserter Sweetspot, gutes Spielgefuehl, fuer europaeischen Topspin-Stil ausgelegt.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/sanwei-tischtennis-holz-hc-5s.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei HC-6S",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "5-ply Holz + 2 harte Carbon, Hinoki-Aussen",
+      "layers": 7,
+      "weightAvgGrams": 90,
+      "stiffness": "very_stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Schnellstes Holz der Hinoki-Carbon-Serie. Zwei relativ harte Carbonlagen sorgen fuer hohes Grundtempo. Direkt und kraftvoll, fuer Spieler mit eigener Power.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/sanwei-hc-6s.html",
+      "https://sanweisport.com/en/product/blade/hc-series/hc-6/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei HC Speed Light",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "Balsa + Carbon + Hinoki-Aussen, leichtbau",
+      "layers": 7,
+      "weightAvgGrams": 75,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Sehr leichtes Hinoki-Carbon-Holz, in Kooperation mit spinfactory entwickelt. Fuer spinorientierte Offensivspieler mit kurzen Armbewegungen. Hohe Spinentfaltung trotz Carbon.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/sanwei-tischtennis-holz-hc-speed-light.html",
+      "https://tt-finder.net/de/holz/Sanwei/HC-Speed-Light"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei Feather Carbon",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "Balsa-Kern + 2 Limba + 2 LD-Carbon + 2 Hinoki-Aussen",
+      "layers": 7,
+      "weightAvgGrams": 75,
+      "stiffness": "medium",
+      "carbonPosition": "inner",
+      "specialMaterial": "Balsa"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Ultraleichtes Allroundholz, exklusiv mit spinfactory entwickelt. Balsa-Kern, Limba-Lagen, LD-Carbon und Hinoki-Aussen. Unter 80 g, ideal fuer leichte Schlaeger und Kontrolle.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de",
+      "tischtennis.biz"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/sanwei-feather-carbon.html",
+      "https://www.tischtennis.biz/allround-tischtennisholz/sanwei-feather-carbon.html",
+      "https://revspin.net/blade/sanwei-feather-carbon.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei Cannon Carbon",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "3-ply Holz + 2 heavy Carbon, Hinoki-Aussen, Kiri-Kern",
+      "layers": 5,
+      "weightAvgGrams": 92,
+      "stiffness": "very_stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Sehr schnelles Hinoki-Carbon-Holz mit dickem Hinoki-Aussenfurnier und 5,0 mm Kiri-Kern. Extrem direktes erstes Tempo, gut fuer Powerlooper aus mittlerer Distanz.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/sanwei-tischtennis-holz-cannon-carbon.html",
+      "https://revspin.net/blade/sanwei-cannon-carbon.html",
+      "https://sanweisport.com/en/product/blade/ultra-tech-series/cannon-carbon/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei King of Hinoki Carbon T1091AA",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "10-ply Holz + 9 weiche Carbonlagen (Domino Balance)",
+      "layers": 10,
+      "weightAvgGrams": 95,
+      "stiffness": "very_stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Spezialholz mit 10 Furnieren und 9 Carbonlagen nach Domino-Balance-Prinzip. Hinoki-Aussen. Sehr direkte, schnelle Konstruktion fuer Profis im Vollangriff.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/sanwei-tischtennis-holz-king-of-hinoki-carbon.html",
+      "https://sanweisport.com/en/product/blade/even/king-of-hinoki-carbon/",
+      "https://revspin.net/blade/sanwei-t1091-aa-hinoki-carbon.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei Two-Face ALC",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "Hybrid: 3K-Carbon/Hinoki/Ayous (Offensiv-Seite) + Ebony/Balsa (Defensiv-Seite)",
+      "layers": 7,
+      "weightAvgGrams": 85,
+      "stiffness": "medium",
+      "carbonPosition": "outer",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Asymmetrisches Holz mit unterschiedlichen Strukturen auf Vor- und Rueckhandseite: helle Seite mit 3K-Carbon und Hinoki fuer Offensive, dunkle Seite mit Ebony und Balsa fuer Abwehr/Stoerspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/tischtennis-holz-sanwei-two-face.html",
+      "https://sanweisport.com/en/product/blade/defense/two-face/",
+      "https://revspin.net/blade/sanwei-two-face.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei Nova Carbon",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "3-ply Holz + 2 Nova-Carbon, Hinoki-Aussen, Kiri-Kern",
+      "layers": 5,
+      "weightAvgGrams": 88,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Hinoki-Carbon-Konstruktion (5-Lagen), Hinoki-Aussenfurnier ca. 1,5 mm, schwarze Nova-Carbonschichten, heller Kiri-Kern. Gesamtdicke ca. 6,2 mm. Offensiv, mit gutem Spielgefuehl.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://sanweisport.com/en/best-hinoki-carbon-blade-why-sanwei-nova-carbon-is-the-ultimate-choice-for-power-precision/",
+      "https://sanweisport.com/en/our-review-can-the-sanwei-nova-carbon-deliver-carbon-performance-under-60/"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei Verdi EX-C",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "5-ply Holz + 2 VerdiX-Fiber (Polyarylate-Carbon), Limba-Aussen, Kiri-Kern",
+      "layers": 7,
+      "weightAvgGrams": 88,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Expert-Carbon-Holz mit VerdiX-Faser (Polyarylate-Carbon). Kiri-Kern, Ayous-Zwischenlagen, Limba-Aussen. Ca. 6,1-6,2 mm dick. Direkte, kontrollierte Offensivkonstruktion.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://sanweisport.com/en/product/blade/expert-carbon/verdi/",
+      "https://www.tabletennisdaily.com/forum/topics/sanwei-new-blade-ex-c-verdi-and-ex-c-verdi-inner.34512/"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei S1",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "5-ply Holz + 2 Carbon",
+      "layers": 7,
+      "weightAvgGrams": 88,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Klassisches Carbon-Offensivholz von Sanwei. Aeussere Carbonlagen liefern hohes Tempo und Steifigkeit. Geeignet fuer offensive Topspinspieler.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/tischtennis-holz-sanwei-s1.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Sanwei",
+    "name": "Sanwei Shrafton",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "composition": "Allholz (Limba-Aussen, Ayous-Kern)",
+      "layers": 7,
+      "weightAvgGrams": 85,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Allholz-Offensivholz im klassischen 7-Lagen-Aufbau. Limba-Aussen und Ayous-Mittellagen. Kontrolliertes Offensivgefuehl, gut fuer Allround-Aufbauspieler.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-hoelzer/sanwei-tischtennis-holz-shrafton.html"
+    ],
+    "confidence": "low",
+    "issues": "Wenig oeffentliche Specs, daher konservative Schaetzung"
+  },
+  {
+    "type": "rubber",
+    "brand": "Sanwei",
+    "name": "Sanwei Target National",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 39,
+      "hardnessMax": 40,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": "blau",
+      "isHybrid": true
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Hybrid-Belag: leicht klebriges chinesisches Topsheet auf dynamischem blauem Cake-Sponge (39-40 Grad chinesisch). Bietet hohe Spinentfaltung mit europaeischem Catapult, weniger anstrengend als klassische China-Belaege.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-belaege/tischtennis-belag-sanwei-target-national.html",
+      "https://revspin.net/rubber/sanwei-target-national.html",
+      "https://racketinsight.com/table-tennis/sanwei-target-national-review/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Sanwei",
+    "name": "Sanwei Target Provincial",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 39,
+      "hardnessMax": 41,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Klebriger China-Belag fuer den 40+ Ball. Harter, dichter Schwamm und stark klebriges Topsheet. Etwas langsamer als das Target National, klassisches chinesisches Spielgefuehl mit hoher Rotation.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-belaege/table-tennis-rubber-sanwei-target-provincial.html",
+      "https://revspin.net/rubber/sanwei-target-provincial.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Sanwei",
+    "name": "Sanwei Target (Pro)",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 39,
+      "hardnessMax": 41,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Klassisches Sanwei Target: griffiges, leicht klebriges chinesisches Topsheet auf weichem europaeisch/japanisch anmutendem Schwamm (39-41 Grad). Einsteigerfreundlich, gute Spinentfaltung.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-belaege/tischtennis-belag-sanwei-target.html",
+      "https://revspin.net/rubber/sanwei-target.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Sanwei",
+    "name": "Sanwei Europe Target 40+ FX",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 35,
+      "hardnessMax": 38,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Europaeisch ausgerichtete Version des Target. Weicher FX-Schwamm, griffiges nicht-klebriges Topsheet. Auf 40+ Ball abgestimmt, geeignet fuer Aufbauspieler mit europaeischem Stil.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-belaege/tischtennis-belag-sanwei-europe-target-40-fx.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Sanwei",
+    "name": "Sanwei Gear Hyper",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 38,
+      "hardnessMax": 40,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "blau",
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "High-End-Belag mit Pixel-Treatment-Topsheet (sehr griffig, minimal klebrig) und Cake-Sponge wie im Target National. Schneller und etwas verzeihender als Target National, modernes Offensivspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-belaege/sanwei-gear-hyper-regular-38.html",
+      "https://www.spinfactory.de/promo/sanwei-gear-hyper.html",
+      "https://revspin.net/rubber/sanwei-gear-hyper.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Sanwei",
+    "name": "Sanwei T88-Taiji",
+    "category": "ALL+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 37,
+      "hardnessMax": 40,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Allroundbelag mit griffigem, nicht klebrigem chinesischen Topsheet und weichem rosafarbenem japanischen Schwamm. Sehr hohe Kontrollwerte und gute Spinentfaltung.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/belaege/t88-taiji.html",
+      "https://www.spinfactory.de/tischtennis-belaege/sanwei-belag-taiji-t88-new.html",
+      "https://tt-finder.net/de/belag/Sanwei/T88-Taiji"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Sanwei",
+    "name": "Sanwei T88 Ultra Spin",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 38,
+      "hardnessMax": 40,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Halb-klebriger Trainings- und Aufbaubelag. Kombiniert Tempo, Spin und Kontrolle, mit semi-tacky Topsheet. Guter Einstieg in chinesische Spielweise.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/tischtennis-belaege/sanwei-t88-new-ultraspin.html",
+      "https://tt-finder.net/de/belag/Sanwei/T88-Ultraspin"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Sanwei",
+    "name": "Sanwei T88-1",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 38,
+      "hardnessMax": 40,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Chinesischer Belag fuer tischnahes Angriffsspiel. Dickes Topsheet mit grossen, langen Noppen unter der Oberflaeche fuer Tempo und Elastizitaet beim Schuss.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://www.spinfactory.de/belaege/t88-i.html",
+      "https://tt-finder.net/de/belag/Sanwei/T88-1",
+      "https://sanweisport.com/en/product/rubber/t88/t88-1/"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Sanwei",
+    "name": "Sanwei Ghost",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 7,
+      "spinRaw": 7,
+      "controlRaw": 11,
+      "speedScale": 10,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Lange Noppen mit hoher Elastizitaet und Stoerwirkung. Gut fuer Aufschlaege und blockorientiertes Spiel, klassischer Material-Belag fuer disruptive Spieler.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "spinfactory.de"
+    ],
+    "sources": [
+      "https://tt-finder.net/de/belag/Sanwei/Ghost",
+      "https://www.pingpong777.com/SANWEI-Ghost.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  }
+]

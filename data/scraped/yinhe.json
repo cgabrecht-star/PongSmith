@@ -1,0 +1,724 @@
+[
+  {
+    "_meta": {
+      "marke": "Yinhe",
+      "anzahl": 24,
+      "scraped_at": "2026-05-17T12:00:00Z",
+      "primary_source": "https://yinhe-galaxy.de",
+      "notes": "yinhe-galaxy.de lieferte im Test keinen Content (leerer HTML-Body). tt-shop.de und tischtennis.biz listen Yinhe NICHT als Marke. Hauptverfuegbarkeit in DE ueber CONTRA-Gruppe (contra.de / contra-berlin.de / contra-luebeck.de) sowie weitere DE-Shops (frija-tt-shop.de, tms-tischtennis.de, schuett-sport.de, vetts.de, spinfactory.de, tt-store24.com). Specs gemischt aus Hersteller-Angaben und revspin.net (Skala 10). UVP-Preise sind Shop-Verkaufspreise (CONTRA), nicht offizielle Hersteller-UVP, daher null wo unbekannt."
+    }
+  },
+  {
+    "type": "blade",
+    "brand": "Yinhe",
+    "name": "T-11s",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 10,
+      "controlRaw": 7,
+      "speedScale": 10,
+      "composition": "5+2 Carbon (Balsa Kern, Limba aussen)",
+      "layers": 7,
+      "weightAvgGrams": 72,
+      "stiffness": "very_stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "Balsa"
+    },
+    "rubber": null,
+    "uvpEur": 49.90,
+    "imageUrl": null,
+    "descriptionDe": "7-lagiges Balsa-Carbon-Holz, sehr leicht (~72g), hohes Tempo, flache Flugkurve. Limba-Aussenfurnier, Balsa-Kern, dazwischen Carbon.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de", "frija-tt-shop.de"],
+    "sources": [
+      "https://www.contra.de/en/milky-way-yinhe-blade-t-11s/",
+      "https://www.frija-tt-shop.de/HOeLZER/MILKY-WAY-YINHE/Milky-Way-Yinhe-Holz-T-11s::337234.html",
+      "https://revspin.net/blade/yinhe-t11s.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Yinhe",
+    "name": "T-7s",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 8.3,
+      "controlRaw": 8.8,
+      "speedScale": 10,
+      "composition": "3+2 Arylate-Carbon",
+      "layers": 5,
+      "weightAvgGrams": 85,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 64.90,
+    "imageUrl": null,
+    "descriptionDe": "5-lagiges Holz mit zwei Arylate-Carbon-Schichten. Vergleichsweise langsames Composite, stiff, mit grossem Sweet Spot und hoher Kontrolle.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de", "tt-store24.com"],
+    "sources": [
+      "https://www.contra.de/en/milky-way-yinhe-blade-t-7s/",
+      "https://www.tt-store24.com/hn_de/yinhe-holz-t-7s.html",
+      "https://revspin.net/blade/galaxy-yinhe-t7s.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Yinhe",
+    "name": "T-6s",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 9.2,
+      "controlRaw": 8.2,
+      "speedScale": 10,
+      "composition": "3 Holz + 2 Carbon (Cypress aussen)",
+      "layers": 5,
+      "weightAvgGrams": 83,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": 54.90,
+    "imageUrl": null,
+    "descriptionDe": "5-lagiges Carbon-Holz mit amerikanischem Zypressen-Aussenfurnier, spin-orientiert, hoher Katapulteffekt, grosser Sweet Spot.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de", "tt-store24.com", "frija-tt-shop.de"],
+    "sources": [
+      "https://www.contra.de/en/milky-way-yinhe-blade-t-6s/",
+      "https://www.tt-store24.com/hn_de/yinhe-holz-t-6s.html",
+      "https://revspin.net/blade/galaxy-yinhe-t6s.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Yinhe",
+    "name": "V-14",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 8.7,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "composition": "5 Holz + 2 Carbokev",
+      "layers": 7,
+      "weightAvgGrams": 88,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "Aramid"
+    },
+    "rubber": null,
+    "uvpEur": 44.90,
+    "imageUrl": null,
+    "descriptionDe": "7-lagiges Holz mit Carbokev-Synthetikfaser, variabel topspin-orientiert, geringe Eigenvibration, hohe Elastizitaet.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de"],
+    "sources": [
+      "https://www.contra.de/en/yinhe-holz-v-14.html",
+      "https://www.contra.de/en/milky-way-yinhe-blade-v-14/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Yinhe",
+    "name": "V-14 Pro",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 9,
+      "controlRaw": 8.2,
+      "speedScale": 10,
+      "composition": "Limba/ALC/Limba/Kiri",
+      "layers": 7,
+      "weightAvgGrams": 92,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "ALC"
+    },
+    "rubber": null,
+    "uvpEur": 59.90,
+    "imageUrl": null,
+    "descriptionDe": "7-lagiges ALC-Holz (Limba-Aussen, Kiri-Kern), Viscaria-naher Aufbau, direkter und schneller als V-14 normal.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de"],
+    "sources": [
+      "https://www.contra.de/en/milky-way-yinhe-blade-v-14-pro/",
+      "https://revspin.net/blade/galaxy-yinhe-venus-v-14-pro.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Yinhe",
+    "name": "M202",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 9,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "composition": "7-lagig mit Polyethylen-Carbon",
+      "layers": 7,
+      "weightAvgGrams": 88,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 39.90,
+    "imageUrl": null,
+    "descriptionDe": "7-lagiges Angriffsholz mit integrierter Polyethylen-Carbon-Schicht, fuer aggressives Offensivspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de", "contra-luebeck.de"],
+    "sources": [
+      "https://www.contra.de/en/milky-way-yinhe-blade-m202/",
+      "https://www.contra-luebeck.de/Milky-Way-Yinhe-Holz-M202/10182"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Yinhe",
+    "name": "Y-13",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 9,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "composition": "7-lagig Carbon",
+      "layers": 7,
+      "weightAvgGrams": 87,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 39.90,
+    "imageUrl": null,
+    "descriptionDe": "7-lagiges Carbonholz fuer variables Offensivspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de"],
+    "sources": [
+      "https://www.contra.de/en/milky-way-yinhe-blade-y-13/"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Yinhe",
+    "name": "EC-11",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 8.5,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "composition": "5+2 Carbon",
+      "layers": 7,
+      "weightAvgGrams": 85,
+      "stiffness": "medium",
+      "carbonPosition": "inner",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 39.90,
+    "imageUrl": null,
+    "descriptionDe": "5-lagiges Holz mit 2 Carbonlagen, fuer tischnahes Spiel optimiert.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de", "tms-tischtennis.de"],
+    "sources": [
+      "https://www.contra.de/en/milky-way-yinhe-blade-ec-11/",
+      "https://www.tms-tischtennis.de/Milky-Way-Yinhe-Holz-EC-11/8275"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Yinhe",
+    "name": "VF5",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 8.5,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "composition": "Holz mit Basalt-Faser",
+      "layers": 7,
+      "weightAvgGrams": 85,
+      "stiffness": "medium",
+      "carbonPosition": "inner",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 49.90,
+    "imageUrl": null,
+    "descriptionDe": "Offensives Holz mit Basaltfaser-Lagen, weicher Ballaufprall, hohe Kontrolle bei gutem Tempo.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de"],
+    "sources": [
+      "https://www.contra.de/en/milky-way-yinhe-blade-vf5/"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "Big Dipper",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9,
+      "spinRaw": 9.5,
+      "controlRaw": 7.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 38,
+      "hardnessMax": 40,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 24.90,
+    "imageUrl": null,
+    "descriptionDe": "Klebriges chinesisches Topsheet auf God-Crossbow-Schwamm, MAX-TENSE-Technik. Erhaeltlich in 38, 39, 40 Grad.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de", "frija-tt-shop.de", "schuett-sport.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/milkyway-yinhe-belag-big-dipper-medium::337272.html",
+      "https://www.schuett-sport.de/tischtennis/belaege/noppe-innen/4238/milky-way-big-dipper-soft",
+      "https://revspin.net/rubber/galaxy-yinhe-big-dipper.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "Big Dipper IV",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9,
+      "spinRaw": 9.5,
+      "controlRaw": 7.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 38,
+      "hardnessMax": 40,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 26.90,
+    "imageUrl": null,
+    "descriptionDe": "Vierte Generation der Big-Dipper-Reihe. Klebriges Topsheet, God-Crossbow-Schwamm, 38/39/40 Grad verfuegbar.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de"],
+    "sources": [
+      "https://revspin.net/rubber/galaxy-yinhe-big-dipper-iv.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "Big Dipper Pro",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9.5,
+      "spinRaw": 9.5,
+      "controlRaw": 7,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 37,
+      "hardnessMax": 40,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": "orange",
+      "isHybrid": true
+    },
+    "uvpEur": 29.90,
+    "imageUrl": null,
+    "descriptionDe": "Hybrid-Variante: dichterer Schwamm als Big Dipper Standard, klebrigeres Topsheet. Built-in-Tensor-Charakter.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de"],
+    "sources": [
+      "https://pingpongshop.eu/yinhe-big-dipper-pro",
+      "https://www.tabletennis11.com/other_eng/yinhe-big-dipper-pro"
+    ],
+    "confidence": "medium",
+    "issues": "DE-Verfuegbarkeit ueber CONTRA-Gruppe inkonsistent, teils Restposten."
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "Moon Speed",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9,
+      "spinRaw": 8.5,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 45,
+      "hardnessMax": 50,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": 19.90,
+    "imageUrl": null,
+    "descriptionDe": "Tensor-Belag mit grippy Topsheet, MAX-TENSE-Schwamm. Soft, Medium und Hard verfuegbar. Hoher Sprung, leichter Spin.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de"],
+    "sources": [
+      "https://revspin.net/rubber/galaxy-yinhe-moon-speed.html",
+      "https://www.contra.de/en/brandworld/yinhe/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "Moon Pro",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.5,
+      "spinRaw": 9.5,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 40,
+      "hardnessMax": 47,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": 22.90,
+    "imageUrl": null,
+    "descriptionDe": "Tensor-Belag mit leicht klebriger Oberflaeche, leichter als klassische Moon. Soft und Medium erhaeltlich.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de"],
+    "sources": [
+      "https://revspin.net/rubber/galaxy-yinhe-moon-pro.html",
+      "https://tt-store.eu/yinhe-moon-pro"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "Sun",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 9,
+      "spinRaw": 9,
+      "controlRaw": 7.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 38,
+      "hardnessMax": 45,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": 21.90,
+    "imageUrl": null,
+    "descriptionDe": "Max-Tense-Tensor mit Arbalest-Schwamm. Spin-orientiert, drei Haertestufen (Soft, Medium, Hard).",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de"],
+    "sources": [
+      "https://revspin.net/rubber/yinhe-galaxy-sun.html",
+      "https://www.contra.de/en/brandworld/yinhe/"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "Apollo V",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8.5,
+      "spinRaw": 9.5,
+      "controlRaw": 8,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 36,
+      "hardnessMax": 40,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 22.90,
+    "imageUrl": null,
+    "descriptionDe": "Klebriges chinesisches Topsheet auf federndem Schwamm. Vier Haertestufen 36 bis 40 Grad.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de"],
+    "sources": [
+      "https://revspin.net/rubber/galaxy-yinhe-apollo-5.html",
+      "https://www.contra.de/en/brandworld/yinhe/"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "Apollo III",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8,
+      "spinRaw": 9,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 35,
+      "hardnessMax": 40,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 19.90,
+    "imageUrl": null,
+    "descriptionDe": "Aeltere Apollo-Generation, klebriges Topsheet. Soft 35-37 Grad und Medium 37-39 Grad verfuegbar.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de", "contra-luebeck.de"],
+    "sources": [
+      "https://www.contra-luebeck.de/Milky-Way-Yinhe-Belag-Apollo-III-Medium-370/6867",
+      "https://revspin.net/rubber/galaxy-yinhe-apollo-iii.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "Venus III",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8,
+      "spinRaw": 9.5,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 37,
+      "hardnessMax": 41,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": "rot",
+      "isHybrid": true
+    },
+    "uvpEur": 22.90,
+    "imageUrl": null,
+    "descriptionDe": "Hybrid-Belag: leicht klebriges Topsheet auf elastischem Schwamm. Soft, Medium und Hard verfuegbar.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de", "frija-tt-shop.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/BELAeGE/MILKY-WAY-YINHE/Milky-Way-Yinhe-Belag-Venus-III-Soft::331151.html",
+      "https://revspin.net/rubber/galaxy-yinhe-venus-3.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "Earth II",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 7,
+      "spinRaw": 8.5,
+      "controlRaw": 9,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 35,
+      "hardnessMax": 40,
+      "topsheetCharacter": "grippy",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": 17.90,
+    "imageUrl": null,
+    "descriptionDe": "Tensor-Belag mit gutmuetigem Allround-Charakter. Drei Haertestufen erhaeltlich.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de", "vetts.de"],
+    "sources": [
+      "https://www.vetts.de/conk_de/milky-way-yinhe-belag-earth-ii-soft.html",
+      "https://revspin.net/rubber/galaxy-yinhe-earth-2.html"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "Mercury II",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 8,
+      "spinRaw": 9,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 33,
+      "hardnessMax": 41,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": 14.90,
+    "imageUrl": null,
+    "descriptionDe": "Klebriges Topsheet mit MOXA-Schwamm, weicher und elastischer als Mercury I. Soft (33-35), Medium (36-38), Hard (39-41).",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de", "frija-tt-shop.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/BELAeGE/MILKY-WAY-YINHE/Milky-Way-Yinhe-Belag-Mercury-2-Soft::315045.html",
+      "https://www.contra.de/en/milky-way-yinhe-rubber-mercury-2-soft/",
+      "https://revspin.net/rubber/yinhe-galaxy-mercury-ii.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "9000E",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 7.5,
+      "spinRaw": 9,
+      "controlRaw": 8.6,
+      "speedScale": 10,
+      "rubberType": "smooth",
+      "hardnessMin": 36,
+      "hardnessMax": 40,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": 17.90,
+    "imageUrl": null,
+    "descriptionDe": "Klebriges Topsheet, mittelharter Schwamm. Offensives Spielsystem mit hohem Kontroll-Anteil.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de"],
+    "sources": [
+      "https://revspin.net/rubber/galaxy-yinhe-9000e.html",
+      "https://www.contra.de/en/brandworld/yinhe/"
+    ],
+    "confidence": "medium",
+    "issues": "Hersteller-eigene Speed-Spin-Werte nicht oeffentlich, Werte aus revspin (Skala 10)."
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "Pluto",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 7,
+      "spinRaw": 6,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": 16.90,
+    "imageUrl": null,
+    "descriptionDe": "Mittellange Noppe (Medium-Pips) mit flachem Ballverhalten, gut fuer Block und Konter, schwer einzuschaetzen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de"],
+    "sources": [
+      "https://revspin.net/pips/galaxy-pluto.html",
+      "https://www.contra.de/en/brandworld/yinhe/"
+    ],
+    "confidence": "medium",
+    "issues": "Yinhe kategorisiert Pluto als Medium-Pips; revspin fuehrt es als Pips-Out."
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "Neptune",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 5,
+      "spinRaw": 4,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": 16.90,
+    "imageUrl": null,
+    "descriptionDe": "Lange Noppe mit Bremswirkung, gute Kontrolle fuer Block und Schupf. Auch in OX erhaeltlich.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de"],
+    "sources": [
+      "https://revspin.net/pips/galaxy-neptune.html",
+      "https://www.contra.de/en/brandworld/yinhe/"
+    ],
+    "confidence": "medium",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Yinhe",
+    "name": "955",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 6,
+      "spinRaw": 4,
+      "controlRaw": 8.5,
+      "speedScale": 10,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": 16.90,
+    "imageUrl": null,
+    "descriptionDe": "Lange, duenne, leicht steife Noppe. Mittlere Geschwindigkeit, sehr taeuschend. Auch OX und mit duennem Schwamm 0.7mm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-sport.de"],
+    "sources": [
+      "https://revspin.net/pips/galaxy-955.html",
+      "https://www.contra.de/en/brandworld/yinhe/"
+    ],
+    "confidence": "medium",
+    "issues": null
+  }
+]
