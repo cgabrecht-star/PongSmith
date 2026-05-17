@@ -166,9 +166,12 @@ function wrapAdcellDeeplink(advertiserKey: AdcellAdvertiserKey, targetUrl: strin
   if (!ADCELL_PUBLISHER_ID) return null;
   const adv = ADCELL_ADVERTISERS[advertiserKey];
   if (!adv.promoId) return null;
-  // Adcell-Deeplink-Format: promoId + slotId (= publisher) + Ziel-URL als param0
+  // Adcell-Deeplink-Format (aus Deeplink-Generator verifiziert):
+  // https://t.adcell.com/p/click?promoId=...&slotId=...&param0=<ziel-url>
+  // promoId = Werbemittel-ID des Programms
+  // slotId  = Publisher-ID (program-spezifisch, NICHT die Account-Nummer)
   const encoded = encodeURIComponent(targetUrl);
-  return `https://www.adcell.de/promotion/click/promoId/${adv.promoId}/slotId/${ADCELL_PUBLISHER_ID}?param0=${encoded}`;
+  return `https://t.adcell.com/p/click?promoId=${adv.promoId}&slotId=${ADCELL_PUBLISHER_ID}&param0=${encoded}`;
 }
 
 // ─── Public API ────────────────────────────────────────────────────────────
