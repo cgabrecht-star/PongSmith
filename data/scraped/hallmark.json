@@ -1,0 +1,655 @@
+[
+  {
+    "_meta": {
+      "marke": "Hallmark",
+      "anzahl": 21,
+      "scraped_at": "2026-05-17T12:00:00Z",
+      "primary_source": "https://www.contra.de/de/brandworld/hallmark/",
+      "notes": "Englische Marke, 2019 von Contra (Koschnick & Sohns, DE) übernommen und neu aufgelegt. Vertrieb in DE über Spezialhändler (Frija TT-Shop, Contra, tt-shop.de, Schöler&Micke, TMS, K-Unlimited, Spinfactory). Schwerpunkt: Material-Beläge (lange Noppen, kurze Noppen, Anti). Offizielle DE-URL hallmark-tt.de nicht erreichbar; aktuelle offizielle Marken-/Produktseite: hallmarktabletennis.com (Contra-Gruppe). Im User-Prompt erwähntes Produkt 'Power Tact' konnte nicht verifiziert werden – vermutlich Verwechslung mit 'Tactics LP'. Magic Pips ist seit 01.07.2025 nicht mehr für den ITTF-Wettkampf zugelassen, im Hobbybereich aber weiter verfügbar."
+    }
+  },
+  {
+    "type": "blade",
+    "brand": "Hallmark",
+    "name": "Hallmark Aurora",
+    "category": "ALL",
+    "blade": {
+      "speedRaw": 85,
+      "controlRaw": 88,
+      "speedScale": 100,
+      "composition": "5 Holzfurniere, asymmetrisch (VH härter/schneller, RH weicher) mit Anti-Vibration-Cork-Technologie",
+      "layers": 5,
+      "weightAvgGrams": 70,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 54.90,
+    "imageUrl": null,
+    "descriptionDe": "Kombinationsholz mit zwei verschieden schnellen Seiten. Vorhandseite mit hartem Außenfurnier für höheres Tempo, Rückhandseite langsamer für Material. Kork-Schicht zur Schwingungsdämpfung. Asymmetrische Tempo/Kontroll-Werte: VH 85/88, RH 69/72.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "contra.de", "schoeler-micke.de", "tms-tischtennis.de", "tt-store24.de", "k-unlimited.de", "spinfactory.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/hallmark-holz-aurora::312882.html",
+      "https://www.schoeler-micke.de/hoelzer/spielertyp/defensiv/456/hallmark-holz-aurora",
+      "https://www.contra-berlin.de/conb_de/hallmark-holz-aurora.html"
+    ],
+    "confidence": "high",
+    "issues": "Asymmetrisches Holz – Werte beziehen sich auf VH-Seite; Hersteller-Skala /100."
+  },
+  {
+    "type": "blade",
+    "brand": "Hallmark",
+    "name": "Hallmark Combination",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": 91,
+      "controlRaw": 91,
+      "speedScale": 100,
+      "composition": "5 Holzfurniere, asymmetrisch (VH hartes Außenfurnier, RH weicher)",
+      "layers": 5,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 59.90,
+    "imageUrl": null,
+    "descriptionDe": "Kombinationsholz mit zwei verschieden schnellen Seiten. VH-Seite schneller (Tempo 91, Kontrolle 91), RH-Seite langsamer für Material (Tempo 75, Kontrolle 95). 5-Furnier-Konstruktion ohne Carbon.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "contra.de", "schoeler-micke.de", "tms-tischtennis.de", "tt-store24.de", "k-unlimited.de", "spinfactory.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/HOeLZER/HALLMARK/Hallmark-Holz-Combination::312539.html",
+      "https://www.contra.de/en/hallmark-blade-combination/",
+      "https://www.schoeler-micke.de/hoelzer/spielertyp/offensiv/459/hallmark-holz-combination"
+    ],
+    "confidence": "high",
+    "issues": "Asymmetrisches Holz – Werte beziehen sich auf VH-Seite; Hersteller-Skala /100."
+  },
+  {
+    "type": "blade",
+    "brand": "Hallmark",
+    "name": "Hallmark Ultra",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": 94,
+      "controlRaw": 89,
+      "speedScale": 100,
+      "composition": "Kombinationsholz mit Balsakern, asymmetrisch",
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": "Balsa"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Klassisches Abwehr-/Kombiholz mit deutlichem Störeffekt. Vergrößertes Schlägerblatt und relativ dicker Balsakern. Asymmetrische Werte: VH 94/89, RH 85/85.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "schoeler-micke.de", "tms-tischtennis.de", "tt-store24.de", "spinfactory.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/HOeLZER/HALLMARK/Hallmark-Holz-Ultra::331313.html",
+      "https://www.schoeler-micke.de/hoelzer/spielertyp/offensiv/461/hallmark-holz-ultra",
+      "https://www.tms-tischtennis.de/HALLMARK-Holz-Ultra/1021"
+    ],
+    "confidence": "medium",
+    "issues": "Lagenanzahl und Gewicht nicht eindeutig dokumentiert; UVP nicht ermittelt."
+  },
+  {
+    "type": "blade",
+    "brand": "Hallmark",
+    "name": "Hallmark Strategy",
+    "category": "DEF",
+    "blade": {
+      "speedRaw": 25,
+      "controlRaw": 100,
+      "speedScale": 100,
+      "composition": "5 Holzfurniere, defensive Auslegung für Materialspiel",
+      "layers": 5,
+      "weightAvgGrams": 80,
+      "stiffness": "soft",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Langsames 5-Furnier-Defensivholz speziell für Langnoppen-Spieler im Tischbereich. Verzögert den Ball bei Block und Schupf, ermöglicht aber auch Konterspiel. Sehr hohe Kontrollwerte (100/100).",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "contra.de", "schoeler-micke.de", "tischtennisbedarf.at", "spinfactory.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/hallmark-holz-strategy::312358.html",
+      "https://www.schoeler-micke.de/hoelzer/spielertyp/defensiv/460/hallmark-holz-strategy",
+      "https://www.spinfactory.de/tischtennis-hoelzer/tischtennis-holz-hallmark-strategy-def.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Hallmark",
+    "name": "Hallmark Enigma",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": 84,
+      "controlRaw": 94,
+      "speedScale": 100,
+      "composition": "3 Furniere mit dickem Balsakern, Anti-Vibration-Cork-Technologie",
+      "layers": 3,
+      "weightAvgGrams": 65,
+      "stiffness": "soft",
+      "carbonPosition": "none",
+      "specialMaterial": "Balsa"
+    },
+    "rubber": null,
+    "uvpEur": 59.90,
+    "imageUrl": null,
+    "descriptionDe": "Leichtes Offensive-Minus-Holz mit dickem Balsakern (Blattstärke ca. 11 mm). Konstruktion auf geringes Gewicht und hohe Kontrolle ausgelegt; speziell für Noppenspieler geeignet.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "schoeler-micke.de", "k-unlimited.de", "spinfactory.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/HOeLZER/HALLMARK/Hallmark-Holz-Enigma::312881.html",
+      "https://www.schoeler-micke.de/hoelzer/spielertyp/defensiv/458/hallmark-holz-enigma",
+      "https://revspin.net/blade/hallmark-enigma.html"
+    ],
+    "confidence": "high",
+    "issues": "Klassifikation zwischen 'defensiv' (Händlerkategorisierung) und 'Offensive Minus' (Herstellerangabe) uneinheitlich."
+  },
+  {
+    "type": "blade",
+    "brand": "Hallmark",
+    "name": "Hallmark Carbon Extreme",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 100,
+      "controlRaw": 97,
+      "speedScale": 100,
+      "composition": "7 Furniere: Limba / Abachi / Carbon / Balsa-Kern / Carbon / Abachi / Limba (Carbon-Schleier zusätzlich oberhalb des Balsakerns)",
+      "layers": 7,
+      "weightAvgGrams": 80,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Carbon"
+    },
+    "rubber": null,
+    "uvpEur": 79.90,
+    "imageUrl": null,
+    "descriptionDe": "7-schichtiges Offensiv-Carbonholz mit Balsakern und innen liegenden Carbonlagen. Extrem schnell mit überraschend hohen Kontrollwerten und vergrößertem Sweetspot. Auch für Material-Kombinationen geeignet.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "contra.de", "tt-store24.de", "k-unlimited.de", "spinfactory.de", "tischtennis-billiger.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/hallmark-holz-carbon-extreme::331314.html",
+      "https://www.contra.de/en/hallmark-blade-carbon-extreme/",
+      "https://www.spinfactory.de/tischtennis-hoelzer/carbon-extreme-off.html",
+      "https://revspin.net/blade/hallmark-carbon-extreme.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Hallmark",
+    "name": "Hallmark Super Balsa",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": "7 Furniere: Limba / Carbon / Ayous / Balsa-Kern / Ayous / Carbon / Limba",
+      "layers": 7,
+      "weightAvgGrams": 75,
+      "stiffness": "medium",
+      "carbonPosition": "inner",
+      "specialMaterial": "Balsa"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Leichtes Offensiv-Carbon-Balsaholz (ca. 75 g). Balsakern für Katapulteffekt, innen liegende Carbonlagen für Grundgeschwindigkeit, Limba außen für Ballgefühl, Ayous als Zwischenfurnier.",
+    "isCurrentlyAvailable": false,
+    "availableAt": ["tischtennis-billiger.de"],
+    "sources": [
+      "https://tischtennis-billiger.de/hoelzer/hallmark/hallmark-super-balsa.html",
+      "https://www.cjping.com/produit/hallmark-super-balsa/"
+    ],
+    "confidence": "low",
+    "issues": "Nische, Verfügbarkeit in DE-Hauptshops aktuell nicht bestätigt; UVP und Hersteller-Speed/Control-Werte nicht ermittelt."
+  },
+  {
+    "type": "rubber",
+    "brand": "Hallmark",
+    "name": "Hallmark Frustration",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 85,
+      "spinRaw": 50,
+      "controlRaw": 90,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 39.90,
+    "imageUrl": null,
+    "descriptionDe": "Langnoppe mit grifferer Noppenoberfläche. Erzeugt im Block gegen Topspin den klassischen Langnoppen-Effekt, mit aktivem Handgelenkseinsatz auch eigene Rotation möglich. Verfügbar in rot/schwarz, OX/1.0/1.5/2.0 mm. Schwammhärte Medium.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "contra.de", "magic-tischtennis.de", "tt-store24.de", "k-unlimited.de", "tt-xpert.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/hallmark-belag-frustration-langnoppe::312399.html",
+      "https://www.contra.de/en/hallmark-rubber-frustration/",
+      "https://revspin.net/pips/hallmark-frustration.html"
+    ],
+    "confidence": "high",
+    "issues": "Hallmark gibt aktuell nur eine Schwammhärte 'Medium' an, keinen °-Wert."
+  },
+  {
+    "type": "rubber",
+    "brand": "Hallmark",
+    "name": "Hallmark Tactics LP",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 39.90,
+    "imageUrl": null,
+    "descriptionDe": "Langnoppe speziell für den ABS-Plastikball. Maximale ITTF-zulässige Noppenlänge mit besonders breit angelegten Noppenköpfen. Sehr flache Flugkurve und schneller Ballabfall hinter dem Netz; gute Spinumkehr im Block.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "contra.de", "schoeler-micke.de", "k-unlimited.de", "tt-store24.de", "shop.sport-schreiner-tischtennis.de", "tt-xpert.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/hallmark-belag-tactics-lp::341938.html",
+      "https://www.contra.de/en/hallmark-rubber-tactics-lp/",
+      "https://www.schoeler-micke.de/belaege/noppen-aussen/lange-noppen/1661/hallmark-belag-tactics-lp"
+    ],
+    "confidence": "high",
+    "issues": "Numerische Hersteller-Werte für Tempo/Effekt/Kontrolle nicht eindeutig auffindbar."
+  },
+  {
+    "type": "rubber",
+    "brand": "Hallmark",
+    "name": "Hallmark Tactics LP Spezial",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Variante des Tactics LP mit reduziertem Tempo und beigelegter Klebefolie für einfache Montage. Ausschließlich in OX (ohne Schwamm) erhältlich. Maximale Noppenlänge und sehr breite Noppenköpfe.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "tischtennis.biz", "contra.de", "k-unlimited.de", "tt-store24.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/BELAeGE/HALLMARK/Hallmark-Belag-Tactics-LP-Spezial::343120.html",
+      "https://www.tischtennis.biz/lange-noppen-tischtennisbelag/hallmark-tactics-lp-spezial.html",
+      "https://www.contra.de/en/hallmark-rubber-tactics-lp-special/"
+    ],
+    "confidence": "high",
+    "issues": "Nur in OX erhältlich; numerische Tempo-/Effekt-Werte nicht spezifiziert (Hersteller verweist auf 'noch geringeres Tempo' ggü. Tactics LP)."
+  },
+  {
+    "type": "rubber",
+    "brand": "Hallmark",
+    "name": "Hallmark Phoenix",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 75,
+      "spinRaw": 45,
+      "controlRaw": 96,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Langnoppe mit Restgriff für Block- und Defensivspiel. Spezielle Noppengeometrie auf Super-Anti-Cellular-Schwamm; flache Flugbahn mit Unterschnitt im Block. Schwammhärte Medium.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "tt-xpert.de", "tms-tischtennis.de", "tt-store.eu", "contra-berlin.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/hallmark-belag-phoenix-langnoppe::312979.html",
+      "https://www.tt-xpert.de/hallmark-phoenix/000000488402",
+      "https://www.tms-tischtennis.de/HALLMARK-Belag-Phoenix/3971"
+    ],
+    "confidence": "high",
+    "issues": "Aktuell stark rabattiert (Frija ~9,90 €); UVP nicht eindeutig dokumentiert."
+  },
+  {
+    "type": "rubber",
+    "brand": "Hallmark",
+    "name": "Hallmark Confusion-LP",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 41,
+      "spinRaw": 103,
+      "controlRaw": 96,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Langnoppe mit maximal zulässiger Noppenlänge und stark griffigen Noppenköpfen. Erlaubt Spinaufbau aus der Distanzdefensive und unangenehme Flugkurven im Tischbereich. Schwammhärte Medium.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "contra.de", "schoeler-micke.de", "tms-tischtennis.de", "sport-schreiner-tischtennis.de", "sport-piehl.com"],
+    "sources": [
+      "https://www.frija-tt-shop.de/hallmark-belag-confusion-lp-langnoppe::343880.html",
+      "https://www.contra.de/en/hallmark-rubber-confusion-lp/",
+      "https://www.schoeler-micke.de/belaege/noppen-innen/lange-noppen/2491/hallmark-belag-confusion-lp"
+    ],
+    "confidence": "high",
+    "issues": "Hersteller-'Effekt' ist als Spinumkehr-Wert zu lesen (>100 möglich), nicht als Eigenspin."
+  },
+  {
+    "type": "rubber",
+    "brand": "Hallmark",
+    "name": "Hallmark Friction Special 2",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 80,
+      "spinRaw": 53,
+      "controlRaw": 92,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Langsame, griffige Langnoppe mit unangenehmen Pips-Effekten. Empfohlen für Defensivspieler mit tischnahen Blockvarianten auf der Rückhand.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "contra.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/BELAeGE/HALLMARK/Hallmark-Belag-Friction-Special-2-Langnoppe::313419.html",
+      "https://www.contra.de/en/hallmark-belag-friction-special-2.html",
+      "https://revspin.net/pips/hallmark-friction-special-2.html"
+    ],
+    "confidence": "medium",
+    "issues": "Werte aus Händlerangaben, nicht durch Hallmark-Hauptseite gegengeprüft."
+  },
+  {
+    "type": "rubber",
+    "brand": "Hallmark",
+    "name": "Hallmark Panther",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Mittellange Noppe mit ca. 1,8 mm breiten, leicht gerillten Noppenköpfen. Vereint Kontrolle einer Kurznoppe mit Effekt einer Langnoppe; abfallende Flugkurve im Block gegen Topspin. Verfügbar OX/1.0/1.5/2.0 mm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "contra.de", "tms-tischtennis.de", "tt-store24.de", "vetts.de", "spinfactory.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/hallmark-belag-panther-mittellange-noppe::312739.html",
+      "https://www.tms-tischtennis.de/HALLMARK-Belag-Panther/2625",
+      "https://www.contra.de/en/hallmark-rubber-panther/"
+    ],
+    "confidence": "high",
+    "issues": "Mittellange Noppe – klassifiziert hier als 'long_pips' mangels eigener Enum; numerische Hersteller-Werte nicht eindeutig dokumentiert."
+  },
+  {
+    "type": "rubber",
+    "brand": "Hallmark",
+    "name": "Hallmark Destroyer",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Leicht kontrollierbare Kurz-/Halblangnoppe mit ausgeprägtem Störeffekt im Block. Etwas kürzere Noppen als eine klassische Langnoppe, aber länger als reine Kurznoppen; gute Spinumkehr im aktiven Block.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "schoeler-micke.de", "spinfactory.de", "k-unlimited.de", "tt-store.eu"],
+    "sources": [
+      "https://www.frija-tt-shop.de/hallmark-belag-destroyer::341937.html",
+      "https://www.spinfactory.de/hallmark-tischtennis-belag-destroyer.html",
+      "https://www.schoeler-micke.de/belaege/noppen-aussen/lange-noppen/1659/hallmark-belag-destroyer"
+    ],
+    "confidence": "medium",
+    "issues": "Einstufung Kurznoppe vs. Halblangnoppe nicht eindeutig; Händler kategorisieren teils als 'lange Noppen'. Numerische Werte nicht ermittelt."
+  },
+  {
+    "type": "rubber",
+    "brand": "Hallmark",
+    "name": "Hallmark Magic Pips",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 95,
+      "spinRaw": 92,
+      "controlRaw": 97,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Kurznoppe mit relativ breit angelegten Noppen für tischnahes Spiel. 1,5/2,0 mm erzeugen mehr Spin im Angriff, OX/1,0 mm liefern stärkere Bremswirkung im Block. Rot/schwarz, Schwammhärte Medium.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "tt-top-shop.de", "k-unlimited.de", "spinfactory.de", "megaspin.net"],
+    "sources": [
+      "https://www.frija-tt-shop.de/hallmark-belag-magic-pips-kurznoppe::312796.html",
+      "http://www.tt-top-shop.de/Hallmark-Magic-Pips",
+      "https://www.spinfactory.de/belaege/magic-pips.html"
+    ],
+    "confidence": "high",
+    "issues": "Seit 01.07.2025 nicht mehr in der ITTF-LARC für Wettkampf zugelassen, ausschließlich Hobby-Einsatz."
+  },
+  {
+    "type": "rubber",
+    "brand": "Hallmark",
+    "name": "Hallmark Devil-Anti",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 88,
+      "spinRaw": 97,
+      "controlRaw": 99,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Anti-Top-Belag mit ausgeprägtem Störelement; auch kontrolliertes Angriffsspiel möglich. Stärken im Block (auch gegen sehr harte Topspins) und in tischnahen Konterbällen. Schwammhärte weich, Schwammstärke 1,5 mm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "contra.de", "schoeler-micke.de", "tms-tischtennis.de", "k-unlimited.de", "spinfactory.de", "vetts.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/hallmark-belag-devil-anti::341952.html",
+      "https://www.spinfactory.de/tischtennis-belaege/hallmark-devil-anti.html",
+      "https://www.schoeler-micke.de/belaege/noppen-innen/antitop/1660/hallmark-belag-devil-anti"
+    ],
+    "confidence": "medium",
+    "issues": "Tempo-/Effekt-Werte identisch mit Mega Spin Control in mehreren Quellen – möglicherweise vom Händler vertauscht. Hersteller bestätigt 'weicher Schwamm, hohe Kontrolle'."
+  },
+  {
+    "type": "rubber",
+    "brand": "Hallmark",
+    "name": "Hallmark Mirage",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 50,
+      "spinRaw": 40,
+      "controlRaw": 100,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Anti-Belag der Hallmark-Anti-Reihe mit 'Super-Slow'-Schwamm; reduziert Ballgeschwindigkeit deutlich und erhöht Störwirkung. Konzipiert als Nachfolger für Hallmark Original/Super Special. Wird häufig dünn (1,0 mm) gespielt.",
+    "isCurrentlyAvailable": false,
+    "availableAt": [],
+    "sources": [
+      "https://revspin.net/rubber/hallmark-mirage.html",
+      "https://vsport-tt.com/en/table-tennis-rubbers/rubber-hallmark-mirage",
+      "https://tt-store.eu/product/hallmark-mirage/"
+    ],
+    "confidence": "low",
+    "issues": "Nische; aktuell in keinem der großen DE-Spezialshops als verfügbar gelistet. Vermutlich durch Devil-Anti abgelöst."
+  },
+  {
+    "type": "rubber",
+    "brand": "Hallmark",
+    "name": "Hallmark Mega Spin Control",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 88,
+      "spinRaw": 97,
+      "controlRaw": 99,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 35.90,
+    "imageUrl": null,
+    "descriptionDe": "Allround-Noppen-innen-Belag mit weichem Schwamm und langem Ballkontakt. Dickere Schwämme (1,5/1,8/2,0 mm) für kontrolliertes Offensiv-/Konterspiel, 1,3 mm für Schupf- und Störstrategien.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "contra.de", "schoeler-micke.de", "tms-tischtennis.de", "tt-top-shop.de", "tt-store24.de", "tt-xpert.de"],
+    "sources": [
+      "https://www.contra.de/en/hallmark-rubber-mega-spin-control/",
+      "https://www.schoeler-micke.de/belaege/noppen-innen/allround/2726/hallmark-belag-mega-spin-control",
+      "https://revspin.net/rubber/hallmark-mega-spin-control.html"
+    ],
+    "confidence": "medium",
+    "issues": "Hersteller-Werte (Tempo 88/Effekt 97/Kontrolle 99) sind identisch mit Devil-Anti – Datengrundlage zwischen den Herstellerblättern möglicherweise vermischt."
+  },
+  {
+    "type": "rubber",
+    "brand": "Hallmark",
+    "name": "Hallmark Power Spin",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Noppen-innen-Belag mit hohem Spinpotenzial. 2,1 mm für offensives Tempo, 1,5 mm für kontrolliertes Spiel, 1,0 mm für variables Defensivspiel mit Unterschnitt. Rot/schwarz.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "schuett-sport.de", "tms-tischtennis.de", "tt-xpert.de", "tt-store24.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/hallmark-belag-power-spin::312978.html",
+      "https://www.schuett-sport.de/tischtennis/belaege/noppe-innen/2584/hallmark-power-spin",
+      "https://shop.tt-xpert.de/belaege/hallmark-belag/4310/hallmark-power-spin"
+    ],
+    "confidence": "medium",
+    "issues": "Numerische Hersteller-Werte für Tempo/Spin/Kontrolle nicht eindeutig dokumentiert."
+  },
+  {
+    "type": "rubber",
+    "brand": "Hallmark",
+    "name": "Hallmark Podium",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 87,
+      "spinRaw": 97,
+      "controlRaw": 94,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Weicher, griffiger Noppen-innen-Belag für variables Spin-Spiel. Verfügbar in 1,5/2,0/2,3 mm in rot und schwarz. Schwammhärte Medium.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de", "magic-tischtennis.de", "tischtennis-billiger.de", "contra.de", "contra-berlin.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/hallmark-belag-podium::332673.html",
+      "https://www.contra.de/en/hallmark-belag-podium.html",
+      "https://www.magic-tischtennis.de/HALLMARK-Belag-Podium/9708"
+    ],
+    "confidence": "medium",
+    "issues": "Quellen nennen unterschiedliche Tempo/Kontroll-Werte (87/94 vs. 80/97); hier konservativer Mittelwert übernommen."
+  }
+]

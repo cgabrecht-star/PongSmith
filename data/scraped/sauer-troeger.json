@@ -1,0 +1,587 @@
+[
+  {
+    "_meta": {
+      "marke": "Sauer & Tröger",
+      "anzahl": 19,
+      "scraped_at": "2026-05-17T12:00:00Z",
+      "primary_source": "https://www.sauer-troeger.com",
+      "notes": "Deutscher Materialspezialist mit Fokus auf Lange Noppen, Halblange/Kurze Noppen, Anti und Defensiv-Beläge sowie Defensiv-/Allround-Hölzer. Hersteller-Webseite (Shopify) ist client-rendered und gibt via WebFetch keinen Text aus; Produktdaten wurden überwiegend aus den verifizierten DE-Partnershops tt-shop.de, tischtennis.biz, tt-shop-jesumann.de und contra.de (Lübeck) sowie tt-finder.net (Preisvergleich) aggregiert. Korrekte Markenschreibweise ist Sauer & Tröger (mit Umlaut), die Marke wird in Shops häufig auch ohne Umlaut als Sauer & Troeger oder Sauer und Troger geführt. Hersteller-Speed-Skala ist proprietär (Tempo bis ca. 110), keine 1-10-Skala; Werte daher als Rohwert mit speedScale=110 abgelegt, sofern in mind. einer Quelle bestätigt."
+    }
+  },
+  {
+    "type": "rubber",
+    "brand": "Sauer & Tröger",
+    "name": "Hellfire X",
+    "category": "DEF/ALL-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 42,
+      "spinRaw": null,
+      "controlRaw": 95,
+      "speedScale": 110,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 39.9,
+    "imageUrl": "https://tt-shop-jesumann.de/media/86/c0/a3/1658321649/prod26075-hellfirex.jpg",
+    "descriptionDe": "Langnoppe mit Schwammstärken OX, 0,5 mm und 1,2 mm. Hersteller-Werte: Tempo 42, Kontrolle 95, Störeffekt 105 (Skala bis ca. 110). Breitere, leicht angeraute Noppenköpfe, abgestimmt auf Plastikball. Nachfolger des Hellfire mit höherem Störpotenzial.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz", "tt-shop-jesumann.de", "tt-shop.de"],
+    "sources": [
+      "https://www.tischtennis.biz/tischtennisbelaege/sauer-troeger-tischtennisbelaege/sauer-troeger-hellfire-x.html",
+      "https://tt-shop-jesumann.de/Belaege/sauer-troeger-hellfire-x-005907100.6",
+      "https://www.tt-shop.com/com_eng/sauer-und-troeger-hellfire-x.html",
+      "https://www.sauer-troeger.com/products/hellfire-x"
+    ],
+    "confidence": "high",
+    "issues": "Schwammhärte vom Hersteller nur als 'medium' angegeben, kein Grad-Wert verfügbar; Spin-Rohwert wird vom Hersteller nicht separat publiziert (statt Spin wird 'Störeffekt' angegeben)."
+  },
+  {
+    "type": "rubber",
+    "brand": "Sauer & Tröger",
+    "name": "Hellfire X Spezial",
+    "category": "DEF/ALL-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 110,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Variante des Hellfire X mit aufgebrachter Klebefolie mit leichter Vorspannung. Dadurch erhöhter Störeffekt und flachere Returnkurve. Üblicherweise nur in OX-Version angeboten.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra.de", "tt-store24.com"],
+    "sources": [
+      "https://www.contra.de/en/sauer-troeger-rubber-hellfire-x-spezial/",
+      "https://www.tt-store24.com/hn_de/s-t-belag-hellfire-x-spezial.html",
+      "https://www.frija-tt-shop.de/BELAeGE/SAUER-TROeGER/S-T-Belag-Hellfire-X-Spezial-Langnoppe::337595.html"
+    ],
+    "confidence": "medium",
+    "issues": "Nicht bei tt-shop.de, tischtennis.biz oder contra-sport.de gelistet; lediglich bei contra.de Lübeck und kleineren Partnershops verfügbar. UVP nicht zentral publiziert (Shoppreise um ca. 36-42 EUR). Hersteller-Tempo-/Spin-Werte für die Spezial-Variante nicht öffentlich vorliegen."
+  },
+  {
+    "type": "rubber",
+    "brand": "Sauer & Tröger",
+    "name": "Hellfire",
+    "category": "DEF/ALL-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 40,
+      "spinRaw": null,
+      "controlRaw": 95,
+      "speedScale": 110,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 36.9,
+    "imageUrl": "https://tt-shop-jesumann.de/media/76/6c/55/1658321673/prod14701-troeger.jpg",
+    "descriptionDe": "Klassische Langnoppe mit moderater Geschwindigkeit. Hersteller-Werte: Tempo 40, Kontrolle 95, Störeffekt 80. Geeignet für tischnahes passives Blockspiel und Abwehrspiel. Verfügbar in OX, 0,5 mm, 1,2 mm und 1,5 mm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop-jesumann.de", "tt-shop.de"],
+    "sources": [
+      "https://tt-shop-jesumann.de/Belaege/sauer-troeger-hellfire-005901200.4",
+      "https://www.tt-shop.com/com_eng/sauer-und-troeger-hellfire.html",
+      "https://www.sauer-troeger.com/products/hellfire"
+    ],
+    "confidence": "high",
+    "issues": "Bei tt-shop-jesumann.de aktuell nur als reduzierter Sale-Artikel und nur in schwarz gelistet; bei contra.de und tischtennis.biz nicht aktiv im Sortiment der Marke ausgewiesen. Aktuell von Sauer & Tröger weiterhin geführt."
+  },
+  {
+    "type": "rubber",
+    "brand": "Sauer & Tröger",
+    "name": "Hellfire Spezial",
+    "category": "DEF/ALL-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 110,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Variante des Hellfire mit zusätzlich aufgebrachter Spezial-Klebefolie mit leichter Vorspannung. Erhöht den Störeffekt und sorgt für eine flachere Returnkurve.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-store24.com"],
+    "sources": [
+      "https://www.tt-store24.com/hn_de/s-t-belag-hellfire-spezial.html",
+      "https://tt-shop.de/de/sauer-und-troeger-hellfire-spezial.html"
+    ],
+    "confidence": "low",
+    "issues": "In keinem der drei primären DE-Referenzshops (tt-shop.de Markenseite, tischtennis.biz, contra-sport.de) als eigener Artikel gelistet. Vorkommen bei tt-shop.de wird über Hersteller-Hinweis angedeutet, Bestätigung der dauerhaften Verfügbarkeit unklar. Nische, Verfügbarkeit unsicher."
+  },
+  {
+    "type": "rubber",
+    "brand": "Sauer & Tröger",
+    "name": "Schmerz",
+    "category": "DEF/ALL-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 110,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 36.9,
+    "imageUrl": "https://tt-finder.net/assets/thumbs/thumbs_rubbers/140r_048.jpg",
+    "descriptionDe": "Langnoppe mit extremem Schnittumkehr-Charakter laut Hersteller. Maximaler Störeffekt bei gleichzeitig einfachen Angriffsoptionen. Verfügbar in OX und 0,5 mm in rot und schwarz.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de", "schuett-sport.de"],
+    "sources": [
+      "https://www.schuett-sport.de/tischtennis/belaege/lange-noppe/7981/sauer-troeger-schmerz",
+      "https://tt-finder.net/de/belag/Sauer-und-Troeger/Schmerz",
+      "https://www.noppen-test.de/forum/viewtopic.php?t=32695"
+    ],
+    "confidence": "medium",
+    "issues": "Hersteller-Tempo/Kontroll-Skalenwerte aktuell nicht zentral öffentlich; UVP 36,90 EUR aus eBay-/Preisvergleichslistungen abgeleitet."
+  },
+  {
+    "type": "rubber",
+    "brand": "Sauer & Tröger",
+    "name": "Easy P",
+    "category": "DEF/ALL-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 110,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 36.9,
+    "imageUrl": null,
+    "descriptionDe": "'Easy play' Langnoppe mit weichster Gummimischung und sehr niedrigem Tempo durch speziell gefertigte Noppenköpfe. Konzipiert für tischnahes Spiel mit hoher Kontrolle bei hohem Störeffekt.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de", "contra.de"],
+    "sources": [
+      "https://www.sauer-troeger.com/en/products/easy-p-1",
+      "https://www.contra.de/en/sauer-troeger-rubber-easy-p/",
+      "https://www.contra-luebeck.de/Sauer-Troeger-Belag-Easy-P/7392",
+      "https://www.schoeler-micke.de/belaege/noppen-aussen/lange-noppen/1027/sauer-troeger-belag-easyp"
+    ],
+    "confidence": "medium",
+    "issues": "Hersteller-Skalenwerte für Tempo/Kontrolle/Störeffekt nicht maschinenlesbar verfügbar; UVP aus Preisvergleichen abgeleitet."
+  },
+  {
+    "type": "rubber",
+    "brand": "Sauer & Tröger",
+    "name": "Monkey",
+    "category": "DEF/ALL-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 110,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 39.9,
+    "imageUrl": null,
+    "descriptionDe": "Langnoppe der neuen Generation mit großem Noppen-Aspektverhältnis und vergleichsweise weit auseinander stehenden Noppen. Köpfe leicht angeraut, Schäfte glatt. Mittelhart unter leichtem Druck, weicher bei stärkerem Anschlag.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de", "tt-store24.com"],
+    "sources": [
+      "https://www.sauer-troeger.com/products/monkey",
+      "https://www.tt-store24.com/hn_de/sauer-troeger-belag-monkey.html",
+      "https://www.spinfactory.de/tischtennis-belaege/sauer-troeger-lange-noppe-monkey.html",
+      "https://www.frija-tt-shop.de/BELAeGE/SAUER-TROeGER/S-T-Belag-Monkey-Langnoppe::343799.html"
+    ],
+    "confidence": "medium",
+    "issues": "Hersteller-Skalenwerte aktuell nicht eindeutig publiziert. UVP aus Listenpreisen abgeleitet, in Aktionen teilweise um 27,90 EUR (0,6 mm)."
+  },
+  {
+    "type": "rubber",
+    "brand": "Sauer & Tröger",
+    "name": "Monkey Spezial",
+    "category": "DEF/ALL-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 110,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Variante des Monkey mit identischem Obergummi, jedoch zusätzlich aufgebrachter Spezial-Klebefolie mit leichter Vorspannung für höheren Störeffekt und flachere Returnkurve.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-store24.com"],
+    "sources": [
+      "https://www.tt-store24.com/hn_de/sauer-troeger-belag-monkey-spezial.html",
+      "https://www.frija-tt-shop.de/BELAeGE/SAUER-TROeGER/S-T-Belag-Monkey-Spezial::343989.html"
+    ],
+    "confidence": "low",
+    "issues": "Nicht in den drei primären DE-Referenzshops (tt-shop.de Markenseite, tischtennis.biz, contra-sport.de) eigenständig gelistet. Nische, Verfügbarkeit unsicher."
+  },
+  {
+    "type": "rubber",
+    "brand": "Sauer & Tröger",
+    "name": "Hipster",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 91,
+      "spinRaw": 80,
+      "controlRaw": 82,
+      "speedScale": 110,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 32.9,
+    "imageUrl": "https://tt-finder.net/assets/thumbs/thumbs_rubbers/140r_034.jpg",
+    "descriptionDe": "Halblange Noppe (medium pips), kombiniert Eigenschaften kurzer und langer Noppen. Hersteller-Werte: Tempo 91, Kontrolle 82, Störeffekt 80, harter Schwamm. Verfügbar in 1,1, 1,5, 1,9 mm. Je dünner der Schwamm, desto stärker das Langnoppen-Verhalten.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de", "contra.de"],
+    "sources": [
+      "https://www.sauer-troeger.com/en/products/hipster-1",
+      "https://www.contra.de/en/sauer-troeger-rubber-hipster/",
+      "https://tt-finder.net/de/belag/Sauer-und-Troeger/Hipster",
+      "https://www.megaspin.net/store/default.asp?pid=st-hipster"
+    ],
+    "confidence": "high",
+    "issues": "Klassifikation als short_pips folgt Hersteller-Eigenkategorie 'kurze/halblange Außen-Noppe' (tt-finder); rubberType 'half_long_pips' ist im Schema nicht vorgesehen, daher als short_pips abgelegt."
+  },
+  {
+    "type": "rubber",
+    "brand": "Sauer & Tröger",
+    "name": "Zargus",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 110,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 34.9,
+    "imageUrl": "https://tt-shop-jesumann.de/media/12/5e/2b/1658321707/prod21344-zargus.jpg",
+    "descriptionDe": "Kurznoppe mit breiten, kurzen Noppen für hohe Kontrolle und Störpotenzial. Konstante Balance bei aktiven und passiven Schlägen. Verfügbar in 1,5, 1,8 und 2,0 mm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop-jesumann.de", "tt-shop.de"],
+    "sources": [
+      "https://tt-shop-jesumann.de/Belaege/sauer-troeger-zargus-005905220.4",
+      "https://tt-finder.net/de/belag/Sauer-und-Troeger/Zargus"
+    ],
+    "confidence": "medium",
+    "issues": "Hersteller-Tempo/Kontroll-/Spin-Werte aktuell nicht öffentlich tabelliert."
+  },
+  {
+    "type": "rubber",
+    "brand": "Sauer & Tröger",
+    "name": "Hass",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 110,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 36.9,
+    "imageUrl": null,
+    "descriptionDe": "Kurznoppe mit eingebautem Frischklebeeffekt im Schwamm. Soll auch bei kurzen Bewegungen hohe Beschleunigung und Rotation entwickeln. Verfügbar in 1,5, 1,8 und 2,1 mm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de", "tt-shop-jesumann.de"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Sauer-und-Troeger/Hass",
+      "https://www.tt-spin.de/sauer-und-troeger-neuheiten-2017-hass-schmerz/"
+    ],
+    "confidence": "medium",
+    "issues": "Hersteller-Tempo-/Kontroll-/Spin-Skalenwerte aktuell nicht öffentlich publiziert."
+  },
+  {
+    "type": "rubber",
+    "brand": "Sauer & Tröger",
+    "name": "Secret Flow Chop",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 110,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 29.9,
+    "imageUrl": "https://tt-shop-jesumann.de/media/a1/00/59/1658321661/prod18137-secretflow.jpg",
+    "descriptionDe": "Glatter Defensiv-Belag mit mittelhartem SC-Schwamm und griffigem synthetischem Obergummi. Hohe Kontrolle bei hohem Effetpotenzial. 1,5 und 1,8 mm für klassische tischnahe Abwehr; 2,1 mm für moderne Abwehr mit Angriffsoption.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz", "tt-shop-jesumann.de", "tt-shop.de"],
+    "sources": [
+      "https://www.tischtennis.biz/tischtennisbelaege/sauer-troeger-tischtennisbelaege/sauer-troeger-secret-flow-chop.html",
+      "https://tt-shop-jesumann.de/Belaege/sauer-troeger-secret-flow-chop-005902110.2",
+      "https://tt-finder.net/de/belag/Sauer-und-Troeger/Secret-Flow-Chop"
+    ],
+    "confidence": "high",
+    "issues": "Topsheet-Klassifikation 'grippy' aus Hersteller-Beschreibung ('synthetisches Obergummi mit hoher Griffigkeit', Tensor-Schwamm) abgeleitet; keine numerischen Hersteller-Skalenwerte tabelliert."
+  },
+  {
+    "type": "rubber",
+    "brand": "Sauer & Tröger",
+    "name": "Super Stop",
+    "category": "DEF/ALL-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 43,
+      "spinRaw": 41,
+      "controlRaw": 108,
+      "speedScale": 110,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 36.9,
+    "imageUrl": "https://tt-shop-jesumann.de/media/b4/b8/7d/1658321591/prod21351-sauer-troeger-super-stop.jpg",
+    "descriptionDe": "Langsamer Anti-Topspin-Belag mit leichter Restgriffigkeit. Hersteller-Werte: Tempo 43, Kontrolle 108, Spin 41, weicher (Soft+) Schwamm. Neutralisiert Rotation, passive Bälle und Angriffsschläge mit hoher Sicherheit spielbar.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de", "tt-shop-jesumann.de"],
+    "sources": [
+      "https://tt-shop-jesumann.de/Belaege/sauer-troeger-super-stop-005906000.4",
+      "https://tt-finder.net/de/belag/Sauer-und-Troeger/Super-Stop"
+    ],
+    "confidence": "high",
+    "issues": "Schwammhärte vom Hersteller nur als 'Soft+' angegeben, keine °-Grad-Angabe verfügbar."
+  },
+  {
+    "type": "blade",
+    "brand": "Sauer & Tröger",
+    "name": "Zeus",
+    "category": "DEF",
+    "blade": {
+      "speedRaw": 67,
+      "controlRaw": 92,
+      "speedScale": 110,
+      "composition": "5 Furniere, 2 UD-Carbon-Lagen, Kiri-Kern, Hinoki außen",
+      "layers": 5,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "inner",
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": 128.9,
+    "imageUrl": "https://tt-shop-jesumann.de/media/37/ec/d1/1658321735/prod26085-zeus.jpg",
+    "descriptionDe": "Defensiv-Holz mit Graphitanteilen, Holz des japanischen Kaiserbaumes (Kiri) und 2 Furnieren aus parallel verlaufendem UD-Carbon. Außenfurniere aus japanischem Kiso Hinoki. Hersteller-Werte: Tempo 67, Kontrolle 92. Abmaße 16 x 15,8 cm. CBIF-Verklebung sorgt für etwas schnellere Vorhand. Abgestimmt auf Hellfire-Langnoppen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop-jesumann.de"],
+    "sources": [
+      "https://tt-shop-jesumann.de/Hoelzer/sauer-troeger-zeus-010360201.1",
+      "https://www.sauer-troeger.com/products/zeus-1",
+      "https://derttshop.de/sauer-troeger-zeus/000000774301"
+    ],
+    "confidence": "high",
+    "issues": "Carbon-Position: UD-Carbon liegt laut Hersteller-Beschreibung zwischen Kern und Außenfurnier, wird daher als 'inner' eingestuft. Carbonart UD-Carbon ist nicht klassisch ALC/ZLC, daher specialMaterial='Hinoki' wegen dominanter Außenfurnier-Charakteristik. Durchschnittsgewicht vom Hersteller nicht standardisiert publiziert."
+  },
+  {
+    "type": "blade",
+    "brand": "Sauer & Tröger",
+    "name": "Firestarter",
+    "category": "DEF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 110,
+      "composition": "Vollholz",
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "soft",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 59.9,
+    "imageUrl": "https://tt-shop-jesumann.de/media/29/31/1d/1658321597/prod19095-firestarter-front-600x600.jpg",
+    "descriptionDe": "Defensiv-Holz mit niedrigem Tempo, das auch druckvolle Angriffsschläge entschärft. Eignet sich besonders für Spieler mit schnellen Noppenbelägen und Spieler, die viele Blockbälle bisher zu lang gespielt haben. Ermöglicht eigene effetreiche Attacken und Schussspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop-jesumann.de", "tt-shop.de"],
+    "sources": [
+      "https://tt-shop-jesumann.de/Hoelzer/sauer-troeger-firestarter-105901000.2",
+      "https://ooakforum.com/viewtopic.php?f=43&t=24659"
+    ],
+    "confidence": "medium",
+    "issues": "Hersteller-Skalenwerte für Tempo/Kontrolle aktuell nicht zentral publiziert. Anzahl Furniere und Gewichtsangabe nicht eindeutig dokumentiert."
+  },
+  {
+    "type": "blade",
+    "brand": "Sauer & Tröger",
+    "name": "Dominate ALL",
+    "category": "ALL",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 110,
+      "composition": "5 Furniere Vollholz",
+      "layers": 5,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 59.9,
+    "imageUrl": "https://tt-shop-jesumann.de/media/3a/f8/63/1658321693/prod19091-dominate-all-front-600x600.jpg",
+    "descriptionDe": "Allround-Holz mit Temporeserven für progressive Langnoppen-Spieler und klassische Allrounder. Mittelharter Anschlag, sehr ballfreundlich beim Topspin und Schupf, hohe Kontrolle im Blockspiel. Abmaße 15,3 x 15,1 cm, 5 Furniere.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop-jesumann.de"],
+    "sources": [
+      "https://tt-shop-jesumann.de/Hoelzer/sauer-troeger-dominate-all-012433434"
+    ],
+    "confidence": "medium",
+    "issues": "Aktuell nur bei tt-shop-jesumann.de und Hersteller direkt nachweisbar als gelistet; bei tischtennis.biz und contra-sport.de keine eigenständige Markenproduktseite. Hersteller-Skalenwerte nicht zentral publiziert."
+  },
+  {
+    "type": "blade",
+    "brand": "Sauer & Tröger",
+    "name": "Black & White",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 110,
+      "composition": "7 Furniere Vollholz Kombiholz",
+      "layers": 7,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 64.9,
+    "imageUrl": "https://tt-shop-jesumann.de/media/e4/e0/a9/1658321610/prod24175-sauer-troeger-black-white.jpg",
+    "descriptionDe": "7-schichtiges Kombiholz mit asymmetrischer Charakteristik. Vorhandseite zwischen ALL+ und OFF-, Rückhandseite im Allround-Bereich. Konzipiert für Spieler mit Materialbelag auf einer Seite und Glattbelag auf der anderen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop-jesumann.de"],
+    "sources": [
+      "https://tt-shop-jesumann.de/Hoelzer/sauer-troeger-black-white-105902000.2",
+      "https://www.noppen-test.de/forum/viewtopic.php?f=8&t=34994"
+    ],
+    "confidence": "medium",
+    "issues": "Hersteller-Skalenwerte nicht publiziert. Asymmetrische Bauweise (zwei unterschiedlich schnelle Seiten) lässt sich in einer einzelnen Tempo-Kategorie nur grob abbilden."
+  },
+  {
+    "type": "blade",
+    "brand": "Sauer & Tröger",
+    "name": "Banana Offensiv",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 110,
+      "composition": "5 Furniere Vollholz",
+      "layers": 5,
+      "weightAvgGrams": 85,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 79.9,
+    "imageUrl": "https://tt-shop-jesumann.de/media/c8/f7/4c/1728835789/sauer_troeger-blade_banana-front_1280x1280.jpeg",
+    "descriptionDe": "Offensives 5-Furnier-Vollholz mit kontrolliertem, flachem Ballabsprung. Charakteristik laut Hersteller OFF-, Elastizität mittel, Tempo mittel, Kontrolle mittel. Gewicht 80-90 g. Konzipiert für Noppenspieler mit offensiver Vorhand.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop-jesumann.de"],
+    "sources": [
+      "https://tt-shop-jesumann.de/Hoelzer/sauer-troeger-banana-offensiv-105904000.1"
+    ],
+    "confidence": "medium",
+    "issues": "Aktuell nur bei tt-shop-jesumann.de eigenständig gelistet (relativ neues Modell, 2024). Hersteller-Tempo-/Kontroll-Skalenwerte nicht publiziert."
+  },
+  {
+    "type": "blade",
+    "brand": "Sauer & Tröger",
+    "name": "Unicorn",
+    "category": "ALL",
+    "blade": {
+      "speedRaw": 75,
+      "controlRaw": 98,
+      "speedScale": 110,
+      "composition": "5 Furniere Vollholz (Außen Masonia, 2+4 Ayous, Kern Awan)",
+      "layers": 5,
+      "weightAvgGrams": 86,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 69.9,
+    "imageUrl": "https://tt-shop-jesumann.de/media/f3/e2/c1/1665912222/sauer_tr-oger-blade_unicorn_600x600.jpeg",
+    "descriptionDe": "Allround-Holz speziell auf ABS-Plastikball abgestimmt. Hersteller-Werte: Tempo 75, Kontrolle 98, Gewicht ca. 86 g, 5 Furniere (Masonia außen, Ayous 2+4, Kern Awan). Abmaße 15,3 x 15,1 cm. Geeignet für Material-Spieler mit Langnoppen oder Kurznoppen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop-jesumann.de", "tt-shop.de"],
+    "sources": [
+      "https://tt-shop-jesumann.de/Hoelzer/sauer-troeger-unicorn-105903000.1",
+      "https://revspin.net/blade/sauer-troger-unicorn.html",
+      "https://www.tabletennis11.com/other_eng/sauer-troger-unicorn"
+    ],
+    "confidence": "high",
+    "issues": null
+  }
+]

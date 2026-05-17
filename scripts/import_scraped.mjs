@@ -146,7 +146,7 @@ async function importBlade(p, brandName) {
   if (existing.length > 0) {
     const ex = existing[0];
     const updates = {};
-    if (!ex.composition && b.composition) updates.composition = b.composition;
+    if (!ex.composition && b.composition) updates.composition = b.composition.slice(0, 100);
     if (!ex.stiffness && b.stiffness) updates.stiffness = b.stiffness;
     if (!ex.layers && b.layers) updates.layers = b.layers;
     if (!ex.weight_min && b.weightAvgGrams) {
@@ -185,7 +185,7 @@ async function importBlade(p, brandName) {
     ) VALUES (
       ${mfgId}, ${cName}, ${slug},
       ${speedNorm}, ${ctrlNorm}, ${speedNorm}, ${ctrlNorm}, 0,
-      ${b.composition ?? null}, ${b.stiffness ?? null}, ${b.layers ?? null},
+      ${b.composition ? b.composition.slice(0, 100) : null}, ${b.stiffness ?? null}, ${b.layers ?? null},
       ${b.weightAvgGrams ? Math.max(60, b.weightAvgGrams - 4) : null},
       ${b.weightAvgGrams ? b.weightAvgGrams + 4 : null},
       ${(p.category ?? "").includes("ALL") ? "allround" : (p.category ?? "").includes("DEF") ? "defensive" : "offensive_topspin"},

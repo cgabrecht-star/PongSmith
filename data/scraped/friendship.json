@@ -1,0 +1,872 @@
+[
+  {
+    "_meta": {
+      "marke": "Friendship",
+      "anzahl": 29,
+      "scraped_at": "2026-05-17T12:00:00Z",
+      "primary_source": "https://www.tt-shop.de/de/tischtennis-marken/729-friendship.html",
+      "notes": "Friendship/729 ist in Deutschland nahezu ausschließlich als Belaghersteller präsent; eigenständige Friendship-Hölzer (z.B. C2) sind kaum in deutschen Standardshops gelistet. Verbreitung primär über tischtennis.biz (Göttingen), die Contra-Kette (Lübeck/Berlin/contra.de), tt-shop.de sowie ebay-Affiliate-Händler (tt2000-shop, schuett-sport). Hersteller-Härteangaben folgen der chinesischen Skala (Differenz +5° bis +7° vs. europäische Skala). Tempo/Kontrolle/Effet stammen, wo vorhanden, aus dem deutschen Importeur Schütt-Sport (Skala 0-100). Klassische 729-Linie (729, 729-2, 729 Super FX, FX Super Soft, Higher) = sticky-klassisch bzw. sticky-elastisch; Cross/Battle/Origin/Aurora = moderne Hybride; Bloom/Presto/Visnatura/Pando = neuere offensive Linien."
+    }
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 (RITC 729)",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 13.9,
+    "imageUrl": "https://www.tischtennis.biz/out/pictures/generated/product/1/540_340_75/friendship-ritc-729.jpg",
+    "descriptionDe": "Klassischer chin. Belag von 1972, leicht klebriges Obergummi auf relativ hartem Schwamm, mittelschnell. Einer der ersten Chinabeläge auf dem europäischen Markt.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz"],
+    "sources": [
+      "https://www.tischtennis.biz/friendship-belaege/friendship-ritc-729.html",
+      "https://tt-finder.net/de/belag/Friendship/729"
+    ],
+    "confidence": "high",
+    "issues": "Numerische Tempo/Spin/Kontroll-Werte nicht direkt vom DE-Shop publiziert."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729-2",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "sticky",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 13.9,
+    "imageUrl": null,
+    "descriptionDe": "Variante der 729-Familie mit klebrig-griffigem Obergummi; in 1,5/1,8/2,0 mm in rot und schwarz erhältlich.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["ebay/tt2000-shop"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/729-2",
+      "https://www.schuett-sport.de/tischtennis/belaege/noppe-innen/2453/friendship-729-2"
+    ],
+    "confidence": "medium",
+    "issues": "Keine offizielle Listung auf tischtennis.biz/contra zum Zeitpunkt der Recherche; primär ebay-Affiliate-Kanal über tt-finder."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729-5",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 93,
+      "spinRaw": 96,
+      "controlRaw": 82,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "sticky",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 19.9,
+    "imageUrl": "https://www.contra-luebeck.de/media/82/b7/24/1643121400/6540_0.jpg",
+    "descriptionDe": "Offensiv ausgerichteter China-Belag; medium Schwamm mit softem Frischklebeeffekt, leicht klebriges Obergummi mit konisch angeordneten Innen-Noppen. Eher europäisch abgestimmt.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-luebeck.de", "contra.de"],
+    "sources": [
+      "https://www.contra-luebeck.de/Friendship-Belag-729-5/6540",
+      "https://www.contra.de/en/friendship-rubber-729-5/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 Super FX",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 80,
+      "spinRaw": 93,
+      "controlRaw": 89,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "sticky",
+      "spongeColor": "orange",
+      "isHybrid": false
+    },
+    "uvpEur": 11.9,
+    "imageUrl": "https://www.tischtennis.biz/out/pictures/generated/product/1/540_340_75/friendship-729.jpg",
+    "descriptionDe": "Klassischer China-Belag mit klebriger Oberfläche und relativ hartem, mittelschnellem Schwamm; orange-Schwamm-Variante etwas flexibler und langsamer als die blaue Version.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz", "contra-luebeck.de", "contra.de"],
+    "sources": [
+      "https://www.tischtennis.biz/friendship-belaege/friendship-729-super-fx.html",
+      "https://www.contra-luebeck.de/Friendship-Belag-729-Super-FX/1401",
+      "https://www.contra.de/en/friendship-rubber-729-super-fx/",
+      "https://tt-finder.net/de/belag/Friendship/729-Super-FX"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 FX Super Soft",
+    "category": "ALL-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": 40,
+      "hardnessMax": 42,
+      "topsheetCharacter": "sticky",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 11.9,
+    "imageUrl": "https://www.tischtennis.biz/out/pictures/generated/product/1/540_340_75/friendship-729fx-super-soft.jpg",
+    "descriptionDe": "Kontrollorientierte Soft-Variante mit extrem griffigem, leicht klebrigem Obergummi auf weichem Schwamm. Hersteller-Härteangabe 35° (chin.), real eher 40-42° (EU-Skala).",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz", "contra.de", "contra-berlin.de"],
+    "sources": [
+      "https://www.tischtennis.biz/friendship-belaege/friendship-729-fx-super-soft.html",
+      "https://www.contra.de/en/friendship-rubber-729-fx-super-soft/",
+      "https://www.contra-berlin.de/conb_de/friendship-belag-729-fx-super-soft.html",
+      "https://tt-finder.net/de/belag/Friendship/729-FX-Super-Soft"
+    ],
+    "confidence": "high",
+    "issues": "Härteangabe variiert zwischen Hersteller (35° chin.) und Nutzer-Review (40-42° EU)."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 Higher",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": 45,
+      "hardnessMax": 45,
+      "topsheetCharacter": "sticky",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 16.9,
+    "imageUrl": null,
+    "descriptionDe": "Hochreibender Innen-Noppen-Belag mit klebrigem, durchscheinendem Topsheet auf ca. 45° Schwamm. Stärken im Konter- und Blockspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra.de", "ebay/tt2000-shop"],
+    "sources": [
+      "https://www.contra.de/en/friendship-rubber-r.i.t.c.-729-higher/",
+      "https://tt-finder.net/de/belag/Friendship/729-Higher",
+      "https://ttdd.eu/friendship-729-higher.html"
+    ],
+    "confidence": "medium",
+    "issues": "Härteangabe stammt aus ttdd.eu und contra.de, keine direkte Tempo/Spin/Kontroll-Werte vom DE-Shop verfügbar."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 Faster",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "sticky",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Klassischer China-Belag der 729-Serie mit etwas höherem Tempo als 729 Super FX; klebriges Topsheet.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/729-Faster",
+      "https://www.tt-shop.de/de/tischtennis-marken/729-friendship.html"
+    ],
+    "confidence": "low",
+    "issues": "Keine Spezifikationen vom DE-Shop publiziert; UVP nicht eindeutig ermittelbar."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 GeoSpin",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 13.9,
+    "imageUrl": null,
+    "descriptionDe": "Spinorientierter China-Belag mit konisch geformten Innen-Noppen; griffigeres, weniger klebriges Topsheet als die 729-Klassiker.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["ebay/tt2000-shop"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/729-GeoSpin"
+    ],
+    "confidence": "low",
+    "issues": "Topsheet-Klassifikation unsicher: Hersteller nennt 'GeoSpin' (spin-tuning), Klebrigkeit weniger ausgeprägt als 729-Klassiker."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 GeoSpin Tacky",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "sticky",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Klebrige Variante des GeoSpin mit ausgeprägterer Haftung des Topsheets; 729-typische Charakteristik.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/729-GeoSpin-Tacky"
+    ],
+    "confidence": "low",
+    "issues": "Nische, Verfügbarkeit zeitweise eingeschränkt."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 Cream",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "sticky",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Kontrollorientierter Klassiker der 729-Serie mit weicherer Charakteristik; klebriges Topsheet.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/729-Cream"
+    ],
+    "confidence": "low",
+    "issues": "Nische, kaum aktive Angebote in DE-Shops."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 SP",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "sticky",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Speed-optimierte Variante der 729-Serie; klebriges Topsheet auf etwas härterem Schwamm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["frija-tt-shop.de"],
+    "sources": [
+      "https://www.frija-tt-shop.de/friendship-belag-729-sp::342646.html",
+      "https://tt-finder.net/de/belag/Friendship/729-SP"
+    ],
+    "confidence": "low",
+    "issues": "Außerhalb der drei Haupt-DE-Shops nur sporadisch gelistet."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729-08",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "sticky",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Harter Schwamm kombiniert mit klebrig-elastischem Obergummi; ausgelegt für Topspin-Angriff aus der Halbdistanz.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["contra-berlin.de"],
+    "sources": [
+      "https://www.contra-berlin.de/conb_de/friendship-belag-729-08.html",
+      "https://tt-finder.net/de/belag/Friendship/729-08"
+    ],
+    "confidence": "medium",
+    "issues": "Tempo/Kontroll-Werte vom DE-Shop nicht publiziert."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 Battle II",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": null,
+      "isHybrid": true
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Hybrid-Belag mit klebrig-griffigem chinesischen Topsheet auf europäisch wirkendem, etwas elastischerem Schwamm; einer der meistverkauften chinesischen Beläge dieser Preisklasse in Europa.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["spinspass.de", "ttdd.eu"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/729-Battle-2",
+      "https://ttdd.eu/friendship-729-battle-ii.html",
+      "https://spinspass.de/produkt/friendship-729-belag-battle-ii-in-21mm-klebrig/"
+    ],
+    "confidence": "medium",
+    "issues": "Aktuell keine Listung in den drei DE-Haupt-Shops; primär bei Spezialhändlern."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 Battle 3",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": null,
+      "isHybrid": true
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Nachfolger der Battle-II-Linie mit chin. Topsheet und etwas dynamischerem Tensor-Schwamm; offensives Hybrid-Konzept.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/729-Battle-3"
+    ],
+    "confidence": "low",
+    "issues": "Verfügbarkeit in den drei DE-Haupt-Shops zum Recherchezeitpunkt nicht direkt verifizierbar."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 Cross Soft",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": null,
+      "isHybrid": true
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Hybrid-Belag der Cross-Linie: klebrig-griffiges chinesisches Topsheet auf weicherem Tensor-Schwamm; kontrollierter als die regulären Cross-Varianten.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["spinspass.de"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/729-Cross-Soft",
+      "https://spinspass.de/produkt/friendship-729-belag-cross-general-gruen/"
+    ],
+    "confidence": "low",
+    "issues": "Cross-Linie umfasst mehrere Schwammhärten (Soft/Hard/General/Province); Einzelvarianten unterschiedlich verfügbar."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 Origin",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": null,
+      "isHybrid": true
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Hybrider China-Belag der neueren Generation mit klebrigem Topsheet auf elastischerem Schwamm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["spinfactory.de"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/729-Origin",
+      "https://www.spinfactory.de/tischtennis-belaege/tischtennis-belag-friendship-origin.html"
+    ],
+    "confidence": "low",
+    "issues": "Außerhalb der drei DE-Haupt-Shops gelistet."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship Bloom Spin",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": null,
+      "isHybrid": true
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Moderner Hybrid-Belag der Bloom-Serie; spinorientierte Auslegung mit chinesischem Topsheet und neuartiger Schwamm-Technologie.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["spinfactory.de"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/Bloom-Spin",
+      "https://www.spinfactory.de/tischtennis-belaege/729-friendship-bloom-spin.html"
+    ],
+    "confidence": "low",
+    "issues": "Neuere Serie, in DE-Haupt-Shops kaum gelistet."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship Bloom Power",
+    "category": "OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": null,
+      "isHybrid": true
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Tempo-orientierte Variante der Bloom-Serie; härterer Schwamm und ausgelegt auf hohes Spitzentempo.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["spinfactory.de"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/Bloom-Power"
+    ],
+    "confidence": "low",
+    "issues": "Neuere Serie, Verfügbarkeit in DE-Haupt-Shops eingeschränkt."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship Presto Speed",
+    "category": "OFF+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": null,
+      "isHybrid": true
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Schneller Tensor-Hybridbelag der Presto-Linie mit chinesisch beeinflusstem Topsheet.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["spinfactory.de"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/Presto-Speed"
+    ],
+    "confidence": "low",
+    "issues": "Neuere Linie, Verfügbarkeit in DE-Haupt-Shops eingeschränkt."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship Presto Spin",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "hybrid",
+      "spongeColor": null,
+      "isHybrid": true
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Spin-Variante der Presto-Linie; griffigeres Topsheet, Hybrid-Charakteristik.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["spinfactory.de"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/Presto-Spin"
+    ],
+    "confidence": "low",
+    "issues": "Neuere Linie, Verfügbarkeit in DE-Haupt-Shops eingeschränkt."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 Super FX Lightening",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "sticky",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 13.9,
+    "imageUrl": null,
+    "descriptionDe": "Schnellere Variante des Super FX mit überarbeitetem Schwamm; behält das klebrige Topsheet der Klassiker.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["ebay/ttshop-ostalb", "ebay/tt2000-shop"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/729-Super-FX-Lightening"
+    ],
+    "confidence": "medium",
+    "issues": "In den drei DE-Haupt-Shops zum Recherchezeitpunkt nicht direkt gelistet; primär ebay-Affiliate."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 729 Dr. Evil",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 11.9,
+    "imageUrl": null,
+    "descriptionDe": "Kurze Außennoppe der 729-Linie; auch in OX (ohne Schwamm) erhältlich, ausgelegt für Konter- und Blockspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tischtennis.biz", "ebay/tt2000-shop"],
+    "sources": [
+      "https://www.tischtennis.biz/friendship-belaege/friendship-dr-evil.html",
+      "https://tt-finder.net/de/belag/Friendship/729-Dr-Evil"
+    ],
+    "confidence": "medium",
+    "issues": "Tempo/Spin/Kontroll-Werte vom DE-Shop nicht publiziert."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 802",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 13.9,
+    "imageUrl": null,
+    "descriptionDe": "Klassische kurze Außennoppe; vielseitig einsetzbar für Konter, Block und Schuss; günstige Kategorie.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["ebay/tt2000-shop"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/802"
+    ],
+    "confidence": "medium",
+    "issues": "Hauptsächlich über ebay-Affiliate-Kanal verfügbar."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 799",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 9.9,
+    "imageUrl": null,
+    "descriptionDe": "Sehr günstige kurze Außennoppe für Block- und Schussspiel; preislich an der unteren Grenze des Sortiments.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["ebay/tt2000-shop"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/799"
+    ],
+    "confidence": "medium",
+    "issues": "Verfügbarkeit primär über ebay-Affiliate von tt2000-shop."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 755",
+    "category": "DEF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 9.99,
+    "imageUrl": null,
+    "descriptionDe": "Klassische lange Außennoppe ohne Schwamm (OX) oder mit dünnem Schwamm (1,0 mm); störendes Spielmaterial für Defensiv- und Materialspieler.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["ebay/tt2000-shop"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/755"
+    ],
+    "confidence": "medium",
+    "issues": "In den drei DE-Haupt-Shops zum Recherchezeitpunkt nicht direkt gelistet."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 837",
+    "category": "DEF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Lange Außennoppe der 729-Familie für defensive und materialorientierte Spielweisen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["ebay/tt2000-shop"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/837"
+    ],
+    "confidence": "low",
+    "issues": "UVP nicht eindeutig publiziert."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 563",
+    "category": "DEF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 13.9,
+    "imageUrl": null,
+    "descriptionDe": "Lange Außennoppe (RITC 563) ohne ausgeprägten Schwamm; für defensive Spielweise mit Störwirkung.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["ebay/tt2000-shop"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/563"
+    ],
+    "confidence": "medium",
+    "issues": "Hauptsächlich über ebay-Affiliate verfügbar."
+  },
+  {
+    "type": "rubber",
+    "brand": "Friendship",
+    "name": "Friendship 804",
+    "category": "ALL-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Anti-Topspin-Belag der 729-Familie mit glatter, reibungsarmer Oberfläche; für Materialspieler und Defensiv-Allround.",
+    "isCurrentlyAvailable": true,
+    "availableAt": ["tt-shop.de"],
+    "sources": [
+      "https://tt-finder.net/de/belag/Friendship/804"
+    ],
+    "confidence": "low",
+    "issues": "Sehr Nische, kaum regelmäßige Listungen in DE-Haupt-Shops."
+  },
+  {
+    "type": "blade",
+    "brand": "Friendship",
+    "name": "Friendship 729 C2",
+    "category": "ALL",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "none",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": null,
+    "descriptionDe": "Allround-Holz aus dem 729-Friendship-Programm; einziges in der deutschen TT-Finder-Datenbank gelistete Friendship-Holz.",
+    "isCurrentlyAvailable": false,
+    "availableAt": [],
+    "sources": [
+      "https://tt-finder.net/de/holz/729-Friendship",
+      "https://tt-finder.net/de/holz/729-Friendship/C2"
+    ],
+    "confidence": "low",
+    "issues": "Nische, in den drei DE-Haupt-Shops zum Recherchezeitpunkt nicht aktiv gelistet; Spezifikationen (Furnier-Anzahl, Gewicht, Tempo) nicht öffentlich publiziert."
+  }
+]
