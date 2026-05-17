@@ -1,0 +1,3140 @@
+[
+  {
+    "_meta": {
+      "marke": "Dr. Neubauer",
+      "anzahl": 99,
+      "scraped_at": "2026-05-17T12:00:00Z",
+      "primary_source": "https://www.drneubauer.com",
+      "notes": "Deutscher Spezialist für Material-Beläge (Long Pips, Anti, Short Pips, Halblang) und Combination-Hölzer. Hersteller-Skala: speedScale=100 (Speed 40-110, Spin 80-92, Control 72-100). Härte-Werte selten in Shore° angegeben - bei fehlenden Werten null. Verfügbarkeit in DE-Shops via WebSearch konfirmiert; einzelne Produktdetail-URLs auf tt-shop.de und tischtennis.biz wegen Bot-Schutz nicht volltext-abrufbar."
+    }
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "A-B-S 3 Pro",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 48,
+      "spinRaw": null,
+      "controlRaw": 96,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": 38,
+      "hardnessMax": 38,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": 59.9,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p178.jpg",
+    "descriptionDe": "Frictionless Anti-Spin der dritten A-B-S-Generation, co-entwickelt mit SpinAssociated. Härte 38°, Schwammstärken 1,3 und 1,7 mm. Hohe Stör-Wirkung (Hersteller 110) bei guter Kontrolle.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=178"
+    ],
+    "confidence": "high",
+    "issues": "Disruptive effect 110 statt klassischem Spin-Wert; DE-Shop-Listing zum Zeitpunkt der Recherche nicht final bestätigt (sehr neu)"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "A-B-S 3",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 46,
+      "spinRaw": null,
+      "controlRaw": 100,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": 42,
+      "hardnessMax": 42,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "blau",
+      "isHybrid": false
+    },
+    "uvpEur": 59.9,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p161.jpg",
+    "descriptionDe": "Frictionless Anti-Spin mit blauem Dämpfungsschwamm 1,5 und 2,0 mm. Maximale Kontrolle und kurzer Block gegen schnelle Topspins. Härte 42°.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=161"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "A-B-S 2 PRO",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 52,
+      "spinRaw": null,
+      "controlRaw": 94,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "rot",
+      "isHybrid": false
+    },
+    "uvpEur": 59.9,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p160.jpg",
+    "descriptionDe": "Frictionless Anti mit neuem Dämpfungsschwamm in 2,0 mm. Etwas vielseitiger als A-B-S 2 EVO; ermöglicht aktives Block-Push-Spiel. Hohe Spin-Reversal.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=160"
+    ],
+    "confidence": "high",
+    "issues": "Härte nicht im offiziellen Datenblatt"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "A-B-S 2 EVO",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 59.9,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p145.jpg",
+    "descriptionDe": "Frictionless Anti-Spin mit harter Oberfläche, ausgelegt für maximale Spin-Reversal. Co-Entwicklung mit SpinAssociated.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "schoeler-micke.de",
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=145"
+    ],
+    "confidence": "medium",
+    "issues": "Detail-Werte nicht abgerufen, basierend auf Übersichtsseite"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "A-B-S 2 SOFT",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 59.9,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p138.jpg",
+    "descriptionDe": "Weichere Variante der A-B-S 2-Serie für Spieler, die mehr Kontrolle und weicheres Ballgefühl bevorzugen. Frictionless Anti-Topspin.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=138"
+    ],
+    "confidence": "medium",
+    "issues": "Härte/Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "A-B-S 2",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 49.9,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p129.jpg",
+    "descriptionDe": "Frictionless Anti-Spin, zweite Generation der A-B-S-Reihe; speziell für Plastik- und ABS-Bälle entwickelt. Verfügbar in DE-Shops (contra.de, tt-shop.de).",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "contra.de",
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=129",
+      "https://www.contra.de/en/dr.-neubauer-rubber-a-b-s-2/"
+    ],
+    "confidence": "medium",
+    "issues": "UVP ist Schätzung anhand Serie; Härte/Werte nicht offiziell verifiziert"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Tarantula",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p119.jpg",
+    "descriptionDe": "Anti-Topspin-Belag von Dr. Neubauer, derzeit beim Hersteller gelistet (in stock).",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=119"
+    ],
+    "confidence": "low",
+    "issues": "Daten nicht im Detail abrufbar; Nische, DE-Shop-Listung unklar"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Bison+",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 60,
+      "spinRaw": 105,
+      "controlRaw": 82,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 46.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p116.jpg",
+    "descriptionDe": "Glatter Anti-Topspin mit Dämpfungsschwamm in 1,2/1,5/1,8 mm. Hohe Spin-Reversal und Kontrolle, ausgelegt für Plastik- und ABS-Bälle. Disruptive Effect 105.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "schuett-sport.de",
+      "contra.de",
+      "tischtennis-billiger.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=116",
+      "https://www.contra.de/en/dr.-neubauer-rubber-bison-plus/"
+    ],
+    "confidence": "high",
+    "issues": "Härte nicht offiziell angegeben"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Buffalo+",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 55,
+      "spinRaw": 100,
+      "controlRaw": 83,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 46.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p117.jpg",
+    "descriptionDe": "Verbesserte Anti-Spin-Version von Buffalo. Schwamm 1,2/1,5/1,8 mm. Kurzer, niedriger Block, weniger Winkelempfindlichkeit; gute Spin-Reversal.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "contra.de",
+      "tischtennis-billiger.de",
+      "futurespin.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=117",
+      "https://www.contra.de/de/dr-neubauer-belag-buffalo.html"
+    ],
+    "confidence": "high",
+    "issues": "Härte nicht offiziell"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Rhino+",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 46.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p115.jpg",
+    "descriptionDe": "Anti-Topspin der +-Serie für Plastik- und ABS-Bälle. Schwamm 1,2/1,5/1,8 mm; gute Spin-Reversal und Kontrolle. Schwester von Bison+ und Buffalo+.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "contra.de",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=115"
+    ],
+    "confidence": "medium",
+    "issues": "Werte nicht abgerufen (Rate-Limit); UVP geschätzt anhand Serie"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Django",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p107.jpg",
+    "descriptionDe": "Anti-Topspin-Belag von Dr. Neubauer; in stock beim Hersteller.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=107"
+    ],
+    "confidence": "low",
+    "issues": "Spezifikationen nicht abgerufen; DE-Verfügbarkeit nur Nische"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Rhino",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 42.9,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p105.jpg",
+    "descriptionDe": "Klassischer Anti-Topspin (Vorgänger von Rhino+). Hohe Spin-Reversal gegen spinreiche Topspins.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "contra.de",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=105",
+      "https://www.contra.de/dr.-neubauer-belag-rhino/"
+    ],
+    "confidence": "medium",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Power Attack",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p97.jpg",
+    "descriptionDe": "Offensiver Anti-Topspin für aktives Spiel. Hersteller-Listung in stock.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=97"
+    ],
+    "confidence": "low",
+    "issues": "Spezifikationen + DE-Shop-Verfügbarkeit nicht verifiziert"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Bison",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 42.9,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p95.jpg",
+    "descriptionDe": "Klassischer glatter Anti-Topspin mit Dämpfungsschwamm 1,2/1,5/1,8 mm. Sehr gute Spin-Reversal, kurzer Block direkt hinter dem Netz.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "tischtennis.biz",
+      "tischtennis-billiger.de",
+      "topspeed-tt.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=95",
+      "https://www.tischtennis.biz/antitop-tischtennisbelag/dr-neubauer-bison.html"
+    ],
+    "confidence": "medium",
+    "issues": "Detailwerte nicht direkt abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Buffalo",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 42.9,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p92.jpg",
+    "descriptionDe": "Klassischer glatter Anti-Topspin; geringe Winkelempfindlichkeit, kontrolliertes Blockspiel. Vorgänger von Buffalo+.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "tischtennis.biz",
+      "frija-tt-shop.de",
+      "futurespin.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=92",
+      "https://www.tischtennis.biz/antitop-tischtennisbelag/dr-neubauer-buffalo.html"
+    ],
+    "confidence": "medium",
+    "issues": "Detailwerte nicht direkt abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Anti Special",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p61.jpg",
+    "descriptionDe": "Klassischer Anti-Topspin mit kurzer, kontrollierter Block-Charakteristik. Hersteller-Listung in stock.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=61"
+    ],
+    "confidence": "low",
+    "issues": "Detailwerte und DE-Shop-Verfügbarkeit nicht final verifiziert"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Gorilla (A-B-S Sponge)",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p69.jpg",
+    "descriptionDe": "Anti-Topspin mit A-B-S-Dämpfungsschwamm. Weniger Tempo, mehr Kontrolle als Original-Gorilla. Hersteller-Listung gepflegt.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=69"
+    ],
+    "confidence": "low",
+    "issues": "DE-Shop-Verfügbarkeit Nische"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Grizzly (A-B-S Sponge)",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p65.jpg",
+    "descriptionDe": "Anti-Topspin mit A-B-S-Schwamm. Gute Stör-Wirkung, hohe Kontrolle. Allround-Charakteristik, Konter und Aufschlagannahme.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=65"
+    ],
+    "confidence": "low",
+    "issues": "DE-Shop-Verfügbarkeit Nische"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "A-B-S",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p62.jpg",
+    "descriptionDe": "Original frictionless A-B-S-Anti, das erste in der A-B-S-Reihe. Tischnaher Blocker. Lange Lieferzeit beim Hersteller (1-3 Wochen).",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=62"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen; ältere Variante"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Gorilla",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p51.jpg",
+    "descriptionDe": "Klassischer Anti-Topspin (Original-Schwamm). Tischnaher Block und Chop. Hersteller-Listung in stock.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=51"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Grizzly",
+    "category": "MAT",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "anti",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p52.jpg",
+    "descriptionDe": "Klassischer Anti-Topspin für Allround-Spiel mit kontrolliertem Konter und Chop. Hersteller-Listung in stock.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=8&lang=us&prod=52"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Trouble Maker Reloaded",
+    "category": "DEF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 42.9,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p179.jpg",
+    "descriptionDe": "Neueste Iteration des Trouble Maker für Plastikbälle. Lange Noppen für aktiv-defensives Spiel tischnah.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=179"
+    ],
+    "confidence": "medium",
+    "issues": "Detailwerte nicht abgerufen; Preis aus Marktbeobachtung"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Desperado Reloaded",
+    "category": "DEF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p168.jpg",
+    "descriptionDe": "Neuauflage der bekannten Desperado-Langnoppe. In stock beim Hersteller.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=168"
+    ],
+    "confidence": "low",
+    "issues": "Werte und Preis nicht verifiziert"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Desperado Reloaded Slow",
+    "category": "DEF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p169.jpg",
+    "descriptionDe": "Langsamere Variante des Desperado Reloaded mit 0,5 mm Dämpfungsschwamm. Klassische Defensive.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=169"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht verifiziert; sehr spezielle Variante"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Punch",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 58,
+      "spinRaw": 88,
+      "controlRaw": 83,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": 40,
+      "hardnessMax": 40,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 46.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p162.jpg",
+    "descriptionDe": "Langnoppe für aktives Allround-Spiel. Schwamm OX/0,6/1,0/1,3 mm. Härte 40°. Block, Chop-Block und aktives Pushen/Flicken.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "contra.de",
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=162",
+      "https://www.contra.de/en/dr.-neubauer-rubber-punch/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Trouble Maker",
+    "category": "ALL-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 52,
+      "spinRaw": 86,
+      "controlRaw": 89,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 49.9,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p131.jpg",
+    "descriptionDe": "Langnoppe für tischnahes Chop-Block-Spiel gegen Plastikball. Schwamm OX/0,6/1,0/1,3 mm. Niedrige Flugkurve, leichtes Wackeln.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=131"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Allround Premium 2",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 56,
+      "spinRaw": 86,
+      "controlRaw": 85,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 46.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p130.jpg",
+    "descriptionDe": "Vertikal angeordnete Langnoppen für aktives, komplettes Spiel. Schwamm OX/0,6/1,0/1,3 mm. Block/Chop-Block plus aktives Flicken und Konter.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "contra.de",
+      "tt-shop.de",
+      "tt-store24.com",
+      "futurespin.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=130",
+      "https://www.contra.de/en/dr.-neubauer-rubber-allround-premium-2/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Desperado 2",
+    "category": "DEF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 49.9,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p118.jpg",
+    "descriptionDe": "Langnoppe für klassische Defensive. Sehr hohe Stör-Wirkung, niedrige Flugkurve, Plastikball-tauglich.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "tischtennis.biz",
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=118",
+      "https://www.tischtennis.biz/lange-noppen-tischtennisbelag/dr-neubauer-desperado.html"
+    ],
+    "confidence": "medium",
+    "issues": "Detailwerte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Viper Soft",
+    "category": "ALL-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p94.jpg",
+    "descriptionDe": "Weichere Version des Viper, klassische Langnoppe mit hoher Kontrolle.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=94"
+    ],
+    "confidence": "low",
+    "issues": "Werte und DE-Shop-Listung nicht final verifiziert"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Gangster",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p104.jpg",
+    "descriptionDe": "Aggressive Langnoppe für aktives Spiel tischnah. Hersteller-Listung in stock.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=104"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Viper",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p91.jpg",
+    "descriptionDe": "Langnoppe von Dr. Neubauer; Hersteller-Listung in stock.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=91"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Number 1",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 55,
+      "spinRaw": 80,
+      "controlRaw": 87,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 42.9,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p88.jpg",
+    "descriptionDe": "Langnoppe mit überarbeiteter Gummimischung und vertikaler Noppenanordnung. Schwamm OX/0,6/1,0 mm. Hohe Kontrolle bei Aufschlagannahme und Block.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "contra.de",
+      "tt-center.de",
+      "schoeler-micke.de",
+      "tt-shop.de",
+      "tischtennis.biz"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=88",
+      "https://www.contra.de/de/dr-neubauer-belag-number-1.html",
+      "https://www.tt-center.de/dr.-neubauer-number-1"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Allround Premium",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 55,
+      "spinRaw": 85,
+      "controlRaw": 85,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 36.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p79.jpg",
+    "descriptionDe": "Klassische Langnoppe mit vertikaler Noppenanordnung. Schwamm OX/0,6/1,0/1,3 mm. Allround-Charakteristik, aktiver Block möglich.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "schoeler-micke.de",
+      "mr-tischtennis.at"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=79"
+    ],
+    "confidence": "medium",
+    "issues": "Eventuell durch Allround Premium 2 abgelöst — DE-Shop-Listung teilweise als Auslaufmodell"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Desperado",
+    "category": "DEF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 46.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p76.jpg",
+    "descriptionDe": "Klassische Langnoppe für Verteidigung. Hohe Stör-Wirkung, niedrige Flugkurve.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "tischtennis.biz",
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=76",
+      "https://www.tischtennis.biz/lange-noppen-tischtennisbelag/dr-neubauer-desperado.html"
+    ],
+    "confidence": "medium",
+    "issues": "Werte nicht direkt abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Fighter",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p66.jpg",
+    "descriptionDe": "Langnoppe mit Friktion, gute Kontrolle und Stör-Wirkung. Hersteller-Listung in stock.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=66"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen; älter, evtl. weniger im DE-Shop"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Boomerang Classic",
+    "category": "DEF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p54.jpg",
+    "descriptionDe": "Langnoppe mit Friktion für klassische Defensive. Erlaubt hohen Backspin beim Schnitt-Abwehrspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=54"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Monster Classic",
+    "category": "ALL",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "long_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p53.jpg",
+    "descriptionDe": "Langnoppe mit Friktion für aggressives, tischnahes Spiel. Deutlich anderer Charakter als Standard-Lange-Noppen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=4&lang=us&prod=53"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Tornado Supreme Soft",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p163.jpg",
+    "descriptionDe": "Weichere Version von Tornado Supreme. Kurze Noppen mit hoher Spin/Speed-Charakteristik.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=163"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen; sehr neu"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Explosion Soft",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p164.jpg",
+    "descriptionDe": "Weichere Version des Explosion. Kurze Noppen für offensives Spiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=164"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Explosion Extreme",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p155.jpg",
+    "descriptionDe": "Härtere/schnellere Variante des Explosion. Kurze Noppen mit hohem Tempo.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=155"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Killer Extreme",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p154.jpg",
+    "descriptionDe": "Schnellste Version der Killer-Serie. Kurze Noppen für aggressives Offensivspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=154"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Tornado Supreme",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 110,
+      "spinRaw": 92,
+      "controlRaw": 86,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 49.9,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p153.jpg",
+    "descriptionDe": "Kurze Noppen mit hoher Geschwindigkeit und ungewöhnlich hohem Spin. Schwamm 1,2/1,5/1,8/2,0/2,2 mm. Für offensives Spiel mit Rotation.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=153"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Explosion",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p132.jpg",
+    "descriptionDe": "Kurze Noppen für offensives Spiel. Hersteller-Listung in stock.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=132"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Explosion Pro",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p143.jpg",
+    "descriptionDe": "Pro-Version des Explosion: Kurze Noppen für offensives Spiel mit höherem Tempo.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=143"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Killer",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p81.jpg",
+    "descriptionDe": "Kombinationsbelag mit kurzen-mittellangen Noppen. Gut für modernes Noppenspiel tischnah.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "contra.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=81",
+      "https://www.contra.de/en/dr.-neubauer-rubber-killer/"
+    ],
+    "confidence": "medium",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Killer Pro",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p93.jpg",
+    "descriptionDe": "Pro-Version des Killer: Kurze Noppen für aggressiven Offensiv-Noppenspiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=93"
+    ],
+    "confidence": "medium",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Killer Pro Evo",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": "blau",
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p137.jpg",
+    "descriptionDe": "Killer Pro mit neuem blauem Schwamm. Schnellere Variante für modernes Spiel mit ABS-Bällen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "schoeler-micke.de",
+      "schuett-sport.de",
+      "tt-xpert.de",
+      "derttshop.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=137",
+      "https://www.schoeler-micke.de/belaege/noppen-aussen/kurze-noppen/986/dr.-neubauer-belag-killer-pro-evo"
+    ],
+    "confidence": "medium",
+    "issues": "Detailwerte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Killer Soft",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p142.jpg",
+    "descriptionDe": "Weichere Version des Killer. Kurze Noppen mit mehr Kontrolle.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=142"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Leopard",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p11.jpg",
+    "descriptionDe": "Klassische kurze Noppe für Block auf Topspin und Schmetterball. Schwamm 1,5 und 2,0 mm möglich.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=11"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Nugget",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p114.jpg",
+    "descriptionDe": "Kurze Noppe von Dr. Neubauer. Hersteller-Listung in stock.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=114"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Pistol",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 39.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p34.jpg",
+    "descriptionDe": "Klassiker: Kurze Noppe mit hoher Beschleunigung. Seit 2006 im Sortiment. Schnell, kontrolliert, ohne Speedglue.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "contra.de",
+      "schuett-sport.de",
+      "schoeler-micke.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=34",
+      "https://www.contra.de/dr.-neubauer-belag-pistol/"
+    ],
+    "confidence": "medium",
+    "issues": "Tempo-Werte nicht direkt im Beleg"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Pistol 2",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 100,
+      "spinRaw": 80,
+      "controlRaw": 90,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 46.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p124.jpg",
+    "descriptionDe": "Weiterentwicklung des Pistol für Plastikbälle. Schwamm 1,0/1,6/2,0 mm. Mehr Stör-Wirkung bei Block, Konter, Schuss.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "schoeler-micke.de",
+      "tt-shop.de",
+      "k-unlimited.de",
+      "futurespin.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=124",
+      "https://www.tt-shop.de/de/dr-neubauer-pistol-2.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Terminator",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p77.jpg",
+    "descriptionDe": "Spezielle kurze Noppe von Dr. Neubauer, auch ohne Schwamm verfügbar.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=77"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Tornado Extreme",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p146.jpg",
+    "descriptionDe": "Härtere/schnellere Variante des Tornado Ultra. Kurze Noppen für offensives Spiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=146"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Tornado Ultra",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": 100,
+      "spinRaw": 86,
+      "controlRaw": 72,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": 39.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p10.jpg",
+    "descriptionDe": "Kurze Noppe mit konischer Anordnung. Hohe Geschwindigkeit, hoher Spin für die Kategorie. Schwamm OX/1,0/1,5/2,0 mm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "schoeler-micke.de",
+      "schuett-sport.de",
+      "topspeed-tt.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=5&lang=us&prod=10"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "K.O. EXTREME",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p170.jpg",
+    "descriptionDe": "Halbflange Noppe (zwischen kurz und lang), Extreme-Version. Neuer Belag von Dr. Neubauer.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=7&lang=us&prod=170"
+    ],
+    "confidence": "low",
+    "issues": "Halflong-Charakteristik; Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Aggressor Evo",
+    "category": "ALL+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p147.jpg",
+    "descriptionDe": "Halbflange Noppe, Evo-Version. Für aggressiven Block/Konter tischnah.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=7&lang=us&prod=147"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen; Halflong-Klassifizierung"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Aggressor Pro",
+    "category": "ALL+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p139.jpg",
+    "descriptionDe": "Pro-Version der Aggressor-Halblang-Noppe.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=7&lang=us&prod=139"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "K.O. PRO",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p122.jpg",
+    "descriptionDe": "Pro-Version des K.O. Halblange Noppe für aktives Spiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=7&lang=us&prod=122"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "K.O.",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p106.jpg",
+    "descriptionDe": "Halblange Noppe von Dr. Neubauer. Hersteller-Listung in stock.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=7&lang=us&prod=106"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Aggressor",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p100.jpg",
+    "descriptionDe": "Klassische halblange Noppe von Dr. Neubauer für aktives, aggressives Spiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "contra.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=7&lang=us&prod=100",
+      "https://www.contra.de/en/dr.-neubauer-rubber-aggressor/"
+    ],
+    "confidence": "medium",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Diamant",
+    "category": "ALL+",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "short_pips",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "neutral",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p40.jpg",
+    "descriptionDe": "Halblange Noppe, hohe Kontrolle bei Rückschlag, Block, Angriff und Defensive.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=7&lang=us&prod=40"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Dominance Speed Hard",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p180.jpg",
+    "descriptionDe": "Glattbelag, hartere Speed-Version der Dominance-Serie.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=6&lang=us&prod=180"
+    ],
+    "confidence": "low",
+    "issues": "Werte und DE-Listung nicht final verifiziert"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Dominance Spin Hard",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p167.jpg",
+    "descriptionDe": "Glattbelag, härtere Spin-Version der Dominance-Serie.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=6&lang=us&prod=167"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Defence Master",
+    "category": "DEF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p165.jpg",
+    "descriptionDe": "Glattbelag für die klassische Defensive (Schnittabwehr). Neuer Belag.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=6&lang=us&prod=165"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Dominance",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p166.jpg",
+    "descriptionDe": "Glattbelag mit ausgewogenen Spin-/Speed-Eigenschaften.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=6&lang=us&prod=166"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Dominance Speed",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p157.jpg",
+    "descriptionDe": "Glattbelag mit Speed-Schwerpunkt der Dominance-Serie.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=6&lang=us&prod=157"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Dominance Spin",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p156.jpg",
+    "descriptionDe": "Glattbelag mit Spin-Schwerpunkt der Dominance-Serie.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=6&lang=us&prod=156"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Domination Speed Soft",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p125.jpg",
+    "descriptionDe": "Weichere Variante des Domination Speed. Glattbelag.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=6&lang=us&prod=125"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Domination Speed 2",
+    "category": "OFF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p96.jpg",
+    "descriptionDe": "Glattbelag mit Speed-Schwerpunkt, 2. Generation.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=6&lang=us&prod=96"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Domination",
+    "category": "OFF-",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p23.jpg",
+    "descriptionDe": "Glattbelag mit grippiger Oberfläche, hohe Rotation. Schwamm 1,8 und 2,1 mm.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=6&lang=us&prod=23"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "rubber",
+    "brand": "Dr. Neubauer",
+    "name": "Special Defence",
+    "category": "DEF",
+    "blade": null,
+    "rubber": {
+      "speedRaw": null,
+      "spinRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "rubberType": "smooth",
+      "hardnessMin": null,
+      "hardnessMax": null,
+      "topsheetCharacter": "grippy",
+      "spongeColor": null,
+      "isHybrid": false
+    },
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p49.jpg",
+    "descriptionDe": "Glattbelag speziell für die Defensive (Schnittabwehr).",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=1&cat_s=6&lang=us&prod=49"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Matador Titan",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 108,
+      "controlRaw": 87,
+      "speedScale": 100,
+      "composition": "7+2 mit Titanium-Faser (VH) und Texalium (RH)",
+      "layers": 9,
+      "weightAvgGrams": 94,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Texalium"
+    },
+    "rubber": null,
+    "uvpEur": 119.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p181.jpg",
+    "descriptionDe": "OFF+ Holz mit Titanium-Faser (VH) und Texalium (RH) um den Kern. Schnelles Holz für aggressives Angriffsspiel mit Glatt-/Kurzen Noppen/Anti.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=181"
+    ],
+    "confidence": "high",
+    "issues": "Sehr neu (2024/25); DE-Shop-Listung im Aufbau"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Matador Hybrid Carbon",
+    "category": "OFF+",
+    "blade": {
+      "speedRaw": 110,
+      "controlRaw": 86,
+      "speedScale": 100,
+      "composition": "7+2 mit Hybrid-Aramid-Carbon (VH) und Texalium (RH)",
+      "layers": 9,
+      "weightAvgGrams": 94,
+      "stiffness": "stiff",
+      "carbonPosition": "outer",
+      "specialMaterial": "Aramid"
+    },
+    "rubber": null,
+    "uvpEur": 119.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p176.jpg",
+    "descriptionDe": "OFF+ Holz mit Hybrid-Aramid-Carbon (VH) und Texalium (RH) direkt unter dem Außenfurnier. Hohes Tempo für Topspin und Material-Spiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=176"
+    ],
+    "confidence": "high",
+    "issues": "DE-Shop-Listung im Aufbau"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Gladiator",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": 80,
+      "controlRaw": 90,
+      "speedScale": 100,
+      "composition": "7-ply mit Titanium-Faser",
+      "layers": 7,
+      "weightAvgGrams": 76,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": 109.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p171.jpg",
+    "descriptionDe": "ALL/ALL+ Holz mit Titanium-Faser. Steife Konstruktion für niedrige Flugkurve und maximale Wirksamkeit mit Noppen/Anti.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=171",
+      "https://www.contra.de/dr.-neubauer-holz-gladiator/"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Bloodhound ALL+",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p152.jpg",
+    "descriptionDe": "ALL+ Variante des Bloodhound. Allround-Plus-Holz für vielseitige Spielausrichtungen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=152"
+    ],
+    "confidence": "low",
+    "issues": "Spezifikationen nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Colossus",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p151.jpg",
+    "descriptionDe": "Allround-/Offensiv-Holz von Dr. Neubauer.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=151"
+    ],
+    "confidence": "low",
+    "issues": "Spezifikationen nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Grand Master+",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p141.jpg",
+    "descriptionDe": "+-Version des Grand Master. Allround+ Holz für aktives Spiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=141"
+    ],
+    "confidence": "low",
+    "issues": "Spezifikationen nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Matador Texa Carbon",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": 98,
+      "controlRaw": 90,
+      "speedScale": 100,
+      "composition": "9-ply mit Texalium (RH) und Carbon (VH)",
+      "layers": 9,
+      "weightAvgGrams": 89,
+      "stiffness": "stiff",
+      "carbonPosition": "inner",
+      "specialMaterial": "Texalium"
+    },
+    "rubber": null,
+    "uvpEur": 119.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p148.jpg",
+    "descriptionDe": "OFF-Holz, schnellere Version des Matador Texa: Carbon vorhand, Texalium rückhand. Direktes Ballgefühl, gute Kontrolle.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=148"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Grand Master",
+    "category": "ALL",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p133.jpg",
+    "descriptionDe": "Allround-Holz für Materialspieler.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=133"
+    ],
+    "confidence": "low",
+    "issues": "Spezifikationen nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "High Tech Cypress Carbon",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": "Hinoki + Carbon",
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "stiff",
+      "carbonPosition": null,
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p134.jpg",
+    "descriptionDe": "Offensiv-Holz mit Hinoki (Cypress) und Carbon. Hoch dynamisch.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=134"
+    ],
+    "confidence": "low",
+    "issues": "Details nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Bloodhound",
+    "category": "ALL",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p121.jpg",
+    "descriptionDe": "Allround-Holz von Dr. Neubauer. Vorgänger von Bloodhound ALL+.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=121"
+    ],
+    "confidence": "low",
+    "issues": "Details nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Magical Touch",
+    "category": "ALL-",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "soft",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p123.jpg",
+    "descriptionDe": "Allround-/Defensiv-Holz mit weichem Ballgefühl.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=123"
+    ],
+    "confidence": "low",
+    "issues": "Details nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Matador Texa Balsa",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": "mit Texalium und Balsa-Kern",
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "inner",
+      "specialMaterial": "Balsa"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p120.jpg",
+    "descriptionDe": "Offensiv-Holz der Matador-Reihe mit Texalium und Balsa-Kern. Leicht und schnell.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=120"
+    ],
+    "confidence": "low",
+    "issues": "Genaue Speed-Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Matador Texa",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": "mit Texalium",
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": "inner",
+      "specialMaterial": "Texalium"
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p108.jpg",
+    "descriptionDe": "Offensiv-Holz der Matador-Reihe mit Texalium-Faser.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=108"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Jackpot",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p98.jpg",
+    "descriptionDe": "Präzises Allround+ Holz von Dr. Neubauer.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=98",
+      "https://www.tt-shop.de/de/dr-neubauer-jackpot.html"
+    ],
+    "confidence": "medium",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Matador",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p87.jpg",
+    "descriptionDe": "Original-Holz der Matador-Serie, Offensiv-Charakter.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=87"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "World Champion Carbon",
+    "category": "OFF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": "Holz + Carbon",
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "stiff",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p99.jpg",
+    "descriptionDe": "Offensive Carbon-Variante des World Champion.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=99"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Hercules",
+    "category": "ALL",
+    "blade": {
+      "speedRaw": 80,
+      "controlRaw": 92,
+      "speedScale": 100,
+      "composition": "5-ply Holz mit Kiso-Hinoki und Kunstfaser",
+      "layers": 5,
+      "weightAvgGrams": 85,
+      "stiffness": "medium",
+      "carbonPosition": "inner",
+      "specialMaterial": "Hinoki"
+    },
+    "rubber": null,
+    "uvpEur": 119.0,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p82.jpg",
+    "descriptionDe": "5-furniges Allround-Holz mit Kiso-Hinoki und Kunstfaser. Stark für Material-Spiel, kurzer und niedriger Block bei Anti-Spin.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "tt-shop.de",
+      "schoeler-micke.de",
+      "futurespin.de",
+      "tischtennis-billiger.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=82",
+      "https://www.tt-shop.de/de/dr-neubauer-hercules.html"
+    ],
+    "confidence": "high",
+    "issues": null
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Phenomenon",
+    "category": "ALL",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p83.jpg",
+    "descriptionDe": "Allround-Holz von Dr. Neubauer.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=83"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "World Champion",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p74.jpg",
+    "descriptionDe": "All+/Off- Holz für vielseitiges Spiel.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=74"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Barricade DEF",
+    "category": "DEF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "soft",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p30.jpg",
+    "descriptionDe": "Reines Defensiv-Holz für klassische Schnittabwehr.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "tischtennis.biz",
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=30",
+      "https://www.tischtennis.biz/defensiv-tischtennisholz/dr-neubauer-barricade.html"
+    ],
+    "confidence": "medium",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Bulldog",
+    "category": "ALL",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p67.jpg",
+    "descriptionDe": "Allround-Holz mit hoher Stör-Wirkung und Angriffsmöglichkeiten.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=67"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Combination Effect",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p42.jpg",
+    "descriptionDe": "Spezial-Holz für Kombi-Schläger (Glatt + Material).",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=42"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Firewall Plus",
+    "category": "DEF",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "soft",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p21.jpg",
+    "descriptionDe": "Defensiv-Holz von Dr. Neubauer, Nachfolger des Firewall.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=21"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "High Technology Plus",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p9.jpg",
+    "descriptionDe": "Offensiv-Holz, 2. Generation mit verbesserter Klebetechnik. Sehr gute Kontrolle bei offensiven Schlägen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com",
+      "tt-shop.de"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=9",
+      "https://www.tt-shop.de/de/dr-neubauer-high-technology-plus.html"
+    ],
+    "confidence": "medium",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Kung Fu",
+    "category": "ALL",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p63.jpg",
+    "descriptionDe": "Holz für Kombi-Schläger mit Noppen-/Anti-Spin-Belägen. Maximale Effektivität.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=63"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Special",
+    "category": "ALL+",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "medium",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p20.jpg",
+    "descriptionDe": "4. Generation des Special-Holzes für maximale Stör-Wirkung mit Langnoppen.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=20"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  },
+  {
+    "type": "blade",
+    "brand": "Dr. Neubauer",
+    "name": "Titan",
+    "category": "OFF-",
+    "blade": {
+      "speedRaw": null,
+      "controlRaw": null,
+      "speedScale": 100,
+      "composition": null,
+      "layers": null,
+      "weightAvgGrams": null,
+      "stiffness": "stiff",
+      "carbonPosition": null,
+      "specialMaterial": null
+    },
+    "rubber": null,
+    "uvpEur": null,
+    "imageUrl": "https://www.drneubauer.com/photos/products/p68.jpg",
+    "descriptionDe": "Holz mit hoher Stör-Wirkung für Noppen-/Anti-Spin-Beläge, mit Angriffsmöglichkeit.",
+    "isCurrentlyAvailable": true,
+    "availableAt": [
+      "drneubauer.com"
+    ],
+    "sources": [
+      "https://www.drneubauer.com/shop.php?cat=2&cat_s=0&lang=us&prod=68"
+    ],
+    "confidence": "low",
+    "issues": "Werte nicht abgerufen"
+  }
+]
