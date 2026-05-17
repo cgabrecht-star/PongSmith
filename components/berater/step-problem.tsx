@@ -62,11 +62,33 @@ export function StepProblem({
         <textarea
           value={data.freitext}
           onChange={(e) => handleType(e.target.value)}
-          placeholder="z.B. Mein Block ist instabil und Topspins fallen zu oft ins Netz…"
+          placeholder="z.B. Mein Topspin gegen Unterschnitt landet zu oft im Netz, beim Konter klappt's. Beim Block fliegt der Ball mir oft zu lang…"
           rows={4}
           maxLength={500}
           className="mt-3 w-full resize-none rounded-md border border-neutral-700 bg-neutral-800 px-4 py-3 text-base text-neutral-50 outline-none transition-colors placeholder:text-neutral-400 focus:border-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
         />
+        <div className="mt-3 grid gap-2 text-xs sm:grid-cols-2">
+          <div className="rounded-md border border-green-700/40 bg-green-900/10 px-3 py-2 text-neutral-300">
+            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-green-400">
+              ✓ Hilfreich
+            </div>
+            <p className="italic">
+              „Mein Topspin auf Unterschnitt fällt zu kurz, beim Konter klappt
+              er. Trainiere 2× pro Woche mit Trainer."
+            </p>
+          </div>
+          <div className="rounded-md border border-red-700/40 bg-red-900/10 px-3 py-2 text-neutral-300">
+            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-red-400">
+              ✗ Zu vage
+            </div>
+            <p className="italic">„Spiele schlecht, brauche besseres Setup."</p>
+          </div>
+        </div>
+        <p className="mt-3 text-xs text-neutral-400">
+          Tipp: <strong className="text-neutral-200">eine</strong> konkrete
+          Situation aus dem letzten Training/Spiel beschreiben schlägt jede
+          allgemeine Aussage. Der Berater fragt nach, wenn ihm Info fehlt.
+        </p>
       </div>
 
       {/* Trenner */}

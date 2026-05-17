@@ -62,6 +62,12 @@ export function StepSetup({
           Diese Daten machen die Beratung präzise. Werden anonym gespeichert, kein Name,
           keine IP. Du hilfst damit, die Empfehlungen für andere Spieler genauer zu machen.
         </p>
+        <div className="mt-4 rounded-md border border-primary/30 bg-primary/5 px-4 py-3 text-xs text-neutral-300">
+          <span className="font-semibold text-primary">So funktioniert's:</span>{" "}
+          Du beschreibst Setup und Problem, der Berater empfiehlt. Wenn ihm Info
+          fehlt, fragt er nach — du kannst direkt antworten. Je ehrlicher und
+          konkreter du bist, desto besser trifft die Empfehlung.
+        </div>
       </div>
 
       {/* TTR-Slider */}
