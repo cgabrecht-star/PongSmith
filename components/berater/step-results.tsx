@@ -271,7 +271,19 @@ function SetupCard({ setup, rank }: { setup: SetupGroupResult; rank: number }) {
   );
 }
 
-export function StepResults({ result, onRestart }: { result: BeraterResult; onRestart: () => void }) {
+export function StepResults({
+  result,
+  onRestart,
+  onFollowUp,
+  followUpLoading,
+}: {
+  result: BeraterResult;
+  onRestart: () => void;
+  onFollowUp?: (reply: string) => void;
+  followUpLoading?: boolean;
+}) {
+  const [followUp, setFollowUp] = useState("");
+  const showFollowUp = result.setups.length === 0 && !!onFollowUp;
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -304,6 +316,41 @@ export function StepResults({ result, onRestart }: { result: BeraterResult; onRe
           {result.setups.map((setup, i) => (
             <SetupCard key={setup.index} setup={setup} rank={i} />
           ))}
+        </div>
+      )}
+
+      {/* Follow-up-Eingabe wenn der Berater nachfragt (keine Setups) */}
+      {showFollowUp && (
+        <div className="flex flex-col gap-3 rounded-lg border border-neutral-700 bg-neutral-800 p-6">
+          <label
+            htmlFor="berater-followup"
+            className="font-mono text-[10px] uppercase tracking-widest text-primary"
+          >
+            Deine Antwort
+          </label>
+          <textarea
+            id="berater-followup"
+            value={followUp}
+            onChange={(e) => setFollowUp(e.target.value)}
+            disabled={followUpLoading}
+            rows={4}
+            placeholder="Antworte dem Berater, damit er ein passendes Setup empfehlen kann."
+            className="w-full resize-none rounded-md border border-neutral-700 bg-neutral-900 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-500 focus:border-primary focus:outline-none disabled:opacity-50"
+          />
+          <div className="flex items-center justify-end gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                if (!followUp.trim() || followUpLoading) return;
+                onFollowUp?.(followUp);
+                setFollowUp("");
+              }}
+              disabled={!followUp.trim() || followUpLoading}
+              className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-neutral-900 transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {followUpLoading ? "Berater denkt nach…" : "Antwort senden"}
+            </button>
+          </div>
         </div>
       )}
 

@@ -35,6 +35,8 @@ const INITIAL_PROBLEM: ProblemData = {
  *  3. Loading-Animation während API-Call
  *  4. Setup-Karten als Endergebnis
  */
+type ChatMsg = { role: "user" | "assistant"; content: string };
+
 export function BeraterPage() {
   const [step, setStep] = useState<FlowStep>(1);
   const [setup, setSetup] = useState<SetupData>(INITIAL_SETUP);
@@ -42,6 +44,8 @@ export function BeraterPage() {
   const [setupSkipped, setSetupSkipped] = useState(false);
   const [result, setResult] = useState<BeraterResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [history, setHistory] = useState<ChatMsg[]>([]);
+  const [followUpLoading, setFollowUpLoading] = useState(false);
 
   // Step-1 → Step-2: Setup eingeben fertig
   function handleSetupNext() {
@@ -89,13 +93,14 @@ export function BeraterPage() {
 
     // Erste User-Nachricht für den Berater zusammenbauen
     const message = buildMessage(setup, problem, setupSkipped);
+    const initialHistory: ChatMsg[] = [{ role: "user", content: message }];
 
     try {
       const res = await fetch("/api/berater", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          messages: [{ role: "user", content: message }],
+          messages: initialHistory,
           lang: "de",
         }),
       });
@@ -107,10 +112,9 @@ export function BeraterPage() {
         return;
       }
       const setups = data.setups ?? [];
-      setResult({
-        text: data.text ?? "",
-        setups,
-      });
+      const text = data.text ?? "";
+      setResult({ text, setups });
+      setHistory([...initialHistory, { role: "assistant", content: text }]);
       setStep(4);
 
       // Vercel Analytics: Berater-Success (Conversion-Funnel Stufe 2)
@@ -136,7 +140,39 @@ export function BeraterPage() {
     setSetupSkipped(false);
     setResult(null);
     setError(null);
+    setHistory([]);
     setStep(1);
+  }
+
+  // Follow-up: User antwortet auf Rückfrage des Beraters
+  async function handleFollowUp(reply: string) {
+    const trimmed = reply.trim();
+    if (!trimmed || followUpLoading) return;
+    setFollowUpLoading(true);
+    setError(null);
+    const nextHistory: ChatMsg[] = [...history, { role: "user", content: trimmed }];
+    setHistory(nextHistory);
+    try {
+      const res = await fetch("/api/berater", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: nextHistory, lang: "de" }),
+      });
+      const data = await res.json();
+      if (data.error) {
+        setError(data.error);
+        return;
+      }
+      const setups = data.setups ?? [];
+      const text = data.text ?? "";
+      setResult({ text, setups });
+      setHistory([...nextHistory, { role: "assistant", content: text }]);
+      track("berater_followup", { setupsCount: setups.length });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err));
+    } finally {
+      setFollowUpLoading(false);
+    }
   }
 
   return (
@@ -177,7 +213,12 @@ export function BeraterPage() {
         )}
         {step === 4 && result && (
           <div key="step-4">
-            <StepResults result={result} onRestart={handleRestart} />
+            <StepResults
+              result={result}
+              onRestart={handleRestart}
+              onFollowUp={handleFollowUp}
+              followUpLoading={followUpLoading}
+            />
           </div>
         )}
       </AnimatePresence>
