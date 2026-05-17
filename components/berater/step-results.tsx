@@ -271,19 +271,28 @@ function SetupCard({ setup, rank }: { setup: SetupGroupResult; rank: number }) {
   );
 }
 
+export interface ChatTurn {
+  role: "user" | "assistant";
+  content: string;
+}
+
 export function StepResults({
   result,
   onRestart,
   onFollowUp,
   followUpLoading,
+  history,
 }: {
   result: BeraterResult;
   onRestart: () => void;
   onFollowUp?: (reply: string) => void;
   followUpLoading?: boolean;
+  history?: ChatTurn[];
 }) {
   const [followUp, setFollowUp] = useState("");
-  const showFollowUp = result.setups.length === 0 && !!onFollowUp;
+  // Vorherige Turns (alles außer dem letzten Assistant-Turn, der oben als
+  // "Berater-Antwort" gerendert wird)
+  const priorTurns = (history ?? []).slice(0, -1);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -300,7 +309,26 @@ export function StepResults({
         </h2>
       </div>
 
-      {/* Begründungstext vom Berater */}
+      {/* Chat-History: alle vorherigen Turns (ohne Initial-Setup-Message) */}
+      {priorTurns.slice(1).map((turn, i) => (
+        <div
+          key={i}
+          className={`rounded-lg border p-6 ${
+            turn.role === "user"
+              ? "border-neutral-700/50 bg-neutral-900/60"
+              : "border-neutral-700 bg-neutral-800"
+          }`}
+        >
+          <div className="mb-3 font-mono text-[10px] uppercase tracking-widest text-primary">
+            {turn.role === "user" ? "Du" : "KI-Berater"}
+          </div>
+          <div className="text-sm leading-relaxed text-neutral-200">
+            {renderBeraterText(turn.content)}
+          </div>
+        </div>
+      ))}
+
+      {/* Aktuelle Berater-Antwort */}
       <div className="rounded-lg border border-neutral-700 bg-neutral-800 p-6">
         <div className="mb-3 font-mono text-[10px] uppercase tracking-widest text-primary">
           KI-Berater
@@ -319,14 +347,14 @@ export function StepResults({
         </div>
       )}
 
-      {/* Follow-up-Eingabe wenn der Berater nachfragt (keine Setups) */}
-      {showFollowUp && (
-        <div className="flex flex-col gap-3 rounded-lg border border-neutral-700 bg-neutral-800 p-6">
+      {/* Follow-up: Dialog mit dem Berater (immer verfügbar) */}
+      {onFollowUp && (
+        <div className="flex flex-col gap-3 rounded-lg border border-primary/30 bg-neutral-800 p-6">
           <label
             htmlFor="berater-followup"
             className="font-mono text-[10px] uppercase tracking-widest text-primary"
           >
-            Deine Antwort
+            {result.setups.length === 0 ? "Deine Antwort" : "Nachfragen / Präzisieren"}
           </label>
           <textarea
             id="berater-followup"
@@ -334,7 +362,11 @@ export function StepResults({
             onChange={(e) => setFollowUp(e.target.value)}
             disabled={followUpLoading}
             rows={4}
-            placeholder="Antworte dem Berater, damit er ein passendes Setup empfehlen kann."
+            placeholder={
+              result.setups.length === 0
+                ? "Antworte dem Berater, damit er ein passendes Setup empfehlen kann."
+                : "z.B. „Das ist mir zu teuer, hast du eine günstigere Alternative?“"
+            }
             className="w-full resize-none rounded-md border border-neutral-700 bg-neutral-900 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-500 focus:border-primary focus:outline-none disabled:opacity-50"
           />
           <div className="flex items-center justify-end gap-3">
@@ -342,13 +374,13 @@ export function StepResults({
               type="button"
               onClick={() => {
                 if (!followUp.trim() || followUpLoading) return;
-                onFollowUp?.(followUp);
+                onFollowUp(followUp);
                 setFollowUp("");
               }}
               disabled={!followUp.trim() || followUpLoading}
               className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-neutral-900 transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {followUpLoading ? "Berater denkt nach…" : "Antwort senden"}
+              {followUpLoading ? "Berater denkt nach…" : "Senden"}
             </button>
           </div>
         </div>

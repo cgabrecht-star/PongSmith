@@ -218,6 +218,7 @@ export function BeraterPage() {
               onRestart={handleRestart}
               onFollowUp={handleFollowUp}
               followUpLoading={followUpLoading}
+              history={history}
             />
           </div>
         )}
