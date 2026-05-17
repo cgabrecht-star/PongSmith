@@ -91,7 +91,7 @@ export function ProductAutocomplete({
         </span>
       )}
       {open && (loading || options.length > 0 || query.trim().length >= 2) && (
-        <div className="absolute left-0 right-0 top-[calc(100%+4px)] z-50 max-h-72 overflow-y-auto rounded-md border border-neutral-700 bg-neutral-900 shadow-2xl shadow-black/50">
+        <div className="absolute left-0 right-0 top-[calc(100%+4px)] z-50 max-h-[28rem] overflow-y-auto rounded-md border border-neutral-700 bg-neutral-900 shadow-2xl shadow-black/50">
           {loading && (
             <div className="px-4 py-3 font-mono text-xs uppercase tracking-widest text-neutral-400">
               Suche…
@@ -100,6 +100,11 @@ export function ProductAutocomplete({
           {!loading && options.length === 0 && query.trim().length >= 2 && (
             <div className="px-4 py-3 text-sm text-neutral-400">
               Keine Treffer. Anderen Begriff probieren.
+            </div>
+          )}
+          {!loading && options.length > 5 && (
+            <div className="sticky top-0 border-b border-neutral-800 bg-neutral-900 px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+              {options.length} Treffer · Tippe weiter zum Eingrenzen
             </div>
           )}
           {options.map((opt) => (

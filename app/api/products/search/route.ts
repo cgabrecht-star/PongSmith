@@ -11,12 +11,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
 import { blades, rubbers, manufacturers } from "@/db/schema";
-import { and, eq, ilike, sql, isNotNull, or } from "drizzle-orm";
+import { and, eq, ilike, sql, or } from "drizzle-orm";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const MAX_RESULTS = 12;
+// Großzügig, damit "Andro" alle ~75 Andro-Produkte zeigt.
+const MAX_RESULTS = 100;
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -47,17 +48,14 @@ export async function GET(req: NextRequest) {
         .where(
           and(
             eq(blades.isActive, true),
-            // Mindest-Datenqualität: Specs vorhanden
-            or(isNotNull(blades.communitySpeed), isNotNull(blades.speedNorm)),
-            // Suche
             or(
               ilike(blades.name, pattern),
               sql`LOWER(${manufacturers.name} || ' ' || ${blades.name}) LIKE LOWER(${pattern})`,
             ),
           ),
         )
-        // Hochwertige (mit Reviews) zuerst
-        .orderBy(sql`${blades.communityReviewCount} DESC NULLS LAST`)
+        // Alphabetisch nach Name (Hersteller-Präfix ist im Namen meist enthalten)
+        .orderBy(sql`LOWER(${blades.name}) ASC`)
         .limit(MAX_RESULTS);
 
       return NextResponse.json({
@@ -84,14 +82,13 @@ export async function GET(req: NextRequest) {
       .where(
         and(
           eq(rubbers.isActive, true),
-          or(isNotNull(rubbers.communitySpeed), isNotNull(rubbers.speedNorm)),
           or(
             ilike(rubbers.name, pattern),
             sql`LOWER(${manufacturers.name} || ' ' || ${rubbers.name}) LIKE LOWER(${pattern})`,
           ),
         ),
       )
-      .orderBy(sql`${rubbers.communityReviewCount} DESC NULLS LAST`)
+      .orderBy(sql`LOWER(${rubbers.name}) ASC`)
       .limit(MAX_RESULTS);
 
     return NextResponse.json({
