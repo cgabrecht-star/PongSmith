@@ -11,13 +11,36 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
 import { blades, rubbers, manufacturers } from "@/db/schema";
-import { and, eq, ilike, sql, or } from "drizzle-orm";
+import { and, eq, ilike, sql, or, type SQL } from "drizzle-orm";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 // Großzügig, damit "Andro" alle ~75 Andro-Produkte zeigt.
 const MAX_RESULTS = 100;
+
+/**
+ * Erkennt Kategorie-Tokens in der Suche und mappt sie auf play_style.
+ * Beispiel: "Andro ALL" → { text: "Andro", playStyle: "allround" }
+ */
+function parseCategoryToken(q: string): {
+  text: string;
+  playStyle: "offensive_topspin" | "allround" | "defensive" | "material" | null;
+} {
+  const tokens = q.split(/\s+/).filter(Boolean);
+  const remaining: string[] = [];
+  let playStyle: ReturnType<typeof parseCategoryToken>["playStyle"] = null;
+  for (const t of tokens) {
+    const u = t.toUpperCase().replace(/[+\-]$/, ""); // ALL+ → ALL
+    if (u === "ALL") playStyle = "allround";
+    else if (u === "OFF") playStyle = "offensive_topspin";
+    else if (u === "DEF") playStyle = "defensive";
+    else if (u === "MAT" || u === "MATERIAL" || u === "NOPPEN" || u === "ANTI")
+      playStyle = "material";
+    else remaining.push(t);
+  }
+  return { text: remaining.join(" "), playStyle };
+}
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -31,8 +54,25 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "type must be blade|rubber" }, { status: 400 });
   }
 
-  // Suche: name LIKE %q% ODER manufacturer-Name + name kombiniert
-  const pattern = `%${q}%`;
+  // Erkenne Kategorie-Tokens (ALL, OFF, DEF, MAT) und filtere danach
+  const { text, playStyle } = parseCategoryToken(q);
+  // Falls nach Token-Abzug noch Text übrig: damit suchen. Sonst (z.B. nur "ALL"
+  // ohne Marke): leere Pattern → matched alles, dann nur play_style-Filter.
+  const pattern = `%${text}%`;
+  const textCondition: SQL | undefined =
+    text.length > 0
+      ? or(
+          ilike(blades.name, pattern),
+          sql`LOWER(${manufacturers.name} || ' ' || ${blades.name}) LIKE LOWER(${pattern})`,
+        )
+      : undefined;
+  const rubberTextCondition: SQL | undefined =
+    text.length > 0
+      ? or(
+          ilike(rubbers.name, pattern),
+          sql`LOWER(${manufacturers.name} || ' ' || ${rubbers.name}) LIKE LOWER(${pattern})`,
+        )
+      : undefined;
 
   try {
     if (type === "blade") {
@@ -48,10 +88,8 @@ export async function GET(req: NextRequest) {
         .where(
           and(
             eq(blades.isActive, true),
-            or(
-              ilike(blades.name, pattern),
-              sql`LOWER(${manufacturers.name} || ' ' || ${blades.name}) LIKE LOWER(${pattern})`,
-            ),
+            textCondition,
+            playStyle ? eq(blades.playStyle, playStyle) : undefined,
           ),
         )
         // Alphabetisch nach Name (Hersteller-Präfix ist im Namen meist enthalten)
@@ -82,10 +120,8 @@ export async function GET(req: NextRequest) {
       .where(
         and(
           eq(rubbers.isActive, true),
-          or(
-            ilike(rubbers.name, pattern),
-            sql`LOWER(${manufacturers.name} || ' ' || ${rubbers.name}) LIKE LOWER(${pattern})`,
-          ),
+          rubberTextCondition,
+          playStyle ? eq(rubbers.playStyle, playStyle) : undefined,
         ),
       )
       .orderBy(sql`LOWER(${rubbers.name}) ASC`)
