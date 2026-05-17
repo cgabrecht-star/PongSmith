@@ -56,6 +56,12 @@ interface ShopLink {
   url: string;
   /** Hat dieser Shop einen aktiven Affiliate-Vertrag mit uns? */
   affiliateActive: boolean;
+  /** Aktueller Preis aus dem Shop-Feed (falls vorhanden). */
+  priceEur?: number | null;
+  /** Verfügbarkeit aus dem Shop-Feed (falls vorhanden). */
+  inStock?: boolean | null;
+  /** True wenn wir einen direkten Produkt-Link haben (kein Suchergebnis). */
+  hasDirectLink?: boolean;
 }
 
 interface DetectedProduct {
@@ -140,6 +146,8 @@ function MiniImg({ url, manufacturer }: { url?: string | null; manufacturer: str
 }
 
 function ShopPill({ shop }: { shop: ShopLink }) {
+  const hasPrice = shop.priceEur != null;
+  const outOfStock = shop.inStock === false;
   return (
     <a
       href={shop.url}
@@ -149,17 +157,32 @@ function ShopPill({ shop }: { shop: ShopLink }) {
         track("shop_clicked", {
           shop: shop.name,
           affiliate: shop.affiliateActive,
+          hasPrice,
+          hasDirectLink: !!shop.hasDirectLink,
           source: "berater_results",
         })
       }
-      className={`inline-flex items-center gap-1 whitespace-nowrap rounded-md border px-2.5 py-1.5 text-[11px] font-medium transition-colors ${
+      className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-md border px-2.5 py-1.5 text-[11px] font-medium transition-colors ${
         shop.affiliateActive
           ? "border-primary/40 bg-primary/5 text-primary hover:bg-primary/15"
           : "border-neutral-700 bg-neutral-800 text-neutral-200 hover:bg-surface-hover"
-      }`}
-      title={shop.affiliateActive ? "Affiliate-Partner (Werbung)" : "Externer Shop-Link"}
+      } ${outOfStock ? "opacity-60" : ""}`}
+      title={
+        outOfStock
+          ? `${shop.name} — derzeit nicht lieferbar`
+          : shop.affiliateActive
+            ? "Affiliate-Partner (Werbung)"
+            : "Externer Shop-Link"
+      }
     >
-      {shop.name} <span aria-hidden>→</span>
+      <span>{shop.name}</span>
+      {hasPrice && (
+        <span className="font-mono text-[10px] opacity-80">
+          {shop.priceEur!.toFixed(2).replace(".", ",")} €
+        </span>
+      )}
+      {outOfStock && <span className="text-[9px] uppercase">·×</span>}
+      <span aria-hidden>→</span>
     </a>
   );
 }

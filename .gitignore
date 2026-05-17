@@ -49,3 +49,8 @@ next-env.d.ts
 
 .vercel
 .env*.local
+
+.vercel
+.env*.local
+data/tischtennis-biz-feed.csv
+pongsmith-marken-prompts.pdf

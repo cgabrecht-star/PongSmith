@@ -302,6 +302,10 @@ export const shopProducts = pgTable(
     productId: integer("product_id").notNull(),
     shopProductUrl: text("shop_product_url").notNull(),
     affiliateUrl: text("affiliate_url"),
+    // Denormalisierter Snapshot vom letzten Feed-Sync (Hot-Path für Listings)
+    latestPrice: numeric("latest_price", { precision: 8, scale: 2 }),
+    latestInStock: boolean("latest_in_stock"),
+    lastSyncedAt: timestamp("last_synced_at"),
     isActive: boolean("is_active").default(true).notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
   },

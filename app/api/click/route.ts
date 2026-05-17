@@ -19,9 +19,9 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
-import { blades, rubbers, clicks } from "@/db/schema";
-import { eq } from "drizzle-orm";
-import { getShopLinks, type ShopId, type ProductRef } from "@/lib/affiliate";
+import { blades, rubbers, clicks, shopProducts, shops } from "@/db/schema";
+import { and, eq } from "drizzle-orm";
+import { getShopLinks, SHOPS, type ShopId, type ProductRef } from "@/lib/affiliate";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -120,14 +120,47 @@ export async function GET(req: NextRequest) {
   }
 
   // ---- Affiliate-Link erzeugen ---------------------------------------------
+  // Priorität: direkter Produkt-Link aus shop_products (vom Feed-Sync), fällt
+  // sonst zurück auf generierten Such-Link. Direkter Link konvertiert
+  // deutlich besser (Cookie sofort, User landet auf dem Produkt).
 
-  const links = getShopLinks(product);
-  const link = links.find((l) => l.shop.id === shopId);
-  if (!link) {
-    return NextResponse.json(
-      { error: `shop ${shopId} not configured or product not eligible` },
-      { status: 400 }
-    );
+  const shopDomain = SHOPS[shopId]?.domain;
+  let directUrl: string | null = null;
+  if (shopDomain) {
+    const direct = await db
+      .select({
+        affiliateUrl: shopProducts.affiliateUrl,
+        shopProductUrl: shopProducts.shopProductUrl,
+      })
+      .from(shopProducts)
+      .innerJoin(shops, eq(shopProducts.shopId, shops.id))
+      .where(
+        and(
+          eq(shops.domain, shopDomain),
+          eq(shopProducts.productType, productType),
+          eq(shopProducts.productId, productId),
+          eq(shopProducts.isActive, true),
+        ),
+      )
+      .limit(1);
+    if (direct.length > 0) {
+      directUrl = direct[0].affiliateUrl ?? direct[0].shopProductUrl;
+    }
+  }
+
+  let finalUrl: string;
+  if (directUrl) {
+    finalUrl = directUrl;
+  } else {
+    const links = getShopLinks(product);
+    const link = links.find((l) => l.shop.id === shopId);
+    if (!link) {
+      return NextResponse.json(
+        { error: `shop ${shopId} not configured or product not eligible` },
+        { status: 400 }
+      );
+    }
+    finalUrl = link.url;
   }
 
   // ---- Click loggen (best-effort) -------------------------------------------
@@ -152,5 +185,5 @@ export async function GET(req: NextRequest) {
 
   // ---- Redirect zum Shop ----------------------------------------------------
 
-  return NextResponse.redirect(link.url, { status: 302 });
+  return NextResponse.redirect(finalUrl, { status: 302 });
 }

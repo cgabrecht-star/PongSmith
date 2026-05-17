@@ -16,7 +16,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createHash } from "crypto";
 import Anthropic from "@anthropic-ai/sdk";
 import { db } from "@/db";
-import { blades, rubbers, synergies, manufacturers } from "@/db/schema";
+import { blades, rubbers, synergies, manufacturers, shopProducts, shops } from "@/db/schema";
 import { and, desc, eq, gte, inArray, lte, or, sql as drizzleSql } from "drizzle-orm";
 import { detectProducts } from "@/lib/product-detector";
 import { getShopLinks, buildTrackingUrl } from "@/lib/affiliate";
@@ -1437,15 +1437,71 @@ export async function POST(req: NextRequest) {
         const bladeMetaById = new Map(bladeMeta.map((b) => [b.id, b]));
         const rubberMetaById = new Map(rubberMeta.map((r) => [r.id, r]));
 
+        // Live-Preise + Direkt-Affiliate-Links aus shop_products laden
+        // (per Feed-Sync täglich aktualisiert, derzeit nur tischtennis.biz).
+        type ShopProductInfo = {
+          shopDomain: string;
+          affiliateUrl: string | null;
+          priceEur: number | null;
+          inStock: boolean | null;
+        };
+        const shopProductMap = new Map<string, ShopProductInfo[]>(); // key = `${type}:${id}`
+        if (bladeIds.length + rubberIds.length > 0) {
+          const spRows = await db
+            .select({
+              productType: shopProducts.productType,
+              productId: shopProducts.productId,
+              affiliateUrl: shopProducts.affiliateUrl,
+              shopProductUrl: shopProducts.shopProductUrl,
+              latestPrice: shopProducts.latestPrice,
+              latestInStock: shopProducts.latestInStock,
+              shopDomain: shops.domain,
+            })
+            .from(shopProducts)
+            .innerJoin(shops, eq(shopProducts.shopId, shops.id))
+            .where(
+              and(
+                eq(shopProducts.isActive, true),
+                or(
+                  bladeIds.length > 0
+                    ? and(eq(shopProducts.productType, "blade"), inArray(shopProducts.productId, bladeIds))
+                    : undefined,
+                  rubberIds.length > 0
+                    ? and(eq(shopProducts.productType, "rubber"), inArray(shopProducts.productId, rubberIds))
+                    : undefined,
+                ),
+              ),
+            );
+          for (const r of spRows) {
+            const key = `${r.productType}:${r.productId}`;
+            if (!shopProductMap.has(key)) shopProductMap.set(key, []);
+            shopProductMap.get(key)!.push({
+              shopDomain: r.shopDomain,
+              affiliateUrl: r.affiliateUrl ?? r.shopProductUrl,
+              priceEur: r.latestPrice != null ? Number(r.latestPrice) : null,
+              inStock: r.latestInStock ?? null,
+            });
+          }
+        }
+
         const enrichProduct = (p: typeof detected[0]) => {
           const meta = p.type === "blade" ? bladeMetaById.get(p.id) : rubberMetaById.get(p.id);
           const ref = { type: p.type, id: p.id, name: p.name, manufacturer: p.manufacturer };
-          const shops = getShopLinks(ref).map((l) => ({
-            id: l.shop.id,
-            name: l.shop.name,
-            url: buildTrackingUrl({ shopId: l.shop.id, productType: p.type, productId: p.id }),
-            affiliateActive: l.affiliateActive,
-          }));
+          const liveByDomain = new Map(
+            (shopProductMap.get(`${p.type}:${p.id}`) ?? []).map((s) => [s.shopDomain, s]),
+          );
+          const shops = getShopLinks(ref).map((l) => {
+            const live = liveByDomain.get(l.shop.domain);
+            return {
+              id: l.shop.id,
+              name: l.shop.name,
+              url: buildTrackingUrl({ shopId: l.shop.id, productType: p.type, productId: p.id }),
+              affiliateActive: l.affiliateActive,
+              priceEur: live?.priceEur ?? null,
+              inStock: live?.inStock ?? null,
+              hasDirectLink: !!live?.affiliateUrl,
+            };
+          });
           return {
             type: p.type,
             id: p.id,
