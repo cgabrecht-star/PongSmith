@@ -585,6 +585,7 @@ interface SetupRow {
   tempoMatch: number | null;
   controlReserve: number | null;
   spinPotential: number | null;
+  bladeId: number;
   bladeName: string;
   bladeManufacturerId: number;
   bladeComposition: string | null;
@@ -592,6 +593,7 @@ interface SetupRow {
   bladePriceEur: string | null;
   bladeReviewCount: number | null;
   bladeIsCurated: boolean | null;
+  rubberId: number;
   rubberName: string;
   rubberHardnessMin: number | null;
   rubberHardnessMax: number | null;
@@ -739,6 +741,7 @@ const SETUP_ROW_SELECT = {
   tempoMatch: synergies.tempoMatch,
   controlReserve: synergies.controlReserve,
   spinPotential: synergies.spinPotential,
+  bladeId: blades.id,
   bladeName: blades.name,
   bladeManufacturerId: blades.manufacturerId,
   bladeComposition: blades.composition,
@@ -746,6 +749,7 @@ const SETUP_ROW_SELECT = {
   bladePriceEur: blades.priceEur,
   bladeReviewCount: blades.communityReviewCount,
   bladeIsCurated: blades.isManuallyCurated,
+  rubberId: rubbers.id,
   rubberName: rubbers.name,
   rubberHardnessMin: rubbers.hardnessMin,
   rubberHardnessMax: rubbers.hardnessMax,
@@ -803,7 +807,10 @@ function confidenceFactor(reviewCount: number | null): number {
   return 0.75;                // Nische: 25% Abschlag (kommt durch Filter eh selten)
 }
 
-function sortByConfidenceAdjustedScore(rows: SetupRow[]): SetupRow[] {
+function sortByConfidenceAdjustedScore(
+  rows: SetupRow[],
+  coverage?: { blades: Set<number>; rubbers: Set<number> },
+): SetupRow[] {
   return [...rows].sort((a, b) => {
     const aFactor = Math.min(
       confidenceFactor(a.bladeReviewCount),
@@ -813,9 +820,67 @@ function sortByConfidenceAdjustedScore(rows: SetupRow[]): SetupRow[] {
       confidenceFactor(b.bladeReviewCount),
       confidenceFactor(b.rubberReviewCount),
     );
-    return b.synergyScore * bFactor - a.synergyScore * aFactor;
+    // Affiliate-Coverage als sanfter Tiebreaker (max +2 Punkte).
+    // synergyScore selbst wird NICHT modifiziert — nur die Sort-Reihenfolge.
+    const aBonus = coverage ? affiliateBonus(a, coverage) : 0;
+    const bBonus = coverage ? affiliateBonus(b, coverage) : 0;
+    return (b.synergyScore + bBonus) * bFactor - (a.synergyScore + aBonus) * aFactor;
   });
 }
+
+function affiliateBonus(
+  row: SetupRow,
+  coverage: { blades: Set<number>; rubbers: Set<number> },
+): number {
+  const bladeCovered = coverage.blades.has(row.bladeId);
+  const rubberCovered = coverage.rubbers.has(row.rubberId);
+  return (bladeCovered ? 1 : 0) + (rubberCovered ? 1 : 0);
+}
+
+/**
+ * Ermittelt für jede Produkt-ID ob ein aktiver Affiliate-Direkt-Link in
+ * shop_products existiert. Liefert zwei Sets: covered blade IDs + rubber IDs.
+ * Wird einmal pro Tool-Call gemacht (Bulk-Query), dann pro Row gelookup'd.
+ */
+async function loadAffiliateCoverage(
+  bladeIds: number[],
+  rubberIds: number[],
+): Promise<{ blades: Set<number>; rubbers: Set<number> }> {
+  if (bladeIds.length === 0 && rubberIds.length === 0) {
+    return { blades: new Set(), rubbers: new Set() };
+  }
+  const rows = await db
+    .select({
+      productType: shopProducts.productType,
+      productId: shopProducts.productId,
+      affiliateProgram: shops.affiliateProgram,
+    })
+    .from(shopProducts)
+    .innerJoin(shops, eq(shopProducts.shopId, shops.id))
+    .where(
+      and(
+        eq(shopProducts.isActive, true),
+        or(
+          bladeIds.length > 0
+            ? and(eq(shopProducts.productType, "blade"), inArray(shopProducts.productId, bladeIds))
+            : undefined,
+          rubberIds.length > 0
+            ? and(eq(shopProducts.productType, "rubber"), inArray(shopProducts.productId, rubberIds))
+            : undefined,
+        ),
+      ),
+    );
+  const blades = new Set<number>();
+  const rubbers = new Set<number>();
+  for (const r of rows) {
+    // Nur als "covered" zählen wenn Shop einen aktiven Affiliate hat.
+    if (!r.affiliateProgram || r.affiliateProgram === "none") continue;
+    if (r.productType === "blade") blades.add(r.productId);
+    else if (r.productType === "rubber") rubbers.add(r.productId);
+  }
+  return { blades, rubbers };
+}
+
 
 // ---------------------------------------------------------------------------
 // Tool: query_setups
@@ -874,7 +939,14 @@ async function runQuerySetups(
     .limit(120); // großes Pool für Diversitäts- + Budget-Filter
 
   const budgetFiltered = applyBudget(rows as SetupRow[], budgetMaxEur);
-  const confidenceSorted = sortByConfidenceAdjustedScore(budgetFiltered);
+  // Affiliate-Coverage einmal laden, als sanften Tiebreaker bei der Sortierung
+  // einsetzen (max +2 Punkte intern). synergyScore selbst bleibt unverändert,
+  // wir zeigen also weiterhin die ehrlichen DB-Werte in der UI.
+  const coverage = await loadAffiliateCoverage(
+    [...new Set(budgetFiltered.map((r) => r.bladeId))],
+    [...new Set(budgetFiltered.map((r) => r.rubberId))],
+  );
+  const confidenceSorted = sortByConfidenceAdjustedScore(budgetFiltered, coverage);
   const diverse = diversify(confidenceSorted, Math.min(maxResults, 5), preferKnownBrands);
 
   if (diverse.length === 0) {
@@ -897,7 +969,11 @@ async function runQuerySetups(
       .limit(120);
 
     const fallbackBudgeted = applyBudget(fallback as SetupRow[], budgetMaxEur);
-    const fallbackSorted = sortByConfidenceAdjustedScore(fallbackBudgeted);
+    const fallbackCoverage = await loadAffiliateCoverage(
+      [...new Set(fallbackBudgeted.map((r) => r.bladeId))],
+      [...new Set(fallbackBudgeted.map((r) => r.rubberId))],
+    );
+    const fallbackSorted = sortByConfidenceAdjustedScore(fallbackBudgeted, fallbackCoverage);
     const diverseFallback = diversify(fallbackSorted, 5, preferKnownBrands);
     if (diverseFallback.length === 0) {
       const budgetHint = budgetMaxEur ? ` (Budget: max ${budgetMaxEur} EUR)` : "";
@@ -948,7 +1024,11 @@ async function runMaterialQuery(
     .limit(120);
 
   const budgetFiltered = applyBudget(rows as SetupRow[], budgetMaxEur);
-  const confidenceSorted = sortByConfidenceAdjustedScore(budgetFiltered);
+  const coverage = await loadAffiliateCoverage(
+    [...new Set(budgetFiltered.map((r) => r.bladeId))],
+    [...new Set(budgetFiltered.map((r) => r.rubberId))],
+  );
+  const confidenceSorted = sortByConfidenceAdjustedScore(budgetFiltered, coverage);
   const diverse = diversify(confidenceSorted, maxResults, preferKnownBrands);
 
   if (diverse.length === 0) {
@@ -1298,7 +1378,11 @@ async function runQueryByProblem(
     return true;
   });
 
-  const filteredAndSorted = sortByConfidenceAdjustedScore(filtered);
+  const problemCoverage = await loadAffiliateCoverage(
+    [...new Set(filtered.map((r) => r.bladeId))],
+    [...new Set(filtered.map((r) => r.rubberId))],
+  );
+  const filteredAndSorted = sortByConfidenceAdjustedScore(filtered, problemCoverage);
   const diverse = diversify(filteredAndSorted, 3, true);
 
   if (diverse.length === 0) {
