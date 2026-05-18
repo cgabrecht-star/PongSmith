@@ -12,11 +12,13 @@ import { track } from "@vercel/analytics";
  * - Bullet-Marker (·, -, *) am Zeilenanfang werden zu echten Listen
  */
 function renderBeraterText(raw: string): React.ReactNode {
-  // Zeile-für-Zeile, Em/En-Dashes raus
+  // Em-Dash (—) und En-Dash (–) entfernen — NICHT den normalen Bindestrich!
+  // Vorher war hier eine kaputte Char-Class die ALLE Bindestriche fraß, was
+  // "5-furniges" zu "5furniges" und "DB-Ergebnis" zu "DBErgebnis" gemacht hat.
   const cleaned = raw
-    .replace(/[--]/g, "")          // Em-/En-Dash entfernen
-    .replace(/\s{2,}/g, " ")        // Mehrfach-Leerzeichen normalisieren
-    .replace(/\*\*\*/g, "**");      // Tripple-Sterne defensiv
+    .replace(/[–—]/g, "") // En-Dash + Em-Dash entfernen
+    .replace(/\s{2,}/g, " ")
+    .replace(/\*\*\*/g, "**");
 
   const lines = cleaned.split("\n");
 

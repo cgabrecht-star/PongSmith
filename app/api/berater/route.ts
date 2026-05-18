@@ -1524,7 +1524,24 @@ export async function POST(req: NextRequest) {
         // Setup ergibt (max 1 Holz + max 2 Beläge). Sonst lieber gar keine
         // Karte als ein zusammengewürfeltes Frankenstein-Setup aus mehreren
         // Empfehlungen oder disclaimten Produkten.
-        if (setupGroups.length === 0 && detected.length > 0) {
+        //
+        // Zusatz-Schutz: Wenn der Berater Unsicherheits-Marker im Text hat
+        // ("oder ähnliches", "z.B.", "aus dem Gedächtnis", "DB liefert keine",
+        // "kein ... empfehlen") sind die Produkte nur HYPOTHETISCHE Beispiele.
+        // Dann KEINE Fallback-Karte bauen.
+        const uncertaintyMarkers = [
+          /oder ähnlich/i,
+          /aus dem ged[äa]chtnis/i,
+          /\bz\.?\s?b\.?\b/i,
+          /kein\w* (carbon|holz|belag).{0,40}empfehlen/i,
+          /db liefert (hier )?keine/i,
+          /db\W?ergebniss\w* fehlen/i,
+          /will dir kein/i,
+          /\bvergleichbar\b/i,
+        ];
+        const textHasUncertainty = uncertaintyMarkers.some((re) => re.test(text));
+
+        if (setupGroups.length === 0 && detected.length > 0 && !textHasUncertainty) {
           const bladeCount = detected.filter((p) => p.type === "blade").length;
           const rubberCount = detected.filter((p) => p.type === "rubber").length;
           const looksLikeSingleSetup = bladeCount <= 1 && rubberCount <= 2 && detected.length <= 3;
@@ -1536,8 +1553,8 @@ export async function POST(req: NextRequest) {
               products: detected,
             }];
           }
-          // Sonst: setupGroups bleibt leer, UI zeigt nur Beratertext ohne Karten.
         }
+        // Sonst: setupGroups bleibt leer, UI zeigt nur den Beratertext.
 
         const setups = await Promise.all(setupGroups.map(async (g) => {
           const blade = g.products.find((p) => p.type === "blade");

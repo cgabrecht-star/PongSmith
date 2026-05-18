@@ -290,6 +290,31 @@ export const shops = pgTable("shops", {
 // Shop-Produkte (URL-Mapping: PongSmith-Produkt → Shop-URL)
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Fehlende Produkte (User meldet sein Modell wenn's in der DB nicht gefunden wird)
+// ---------------------------------------------------------------------------
+
+export const missingProducts = pgTable(
+  "missing_products",
+  {
+    id: serial("id").primaryKey(),
+    productType: varchar("product_type", { length: 10 }).notNull(),
+    reportedQuery: text("reported_query").notNull(),
+    manufacturer: varchar("manufacturer", { length: 100 }),
+    productName: varchar("product_name", { length: 200 }).notNull(),
+    comment: text("comment"),
+    status: varchar("status", { length: 20 }).default("pending"),
+    reviewedAt: timestamp("reviewed_at"),
+    addedBladeId: integer("added_blade_id"),
+    addedRubberId: integer("added_rubber_id"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (t) => [
+    index("missing_products_status_idx").on(t.status),
+    index("missing_products_created_idx").on(t.createdAt),
+  ]
+);
+
 export const shopProducts = pgTable(
   "shop_products",
   {
