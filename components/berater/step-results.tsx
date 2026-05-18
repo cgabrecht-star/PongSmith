@@ -313,9 +313,10 @@ export function StepResults({
   history?: ChatTurn[];
 }) {
   const [followUp, setFollowUp] = useState("");
-  // Vorherige Turns (alles außer dem letzten Assistant-Turn, der oben als
-  // "Berater-Antwort" gerendert wird)
-  const priorTurns = (history ?? []).slice(0, -1);
+  // History ist die einzige Wahrheit. Ersten Eintrag (strukturierter
+  // Setup-Blob aus Step 1+2) im Chat NICHT zeigen — der ist Form-Input,
+  // kein Chat-Turn. Alle weiteren User/Assistant-Turns rendern.
+  const chatTurns = (history ?? []).slice(1);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -328,37 +329,33 @@ export function StepResults({
         <h2 className="mt-4 text-3xl font-semibold tracking-tight text-neutral-50">
           {result.setups.length > 0
             ? `${result.setups.length} Setup${result.setups.length === 1 ? "" : "s"} für dich`
-            : "Berater-Antwort"}
+            : "Dialog mit dem Berater"}
         </h2>
       </div>
 
-      {/* Chat-History: alle vorherigen Turns (ohne Initial-Setup-Message) */}
-      {priorTurns.slice(1).map((turn, i) => (
-        <div
-          key={i}
-          className={`rounded-lg border p-6 ${
-            turn.role === "user"
-              ? "border-neutral-700/50 bg-neutral-900/60"
-              : "border-neutral-700 bg-neutral-800"
-          }`}
-        >
-          <div className="mb-3 font-mono text-[10px] uppercase tracking-widest text-primary">
-            {turn.role === "user" ? "Du" : "KI-Berater"}
+      {/* Chat-Verlauf */}
+      <div className="flex flex-col gap-4">
+        {chatTurns.map((turn, i) => (
+          <div
+            key={i}
+            className={`rounded-lg border p-6 ${
+              turn.role === "user"
+                ? "ml-8 border-neutral-700/50 bg-neutral-900/60"
+                : "mr-8 border-neutral-700 bg-neutral-800"
+            }`}
+          >
+            <div
+              className={`mb-3 font-mono text-[10px] uppercase tracking-widest ${
+                turn.role === "user" ? "text-neutral-400" : "text-primary"
+              }`}
+            >
+              {turn.role === "user" ? "Du" : "KI-Berater"}
+            </div>
+            <div className="text-sm leading-relaxed text-neutral-200">
+              {renderBeraterText(turn.content)}
+            </div>
           </div>
-          <div className="text-sm leading-relaxed text-neutral-200">
-            {renderBeraterText(turn.content)}
-          </div>
-        </div>
-      ))}
-
-      {/* Aktuelle Berater-Antwort */}
-      <div className="rounded-lg border border-neutral-700 bg-neutral-800 p-6">
-        <div className="mb-3 font-mono text-[10px] uppercase tracking-widest text-primary">
-          KI-Berater
-        </div>
-        <div className="text-sm leading-relaxed text-neutral-200">
-          {renderBeraterText(result.text)}
-        </div>
+        ))}
       </div>
 
       {/* Setup-Karten */}
