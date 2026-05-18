@@ -97,7 +97,8 @@ export default function AgbPage() {
           <p>
             PongSmith finanziert sich ausschließlich über Affiliate-Provisionen. Beim
             Klick auf einen Shop-Link wird der Nutzer zum jeweiligen Partner-Shop
-            (Amazon, Awin-Advertiser wie JOOLA, künftig weitere) weitergeleitet.
+            (Tischtennis.biz über Adcell, Amazon, JOOLA-Shop über Awin, künftig weitere)
+            weitergeleitet.
             Erfolgt dort ein Kauf, erhält PongSmith eine prozentuale Provision vom
             Shop.{" "}
             <strong className="text-neutral-50">

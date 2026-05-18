@@ -91,16 +91,21 @@ function StatBar({ label, value, color }: { label: string; value: number; color:
 /** Aktive Shop-Partner, ehrlicher Stand (Mai 2026) */
 function ShopPartners() {
   const partners = [
+    {
+      name: "Tischtennis.biz",
+      status: "Aktiv",
+      note: "Live-Preise und direkte Produktlinks für JOOLA und Xiom",
+    },
     { name: "Amazon", status: "Aktiv", note: "Universal-Fallback für alle Marken" },
-    { name: "JOOLA", status: "Aktiv", note: "Über Awin für JOOLA-Produkte" },
-    { name: "TT-Shop · Tischtennis.biz", status: "In Anbahnung", note: "Direkter Kontakt läuft" },
+    { name: "JOOLA-Shop", status: "Aktiv", note: "Über Awin für JOOLA-Produkte direkt" },
+    { name: "TT-Shop", status: "In Anbahnung", note: "Antrag bei Adcell gestellt" },
   ];
   return (
     <div className="mt-6 flex flex-col gap-3">
       <p className="font-mono text-xs uppercase tracking-widest text-neutral-400">
         Aktuelle Shop-Partner
       </p>
-      <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
         {partners.map((p) => {
           const active = p.status === "Aktiv";
           return (
@@ -181,7 +186,8 @@ export function Features() {
             <h3 className="text-xl font-semibold text-neutral-50">Unabhängig vom Shop</h3>
             <p className="mt-2 text-sm text-neutral-300">
               Wir verlinken zu echten Shops, transparent gekennzeichnet als Affiliate. Du
-              zahlst keinen Aufpreis. Aktuell zwei aktive Partner, weitere in Anbahnung.
+              zahlst keinen Aufpreis. Mit Tischtennis.biz haben wir den ersten direkten
+              Partner mit Live-Preisen — weitere folgen.
             </p>
             <ShopPartners />
           </BentoCard>
