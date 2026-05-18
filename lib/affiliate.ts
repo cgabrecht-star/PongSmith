@@ -140,7 +140,8 @@ function buildSearchUrl(shop: ShopId, productName: string, manufacturer?: string
     case "tt-shop":
       return `https://www.tt-shop.de/de/search?text=${q}`;
     case "tischtennis-biz":
-      return `https://www.tischtennis.biz/?s=${q}`;
+      // OXID eShop nutzt cl=search&searchparam, nicht WordPress ?s=
+      return `https://www.tischtennis.biz/?cl=search&searchparam=${q}`;
     case "contra":
       return `https://www.contra.de/de/search?sSearch=${q}`;
     case "schoeler-micke":

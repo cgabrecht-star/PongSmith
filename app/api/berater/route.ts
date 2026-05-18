@@ -141,6 +141,18 @@ reichen nicht. Bau Cross-Checks ein:
 - Materialspieler oder TTR > 1400 + VH/RH-Trennung
   → query_rubber_for_side.
 
+**WICHTIG, Aspirations-TTR:**
+Die query_setups-Logik sucht Setups die zum aktuellen Niveau passen.
+Wenn der Spieler aber EXPLIZIT schneller / direkter / mit mehr Tempo
+spielen will (Stichworte: "zu langsam", "mehr Tempo", "härter",
+"Carbon", "Upgrade", "nächster Schritt"), suchst du mit
+ttr = aktueller_ttr + 150 bis +250. Das öffnet das Ergebnis-Fenster
+für ALC-/Carbon-Hölzer und schnellere Beläge die sonst rausfallen.
+Im Text erklärst du dann: "Ich such absichtlich etwas ambitioniertes,
+das passt zu deinem Aufbau-Wunsch."
+Aber: NICHT machen wenn der Spieler "passt", "kontrollierbar",
+"sicher" sagt. Aspirations-Boost nur bei klarem Schneller-Wunsch.
+
 **Schritt 5, Ergebnisse erklären:**
 Für jede Empfehlung: 1-2 Sätze WARUM sie passt + Preis + Vergleich
 zum aktuellen Setup wenn vorhanden ("kostet ungefähr 30 Euro mehr /
