@@ -150,6 +150,7 @@ function MiniImg({ url, manufacturer }: { url?: string | null; manufacturer: str
 function ShopPill({ shop }: { shop: ShopLink }) {
   const hasPrice = shop.priceEur != null;
   const outOfStock = shop.inStock === false;
+  const isDirect = !!shop.hasDirectLink;
   return (
     <a
       href={shop.url}
@@ -160,7 +161,7 @@ function ShopPill({ shop }: { shop: ShopLink }) {
           shop: shop.name,
           affiliate: shop.affiliateActive,
           hasPrice,
-          hasDirectLink: !!shop.hasDirectLink,
+          hasDirectLink: isDirect,
           source: "berater_results",
         })
       }
@@ -172,9 +173,9 @@ function ShopPill({ shop }: { shop: ShopLink }) {
       title={
         outOfStock
           ? `${shop.name} — derzeit nicht lieferbar`
-          : shop.affiliateActive
-            ? "Affiliate-Partner (Werbung)"
-            : "Externer Shop-Link"
+          : isDirect
+            ? `${shop.name} — direkt zum Produkt`
+            : `${shop.name} — Such-Treffer (Produkt evtl. nicht im Sortiment)`
       }
     >
       <span>{shop.name}</span>
@@ -184,7 +185,9 @@ function ShopPill({ shop }: { shop: ShopLink }) {
         </span>
       )}
       {outOfStock && <span className="text-[9px] uppercase">·×</span>}
-      <span aria-hidden>→</span>
+      <span aria-hidden className="opacity-80">
+        {isDirect ? "→" : "🔍"}
+      </span>
     </a>
   );
 }
@@ -287,9 +290,9 @@ function SetupCard({ setup, rank }: { setup: SetupGroupResult; rank: number }) {
       {/* Trust-Mikrotext */}
       <div className="border-t border-neutral-700 p-4">
         <p className="text-center font-mono text-[9px] uppercase tracking-widest text-neutral-500">
-          {hasAffiliate
-            ? "Orange Buttons = Affiliate-Partner (Werbung · du zahlst nichts mehr)"
-            : "Externe Shop-Links · noch keine Affiliate-Provision · Preise direkt im Shop"}
+          → Direkt-Link · 🔍 Such-Treffer beim Shop · {hasAffiliate
+            ? "Orange = Affiliate (Werbung · du zahlst nichts mehr)"
+            : "Externe Links · noch keine Affiliate-Provision"}
         </p>
       </div>
     </motion.div>

@@ -136,14 +136,20 @@ function buildSearchUrl(shop: ShopId, productName: string, manufacturer?: string
   const query = searchQuery(productName, manufacturer);
   const q = encodeURIComponent(query);
 
+  // Shop-System-spezifische Such-URLs (alle live verifiziert):
+  //   tt-shop.de       → Magento: /de/catalogsearch/result/?q=
+  //   tischtennis.biz  → OXID eShop: /?cl=search&searchparam=
+  //   contra.de        → Shopware 6: /search?search= (kein Sprach-Prefix)
+  //   schoeler-micke   → JTL Shop: /search?q=
+  //   joola.de         → Shopify: /de/search?q=
+  //   amazon.de        → /s?k=
   switch (shop) {
     case "tt-shop":
-      return `https://www.tt-shop.de/de/search?text=${q}`;
+      return `https://www.tt-shop.de/de/catalogsearch/result/?q=${q}`;
     case "tischtennis-biz":
-      // OXID eShop nutzt cl=search&searchparam, nicht WordPress ?s=
       return `https://www.tischtennis.biz/?cl=search&searchparam=${q}`;
     case "contra":
-      return `https://www.contra.de/de/search?sSearch=${q}`;
+      return `https://www.contra.de/search?search=${q}`;
     case "schoeler-micke":
       return `https://www.schoeler-micke.de/search?q=${q}`;
     case "joola":
