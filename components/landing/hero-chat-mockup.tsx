@@ -3,8 +3,15 @@
 /**
  * Live-Typing-Chat-Mockup im Hero.
  *
- * State Machine: 3 Konversationen im Loop (Marco/Allround, Tobias/Offensiv,
- * Werner/Material). Phasen: idle → user-typing → ai-typing → showing → reset
+ * State Machine spiegelt jetzt den echten Berater-Flow:
+ * 1. User schreibt Setup + Problem
+ * 2. KI stellt 1 gezielte Triangulations-Frage (statt blind zu empfehlen)
+ * 3. User antwortet kurz
+ * 4. KI diagnostiziert + zeigt Setup mit Synergie-Score
+ *
+ * Phasen: user1 → ai-question → user2 → ai-recommend → showing → reset
+ *
+ * 3 Konversationen im Loop (Marco/Allround, Tobias/Offensiv, Werner/Material).
  */
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,8 +20,10 @@ import { useTypewriter } from "@/components/effects/use-typewriter";
 
 interface Conversation {
   id: string;
-  user: string;
-  aiIntro: string;
+  user1: string;
+  aiQuestion: string;
+  user2: string;
+  aiRecommend: string;
   setup: { holz: string; vh: string; rh: string };
   meta: { synergy: number; control: number; ttr: string };
 }
@@ -22,9 +31,11 @@ interface Conversation {
 const conversations: Conversation[] = [
   {
     id: "marco",
-    user: "TTR 1280, Allround, mein Block fliegt mir zu oft weg.",
-    aiIntro:
-      "Klassisch, Setup ist dir zu schnell. Drei Optionen die dir Kontrolle ohne Tempo-Verlust geben:",
+    user1: "TTR 1280, Allround. Block fliegt mir oft weg.",
+    aiQuestion:
+      "Trainierst du systematisch oder eher Punktspiele? Und: bricht der Block bei harten Bällen oder schon bei langsamen?",
+    user2: "1× pro Woche Verein. Bei harten Topspins.",
+    aiRecommend: "Klassisch: Setup ist dir zu schnell. Drei Optionen mit mehr Kontrolle:",
     setup: {
       holz: "Stiga Allround Classic",
       vh: "Donic Acuda S2 (max)",
@@ -34,8 +45,11 @@ const conversations: Conversation[] = [
   },
   {
     id: "tobias",
-    user: "TTR 1550, Offensiv-Topspin, Vorhand fühlt sich tot an.",
-    aiIntro: "Du brauchst mehr Katapult auf VH ohne zu viel Härte. Mein Top-Pick:",
+    user1: "TTR 1550, Offensiv-Topspin. Vorhand fühlt sich tot an.",
+    aiQuestion:
+      "Trainierst du regelmäßig Topspin mit Trainer? Und: wie lange ist die VH schon drauf?",
+    user2: "Multiball wöchentlich. VH 5 Monate alt.",
+    aiRecommend: "Belag ist wahrscheinlich durch. Frische VH + dein Holz behalten:",
     setup: {
       holz: "Butterfly Innerforce Layer ALC",
       vh: "Tibhar Evolution MX-P (max)",
@@ -45,8 +59,11 @@ const conversations: Conversation[] = [
   },
   {
     id: "werner",
-    user: "TTR 1320, Materialspieler mit langen Noppen RH.",
-    aiIntro: "Defensiv-Holz das die Noppen-Effekte verstärkt, VH mit moderater Spitze:",
+    user1: "TTR 1320, Materialspieler mit langen Noppen RH.",
+    aiQuestion:
+      "Spielst du aktiv mit den Noppen oder nur passiv Block? Und: kennst du deinen aktuellen Noppen-Typ schon?",
+    user2: "Passiv Block + Schupf. Aktuell TSP Curl P1-R OX.",
+    aiRecommend: "Defensiv-Holz das die Noppen verstärkt, dazu Spitze auf VH:",
     setup: {
       holz: "Donic Defplay Senso",
       vh: "DHS Hurricane 3 Neo (39°)",
@@ -58,37 +75,54 @@ const conversations: Conversation[] = [
 
 const USER_SPEED = 22;
 const AI_SPEED = 18;
-const PAUSE_AFTER_USER = 700;
-const HOLD_AFTER_SHOWING = 4800;
+const PAUSE_AFTER_USER = 500;
+const PAUSE_AFTER_AI = 400;
+const HOLD_AFTER_SHOWING = 5000;
 
-type Phase = "user" | "ai" | "showing";
+type Phase = "user1" | "ai-question" | "user2" | "ai-recommend" | "showing";
 
 export function HeroChatMockup() {
   const [idx, setIdx] = useState(0);
-  const [phase, setPhase] = useState<Phase>("user");
+  const [phase, setPhase] = useState<Phase>("user1");
   const conv = conversations[idx]!;
 
-  const { output: userOut, done: userDone } = useTypewriter(conv.user, USER_SPEED, phase === "user");
-  const { output: aiOut, done: aiDone } = useTypewriter(conv.aiIntro, AI_SPEED, phase === "ai");
+  const { output: user1Out, done: user1Done } = useTypewriter(conv.user1, USER_SPEED, phase === "user1");
+  const { output: aiQOut, done: aiQDone } = useTypewriter(conv.aiQuestion, AI_SPEED, phase === "ai-question");
+  const { output: user2Out, done: user2Done } = useTypewriter(conv.user2, USER_SPEED, phase === "user2");
+  const { output: aiROut, done: aiRDone } = useTypewriter(conv.aiRecommend, AI_SPEED, phase === "ai-recommend");
 
   // Phase-Übergänge
   useEffect(() => {
-    if (phase === "user" && userDone) {
-      const t = setTimeout(() => setPhase("ai"), PAUSE_AFTER_USER);
+    if (phase === "user1" && user1Done) {
+      const t = setTimeout(() => setPhase("ai-question"), PAUSE_AFTER_USER);
       return () => clearTimeout(t);
     }
-    if (phase === "ai" && aiDone) {
+    if (phase === "ai-question" && aiQDone) {
+      const t = setTimeout(() => setPhase("user2"), PAUSE_AFTER_AI);
+      return () => clearTimeout(t);
+    }
+    if (phase === "user2" && user2Done) {
+      const t = setTimeout(() => setPhase("ai-recommend"), PAUSE_AFTER_USER);
+      return () => clearTimeout(t);
+    }
+    if (phase === "ai-recommend" && aiRDone) {
       const t = setTimeout(() => setPhase("showing"), 200);
       return () => clearTimeout(t);
     }
     if (phase === "showing") {
       const t = setTimeout(() => {
         setIdx((i) => (i + 1) % conversations.length);
-        setPhase("user");
+        setPhase("user1");
       }, HOLD_AFTER_SHOWING);
       return () => clearTimeout(t);
     }
-  }, [phase, userDone, aiDone]);
+  }, [phase, user1Done, aiQDone, user2Done, aiRDone]);
+
+  // Sichtbarkeitslogik pro Bubble
+  const showUser1 = true;
+  const showAiQuestion = phase !== "user1";
+  const showUser2 = phase === "user2" || phase === "ai-recommend" || phase === "showing";
+  const showAiRecommend = phase === "ai-recommend" || phase === "showing";
 
   return (
     <motion.div
@@ -113,27 +147,84 @@ export function HeroChatMockup() {
       </div>
 
       {/* Body */}
-      <div className="flex min-h-[280px] flex-col gap-3 md:min-h-[340px]">
-        {/* User Bubble */}
-        <div className="flex justify-end">
-          <div className="max-w-[85%] rounded-xl rounded-tr-sm bg-primary px-4 py-2.5 text-sm text-on-primary">
-            {userOut}
-            {phase === "user" && !userDone && (
-              <motion.span
-                className="ml-0.5 inline-block w-0.5 bg-on-primary"
-                animate={{ opacity: [1, 0, 1] }}
-                transition={{ duration: 0.7, repeat: Infinity }}
-                style={{ height: "0.9em" }}
-              />
-            )}
+      <div className="flex min-h-[420px] flex-col gap-3 md:min-h-[500px]">
+        {/* User Bubble 1 */}
+        {showUser1 && (
+          <div className="flex justify-end">
+            <div className="max-w-[85%] rounded-xl rounded-tr-sm bg-primary px-4 py-2.5 text-sm text-on-primary">
+              {user1Out}
+              {phase === "user1" && !user1Done && (
+                <motion.span
+                  className="ml-0.5 inline-block w-0.5 bg-on-primary"
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 0.7, repeat: Infinity }}
+                  style={{ height: "0.9em" }}
+                />
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* AI Bubble */}
+        {/* AI Bubble 1 — Triangulations-Frage */}
         <AnimatePresence>
-          {(phase === "ai" || phase === "showing") && (
+          {showAiQuestion && (
             <motion.div
-              key={`ai-${conv.id}`}
+              key={`aiq-${conv.id}`}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex gap-2"
+            >
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-on-primary">
+                PS
+              </div>
+              <div className="max-w-[85%] flex-1 rounded-xl rounded-tl-sm border border-neutral-700 bg-neutral-900/60 px-4 py-2.5 text-sm text-neutral-50">
+                {aiQOut}
+                {phase === "ai-question" && !aiQDone && (
+                  <motion.span
+                    className="ml-0.5 inline-block w-0.5 bg-neutral-50"
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 0.7, repeat: Infinity }}
+                    style={{ height: "0.9em" }}
+                  />
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* User Bubble 2 — Antwort */}
+        <AnimatePresence>
+          {showUser2 && (
+            <motion.div
+              key={`u2-${conv.id}`}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex justify-end"
+            >
+              <div className="max-w-[85%] rounded-xl rounded-tr-sm bg-primary px-4 py-2.5 text-sm text-on-primary">
+                {user2Out}
+                {phase === "user2" && !user2Done && (
+                  <motion.span
+                    className="ml-0.5 inline-block w-0.5 bg-on-primary"
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 0.7, repeat: Infinity }}
+                    style={{ height: "0.9em" }}
+                  />
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* AI Bubble 2 — Empfehlung + Setup */}
+        <AnimatePresence>
+          {showAiRecommend && (
+            <motion.div
+              key={`air-${conv.id}`}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
@@ -145,8 +236,8 @@ export function HeroChatMockup() {
               </div>
               <div className="max-w-[85%] flex-1 rounded-xl rounded-tl-sm border border-neutral-700 bg-neutral-900/60 px-4 py-2.5 text-sm text-neutral-50">
                 <p>
-                  {aiOut}
-                  {phase === "ai" && !aiDone && (
+                  {aiROut}
+                  {phase === "ai-recommend" && !aiRDone && (
                     <motion.span
                       className="ml-0.5 inline-block w-0.5 bg-neutral-50"
                       animate={{ opacity: [1, 0, 1] }}
