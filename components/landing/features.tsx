@@ -31,13 +31,34 @@ function BentoCard({
   );
 }
 
-/** Mini-Chat-Preview für Card 1 */
+/**
+ * Mini-Chat-Preview für Card 1.
+ * Spiegelt den echten Berater-Flow:
+ * 1. User liefert Setup + Problem strukturiert (Step 1+2 Output)
+ * 2. Berater fragt gezielt nach (max. 2 Fragen) bevor er empfiehlt
+ * 3. User antwortet, Berater diagnostiziert und schlägt Setup vor
+ */
 function MiniChatPreview() {
   const messages = [
-    { role: "ai" as const, text: "Wie würdest Du Dein Spiel beschreiben?" },
-    { role: "user" as const, text: "Allround, eher kontrolliert" },
-    { role: "ai" as const, text: "Was nervt Dich an Deinem aktuellen Setup?" },
-    { role: "user" as const, text: "Vorhand fühlt sich tot an" },
+    {
+      role: "user" as const,
+      text:
+        "TTR 1290, Allround. Spiele Andro Novacell OFF + Rasanter R42. Topspin fällt zu kurz, will mehr Tempo.",
+    },
+    {
+      role: "ai" as const,
+      text:
+        "Bevor ich was empfehle: trainierst du systematisch mit Trainer oder eher freies Punktspiel? Und: sitzt dein Topspin technisch, oder ist er noch wackelig?",
+    },
+    {
+      role: "user" as const,
+      text: "2× pro Woche Multiball mit Trainer. Topspin sitzt im Grunde.",
+    },
+    {
+      role: "ai" as const,
+      text:
+        "Reicht mir. Der Flaschenhals ist dein Holz, nicht die Beläge. Hier sind 3 Setups passend zu deinem Budget…",
+    },
   ];
   return (
     <div className="mt-6 flex flex-col gap-2">
@@ -47,11 +68,11 @@ function MiniChatPreview() {
           initial={{ opacity: 0, y: 6 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.3, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.3, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
           className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
         >
           <div
-            className={`max-w-[80%] rounded-xl px-3 py-2 text-sm ${
+            className={`max-w-[85%] rounded-xl px-3 py-2 text-sm leading-snug ${
               m.role === "user"
                 ? "rounded-tr-sm bg-primary text-on-primary"
                 : "rounded-tl-sm border border-neutral-700 bg-neutral-900/60 text-neutral-50"
@@ -157,8 +178,9 @@ export function Features() {
               Echter Dialog statt Filtermaske
             </h3>
             <p className="mt-2 text-sm text-neutral-300">
-              Wir fragen mit Worten, Du antwortest mit Worten. Die KI versteht, weil sie auf
-              Tausenden von Spielerprofilen kalibriert ist.
+              Du beschreibst Setup und Problem in eigenen Worten. Die KI fragt gezielt nach
+              wenn ihr Info fehlt — statt halbgar zu raten. Erst wenn sie genug weiß,
+              empfiehlt sie konkrete Setups mit Begründung.
             </p>
             <MiniChatPreview />
           </BentoCard>
