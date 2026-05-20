@@ -49,7 +49,7 @@ export function StepLoading() {
       {/* Rotating Status */}
       <div className="text-center">
         <p className="font-mono text-xs uppercase tracking-widest text-primary">
-          KI-Berater arbeitet
+          Berater arbeitet
         </p>
         <motion.p
           key={idx}

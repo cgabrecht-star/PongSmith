@@ -37,7 +37,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="eyebrow-pill">KI-Setup-Berater</span>
+          <span className="eyebrow-pill">Setup-Berater</span>
 
           <h1 className="mt-6 text-3xl font-semibold tracking-tight text-neutral-50 md:text-5xl">
             <span className="block">Das richtige Setup.</span>

@@ -30,11 +30,11 @@ export default function AgbPage() {
 
         <Section title="2. Leistungsbeschreibung">
           <p>
-            PongSmith stellt eine unabhängige, KI-gestützte Material-Beratung für
+            PongSmith stellt eine unabhängige, automatisierte Material-Beratung für
             Tischtennis-Equipment bereit:
           </p>
           <ul className="mt-3 list-disc space-y-1.5 pl-5">
-            <li>Dialog-basierte Empfehlungen über den KI-Berater</li>
+            <li>Dialog-basierte Empfehlungen über den Berater</li>
             <li>Strukturiertes Produkt-Sortiment mit aggregierten Spielerstimmen</li>
             <li>Synergie-Bewertungen zwischen Hölzern und Belägen</li>
             <li>Affiliate-Verlinkungen zu Partner-Shops (siehe §5)</li>

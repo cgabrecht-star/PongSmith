@@ -43,7 +43,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-neutral-300">
-              Unabhängige KI-Beratung für Tischtennis-Setups. Aus Dresden, für Vereinsspieler.
+              Unabhängige Beratung für Tischtennis-Setups. Aus Dresden, für Vereinsspieler.
             </p>
           </div>
 

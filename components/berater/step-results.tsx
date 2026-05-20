@@ -172,10 +172,10 @@ function ShopPill({ shop }: { shop: ShopLink }) {
       } ${outOfStock ? "opacity-60" : ""}`}
       title={
         outOfStock
-          ? `${shop.name} — derzeit nicht lieferbar`
+          ? `${shop.name}, derzeit nicht lieferbar`
           : isDirect
-            ? `${shop.name} — direkt zum Produkt`
-            : `${shop.name} — Such-Treffer (Produkt evtl. nicht im Sortiment)`
+            ? `${shop.name}, direkt zum Produkt`
+            : `${shop.name}, Such-Treffer (Produkt evtl. nicht im Sortiment)`
       }
     >
       <span>{shop.name}</span>
@@ -354,7 +354,7 @@ export function StepResults({
                 turn.role === "user" ? "text-neutral-400" : "text-primary"
               }`}
             >
-              {turn.role === "user" ? "Du" : "KI-Berater"}
+              {turn.role === "user" ? "Du" : "Berater"}
             </div>
             <div className="text-sm leading-relaxed text-neutral-200">
               {renderBeraterText(turn.content)}

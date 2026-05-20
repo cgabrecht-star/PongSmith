@@ -73,9 +73,9 @@ export default function DatenschutzPage() {
           </p>
         </Section>
 
-        <Section title="5. KI-Berater (Anthropic)" anchor="ki-berater">
+        <Section title="5. Berater (Anthropic)" anchor="ki-berater">
           <p>
-            Der KI-Berater nutzt die API von{" "}
+            Der Berater nutzt die API von{" "}
             <strong className="text-neutral-200">Anthropic, PBC</strong>, 548 Market
             St, San Francisco, CA 94104, USA. Wenn du den Chat nutzt, werden deine
             Eingaben (Spielstil, TTR, Setup-Beschreibung) zur Verarbeitung an

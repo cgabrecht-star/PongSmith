@@ -46,7 +46,7 @@ function MiniChatPreview() {
         "TTR 1290, Allround. Spiele Andro Novacell OFF + Rasanter R42. Topspin fällt zu kurz, will mehr Tempo.",
     },
     {
-      role: "ai" as const,
+      role: "berater" as const,
       text:
         "Bevor ich was empfehle: trainierst du systematisch mit Trainer oder eher freies Punktspiel? Und: sitzt dein Topspin technisch, oder ist er noch wackelig?",
     },
@@ -55,7 +55,7 @@ function MiniChatPreview() {
       text: "2× pro Woche Multiball mit Trainer. Topspin sitzt im Grunde.",
     },
     {
-      role: "ai" as const,
+      role: "berater" as const,
       text:
         "Reicht mir. Der Flaschenhals ist dein Holz, nicht die Beläge. Hier sind 3 Setups passend zu deinem Budget…",
     },
@@ -178,9 +178,9 @@ export function Features() {
               Echter Dialog statt Filtermaske
             </h3>
             <p className="mt-2 text-sm text-neutral-300">
-              Du beschreibst Setup und Problem in eigenen Worten. Die KI fragt gezielt nach
-              wenn ihr Info fehlt — statt halbgar zu raten. Erst wenn sie genug weiß,
-              empfiehlt sie konkrete Setups mit Begründung.
+              Du beschreibst Setup und Problem in eigenen Worten. Der Berater fragt gezielt
+              nach wenn ihm Info fehlt, statt halbgar zu raten. Erst wenn er genug weiß,
+              empfiehlt er konkrete Setups mit Begründung.
             </p>
             <MiniChatPreview />
           </BentoCard>
@@ -209,7 +209,7 @@ export function Features() {
             <p className="mt-2 text-sm text-neutral-300">
               Wir verlinken zu echten Shops, transparent gekennzeichnet als Affiliate. Du
               zahlst keinen Aufpreis. Mit Tischtennis.biz haben wir den ersten direkten
-              Partner mit Live-Preisen — weitere folgen.
+              Partner mit Live-Preisen, weitere folgen.
             </p>
             <ShopPartners />
           </BentoCard>

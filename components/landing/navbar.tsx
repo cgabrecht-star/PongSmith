@@ -12,7 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
  */
 
 const dropdownItems = [
-  { href: "/berater", label: "KI-Berater", desc: "In 4 Schritten zur Empfehlung" },
+  { href: "/berater", label: "Berater", desc: "In 4 Schritten zur Empfehlung" },
   { href: "/sortiment", label: "Sortiment", desc: "Alle Beläge & Hölzer im Index" },
   { href: "/mithelfen", label: "Mithelfen", desc: "Anonym Setup-Daten beisteuern" },
   { href: "/#how-it-works", label: "So funktioniert's", desc: "In drei Schritten zur Bestellung" },

@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     "Vereinsspieler Ausrüstung",
     "TT Setup",
     "Spielstil Beratung",
-    "Tischtennis KI",
+    "Tischtennis Berater",
   ],
   creator: "PongSmith",
   publisher: "PongSmith",

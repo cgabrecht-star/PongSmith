@@ -60,10 +60,10 @@ const items: FaqItem[] = [
     q: "Was, wenn ich Materialspieler bin (Noppen, Anti)?",
     a: (
       <p>
-        Materialspieler ist einer der vier hinterlegten Spielstile. Die KI berücksichtigt die
-        Charakteristik Deines Belags (lange/kurze Noppen, frictionless, Anti) und schlägt
-        Hölzer vor, die zur Spielweise passen, nicht das Standard-Allround, das man Dir im
-        Shop andrehen würde.
+        Materialspieler ist einer der vier hinterlegten Spielstile. Der Berater
+        berücksichtigt die Charakteristik Deines Belags (lange/kurze Noppen, frictionless,
+        Anti) und schlägt Hölzer vor, die zur Spielweise passen, nicht das
+        Standard-Allround, das man Dir im Shop andrehen würde.
       </p>
     ),
   },
@@ -71,9 +71,9 @@ const items: FaqItem[] = [
     q: "Kann ich auch nur einen Belag oder nur ein Holz tauschen?",
     a: (
       <p>
-        Klar. Sag im Chat, was Du behalten willst, die KI optimiert dann nur die fehlenden
-        Komponenten und prüft die Synergie zum Bestand. Oft reicht ein neuer VH-Belag, um aus
-        einem mittelmäßigen Setup ein gutes zu machen.
+        Klar. Sag im Chat, was Du behalten willst, der Berater optimiert dann nur die
+        fehlenden Komponenten und prüft die Synergie zum Bestand. Oft reicht ein neuer
+        VH-Belag, um aus einem mittelmäßigen Setup ein gutes zu machen.
       </p>
     ),
   },
