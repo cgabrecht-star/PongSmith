@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "eval": "node --env-file=.env.local eval/run.mjs",
+    "eval:local": "BERATER_URL=http://localhost:3000/api/berater node --env-file=.env.local eval/run.mjs",
     "db:push": "dotenv -e .env.local -- drizzle-kit push",
     "db:studio": "dotenv -e .env.local -- drizzle-kit studio",
     "db:generate": "dotenv -e .env.local -- drizzle-kit generate",

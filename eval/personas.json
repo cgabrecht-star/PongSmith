@@ -1,0 +1,181 @@
+[
+  {
+    "id": "wiedereinsteiger-mizutani",
+    "description": "Wiedereinsteiger nach 18 Jahren Pause mit Pro-Setup (Mizutani ZLC + Tenergy 05), das jetzt zu anspruchsvoll ist. Triangulation muss den Realitätscheck machen.",
+    "realInspiration": "revspin/megaspin Review 2025-11-14: 'I started playing after 18 years before i was using Jun Mitzutani ZLC with Tenergy 05 both sides ... found this set up too demanding.'",
+    "initialMessage": "Mein TTR ist 1500, ich spiele Offensiv-Topspin, RH.\n\nAktuelles Setup: Butterfly Jun Mizutani ZLC mit Butterfly Tenergy 05 auf beiden Seiten.\n\nMein Problem: Habe nach 18 Jahren wieder mit Tischtennis angefangen. Das Setup ist mir aktuell zu anspruchsvoll. Topspin gegen Unterschnitt geht oft ins Netz, Blocken funktioniert nicht mehr sauber wie früher.",
+    "followupAnswers": [
+      "Ehrlich gesagt sitzt meine Technik nicht mehr richtig, ich bin total aus der Übung.",
+      "Trainiere aktuell nur Punktspiele, kein systematisches Training, 1x pro Woche im Verein.",
+      "Budget bis 200 Euro für Holz und beide Beläge zusammen."
+    ],
+    "expectations": {
+      "maxTurnsBeforeRecommendation": 3,
+      "budgetCeilingEur": 200,
+      "shouldRecommendCarbon": false,
+      "forbidDefensiveBlades": false,
+      "note": "Spieler braucht ein verzeihendes Setup, nicht zu schnell, aber auch kein DEF. Inner-Carbon oder weiches 5-Lagen-Allholz."
+    }
+  },
+  {
+    "id": "wackelig-aufbau-1100",
+    "description": "Klassischer Aufbau-Spieler, TTR 1100, Stiga Allround Classic, will Sicherheit gewinnen ohne mehr Tempo. Budget eng.",
+    "realInspiration": "Mehrere Stiga AC Reviews: 'I am a beginner / developing player', 'I'll continue bettering my technique'.",
+    "initialMessage": "Mein TTR ist 1100, ich spiele Allround, RH.\n\nAktuelles Setup: Stiga Allround Classic mit Yasaka Mark V auf der Vorhand und Stiga Vari Spin auf der Rückhand.\n\nMein Problem: Bin Aufbau-Spieler, meine Technik ist noch wackelig. Ich verliere viele Punkte durch eigene Fehler im Block und Topspin. Suche etwas was mir mehr Sicherheit gibt.",
+    "followupAnswers": [
+      "Trainiere 2x pro Woche mit einem Trainer im Verein.",
+      "Maximal 80 Euro Budget für das gesamte Setup, lieber günstiger."
+    ],
+    "expectations": {
+      "maxTurnsBeforeRecommendation": 3,
+      "budgetCeilingEur": 80,
+      "shouldRecommendCarbon": false,
+      "forbidDefensiveBlades": false,
+      "note": "Setup sollte sehr nah am aktuellen bleiben oder günstig optimieren. Kein Carbon, kein hard Tensor."
+    }
+  },
+  {
+    "id": "allround-zu-carbon-aspirant",
+    "description": "TTR 1400, sitzt nach 3 Jahren auf Allround Classic gut, will jetzt den Carbon-Schritt machen. Aspirations-TTR muss greifen.",
+    "realInspiration": "Stiga AC Review 2022-08-21: 'I played with this blade for 3 years ... I knew I was ready to move to a new faster blade as I developed my feel and technique enough.'",
+    "initialMessage": "Mein TTR ist 1400, ich spiele Offensiv-Topspin, RH.\n\nAktuelles Setup: Stiga Allround Classic mit Butterfly Tenergy 05 FX auf beiden Seiten.\n\nMein Problem: Spiele das Setup seit 3 Jahren, Technik sitzt mittlerweile gut. Mir fehlt aber Tempo aus der Halbdistanz, das Holz limitiert mich. Ich bin bereit für den Schritt zum Carbon-Holz.",
+    "followupAnswers": [
+      "2x pro Woche mit Trainer plus Liga am Wochenende.",
+      "Budget bis 250 Euro für Holz und beide Beläge zusammen."
+    ],
+    "expectations": {
+      "maxTurnsBeforeRecommendation": 3,
+      "budgetCeilingEur": 250,
+      "shouldRecommendCarbon": true,
+      "forbidDefensiveBlades": true,
+      "note": "Aspirational. ALC oder Inner-Carbon ist erwartet. KEIN reines 5-Lagen-Holz mehr empfehlen, das hat er ja schon."
+    }
+  },
+  {
+    "id": "tenergy-zu-hart",
+    "description": "TTR 1510, Tenergy 05 Hard auf beiden Seiten, Topspin gegen Unterschnitt fällt ins Netz. Original Test-Case aus echtem Nutzer-Screenshot.",
+    "realInspiration": "Tester-Screenshot vom 18.5.2026, 4 Triangulations-Turns, Budget-Bruch bei Setup 1, Setup-Ordering inkonsistent.",
+    "initialMessage": "Mein TTR ist 1510, ich spiele Offensiv, RH.\n\nAktuelles Setup: Power Kevlar Carbon mit Butterfly Tenergy 05 Hard auf beiden Seiten.\n\nMein Problem: Mein Topspin gegen Unterschnitt landet ständig im Netz. Bei normalen Bällen klappt der Topspin, aber sobald Unterschnitt drauf ist, bin ich verloren.",
+    "followupAnswers": [
+      "Meine Technik ist ehrlich gesagt eher schlecht.",
+      "Ich spiele meistens nur Punktspiele, ein bis zwei Mal im Monat etwas Training mit stärkeren Spielern.",
+      "Mir ist eigentlich egal was es kostet, ich würde aber ungern mehr als 150 Euro insgesamt ausgeben.",
+      "Klar, VH und RH unterschiedlich wäre auch ok."
+    ],
+    "expectations": {
+      "maxTurnsBeforeRecommendation": 3,
+      "budgetCeilingEur": 150,
+      "shouldRecommendCarbon": false,
+      "forbidDefensiveBlades": true,
+      "note": "Tenergy 05 Hard ist objektiv zu direkt. Weicher empfehlen ja, aber NICHT in DEF-Falle kippen. Allround-Plus oder OFF- mit Tensor."
+    }
+  },
+  {
+    "id": "jugend-zu-herren-material",
+    "description": "TTR 1150, gerade aus der Jugend in 2. Kreisklasse. Trainer rät Spielsystemwechsel zu Materialspieler mit OX-Noppen RH.",
+    "realInspiration": "tischtennis-pur.de Thread 'Dringend Hilfe bei Belag Auswahl' (Die_Turtle/Gerald): exakt dieser Case.",
+    "initialMessage": "Mein TTR ist 1150, ich spiele Material, RH.\n\nAktuelles Setup: Best of Five Impuls OF- mit Stiga Carbo OF+ auf der Vorhand und Gewo Mega Flex Control auf der Rückhand.\n\nMein Problem: Bin gerade aus der Jugend in die 2. Kreisklasse hochgekommen. Mein Trainer rät mir auf Materialspieler umzustellen, lange Noppen OX auf der Rückhand, griffigen Angriffsbelag auf der Vorhand.",
+    "followupAnswers": [
+      "Trainiere 3x pro Woche im Verein mit Trainer.",
+      "Budget so 100 Euro insgesamt für Holz und beide Beläge.",
+      "Auf der Vorhand griffiger Angriffsbelag, Rückhand lange Noppen OX."
+    ],
+    "expectations": {
+      "maxTurnsBeforeRecommendation": 3,
+      "budgetCeilingEur": 100,
+      "shouldRecommendCarbon": false,
+      "forbidDefensiveBlades": false,
+      "expectMaterialQuery": true,
+      "note": "Spielsystemwechsel. Berater sollte query_rubber_for_side nutzen, OX-Konfig, lange Noppe RH."
+    }
+  },
+  {
+    "id": "wiedereinsteiger-frischklebe-verweigerer",
+    "description": "TTR 1300, 13 Jahre Pause, offensiv, kein Frischkleber, Haltbarkeit wichtig. Alte Beläge gibt's nicht mehr.",
+    "realInspiration": "tischtennis-pur.de Thread 'Beläge für Off Wiedereinsteiger' (crizcrab/Christian).",
+    "initialMessage": "Mein TTR ist 1300, ich spiele Offensiv, RH.\n\nAktuelles Setup: TSP Carbon mit Taico Power Feeling auf der Vorhand und Nittaku Glasnost auf der Rückhand.\n\nMein Problem: Habe 13 Jahre nicht gespielt, fange wieder an. Mein Spielstil ist sehr offensiv, suche schnelle Möglichkeit zum Angriff. Brauche neue Beläge, beide alten gibt es heute nicht mehr.",
+    "followupAnswers": [
+      "Technik kommt langsam wieder, war früher in der Bezirksliga aktiv.",
+      "Trainiere 1x pro Woche, Punktspiele am Wochenende.",
+      "Budget bis 100 Euro für die zwei Beläge. Ich klebe nicht frisch, Haltbarkeit ist mir wichtig."
+    ],
+    "expectations": {
+      "maxTurnsBeforeRecommendation": 3,
+      "budgetCeilingEur": 100,
+      "shouldRecommendCarbon": false,
+      "forbidDefensiveBlades": true,
+      "note": "Nur Beläge tauschen, Holz bleibt. Haltbarkeitsorientierte Tensoren (Donic Bluefire, Yasaka Rakza), keine kurzlebigen Hi-End-Tensoren."
+    }
+  },
+  {
+    "id": "db-luecke-holz",
+    "description": "TTR 1350, spielt ein Holz das in unserer DB NICHT existiert (Andro TPB Player Plus, von Cowork verifiziert).",
+    "realInspiration": "Cowork-Recherche: 'Andro TPB Player Plus' wurde NICHT auf revspin.net gefunden. Plus Hannes' Sanwei Surge Prism Case.",
+    "initialMessage": "Mein TTR ist 1350, ich spiele Allround-Offensiv, RH.\n\nAktuelles Setup: Andro TPB Player Plus mit Donic Bluefire JP01 auf der Vorhand und Andro Rasanter R42 auf der Rückhand.\n\nMein Problem: Mit dem Holz komme ich nicht so klar, es ist mir zu direkt für meinen Spielstil. Suche etwas mit mehr Spielgefühl.",
+    "followupAnswers": [
+      "Trainiere 2x pro Woche, Verein.",
+      "Budget bis 150 Euro für ein neues Holz, Beläge bleiben."
+    ],
+    "expectations": {
+      "maxTurnsBeforeRecommendation": 3,
+      "budgetCeilingEur": 150,
+      "shouldRecommendCarbon": false,
+      "forbidDefensiveBlades": false,
+      "expectHonestyAboutDbGap": true,
+      "note": "Berater sollte ehrlich sagen 'das Holz finde ich nicht in der DB' statt zu konfabulieren. Empfehlung kann trotzdem auf Basis der Beläge + TTR gemacht werden."
+    }
+  },
+  {
+    "id": "hobby-anfaenger-vereins-einstieg",
+    "description": "TTR 800 (unter DB-Grenze), kein Setup, will im Herbst in Verein. Hobby-Spieler.",
+    "realInspiration": "tischtennis-pur.de Thread 'Welche Belag/Welches Holz?' (Agent.Smith): exakt dieses Profil.",
+    "initialMessage": "Mein TTR ist 800, ich spiele Allround, RH.\n\nMein Problem: Spiele bisher nur Hobby zu Hause, will im Herbst in einen Verein. Brauche meinen ersten richtigen Schläger.",
+    "followupAnswers": [
+      "Spiele 1x pro Woche locker, war noch nie im Verein.",
+      "Budget 50 Euro, eher weniger."
+    ],
+    "expectations": {
+      "maxTurnsBeforeRecommendation": 3,
+      "budgetCeilingEur": 50,
+      "shouldRecommendCarbon": false,
+      "expectRefusal": true,
+      "note": "TTR < 900: Berater sollte DB_ANFAENGER-Pfad nehmen. Einsteiger-Tipp (vorkonfektionierter Schläger), kein DB-Setup."
+    }
+  },
+  {
+    "id": "topspin-faellt-zu-kurz",
+    "description": "TTR 1250, klassisches Symptom: Topspin fällt zu kurz/ins Netz gegen Unterschnitt. Sollte query_by_problem triggern.",
+    "realInspiration": "Häufiges Pattern in mehreren Reviews + Berater-Praxis.",
+    "initialMessage": "Mein TTR ist 1250, ich spiele Allround-Offensiv, RH.\n\nAktuelles Setup: Donic Persson Powerplay mit Donic Acuda S2 auf beiden Seiten.\n\nMein Problem: Mein Topspin landet oft zu kurz auf dem Tisch oder fällt ins Netz, vor allem gegen Unterschnitt. Bei langen Ballwechseln klappt es besser.",
+    "followupAnswers": [
+      "Trainiere 2x pro Woche, ein Mal davon mit Trainer.",
+      "Technik sitzt im Grunde, aber gegen Unterschnitt bin ich oft zu zaghaft.",
+      "Budget bis 150 Euro für Holz und Beläge."
+    ],
+    "expectations": {
+      "maxTurnsBeforeRecommendation": 3,
+      "budgetCeilingEur": 150,
+      "shouldRecommendCarbon": false,
+      "forbidDefensiveBlades": true,
+      "note": "Symptom 'topspin_falls' im query_by_problem-Tool. Spinnstärkere Beläge oder weicheres Holz mit mehr Dwell-Time."
+    }
+  },
+  {
+    "id": "schlaeger-bricht-saison",
+    "description": "TTR 1430, Bezirksliga, Holz mitten in der Saison gebrochen. Braucht schnell Ersatz nah am Original. RH-Belag wird nicht mehr produziert.",
+    "realInspiration": "mytischtennis.de Blog FKT 2024: 'Warum es mit neuem Schläger so schwer ist'.",
+    "initialMessage": "Mein TTR ist 1430, ich spiele Offensiv, RH.\n\nAktuelles Setup: Andro Roxor 400 mit Tibhar Evolution MX-P auf der Vorhand und Donic Coppa Platin Soft auf der Rückhand.\n\nMein Problem: Mein Holz ist während der Saison gebrochen, ich brauche schnell Ersatz. Mein RH-Belag wird nicht mehr produziert, muss eh getauscht werden. VH-Belag würde ich gern behalten wenn möglich.",
+    "followupAnswers": [
+      "Bezirksliga, 2x pro Woche Training plus Punktspiele am Wochenende.",
+      "Budget bis 120 Euro für Holz und einen Belag (RH).",
+      "Ich will keinen kompletten Setup-Wechsel, nur Ersatz so nah wie möglich am bisherigen Setup."
+    ],
+    "expectations": {
+      "maxTurnsBeforeRecommendation": 3,
+      "budgetCeilingEur": 120,
+      "shouldRecommendCarbon": false,
+      "forbidDefensiveBlades": true,
+      "note": "Kontinuität ist wichtiger als optimale Synergie. Setup sollte ähnlich Roxor 400 sein (OFF-, 5-Lagen oder leicht Inner-Carbon), RH-Belag im Charakter wie Coppa Platin Soft."
+    }
+  }
+]
