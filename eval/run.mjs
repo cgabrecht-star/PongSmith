@@ -225,6 +225,21 @@ function runChecks(persona, result) {
     });
   }
 
+  // (11b) Teil-Tausch: bei rubber_only mit bekanntem Holz müssen ALLE Karten das Holz behalten
+  if (exp.expectKeepsBlade && setups.length > 0) {
+    const want = exp.expectKeepsBlade.toLowerCase();
+    const bladeNames = setups.map((s) => {
+      const b = (s.products ?? []).find((p) => p.type === "blade");
+      return b?.name ?? "";
+    });
+    const allKeep = bladeNames.length > 0 && bladeNames.every((n) => n.toLowerCase().includes(want));
+    checks.push({
+      name: "kept-blade-honored",
+      pass: allKeep,
+      detail: allKeep ? "OK" : `Karten-Hölzer: ${bladeNames.join(" | ")} (erwartet alle "${exp.expectKeepsBlade}")`,
+    });
+  }
+
   // (11) DB-Lücke ehrlich: bei DB-Lücke-Persona muss Berater zugeben dass Produkt nicht in DB ist
   if (exp.expectHonestyAboutDbGap) {
     const honest = /(nicht in (unserer|meiner|der)|nicht aus (unserer|der)|kenne (ich|das|dein)|nicht im detail|finde ich nicht|nicht hinterlegt|nicht gelistet|kein eintrag|nicht in der db|datenbank)/i.test(

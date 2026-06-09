@@ -723,6 +723,110 @@ async function retrieveMaterial(
   };
 }
 
+/** Nur-Beläge-Pfad: behalte das vorhandene Holz, finde passende Beläge dazu. */
+async function retrieveRubbersForBlade(
+  bladeId: number,
+  ttr: number,
+  validStyle: "offensive_topspin" | "allround" | "defensive",
+  budgetMaxEur: number | undefined,
+  preferKnownBrands: boolean,
+  lang: "de" | "en",
+): Promise<RetrievalResult> {
+  const scoreColumn =
+    validStyle === "offensive_topspin" ? synergies.scoreOffensive
+    : validStyle === "defensive" ? synergies.scoreDefensive
+    : synergies.scoreAllround;
+
+  const rows = await db
+    .select(SETUP_ROW_SELECT)
+    .from(synergies)
+    .innerJoin(blades, eq(synergies.bladeId, blades.id))
+    .innerJoin(rubbers, eq(synergies.rubberId, rubbers.id))
+    .where(
+      and(
+        eq(synergies.bladeId, bladeId),
+        eq(rubbers.type, "smooth"),
+        rubberAvailabilityFilter,
+      ),
+    )
+    .orderBy(desc(scoreColumn))
+    .limit(120) as SetupRow[];
+
+  // Budget gilt nur für den Belag (Holz wird behalten).
+  const budgeted = budgetMaxEur
+    ? rows.filter((r) => {
+        const p = r.rubberPriceEur ? parseFloat(r.rubberPriceEur) : null;
+        return p === null || p <= budgetMaxEur + 15;
+      })
+    : rows;
+
+  // Diversität nach Belag-Marke (Holz ist fix), West-Marken bevorzugt.
+  const western = preferKnownBrands
+    ? budgeted.filter((r) => WESTERN_BRANDS.has(r.rubberName.split(" ")[0] ?? ""))
+    : budgeted;
+  const pool = western.length > 0 ? western : budgeted;
+  const seen = new Set<string>();
+  const picked: SetupRow[] = [];
+  for (const r of pool) {
+    if (picked.length >= 3) break;
+    if (seen.has(r.rubberName)) continue;
+    seen.add(r.rubberName);
+    picked.push(r);
+  }
+
+  return {
+    rows: picked,
+    styleName: lang === "en" ? "rubbers for your blade" : "Beläge für dein Holz",
+    status: picked.length > 0 ? "ok" : "empty",
+  };
+}
+
+/** Nur-Holz-Pfad: behalte den vorhandenen Belag, finde passende Hölzer dazu. */
+async function retrieveBladesForRubber(
+  rubberId: number,
+  ttr: number,
+  validStyle: "offensive_topspin" | "allround" | "defensive",
+  budgetMaxEur: number | undefined,
+  preferKnownBrands: boolean,
+  lang: "de" | "en",
+): Promise<RetrievalResult> {
+  const scoreColumn =
+    validStyle === "offensive_topspin" ? synergies.scoreOffensive
+    : validStyle === "defensive" ? synergies.scoreDefensive
+    : synergies.scoreAllround;
+  const styleBladeGuard = validStyle === "defensive" ? undefined : notDefensiveBlade;
+
+  const rows = await db
+    .select(SETUP_ROW_SELECT)
+    .from(synergies)
+    .innerJoin(blades, eq(synergies.bladeId, blades.id))
+    .innerJoin(rubbers, eq(synergies.rubberId, rubbers.id))
+    .where(
+      and(
+        eq(synergies.rubberId, rubberId),
+        bladeAvailabilityFilter,
+        styleBladeGuard,
+      ),
+    )
+    .orderBy(desc(scoreColumn))
+    .limit(120) as SetupRow[];
+
+  // Budget gilt nur für das Holz (Belag wird behalten).
+  const budgeted = budgetMaxEur
+    ? rows.filter((r) => {
+        const p = r.bladePriceEur ? parseFloat(r.bladePriceEur) : null;
+        return p === null || p <= budgetMaxEur + 15;
+      })
+    : rows;
+
+  const diverse = diversify(budgeted, 3, preferKnownBrands);
+  return {
+    rows: diverse,
+    styleName: lang === "en" ? "blades for your rubber" : "Hölzer für deinen Belag",
+    status: diverse.length > 0 ? "ok" : "empty",
+  };
+}
+
 /** Haupteinstieg Stufe 2: wählt anhand des Profils den Retrieval-Pfad. */
 async function retrieveSetups(profile: BeraterProfile, lang: "de" | "en"): Promise<RetrievalResult> {
   const ttr = effectiveTtr(profile);
@@ -732,6 +836,32 @@ async function retrieveSetups(profile: BeraterProfile, lang: "de" | "en"): Promi
   const isMaterial =
     profile.play_style === "material" ||
     (profile.rubber_type != null && profile.rubber_type !== "inverted");
+
+  // Teil-Tausch-Pfade (nur bei Standard-Stilen, nicht Material).
+  if (!isMaterial) {
+    const validStyleEarly: "offensive_topspin" | "allround" | "defensive" =
+      profile.play_style === "offensive_topspin" || profile.play_style === "defensive"
+        ? profile.play_style
+        : "allround";
+
+    // "rubber_only" und "rubber_vh_rh" bedeuten beide: Holz behalten, Beläge wechseln.
+    const keepBlade = profile.change_scope === "rubber_only" || profile.change_scope === "rubber_vh_rh";
+    if (keepBlade && profile.current_blade) {
+      const bladeId = await resolveProductId(profile.current_blade, "blade");
+      if (bladeId != null) {
+        const res = await retrieveRubbersForBlade(bladeId, ttr, validStyleEarly, budget, preferKnown, lang);
+        if (res.rows.length > 0) return res;
+        // sonst: kein Beleg-Treffer fürs Holz, falle auf Komplett-Setups zurück
+      }
+    }
+    if (profile.change_scope === "blade_only" && profile.current_rubber_vh) {
+      const rubberId = await resolveProductId(profile.current_rubber_vh, "rubber");
+      if (rubberId != null) {
+        const res = await retrieveBladesForRubber(rubberId, ttr, validStyleEarly, budget, preferKnown, lang);
+        if (res.rows.length > 0) return res;
+      }
+    }
+  }
 
   if (isMaterial) {
     const dbType =
@@ -927,8 +1057,8 @@ function emptyProfile(): BeraterProfile {
 // Aktuelles Setup gegen DB prüfen (für Ehrlichkeits-Notiz)
 // ---------------------------------------------------------------------------
 
-/** Prüft ob ein genanntes Produkt in der DB existiert (fuzzy, ilike). */
-async function productExistsInDb(name: string, type: "blade" | "rubber"): Promise<boolean> {
+/** Löst einen genannten Produktnamen zur DB-ID auf (fuzzy, ilike). null wenn unbekannt. */
+async function resolveProductId(name: string, type: "blade" | "rubber"): Promise<number | null> {
   const variants = [name];
   const sp = name.indexOf(" ");
   if (sp > 0) variants.push(name.slice(sp + 1)); // ohne Marken-Präfix
@@ -936,11 +1066,20 @@ async function productExistsInDb(name: string, type: "blade" | "rubber"): Promis
     const clean = v.trim();
     if (clean.length < 3) continue;
     const rows = type === "blade"
-      ? await db.select({ id: blades.id }).from(blades).where(ilike(blades.name, `%${clean}%`)).limit(1)
-      : await db.select({ id: rubbers.id }).from(rubbers).where(ilike(rubbers.name, `%${clean}%`)).limit(1);
-    if (rows.length > 0) return true;
+      ? await db.select({ id: blades.id }).from(blades)
+          .where(and(eq(blades.isActive, true), ilike(blades.name, `%${clean}%`)))
+          .orderBy(desc(blades.communityReviewCount)).limit(1)
+      : await db.select({ id: rubbers.id }).from(rubbers)
+          .where(and(eq(rubbers.isActive, true), ilike(rubbers.name, `%${clean}%`)))
+          .orderBy(desc(rubbers.communityReviewCount)).limit(1);
+    if (rows.length > 0) return rows[0].id;
   }
-  return false;
+  return null;
+}
+
+/** Prüft ob ein genanntes Produkt in der DB existiert. */
+async function productExistsInDb(name: string, type: "blade" | "rubber"): Promise<boolean> {
+  return (await resolveProductId(name, type)) !== null;
 }
 
 /** Liefert die im Profil genannten aktuellen Produkte die NICHT in der DB sind. */
@@ -1018,10 +1157,18 @@ async function explainRecommendation(
   const gapNote = unknownCurrent.length > 0
     ? `\n\nHINWEIS: Das aktuelle Material des Spielers (${unknownCurrent.join(", ")}) ist NICHT in unserer Datenbank. Sag das einmal ehrlich am Anfang (z.B. "dein aktuelles Holz kenne ich nicht im Detail"), und stütz die Empfehlung dann auf TTR, Stil und Problem.`
     : "";
+  // Teil-Tausch: das Retrieval hat das Holz bzw. den Belag wirklich fixiert.
+  const keepsBlade = /Beläge für dein Holz|rubbers for your blade/.test(retrieval.styleName);
+  const keepsRubber = /Hölzer für deinen Belag|blades for your rubber/.test(retrieval.styleName);
+  const scopeNote = keepsBlade
+    ? `\n\nWICHTIG: Der Spieler behält sein vorhandenes Holz. ALLE drei Setups laufen auf GENAU diesem Holz, es geht ausschließlich um die Beläge. In jeder Karte steht dein Holz plus der jeweils empfohlene Belag. Mach klar dass das Holz bleibt und du nur Beläge vergleichst. Sprich pro Setup über den BELAG.`
+    : keepsRubber
+    ? `\n\nWICHTIG: Der Spieler behält seine vorhandenen Beläge. ALLE drei Setups laufen auf genau diesen Belägen, es geht ausschließlich um das Holz. Sprich pro Setup über das HOLZ.`
+    : "";
 
   const context = lang === "en"
-    ? `Player profile: ${profileSummary(profile)}\n\nThe database picked these setups (already in this order, Setup 1 is the best, all within budget):\n\n${setupsText}\n\nWrite the consultation now: one honest diagnosis sentence, then the setups in order with a short why each, then a closing tip naming Setup 1.${forcedNote}${aspNote}${fallbackNote}${gapNote}`
-    : `Spieler-Profil: ${profileSummary(profile)}\n\nDie Datenbank hat diese Setups ausgewählt (bereits in dieser Reihenfolge, Setup 1 ist das beste, alle im Budget):\n\n${setupsText}\n\nSchreib jetzt die Beratung: ein ehrlicher Diagnose-Satz, dann die Setups in Reihenfolge mit je kurzer Begründung, dann ein Abschluss-Tipp der Setup 1 nennt.${forcedNote}${aspNote}${fallbackNote}${gapNote}`;
+    ? `Player profile: ${profileSummary(profile)}\n\nThe database picked these setups (already in this order, Setup 1 is the best, all within budget):\n\n${setupsText}\n\nWrite the consultation now: one honest diagnosis sentence, then the setups in order with a short why each, then a closing tip naming Setup 1.${forcedNote}${aspNote}${fallbackNote}${gapNote}${scopeNote}`
+    : `Spieler-Profil: ${profileSummary(profile)}\n\nDie Datenbank hat diese Setups ausgewählt (bereits in dieser Reihenfolge, Setup 1 ist das beste, alle im Budget):\n\n${setupsText}\n\nSchreib jetzt die Beratung: ein ehrlicher Diagnose-Satz, dann die Setups in Reihenfolge mit je kurzer Begründung, dann ein Abschluss-Tipp der Setup 1 nennt.${forcedNote}${aspNote}${fallbackNote}${gapNote}${scopeNote}`;
 
   const res = await client.messages.create({
     model: config.modelBerater,
@@ -1182,6 +1329,9 @@ export async function POST(req: NextRequest) {
 
     // ─── Stufe 2: Retrieval (reiner Code) ────────────────────────────────
     const retrieval = await retrieveSetups(profile, lang);
+    const _debug = process.env.NODE_ENV !== "production"
+      ? { profile, retrievalMode: retrieval.styleName, status: retrieval.status }
+      : undefined;
 
     if (retrieval.rows.length === 0) {
       const text = await explainNoSetups(client, profile, "empty", lang);
@@ -1195,7 +1345,7 @@ export async function POST(req: NextRequest) {
       explainRecommendation(client, profile, retrieval, forceRecommend && !triage.done, unknownCurrent, lang),
     ]);
 
-    return NextResponse.json({ text, setups });
+    return NextResponse.json({ text, setups, _debug });
 
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);

@@ -1,5 +1,23 @@
 [
   {
+    "id": "belag-wechsel-novacell",
+    "description": "TTR 1380, Allround/Offensiv, zufrieden mit dem Holz (Andro Novacell OFF, EXISTIERT in DB), will nur Beläge tauschen. Testet rubber_only mit bekanntem Holz: alle Karten MÜSSEN das Novacell behalten.",
+    "realInspiration": "Echter Production-Test von Chris (Mai 2026): Prosa sagte 'du behältst dein Novacell', Karten zeigten aber neue Hölzer. Bug.",
+    "initialMessage": "Mein TTR ist 1380, ich spiele Allround mit viel Topspin, RH.\n\nAktuelles Setup: Andro Novacell OFF mit DHS Hurricane 3 auf der Vorhand und Andro Rasanter R37 auf der Rückhand.\n\nMein Problem: Mir fehlt Ballkontrolle und Feingefühl, der Block ist oft unsicher und der Ball springt mir weg.",
+    "followupAnswers": [
+      "Ehrlich gesagt kein Systemtraining, hauptsächlich Punktspiele mit Vereinskameraden. Topspin ist okay, je nachdem ob ich gut stehe, Block grundsätzlich okay. Mit dem Holz bin ich zufrieden, will eigentlich nur die Beläge tauschen. Budget maximal 160 Euro.",
+      "Ich spiele eher kontrolliert mit viel Topspin, lasse den Ball tief fallen und ziehe dann mit viel Spin. Nur Beläge, Holz bleibt, maximal 160 Euro."
+    ],
+    "expectations": {
+      "maxTurnsBeforeRecommendation": 3,
+      "budgetCeilingEur": 175,
+      "shouldRecommendCarbon": false,
+      "forbidDefensiveBlades": true,
+      "expectKeepsBlade": "Novacell",
+      "note": "rubber_only mit bekanntem Holz. Alle drei Karten müssen das Andro Novacell OFF behalten, nur die Beläge variieren."
+    }
+  },
+  {
     "id": "wiedereinsteiger-mizutani",
     "description": "Wiedereinsteiger nach 18 Jahren Pause mit Pro-Setup (Mizutani ZLC + Tenergy 05), das jetzt zu anspruchsvoll ist. Triangulation muss den Realitätscheck machen.",
     "realInspiration": "revspin/megaspin Review 2025-11-14: 'I started playing after 18 years before i was using Jun Mitzutani ZLC with Tenergy 05 both sides ... found this set up too demanding.'",
