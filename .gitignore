@@ -54,3 +54,6 @@ next-env.d.ts
 .env*.local
 data/tischtennis-biz-feed.csv
 pongsmith-marken-prompts.pdf
+
+# Eval-Reports
+eval/report.json

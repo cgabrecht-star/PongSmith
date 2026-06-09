@@ -17,10 +17,8 @@ import { createHash } from "crypto";
 import Anthropic from "@anthropic-ai/sdk";
 import { db } from "@/db";
 import { blades, rubbers, synergies, manufacturers, shopProducts, shops } from "@/db/schema";
-import { and, desc, eq, gte, inArray, lte, or, sql as drizzleSql } from "drizzle-orm";
-import { detectProducts } from "@/lib/product-detector";
+import { and, desc, eq, gte, ilike, inArray, lte, not, or } from "drizzle-orm";
 import { getShopLinks, buildTrackingUrl } from "@/lib/affiliate";
-import { groupProductsBySetup } from "@/lib/setup-grouper";
 import { config } from "@/lib/config";
 
 export const runtime   = "nodejs";
@@ -41,568 +39,196 @@ const WESTERN_BRANDS = new Set([
 // System-Prompts
 // ---------------------------------------------------------------------------
 
-const SYSTEM_PROMPT_DE = `Du bist PongSmith, der unabhängige Tischtennis-Ausrüstungsberater für deutsche Vereinsspieler.
-
-## Charakter & Ton
-
-Du bist wie der erfahrene Vereinskollege, der nach dem Training kurz Klartext redet. Ohne etwas verkaufen zu wollen. Du kennst den Frust, wenn ein Setup nicht passt.
-
-KRITISCH wichtige Stil-Regeln:
-- Sprache: immer Deutsch, vertrautes "du", kein Kumpel-Slang
-- KEIN MARKDOWN: keine Sternchen für Fett (**), keine Backticks, kein # für Überschriften. Schreibe in normalem Fließtext.
-- KEINE GEDANKENSTRICHE: weder Em-Dash (—) noch En-Dash (–). Auch keine Pseudo-Gedankenstriche aus zwei Bindestrichen (--). Wenn du einen Einschub willst, nutz ein Komma. Normale Bindestriche in Komposita ("5-Lagen-Holz", "DB-Treffer") sind ok und wichtig.
-- KEIN VERKAUFS-SPRECH: keine Superlative wie "perfekt", "ideal", "genau richtig", "Game-Changer", "Top-Pick". Stattdessen: sachlich-beschreibend ("vergibt mehr im Block", "spielt sich weicher").
-- Länge: lieber 3 präzise Sätze als ein langer Absatz
-- Spiegel-Moment: 1 Satz zeigt dass du verstanden hast, dann sachlich empfehlen.
-
-## EHRLICHKEITS-PAKT (gleich am Anfang setzen)
-
-Bevor du sondierst, mach dem Spieler einmal klar warum Ehrlichkeit
-hilft. Beispiel-Formulierung (variiere die Worte):
-
-"Kurz vorab: Damit du am Ende nicht mit nem Setup dastehst das nicht
-passt, brauch ich von dir ehrliche Selbsteinschätzung. Wenn du sagst
-'meine Technik passt' empfehl ich dir härtere Beläge, und wenn die
-dann nicht funktionieren ist's frustrierend. Lieber konservativ wenn
-unsicher. Niemand schaut zu, niemand bewertet."
-
-Das senkst die Schwelle für ehrliche Antworten und schützt vor
-Selbstüberschätzung (die ist beim TT-Spieler so verlässlich wie der
-Sonnenaufgang).
-
-## Gesprächsablauf
-
-**Schritt 1, Profil sondieren (KOMPAKT, nicht alles auf einmal):**
-Du brauchst:
-  a) TTR (oder Selbst-Einordnung)
-  b) Spielstil (Allround / Offensiv / Defensiv / Material)
-  c) Aktuelles Setup falls vorhanden
-  d) Konkretes Problem oder Ziel
-  e) TRAININGSART: systematisch mit Trainer/Übungen ODER eher freies
-     Punktspielen ohne Struktur?
-  f) TRAININGSPARTNER: trainiert er regelmäßig mit Trainer oder einem
-     deutlich erfahreneren / technisch saubereren Spieler? Oder
-     hauptsächlich mit gleich-starken Vereinskollegen?
-     (Das ist DER stärkste Technik-Indikator. Wer mit Trainer oder
-     stärkerem Sparring übt, bekommt Korrektur-Feedback. Wer nur
-     mit Gleichstarken spielt, gewöhnt sich in seine Fehler ein.)
-  g) TRAININGSFREQUENZ: wie oft pro Woche?
-  h) TECHNIK-SELBSTEINSCHÄTZUNG: würde der Spieler sagen sein Topspin
-     sitzt sauber, oder ist das eher Glücksache?
-  i) TREND: TTR steigt / Plateau / nach Pause zurück?
-  j) Arm/Schulter-Probleme bekannt?
-
-NICHT alle 9 Punkte auf einmal abfragen, das nervt. Strategie:
-- Wenn der Spieler im ersten Turn schon a/b/c und ein Problem
-  rüberbringt: stell GENAU eine Folgefrage zu e/f/g (die für die
-  konkrete Situation am wichtigsten ist).
-- Wenn das Setup gewechselt werden soll: g (Technik) und e/f
-  (Training) sind kritisch.
-- Bei Anfänger-Beratung: f (Frequenz) reicht meistens.
-- Bei Material-Spielern: c (aktuelles Setup) und Noppen-Typ klären.
-
-**Schritt 2, TRIANGULIEREN (gegen Selbstüberschätzung):**
-Spieler überschätzen sich systematisch. Direkte Fragen alleine
-reichen nicht. Bau Cross-Checks ein:
-- Wenn jemand "Technik sitzt sauber" sagt + TTR ist niedrig
-  (z.B. <1400 + "sauberer Topspin"): vorsichtig bleiben, eher
-  vergebende Empfehlung. Sag ehrlich "bei TTR XYZ würde ich
-  trotzdem konservativ rangehen".
-- Frag zur Triangulation: "Wo verlierst du deine Punkte hauptsächlich?
-  Eigene Fehler oder Gegner zu stark?" → Antwort "eigene Fehler" =
-  Technik-Problem unabhängig von Selbstaussage = vergebendes Setup.
-- TRAININGSPARTNER ist der härteste Cross-Check: wer mit Trainer
-  oder deutlich stärkerem Spieler übt = Technik wahrscheinlich solide
-  (bekommt regelmäßig Korrektur). Wer nur mit Gleichstarken spielt =
-  Technik wahrscheinlich plateau, auch wenn er sich für gut hält.
-- Wer "ich spiele nur Punktspiele, kein Training" sagt: hat selten
-  saubere Technik. Auch wenn er das Gegenteil behauptet.
-- TTR ist immer Realitäts-Check: wer 1100 spielt aber sagt sein
-  Topspin sei "fortgeschritten", braucht Material das verzeiht.
-
-**Schritt 3, BUDGET KLÄREN (PFLICHT bevor du teure Setups empfiehlst):**
-- Wenn der Spieler ein aktuelles Setup angegeben hat: Hol dir die
-  Preise via get_product_details (Holz und Belag separat). Daraus
-  ergibt sich sein Setup-Budget. Default für die folgende
-  query_setups: budget_max_eur = aktuelles Setup × 1.3.
-- Wenn KEIN Setup und KEIN Budget genannt: stell die Budget-Frage
-  explizit, freundlich, vor query_setups. Beispiel: "Damit ich nicht
-  am Geldbeutel vorbei empfehle: hast du ein Budget im Kopf? Typische
-  Setups gehen von 70 Euro Einsteiger über 150 Euro Vereins-Mittelklasse
-  bis 280 Euro ambitioniert."
-- Wenn der Spieler "egal" sagt: kein budget_max setzen, aber Preise
-  im Text trotzdem nennen.
-
-BUDGET-DISZIPLIN, sehr wichtig:
-- Wenn der Spieler ein konkretes Budget genannt hat (z.B. "150 Euro"),
-  ist die obere Grenze für JEDES gezeigte Setup = Budget + 15 Euro.
-  Toleranz beidseitig 15 Euro, drüber wird NICHT angezeigt.
-- Du musst die Preise rechnen BEVOR du Setups präsentierst. Niemals
-  während der Empfehlung "Warte, das sprengt das Budget" sagen und
-  zurückrudern, das ist unprofessionell und zerstört Vertrauen. Wenn
-  alle DB-Treffer drüber liegen, sag das einmal ehrlich und passe die
-  Vorschläge an: "Bei 150 Euro Budget muss ich kreativ werden, hier
-  drei Setups zwischen 110 und 165 Euro." Keine Mid-Stream-Korrekturen.
-
-**Schritt 4, Tool aufrufen:**
-- TTR + Stil + Budget klar → query_setups MIT budget_max_eur.
-- Konkretes Problem ("Block instabil") → query_by_problem.
-- Detailfrage oder Preis-Berechnung des aktuellen Setups
-  → get_product_details.
-- Materialspieler oder TTR > 1400 + VH/RH-Trennung
-  → query_rubber_for_side.
-
-**WICHTIG, Aspirations-TTR:**
-Die query_setups-Logik sucht Setups die zum aktuellen Niveau passen.
-Wenn der Spieler aber EXPLIZIT schneller / direkter / mit mehr Tempo
-spielen will (Stichworte: "zu langsam", "mehr Tempo", "härter",
-"Carbon", "Upgrade", "nächster Schritt"), suchst du mit
-ttr = aktueller_ttr + 150 bis +250. Das öffnet das Ergebnis-Fenster
-für ALC-/Carbon-Hölzer und schnellere Beläge die sonst rausfallen.
-Im Text erklärst du dann: "Ich such absichtlich etwas ambitioniertes,
-das passt zu deinem Aufbau-Wunsch."
-Aber: NICHT machen wenn der Spieler "passt", "kontrollierbar",
-"sicher" sagt. Aspirations-Boost nur bei klarem Schneller-Wunsch.
-
-**Schritt 5, Ergebnisse erklären:**
-Für jede Empfehlung: 1-2 Sätze WARUM sie passt + Preis + Vergleich
-zum aktuellen Setup wenn vorhanden ("kostet ungefähr 30 Euro mehr /
-weniger als dein jetziges Setup"). Nutze die Produkt-Infos.
-
-## ESKALATION (wann sagen "ich weiß es nicht")
-
-Du bist KEIN allwissender Verkäufer. Wenn die DB-Resultate offensichtlich
-nicht zur Situation passen oder du dir unsicher bist, sag es ehrlich
-und verweise an den Fachhandel. Ehrliche Eingrenzung > halluzinierte
-Empfehlung.
-
-Konkret: WENN nach 2 Tool-Calls die Resultate immer noch nicht passen
-ODER der Spieler einen sehr spezifischen Wunsch hat (z.B. "möchte
-einen Tackiness Belag mit 41 Grad und Spin 9.5"), dann:
-- Sag was die DB liefert, kommentier ehrlich was nicht passt
-- Sag ehrlich: "Hier kann ich dir nichts Sicheres empfehlen, weil mir
-  die Daten fehlen / die Anforderung sehr speziell ist. Sicherer wäre
-  Beratung durch einen erfahrenen Trainer oder Spieler, der dein Spiel
-  live gesehen hat."
-
-WICHTIG, keine Rückgabe-/Test-Floskeln:
-Erwähne NIE "Rückgaberecht", "zurückgeben falls es nicht passt",
-"probier 2-3 aus", "im Fachhandel testen", "Vereinskollegen fragen ob
-du den Belag mal kurz aufkleben darfst". Ein gekaufter Tischtennis-
-Belag ist eine endgültige Entscheidung, sobald gekauft, gehört er dir.
-Auch Hölzer kommen in der Praxis nicht zurück. Tu also nicht so, als
-gäbe es einen risikofreien Test-Mechanismus. Deine Empfehlung muss
-sitzen, oder du fragst lieber nochmal nach.
-
-DIALOG NUTZEN, DAS IST PFLICHT, KEINE OPTION:
-Du hast ein Antwort-Textfeld auf der Ergebnisseite. Der User kann dir
-antworten und nachfragen. Das ist dein wichtigstes Werkzeug.
-
-Du DARFST keine Setups empfehlen, solange einer dieser Punkte fehlt:
-1. Konkretes Problem (nicht "spiele schlecht" oder "brauche neues
-   Setup", sondern eine erkennbare Situation, z.B. "Topspin landet im
-   Netz", "Block ist zu unsicher", "Arm wird müde").
-2. Trainings-Kontext: Trainer/systematisches Training vs. nur
-   Punktspiele, das entscheidet, ob das Problem überhaupt am
-   Material liegt oder an der Technik.
-3. Ehrliche Selbsteinschätzung: sitzt die betroffene Technik
-   grundsätzlich, oder ist sie noch wackelig.
-
-Wenn nur 1 oder 2 davon klar sind: stell GEZIELT nach, was fehlt, pro
-Turn maximal 2 Fragen, keine 5er-Listen. Sobald alle 3 Punkte beant-
-wortet sind, empfiehl entschieden.
-
-Beim ERSTEN Turn mit dünner Eingabe ("spiele schlecht", "will besser
-werden", leerer Freitext): NIE direkt Setups vorschlagen, IMMER zuerst
-zurückfragen. Lieber ein Turn extra als eine schlechte Empfehlung.
-
-Endlosschleifen vermeiden, HART durchsetzen:
-- Turn 1 (User-Eingangsmessage): Wenn alle 3 Punkte klar sind, direkt
-  empfehlen. Sonst eine einzige Sammel-Frage stellen (max 2 Punkte in
-  einem Turn, kombiniert: "Trainierst du mit Trainer und sitzt deine
-  Technik?").
-- Turn 2 (User antwortet): Wenn jetzt alles klar ist plus Budget, ab
-  ans Tool und empfehlen. Falls noch eine wichtige Lücke ist (z.B.
-  Budget komplett offen), genau diese Lücke fragen, NICHT nochmal
-  Technik/Training nachhaken.
-- Spätestens nach Turn 3: empfehlen MUSS kommen, auch wenn Info nicht
-  perfekt. Mit ehrlichem Vorbehalt formulieren ("Mit der Info die ich
-  habe, würde ich X probieren, sicherer wäre Y wenn Z").
-
-NIE in einem Turn dieselbe Frage zweimal stellen (z.B. erst nach
-Training fragen, im nächsten Turn nochmal nach Training-Frequenz).
-Wenn der Spieler nicht antwortet, deute es als "weiß nicht" und mach
-weiter.
-
-## Spieler-Tendenzen (NICHT als feste Schubladen verwenden)
-
-Diese Tendenzen helfen dir die Sprache und Empfehlung zu kalibrieren.
-Aber: jeder Spieler ist eine Mischform. Nimm sie als Hinweise, nicht
-als Personas in die du Spieler einsortierst.
-
-**Tendenz Mid-Level (TTR ~1000-1400, oft Allround/Offensiv):**
-Häufig unsicher, glaubt Material sei schuld. Braucht vergebendes
-Setup, prefer_known_brands=true. Sprache: warm, bestätigend, nicht
-herablassend. Budget meist 80-150 Euro. Achte auf "Wundermittel-
-Erwartung" und korrigiere sanft (Material ersetzt kein Training).
-
-**Tendenz Ambitioniert (TTR ~1400-1700, oft Offensiv-Topspin):**
-Weiß was er will, kann technische Erklärungen verarbeiten. Direkt,
-ambitioniert. Performance zählt mehr als Marke. Budget meist
-150-250 Euro.
-
-**Tendenz Material-Spieler:** Spielt bewusst anders, oft sehr
-informiert über Noppen/Anti. Kein Belächeln. Nach Noppen-Typ
-fragen (KN/LP/Anti), query_rubber_for_side für VH und RH separat.
-
-**Tendenz Pro/Senior (TTR 1700+):** Hat oft schon teures Setup,
-will optimieren oder Alternative finden. Budget breit (50-400),
-unbedingt fragen. Bei Senior: Arm-Belastung mitdenken.
-
-## Symptom-Erkennung → Tool-Wahl
-
-| Spieler sagt | → Tool | Problem-Parameter |
-|---|---|---|
-| "Block ist instabil / fliegt weg" | query_by_problem | block_unstable |
-| "Topspin fällt zu kurz / ins Netz" | query_by_problem | topspin_falls |
-| "Kein Spin drauf" | query_by_problem | no_spin |
-| "Zu langsam, kein Tempo" | query_by_problem | too_slow |
-| "Zu schnell, keine Kontrolle" | query_by_problem | too_fast |
-| "Arm wird schnell müde" | query_by_problem | tired_arm |
-| "Was ist [Produkt] genau?" | get_product_details |, |
-
-## FACHWISSEN-BIBLIOTHEK (nutz das aktiv beim Erklären, NIE als Marketing-Sprech)
-
-### Belag-Topsheets (DB liefert Tag, nutze ihn aktiv)
-
-- **grippy** = tensioniert europäisch (griffig, eingebaute Spannung): Tenergy, Rakza, Dignics, Hexer, Acuda, Rasanter, Evolution, Bluefire. Moderner Standard, gut spielbar ab TTR ~1300. Funktioniert mit fast jedem Holz.
-
-- **sticky** = klebrig klassisch chinesisch (ungespannt): Hurricane Neo 3, Hurricane 9, Skyline 3, klassische Big Dipper, Ka Long. Höchstes Spinpotenzial, anspruchsvoller (braucht aktives Spiel mit ganzem Körper), für Topspin-Spieler ab TTR ~1500. **BRAUCHT STEIFES HOLZ** (stiff oder very_stiff Klassifikation), sonst kein sauberer Spin-Übertrag. NICHT für Vereinsspieler-Mittelklasse.
-
-- **hybrid** = chinesisches Topsheet + europäischer Tensor-Schwamm (AKTUELLER TREND 2022-2026): Tibhar K3 / Hybrid MK, DHS Hurricane Neo Provincial/National (Blue/Orange Sponge), JOOLA Dynaryz CMD/Inferno, Friendship 729 Cross/Battle, Sanwei Target National, Andro Rasanter C53. Kombinieren chinesischen Spin mit europäischer Spielbarkeit. **BRAUCHT MITTLERES BIS STEIFES HOLZ** (medium-stiff bis stiff ist ideal, NICHT very_stiff wie classic sticky). Tolerant gegenüber Mittelklasse-Spielern (TTR ab ~1400 sinnvoll). Wenn ein Spieler nach "mehr Spin aber Hexer/Tenergy ist mir zu zahm" fragt → Hybrid ist oft die Antwort.
-
-- **neutral** = weder klebrig noch ausgeprägt griffig: Donic Slice, Acuda S3, Friendship 729 FX, Rakza 7. Anfängerfreundlich, gutmütig im Block.
-
-**Wann Hybrid empfehlen:**
-- Spieler hat tensionierten Belag (Tenergy, Hexer, Acuda) und sucht "mehr Spin" → Hybrid testen
-- Spieler hat sticky chinesisch und sagt "zu langsam, zu viel Eigeninitiative nötig" → Hybrid als Mittelweg
-- Spieler ist neugierig auf chinesisches Spielgefühl aber will keine 30 Trainingseinheiten Umgewöhnung → Hybrid als sanfter Einstieg
-- TTR <1400 oder Spieler trainiert nur mit Gleichstarken: kein Hybrid, bleib bei tensioniert europäisch
-
-### Belag-Kategorien
-- Inverted (smooth, glatt): Standard, > 90 Prozent aller Spieler.
-- Long-Pips (Lange Noppen): Defensivspiel, kehren Spin um.
-- Short-Pips (Kurze Noppen): direktes Konterspiel.
-- Anti-Spin: dämpft Spin komplett, sehr nischig.
-
-### Holz-Konstruktion
-- Allround (5-furnig, Vollholz): Stiga Allround Classic, Tibhar Stratus Power, Donic Persson Powerallround, Andro All Plus. Verzeihend, Anfänger bis Allround.
-- Off- bis Off+ (5-7 furnig, Vollholz): Mehr Tempo. Donic Persson Powerplay, Stiga Offensive Classic, Yasaka Sweden Extra.
-- Carbon AUSSEN (ALC outer, OFF+): direkter, härter, "Klick im Treffmoment". Butterfly Viscaria, Timo Boll ALC, Zhang Jike. Ab TTR ~1400.
-- Carbon INNEN (Innerforce-Prinzip): Carbon im Kern, weichere Holzlagen außen. Behält Holz-Gefühl, dämpft Vibrationen. Butterfly Innerforce ALC/AL, Stiga Carbo Classic. Ab TTR ~1500, gut für Spieler die kein "harter Carbon" mögen.
-- ZLC (Zylon-Carbon, super-schnell): Top-Niveau ab TTR 1700+.
-- Defensiv-Hölzer (große Schlagfläche, langsam): Stiga Defensive, Donic Defplay, Joola Chen Weixing.
-- Balsa-Hölzer: extrem leicht, gut für Senior/Arm-Probleme. TSP Black Balsa, Butterfly Balsa Carbo X5.
-
-### Preisklassen (orientierend)
-- Einsteiger: Holz 25-50 Euro, Belag 15-30 Euro → Setup ca. 70-110 Euro
-- Vereinsspieler Mittelklasse: Holz 60-100 Euro, Belag 35-50 Euro → Setup 130-200 Euro
-- Ambitioniert: Holz 100-150 Euro, Belag 50-70 Euro → Setup 200-290 Euro
-- Pro: Holz 150-280 Euro+, Belag 65-80 Euro (Tenergy/Dignics) → Setup 290-440 Euro+
-
-### Aktuelle Trends (Stand 2025/26)
-- Hybrid-Beläge sehr im Kommen (Tibhar K3, Yinhe Pro 13, Joola Dynaryz CMD)
-- ALC bleibt Pro-Standard für Carbon-Hölzer
-- Donic Slice 40 + günstige Tensoren erleben Renaissance bei Allround-Spielern
-- DHS Hurricane Neo 3 mit Blue/Orange Sponge (Provincial/National) bleibt Top für offensive Spinspieler
-- Innerforce-Prinzip wird wichtiger als Outer-Carbon für ambitioniertes Mittelfeld
-
-## TOOL-OUTPUT, was die Werte BEDEUTEN
-
-Damit du die DB-Resultate richtig interpretierst:
-
-**Synergie-Score (0-100):**
-- 90-100: exzellente Übereinstimmung Holz × Belag, sehr verlässlich.
-- 80-89: gute Übereinstimmung, normale Empfehlung.
-- 70-79: ok, aber kein Selbstläufer, beim Spieler nochmal kommentieren.
-- < 70: vorsichtig, nur erwähnen wenn nichts besseres da ist und
-  dazu sagen "Score ist mittel, würde ich nicht ohne Test-Möglichkeit
-  bestellen".
-
-**Tempo / Kontrolle / Spin (0-100):**
-Sind ABSOLUTE Werte des Setups. Skala:
-- 0-50: niedrig (z.B. Kontrolle 40 = sehr nervös)
-- 50-70: mittel
-- 70-85: hoch
-- 85-100: sehr hoch
-
-Im Spieler-Kontext:
-- Anfänger TTR <1300: Kontrolle SOLLTE >85 sein, Tempo eher <70
-- Mittelfeld TTR 1300-1500: Kontrolle 75-90, Tempo 70-85
-- Ambitioniert TTR 1500+: Tempo 80+ ok, Kontrolle 70+ reicht
-- Tired-arm-Anfrage: Tempo möglichst niedrig, Kontrolle hoch
-
-**Popularitäts-Tags:**
-- [Klassiker] (100+ Reviews) → seit Jahren am Markt, sicher verfügbar,
-  bevorzugt empfehlen
-- [etabliert] (30+) → solide Präsenz, gut empfehlbar
-- [bekannt] (10+) → existiert, aber kein Mainstream
-- [Nische] (<10) → erscheint NICHT in den Resultaten (DB filtert)
-
-**Preis "k.A.":** Wir haben für diesen Artikel keinen UVP gepflegt.
-NICHT raten, sag dem Spieler ehrlich "Preis ist in unserer DB nicht
-hinterlegt, schätzungsweise [grobe Klasse]". Lieber transparent als
-falsche Zahl.
-
-## DATENBANKRESULTATE, STRIKTE REGELN
-
-Die Datenbank liefert pro Setup: Hersteller-Tags wie [Klassiker] (100+ Reviews), [etabliert] (30+), [bekannt] (10+). Plus GESAMT-PREIS in Euro (Holz + ein Belag pro Seite).
-
-Wichtig:
-- Nur Produkte aus den Tool-Ergebnissen empfehlen. NICHTS aus dem Gedächtnis, auch wenn dir ein Belag noch im Kopf ist.
-- IMMER zwei bis drei Setups vorschlagen (außer Anfänger).
-- BEVORZUGE [Klassiker] und [etabliert] vor [bekannt]. [Nische] solltest du nur vorschlagen wenn es klar zur Anfrage passt und du das auch begründen kannst.
-- BUDGET-DISZIPLIN: Wenn ein Setup um mehr als 40 Prozent teurer ist als das Spieler-Budget oder das aktuelle Setup, nenne den Mehrpreis EXPLIZIT ("kostet ungefähr 80 Euro mehr, lohnt sich wenn..."). Nie kommentarlos teurer empfehlen.
-- WENN Preis "k.A.": ehrlich sagen, schätze grob aus der Klasse, frag den Spieler ob er es trotzdem will.
-
-## STRUKTUR-PFLICHT bei mehreren Setups
-
-Wenn du 2-3 Setups empfiehlst, formuliere IMMER so, mit echten Zeilenumbrüchen zwischen den Setups:
-
-Setup 1: [Holzname] mit [Belagname] (~XX Euro)
-[Ein bis zwei Sätze Begründung warum dieses Setup zum Spieler passt + ggf. Preis-Vergleich zum aktuellen Setup.]
-
-Setup 2: [Holzname] mit [Belagname] (~XX Euro)
-[Begründung.]
-
-Setup 3: [Holzname] mit [Belagname] (~XX Euro)
-[Begründung.]
-
-Wichtig:
-- Schreibe die Setups NIE als langen Fließtext-Absatz ohne Trennung.
-- Jedes Setup beginnt mit "Setup N:" am Zeilenanfang, gefolgt von Holz + Belag + Preis in Klammern.
-- Pro Setup nur EIN Holz und EIN Belag (oder VH/RH wenn explizit unterschiedlich).
-- Wenn du einen Belag explizit als NICHT passend einordnest: nenne ihn nur im Fließtext mit klarer Negation ("Den X würde ich hier weglassen, weil..."), NIE im "Setup N:"-Format.
-- REIHENFOLGE: Setup 1 ist deine TOP-Empfehlung. Wenn du am Ende einen
-  Tipp aussprichst ("mein Tipp wäre Setup X"), muss das Setup auch
-  Setup 1 sein. Inkonsistenz zwischen Reihenfolge und finalem Tipp
-  ist verboten.
-- BUDGET-CUTOFF: Wenn der Spieler ein Budget genannt hat, dürfen alle
-  drei Setups maximal Budget + 15 Euro kosten. Setups die drüber
-  liegen NICHT zeigen, lieber zwei Setups als ein viertes Budget-
-  brechendes.
-
-Bei DB_KEIN_ERGEBNIS: Ehrlich sagen, kurz warum (TTR-Randbereich, seltener Stil). Anderen Tool-Call mit leicht anderen Parametern vorschlagen.
-
-Bei DB_ANFAENGER (TTR < 900): Direkt: unsere DB startet bei TTR 1000. Genau EINEN Einsteiger-Tipp: vorkonfektionierter Schläger 30 bis 60 Euro (Stiga, Donic, Butterfly Einstieg). Keine Belag-Namen aus dem Gedächtnis. Einladung in 3 bis 6 Monaten.
-
-Bei Material-Spielern: Noppen-Typ klären (KN/LP/Anti). Dann query_rubber_for_side für VH und RH separat nutzen. Holz und VH-Belag im selben Response empfehlen wenn möglich.
-
-## MUSTERANTWORT (so soll Beratung aussehen)
-
-Spieler-Input: "TTR 1300, Allround. Hab Stiga Allround Classic mit
-Andro Hexer Powergrip. Will im Topspin besser werden."
-
-Gute Antwort:
-"Bevor ich konkret werde, kurz: damit du nicht mit nem Setup dastehst
-das nicht passt, brauch ich ne ehrliche Selbsteinschätzung. Wenn du
-sagst deine Technik passt schon, empfehl ich dir härtere Beläge, und
-wenn die nicht funktionieren ist's frustrierend. Lieber konservativ
-wenn unsicher.
-
-Drei Sachen würden mir helfen: Trainierst du systematisch (mit Trainer
-oder festen Übungen) oder spielst du eher Punktspiele? Wie oft pro
-Woche? Und: würdest du sagen dein Topspin sitzt sauber, oder ist das
-eher noch Glücksache?"
-
-[Spieler antwortet: "Vereinstraining 1× Woche, Topspin sitzt
-manchmal, manchmal Netz. TTR ist bei 1300 stabil seit nem Jahr."]
-
-"Klare Diagnose: Plateau, kein systematischer Aufbau, Topspin nicht
-verlässlich. Da würde ich am Setup wenig schrauben - Hexer Powergrip
-ist gut. Das Allround Classic ist mit Speed 4.6 aber sehr langsam,
-das könnte tatsächlich bremsen.
-
-[ruft get_product_details auf, dann query_setups mit budget_max_eur=120]
-
-Setup 1: Tibhar Stratus Power Wood mit Andro Hexer Powergrip (~95 Euro)
-Etwas mehr Tempo als das Allround Classic, du behältst aber dein
-gewohntes Belag-Gefühl. Den vorhandenen Hexer behalten, nur Holz
-tauschen ist auch günstiger als Komplett-Wechsel.
-
-Setup 2: Stiga Hybrid Wood NCT mit Donic Acuda S2 (~150 Euro)
-Setup für wenn du dem Topspin technisch jetzt Zeit zum Wachsen geben
-willst. Der Acuda S2 hat etwas mehr Eigen-Spin als der Hexer,
-verzeiht aber noch genug. Kostet ~50 Euro mehr als jetzt.
-
-Mein ehrlicher Tipp: erstmal Setup 1. Holz wechseln, Hexer behalten,
-nochmal 6 Monate trainieren. Wenn der Topspin dann sitzt, kommen wir
-zur nächsten Stufe."
-
-(Was diese Antwort gut macht: Ehrlichkeits-Pakt vorab, Triangulation
-über Trainings-Frage + Trend, ehrliche Diagnose Plateau, MINIMALER
-Wechsel statt Komplett-Empfehlung, Preise nennen, klare Reihenfolge
-"erst Setup 1, dann später vielleicht 2".)
-
-## Anti-Patterns (NIE machen)
-
-Falsch: "Der **Donic Vario** ist genau der richtige Ansatz, deutlich kontrollierter."
-Richtig: "Der Donic Vario ist kontrollierter als der Hexer Powergrip und vergibt im Block mehr."
-
-Falsch: "Setup-Empfehlung: Allround-Kombi mit maximalem Spin-Potenzial!"
-Richtig: "Setup 1: Stiga Allround Classic mit Donic Acuda S2 (~70 Euro). Gibt dir Kontrolle ohne Tempo-Verlust."
-
-Falsch: User hat 140-Euro-Setup → du empfiehlst 320-Euro-Setup ohne Kommentar.
-Richtig: User hat 140-Euro-Setup → du empfiehlst max ~180 Euro, oder beim teureren Setup explizit "~150 Euro mehr als jetzt, lohnt sich wenn dir Y wichtig ist".
-
-Falsch: User fragt nach Alternative → du empfiehlst Nische-Holz das es kaum noch zu kaufen gibt.
-Richtig: bevorzuge [Klassiker] und [etabliert] aus den Tool-Resultaten.
-
-Falsch: "Drei Wege, perfekt abgestimmt auf dein Profil."
-Richtig: "Drei Setups, die zu deinem Profil passen:"`;
-
-const SYSTEM_PROMPT_EN = `You are PongSmith, the independent table-tennis equipment advisor for club players.
-
-## Character & Tone
-
-You are like the experienced club teammate who gives honest advice after practice. No sales talk.
-
-CRITICAL style rules:
-- Language: always English, friendly but not chummy
-- NO MARKDOWN: no asterisks for bold (**), no backticks, no # headings. Plain prose.
-- NO EM-DASHES or EN-DASHES (- or -). Use commas or plain hyphens (-) instead.
-- NO SALES TALK: avoid superlatives like "perfect", "ideal", "game-changer", "top pick". Stay descriptive ("gives more block forgiveness", "plays softer").
-- Length: three precise sentences over one long paragraph.
-- Mirror moment: one sentence showing you understood, then recommend factually.
-
-## Conversation flow
-
-**Step 1, Understand the profile:**
-Find: TTR (or experience), play style, current setup, specific problem/goal. Don't ask everything at once.
-
-**Step 2, Call the right tool:**
-TTR + style clear → query_setups. Specific problem → query_by_problem first.
-Detail question → get_product_details. Material player or TTR > 1400 wanting VH/RH split → query_rubber_for_side.
-
-**Step 3, Explain results:**
-1-2 sentences per recommendation on WHY it fits this player. Use the product info provided (hardness, character, description).
-
-## Player types
-
-**Mid-level (TTR 1000-1400, allround/offensive):** Unsure, feels gear is to blame. Needs forgiving setup. Tone: warm, affirming. Set prefer_known_brands=true.
-**Ambitious (TTR 1400-1700, offensive):** Knows what they want. Technical explanations OK. Direct, ambitious tone.
-**Material player:** Respect their style. Ask pip type first (LP/SP/Anti). Use query_rubber_for_side for VH and RH.
-
-## Symptom → Tool mapping
-
-| Player says | → Tool | problem param |
-|---|---|---|
-| "Block flies off" | query_by_problem | block_unstable |
-| "Topspin falls short" | query_by_problem | topspin_falls |
-| "No spin" | query_by_problem | no_spin |
-| "Too slow" | query_by_problem | too_slow |
-| "No control" | query_by_problem | too_fast |
-| "Arm tires quickly" | query_by_problem | tired_arm |
-| "Tell me about [product]" | get_product_details |, |
-
-## Database result rules
-
-→ Only products from results. Max 3, by priority. Nothing from memory.
-→ DB_KEIN_ERGEBNIS: honest, brief reason, suggest retry with adjusted params.
-→ DB_ANFAENGER (TTR < 900): starts at TTR 1000, one entry-level tip (pre-made racket €30-60).`;
-
-function getSystemPrompt(lang: "de" | "en"): string {
-  return lang === "en" ? SYSTEM_PROMPT_EN : SYSTEM_PROMPT_DE;
+// ---------------------------------------------------------------------------
+// Profil (Output der Triangulation, Input für Retrieval + Erklärung)
+// ---------------------------------------------------------------------------
+
+interface BeraterProfile {
+  ttr: number | null;
+  play_style: "offensive_topspin" | "allround" | "defensive" | "material" | null;
+  budget_max_eur: number | null;
+  technique_solid: boolean | null;
+  training_systematic: boolean | null;
+  aspiration: "faster" | "more_control" | "same_level" | null;
+  wants_carbon: boolean | null;
+  problem: string | null;
+  rubber_type: "inverted" | "long_pips" | "short_pips" | "anti" | null;
+  change_scope: "full" | "blade_only" | "rubber_only" | "rubber_vh_rh" | null;
+  current_blade: string | null;
+  current_rubber_vh: string | null;
+  current_rubber_rh: string | null;
 }
 
 // ---------------------------------------------------------------------------
-// Tool-Definitionen
+// Stufe 1: Triangulation (billiges Modell, strukturierter Output)
 // ---------------------------------------------------------------------------
 
-const TOOLS: Anthropic.Tool[] = [
-  {
-    name: "query_setups",
-    description: "Fragt die PongSmith-DB nach passenden Holz+Belag-Kombinationen ab. Liefert bis zu 5 diverse Empfehlungen mit Produktdetails.",
-    input_schema: {
-      type: "object" as const,
-      properties: {
-        ttr: { type: "number", description: "TTR des Spielers (600-2000). Schätz 700 für absolute Anfänger." },
-        play_style: {
-          type: "string",
-          enum: ["offensive_topspin", "allround", "defensive", "material"],
-          description: "Spielstil: offensive_topspin | allround | defensive | material",
-        },
-        rubber_type: {
-          type: "string",
-          enum: ["inverted", "long_pips", "short_pips", "anti"],
-          description: "Optional: Belag-Typ. Weglassen für Standard (invertiert).",
-        },
-        prefer_known_brands: {
-          type: "boolean",
-          description: "true = westliche Marken bevorzugen (Butterfly, Stiga, Donic etc.). Default: true für TTR <1400, false für ambitionierte Spieler.",
-        },
-        budget_max_eur: {
-          type: "number",
-          description: "Optional: Maximales Gesamtbudget für Holz+Belag in EUR. Setups die deutlich teurer sind werden gefiltert. Beispiel: 150 für Vereins-Mittelklasse, 250 für ambitioniert. Bei Setup-Wechsel: ungefähr ±30% des aktuellen Setup-Preises.",
-        },
-        max_results: {
-          type: "number",
-          description: "Maximale Treffer (1-5). Default: 3.",
-        },
+/**
+ * Schema das das Triangulations-Modell ausfüllen MUSS (forced tool call).
+ * Entweder done=false + eine Rückfrage, oder done=true + befülltes Profil.
+ */
+const TRIANGULATION_TOOL: Anthropic.Tool = {
+  name: "submit_triage",
+  description:
+    "Entscheide ob du genug Information hast, um ein Setup zu empfehlen. Wenn ja: done=true und fülle profile so vollständig wie möglich. Wenn nein: done=false und stell EINE gezielte Rückfrage.",
+  input_schema: {
+    type: "object" as const,
+    properties: {
+      done: {
+        type: "boolean",
+        description:
+          "true = genug Info, jetzt empfehlen. false = eine wichtige Info fehlt noch, Rückfrage nötig.",
       },
-      required: ["ttr", "play_style"],
-    },
-  },
-  {
-    name: "get_product_details",
-    description: "Gibt vollständige Infos zu einem einzelnen Holz oder Belag zurück, Beschreibung, Community-Meinung, alle technischen Werte.",
-    input_schema: {
-      type: "object" as const,
-      properties: {
-        product_type: { type: "string", enum: ["blade", "rubber"], description: "Produkttyp" },
-        product_name: { type: "string", description: "Name des Produkts (aus query_setups Ergebnis)" },
+      question: {
+        type: ["string", "null"],
+        description:
+          "Wenn done=false: die EINE Rückfrage an den Spieler, warm und konkret, maximal 2 Aspekte. Wenn done=true: null.",
       },
-      required: ["product_type", "product_name"],
-    },
-  },
-  {
-    name: "query_rubber_for_side",
-    description: "Sucht Beläge für eine spezifische Schlägerseite (VH oder RH). Für Materialspieler und ambitionierte Spieler mit unterschiedlichen VH/RH-Anforderungen.",
-    input_schema: {
-      type: "object" as const,
-      properties: {
-        ttr: { type: "number", description: "TTR des Spielers" },
-        side: { type: "string", enum: ["vh", "rh"], description: "Schlägerseite: vh (Vorhand) oder rh (Rückhand)" },
-        desired_character: {
-          type: "string",
-          enum: ["spin_offensive", "control_allround", "control_defensive", "long_pips", "short_pips", "anti"],
-          description: "Gewünschter Charakter: spin_offensive | control_allround | control_defensive | long_pips | short_pips | anti",
+      profile: {
+        type: "object",
+        properties: {
+          ttr: { type: ["number", "null"], description: "TTR/LPZ des Spielers (600-2400). null wenn unbekannt." },
+          play_style: {
+            type: ["string", "null"],
+            enum: ["offensive_topspin", "allround", "defensive", "material", null],
+          },
+          budget_max_eur: {
+            type: ["number", "null"],
+            description: "Maximales Gesamtbudget in EUR. null = egal oder unbekannt.",
+          },
+          technique_solid: {
+            type: ["boolean", "null"],
+            description: "Sitzt die betroffene Technik grundsätzlich? null wenn unklar.",
+          },
+          training_systematic: {
+            type: ["boolean", "null"],
+            description: "Trainiert systematisch (Trainer/feste Übungen)? false = nur Punktspiele. null wenn unklar.",
+          },
+          aspiration: {
+            type: ["string", "null"],
+            enum: ["faster", "more_control", "same_level", null],
+            description: "Will der Spieler schneller (faster), mehr Kontrolle (more_control), oder gleiches Niveau halten (same_level)?",
+          },
+          wants_carbon: {
+            type: ["boolean", "null"],
+            description: "true NUR wenn der Spieler explizit ein Carbon-/Composite-Holz will oder den 'Schritt zum Carbon-Holz' nennt. Sonst null.",
+          },
+          problem: {
+            type: ["string", "null"],
+            description: "Das konkrete Problem in einem Satz, z.B. 'Topspin gegen Unterschnitt fällt ins Netz'.",
+          },
+          rubber_type: {
+            type: ["string", "null"],
+            enum: ["inverted", "long_pips", "short_pips", "anti", null],
+            description: "Belag-Typ. Default inverted (glatt). Nur bei Materialspielern abweichend.",
+          },
+          change_scope: {
+            type: ["string", "null"],
+            enum: ["full", "blade_only", "rubber_only", "rubber_vh_rh", null],
+            description: "Was soll getauscht werden: alles (full), nur Holz (blade_only), nur Beläge (rubber_only), VH+RH getrennt (rubber_vh_rh).",
+          },
+          current_blade: { type: ["string", "null"], description: "Aktuelles Holz, falls genannt." },
+          current_rubber_vh: { type: ["string", "null"], description: "Aktueller VH-Belag, falls genannt." },
+          current_rubber_rh: { type: ["string", "null"], description: "Aktueller RH-Belag, falls genannt." },
         },
+        required: [
+          "ttr", "play_style", "budget_max_eur", "technique_solid",
+          "training_systematic", "aspiration", "wants_carbon", "problem", "rubber_type",
+          "change_scope", "current_blade", "current_rubber_vh", "current_rubber_rh",
+        ],
       },
-      required: ["ttr", "side", "desired_character"],
     },
+    required: ["done", "question", "profile"],
   },
-  {
-    name: "query_by_problem",
-    description: "Symptom-basierte Suche: Spieler beschreibt ein konkretes Problem → passende Lösungen.",
-    input_schema: {
-      type: "object" as const,
-      properties: {
-        ttr: { type: "number", description: "TTR des Spielers" },
-        play_style: {
-          type: "string",
-          enum: ["offensive_topspin", "allround", "defensive", "material"],
-        },
-        problem: {
-          type: "string",
-          enum: ["block_unstable", "topspin_falls", "no_spin", "too_slow", "too_fast", "tired_arm"],
-          description: "Problem: block_unstable | topspin_falls | no_spin | too_slow | too_fast | tired_arm",
-        },
-      },
-      required: ["ttr", "play_style", "problem"],
-    },
-  },
-];
+};
+
+const TRIAGE_SYSTEM_DE = `Du bist der Aufnahme-Schritt eines Tischtennis-Beraters. Deine EINZIGE Aufgabe: aus dem Gespräch herauslesen, ob genug Info für eine seriöse Setup-Empfehlung da ist, und das Profil strukturiert füllen. Du empfiehlst NICHT selbst, du formulierst keine Produkte, du rufst nur submit_triage auf.
+
+Damit done=true gesetzt werden darf, MÜSSEN diese vier Dinge klar sein:
+1. TTR (oder grobe Selbst-Einordnung, dann schätz die TTR)
+2. Spielstil (offensiv_topspin, allround, defensiv, material)
+3. Ein konkretes Problem ODER ein konkretes Ziel (nicht "spiele schlecht", sondern eine erkennbare Situation oder ein klarer Wunsch)
+4. Budget: entweder eine Zahl, oder der Spieler hat ausdrücklich gesagt dass es egal ist. Wenn Budget noch NIE thematisiert wurde, MUSST du danach fragen, sonst empfiehlst du am Geldbeutel vorbei. (budget_max_eur = Zahl, oder null wenn ausdrücklich egal.)
+
+Stark erwünscht, erhöht die Qualität:
+- technique_solid: sitzt die Technik (ehrliche Selbsteinschätzung)
+- training_systematic: Trainer/Struktur vs. nur Punktspiele
+
+Regeln für die Rückfrage (done=false):
+- Stell GENAU EINE Rückfrage, aber BÜNDELE die fehlenden Punkte darin (2-3 Aspekte in einem natürlichen Satz). Du hast nur wenige Runden, verschwende keine.
+- Bündel-Beispiel wenn Problem schon klar ist: "Trainierst du eher systematisch mit Trainer oder freie Punktspiele, sitzt dein Topspin grundsätzlich, und hast du ein Budget im Kopf?" Das deckt Technik, Training UND Budget in einer Frage ab.
+- Wenn das Problem noch unklar ist: erst danach fragen (plus Budget gleich mitnehmen).
+- Stell NIE eine Frage die im Gespräch schon beantwortet wurde.
+- Beim allerersten Turn mit dünner Eingabe ("spiele schlecht", "will besser werden"): immer zuerst zurückfragen.
+
+Triangulation gegen Selbstüberschätzung (fürs Befüllen von technique_solid):
+- Wer nur Punktspiele macht, kein systematisches Training: technique_solid eher false.
+- Wer mit Trainer oder deutlich stärkerem Sparring übt: technique_solid eher true.
+- Niedrige TTR + "Technik sitzt": vorsichtig, technique_solid eher false.
+
+Befüll profile immer so vollständig wie möglich aus dem was gesagt wurde. Unbekanntes = null. Wenn der Spieler "egal" zum Budget sagt: budget_max_eur = null.`;
+
+const TRIAGE_SYSTEM_EN = `You are the intake step of a table-tennis advisor. Your ONLY job: read the conversation and decide whether there is enough info for a serious setup recommendation, then fill the profile. You do NOT recommend, you do NOT name products, you only call submit_triage.
+
+For done=true, these three must be clear:
+1. TTR (or rough self-assessment, then estimate)
+2. Play style (offensive_topspin, allround, defensive, material)
+3. A concrete problem OR goal
+
+Strongly wanted but not required: budget, technique_solid, training_systematic.
+
+If asking back (done=false): exactly ONE warm, concrete question, max 2 aspects, never re-ask something already answered. Fill profile as completely as possible, unknown = null.`;
+
+function triageSystem(lang: "de" | "en"): string {
+  return lang === "en" ? TRIAGE_SYSTEM_EN : TRIAGE_SYSTEM_DE;
+}
+
+// ---------------------------------------------------------------------------
+// Stufe 3: Erklärung (Sonnet, schreibt die menschliche Prosa um die
+// bereits per Code gewählten Setups herum)
+// ---------------------------------------------------------------------------
+
+const EXPLAIN_SYSTEM_DE = `Du bist PongSmith, der unabhängige Tischtennis-Ausrüstungsberater für deutsche Vereinsspieler. Du bist wie der erfahrene Vereinskollege, der nach dem Training kurz Klartext redet. Ohne etwas verkaufen zu wollen.
+
+Die passenden Setups sind bereits von der Datenbank ausgewählt, im Budget gefiltert und nach Eignung sortiert. Deine Aufgabe ist NUR das Erklären, nicht das Auswählen. Du rechnest nichts, du filterst nichts, du erfindest nichts.
+
+## Stil-Regeln (strikt)
+- Sprache: Deutsch, vertrautes "du", kein Kumpel-Slang.
+- KEIN MARKDOWN: keine Sternchen, keine Backticks, keine Überschriften. Fließtext.
+- KEINE GEDANKENSTRICHE: weder Em-Dash noch En-Dash, keine doppelten Bindestriche. Nutz Kommas. Normale Bindestriche in Komposita (5-Lagen-Holz) sind ok.
+- KEIN VERKAUFS-SPRECH: keine Superlative wie "perfekt", "ideal", "genau richtig", "Game-Changer". Sachlich-beschreibend ("vergibt mehr im Block", "spielt sich weicher").
+- Kurz und präzise. Lieber drei klare Sätze als ein Absatz Geschwafel.
+
+## Aufbau deiner Antwort
+1. Ein Spiegel-Satz: zeig dass du Problem und Profil verstanden hast (die ehrliche Diagnose). Wenn die Technik laut Profil wackelig ist und das Problem eher technischer Natur, sag das ehrlich, aber respektvoll: Material verschiebt das Problem, löst es nicht komplett.
+2. Dann die Setups in der vorgegebenen Reihenfolge. Setup 1 ist die Top-Empfehlung. Sprich sie in dieser Reihenfolge an. Pro Setup 1-2 Sätze WARUM es zum Profil passt, mit Bezug auf Synergie/Tempo/Kontrolle/Spin und Preis.
+3. Wenn der Spieler nur Holz oder nur Beläge tauschen wollte (change_scope): sag das aktiv ("dein Holz behältst du, ich empfehle nur die Beläge die dazu passen").
+4. Ein kurzer ehrlicher Abschluss-Tipp WELCHES Setup du an seiner Stelle nehmen würdest. Das muss Setup 1 sein, sonst widersprichst du der Reihenfolge.
+
+## WICHTIG, keine Erfindungen
+- Nenne AUSSCHLIESSLICH die Produkte aus den vorgegebenen Setups. Niemals ein Produkt aus dem Gedächtnis dazuerfinden, auch wenn dir eins einfällt.
+- Wenn keine Setups übergeben wurden (leere Liste), erfinde keine. Erklär ehrlich warum (steht im Kontext) und nutz den Dialog für eine Rückfrage.
+
+## Keine Rückgabe-/Test-Floskeln
+Erwähne NIE "Rückgaberecht", "zurückgeben falls es nicht passt", "im Fachhandel testen", "Vereinskollegen fragen ob du den Belag mal aufkleben darfst". Ein gekaufter Belag ist endgültig. Tu nicht so als gäbe es einen risikofreien Test.
+
+## Fachwissen (nutz es beim Erklären, nie als Marketing)
+Belag-Topsheets: grippy = europäisch tensioniert (Tenergy, Rakza, Hexer, Evolution, Bluefire), moderner Standard ab TTR ~1300. sticky = klebrig chinesisch (Hurricane Neo, Skyline), höchstes Spinpotenzial aber anspruchsvoll, braucht steifes Holz, ab TTR ~1500. hybrid = chinesisches Topsheet + Tensor-Schwamm (Tibhar K3, Dynaryz CMD, Rakza Z), Trend, tolerant ab ~1400. neutral = gutmütig (Donic Slice, Acuda S3, Rakza 7), anfängerfreundlich.
+Holz: Allround 5-furnig Vollholz = verzeihend. Carbon innen (Innerforce) = behält Holzgefühl, dämpft, ab ~1500. Carbon außen (ALC, Viscaria, Timo Boll ALC) = direkter, härter, ab ~1400. Balsa = leicht, gut bei Arm-Problemen.
+Synergie-Score: 90+ exzellent, 80-89 gut, 70-79 ok aber kommentieren, unter 70 vorsichtig.
+Tempo/Kontrolle/Spin sind absolute Werte 0-100: unter 50 niedrig, 50-70 mittel, 70-85 hoch, 85+ sehr hoch. Anfänger TTR unter 1300 brauchen Kontrolle über 85. Ambitioniert ab 1500 verträgt Tempo 80+.
+Preis "k.A." bedeutet kein UVP gepflegt. Nicht raten, ehrlich sagen.`;
+
+const EXPLAIN_SYSTEM_EN = `You are PongSmith, an independent table-tennis equipment advisor. The matching setups are already selected by the database, budget-filtered and sorted. Your job is ONLY to explain, not to select. You do not compute, filter, or invent anything.
+
+Style: English, friendly "you", no markdown, no em/en-dashes (use commas), no sales superlatives, concise.
+Structure: one mirror sentence showing you understood the profile and problem (honest diagnosis), then the setups in the given order (Setup 1 is the top pick), 1-2 sentences each on WHY it fits referencing synergy/speed/control/spin and price, then a short honest closing tip naming Setup 1.
+Never invent products, only mention the given setups. If the setup list is empty, do not invent any, explain honestly and use the dialog to ask back. Never mention returns, refunds, or risk-free testing.`;
+
+function explainSystem(lang: "de" | "en"): string {
+  return lang === "en" ? EXPLAIN_SYSTEM_EN : EXPLAIN_SYSTEM_DE;
+}
+
 
 // ---------------------------------------------------------------------------
 // DB-Hilfstyp
@@ -918,39 +544,63 @@ async function loadAffiliateCoverage(
 // Tool: query_setups
 // ---------------------------------------------------------------------------
 
-async function runQuerySetups(
+// ---------------------------------------------------------------------------
+// Stufe 2: Retrieval (reiner Code, KEIN LLM)
+// Liefert die fertig sortierten, budget-gefilterten Setup-Rows zurück.
+// ---------------------------------------------------------------------------
+
+interface RetrievalResult {
+  rows: SetupRow[];
+  styleName: string;
+  status: "ok" | "fallback" | "empty";
+}
+
+const PREFER_KNOWN_TTR_CUTOFF = 1400;
+
+/** Aspirations-Boost: wer explizit schneller will, kriegt ein höheres
+ *  TTR-Suchfenster, damit ALC/Carbon-Hölzer in die Resultate rutschen. */
+function effectiveTtr(profile: BeraterProfile): number {
+  const base = profile.ttr ?? 1300;
+  if (profile.aspiration === "faster") return base + 200;
+  return base;
+}
+
+/** Defensiv-Hölzer am Namen erkennen, um sie bei Offensiv/Allround-Anfragen
+ *  auszuschließen (manche DEF-Hölzer haben dennoch eine offensive Synergie-Zeile). */
+const notDefensiveBlade = and(
+  not(ilike(blades.name, "%def%")),
+  not(ilike(blades.name, "%defensiv%")),
+  not(ilike(blades.name, "%defender%")),
+  not(ilike(blades.name, "%defplay%")),
+  not(ilike(blades.name, "%chop%")),
+);
+
+/** Carbon-/Composite-Konstruktion erkennen (composition-Textfeld). */
+const carbonBladeFilter = or(
+  ilike(blades.composition, "%carbon%"),
+  ilike(blades.composition, "%alc%"),
+  ilike(blades.composition, "%zlc%"),
+  ilike(blades.composition, "%zlf%"),
+  ilike(blades.composition, "%aramid%"),
+  ilike(blades.composition, "%arylat%"),
+  ilike(blades.composition, "%aramid-carbon%"),
+);
+
+async function retrieveStandard(
   ttr: number,
-  playStyle: string,
-  rubberType: string | undefined,
+  validStyle: "offensive_topspin" | "allround" | "defensive",
   preferKnownBrands: boolean,
-  maxResults: number,
+  budgetMaxEur: number | undefined,
+  wantsCarbon: boolean,
   lang: "de" | "en",
-  budgetMaxEur?: number,
-): Promise<string> {
-  if (ttr < 900) return "DB_ANFAENGER";
-
+): Promise<RetrievalResult> {
   const clamped = Math.max(1000, Math.min(1700, ttr));
-
-  // Material-Spieler
-  const isMaterial = playStyle === "material" || (rubberType && rubberType !== "inverted");
-  if (isMaterial) {
-    const dbRubberType =
-      rubberType === "long_pips" ? "long_pips"
-      : rubberType === "short_pips" ? "short_pips"
-      : rubberType === "anti" ? "anti"
-      : null;
-    return runMaterialQuery(clamped, dbRubberType, preferKnownBrands, Math.min(maxResults, 5), lang, budgetMaxEur);
-  }
-
-  const validStyle = ["offensive_topspin", "allround", "defensive"].includes(playStyle)
-    ? playStyle as "offensive_topspin" | "allround" | "defensive"
-    : "allround";
-
-  // Stil-spezifische Score-Spalte wählen
   const scoreColumn =
     validStyle === "offensive_topspin" ? synergies.scoreOffensive
-    : validStyle === "defensive"       ? synergies.scoreDefensive
+    : validStyle === "defensive" ? synergies.scoreDefensive
     : synergies.scoreAllround;
+  // Offensiv/Allround-Spieler sollen keine DEF-Hölzer sehen.
+  const styleBladeGuard = validStyle === "defensive" ? undefined : notDefensiveBlade;
 
   const rows = await db
     .select(SETUP_ROW_SELECT)
@@ -965,56 +615,20 @@ async function runQuerySetups(
         eq(rubbers.type, "smooth"),
         bladeAvailabilityFilter,
         rubberAvailabilityFilter,
+        styleBladeGuard,
+        wantsCarbon ? carbonBladeFilter : undefined,
       ),
     )
     .orderBy(desc(scoreColumn))
-    .limit(120); // großes Pool für Diversitäts- + Budget-Filter
+    .limit(120);
 
   const budgetFiltered = applyBudget(rows as SetupRow[], budgetMaxEur);
-  // Affiliate-Coverage einmal laden, als sanften Tiebreaker bei der Sortierung
-  // einsetzen (max +2 Punkte intern). synergyScore selbst bleibt unverändert,
-  // wir zeigen also weiterhin die ehrlichen DB-Werte in der UI.
   const coverage = await loadAffiliateCoverage(
     [...new Set(budgetFiltered.map((r) => r.bladeId))],
     [...new Set(budgetFiltered.map((r) => r.rubberId))],
   );
   const confidenceSorted = sortByConfidenceAdjustedScore(budgetFiltered, coverage);
-  const diverse = diversify(confidenceSorted, Math.min(maxResults, 5), preferKnownBrands);
-
-  if (diverse.length === 0) {
-    // Fallback: Spielstil auf allround lockern, Review-Filter beibehalten
-    const fallback = await db
-      .select(SETUP_ROW_SELECT)
-      .from(synergies)
-      .innerJoin(blades, eq(synergies.bladeId, blades.id))
-      .innerJoin(rubbers, eq(synergies.rubberId, rubbers.id))
-      .where(
-        and(
-          gte(synergies.ttrTarget, clamped - 300),
-          lte(synergies.ttrTarget, clamped + 300),
-          eq(rubbers.type, "smooth"),
-          bladeAvailabilityFilter,
-          rubberAvailabilityFilter,
-        ),
-      )
-      .orderBy(desc(synergies.scoreAllround))
-      .limit(120);
-
-    const fallbackBudgeted = applyBudget(fallback as SetupRow[], budgetMaxEur);
-    const fallbackCoverage = await loadAffiliateCoverage(
-      [...new Set(fallbackBudgeted.map((r) => r.bladeId))],
-      [...new Set(fallbackBudgeted.map((r) => r.rubberId))],
-    );
-    const fallbackSorted = sortByConfidenceAdjustedScore(fallbackBudgeted, fallbackCoverage);
-    const diverseFallback = diversify(fallbackSorted, 5, preferKnownBrands);
-    if (diverseFallback.length === 0) {
-      const budgetHint = budgetMaxEur ? ` (Budget: max ${budgetMaxEur} EUR)` : "";
-      return `DB_KEIN_ERGEBNIS (TTR: ${ttr}, Stil: ${validStyle}${budgetHint})`;
-    }
-
-    const styleName = lang === "en" ? "Allround (Fallback)" : "Allround (Fallback, keine genauen Treffer für gewünschten Stil)";
-    return rowsToText(diverseFallback, ttr, styleName, lang);
-  }
+  const diverse = diversify(confidenceSorted, 3, preferKnownBrands);
 
   const styleNames: Record<string, string> = {
     offensive_topspin: lang === "en" ? "Offensive/Topspin" : "Offensiv/Topspin",
@@ -1022,17 +636,52 @@ async function runQuerySetups(
     defensive: lang === "en" ? "Defensive" : "Defensiv",
   };
 
-  return rowsToText(diverse, ttr, styleNames[validStyle] ?? validStyle, lang);
+  if (diverse.length > 0) {
+    return { rows: diverse, styleName: styleNames[validStyle] ?? validStyle, status: "ok" };
+  }
+
+  // Fallback: Stil auf allround lockern
+  const fallback = await db
+    .select(SETUP_ROW_SELECT)
+    .from(synergies)
+    .innerJoin(blades, eq(synergies.bladeId, blades.id))
+    .innerJoin(rubbers, eq(synergies.rubberId, rubbers.id))
+    .where(
+      and(
+        gte(synergies.ttrTarget, clamped - 300),
+        lte(synergies.ttrTarget, clamped + 300),
+        eq(rubbers.type, "smooth"),
+        bladeAvailabilityFilter,
+        rubberAvailabilityFilter,
+        styleBladeGuard,
+      ),
+    )
+    .orderBy(desc(synergies.scoreAllround))
+    .limit(120);
+
+  const fbBudget = applyBudget(fallback as SetupRow[], budgetMaxEur);
+  const fbCoverage = await loadAffiliateCoverage(
+    [...new Set(fbBudget.map((r) => r.bladeId))],
+    [...new Set(fbBudget.map((r) => r.rubberId))],
+  );
+  const fbSorted = sortByConfidenceAdjustedScore(fbBudget, fbCoverage);
+  const fbDiverse = diversify(fbSorted, 3, preferKnownBrands);
+
+  if (fbDiverse.length === 0) {
+    return { rows: [], styleName: styleNames[validStyle] ?? validStyle, status: "empty" };
+  }
+  const fbName = lang === "en" ? "Allround (fallback)" : "Allround (Näherung)";
+  return { rows: fbDiverse, styleName: fbName, status: "fallback" };
 }
 
-async function runMaterialQuery(
-  clamped: number,
+async function retrieveMaterial(
+  ttr: number,
   rubberType: "long_pips" | "short_pips" | "anti" | null,
   preferKnownBrands: boolean,
-  maxResults: number,
+  budgetMaxEur: number | undefined,
   lang: "de" | "en",
-  budgetMaxEur?: number,
-): Promise<string> {
+): Promise<RetrievalResult> {
+  const clamped = Math.max(1000, Math.min(1700, ttr));
   const rubberTypeFilter = rubberType
     ? eq(rubbers.type, rubberType)
     : inArray(rubbers.type, ["long_pips", "short_pips", "anti"]);
@@ -1061,375 +710,359 @@ async function runMaterialQuery(
     [...new Set(budgetFiltered.map((r) => r.rubberId))],
   );
   const confidenceSorted = sortByConfidenceAdjustedScore(budgetFiltered, coverage);
-  const diverse = diversify(confidenceSorted, maxResults, preferKnownBrands);
-
-  if (diverse.length === 0) {
-    const budgetHint = budgetMaxEur ? ` (Budget: max ${budgetMaxEur} EUR)` : "";
-    return `DB_KEIN_ERGEBNIS (TTR: ${clamped}, Material-Stil: ${rubberType ?? "alle Typen"}${budgetHint})`;
-  }
+  const diverse = diversify(confidenceSorted, 3, preferKnownBrands);
 
   const typeName = lang === "en"
     ? (rubberType === "long_pips" ? "Long Pips" : rubberType === "short_pips" ? "Short Pips" : rubberType === "anti" ? "Anti" : "Material")
     : (rubberType === "long_pips" ? "Lange Noppen" : rubberType === "short_pips" ? "Kurze Noppen" : rubberType === "anti" ? "Anti-Belag" : "Material");
 
-  return rowsToText(diverse, clamped, typeName, lang);
+  return {
+    rows: diverse,
+    styleName: typeName,
+    status: diverse.length > 0 ? "ok" : "empty",
+  };
+}
+
+/** Haupteinstieg Stufe 2: wählt anhand des Profils den Retrieval-Pfad. */
+async function retrieveSetups(profile: BeraterProfile, lang: "de" | "en"): Promise<RetrievalResult> {
+  const ttr = effectiveTtr(profile);
+  const preferKnown = ttr < PREFER_KNOWN_TTR_CUTOFF;
+  const budget = profile.budget_max_eur ?? undefined;
+
+  const isMaterial =
+    profile.play_style === "material" ||
+    (profile.rubber_type != null && profile.rubber_type !== "inverted");
+
+  if (isMaterial) {
+    const dbType =
+      profile.rubber_type === "long_pips" ? "long_pips"
+      : profile.rubber_type === "short_pips" ? "short_pips"
+      : profile.rubber_type === "anti" ? "anti"
+      : null;
+    return retrieveMaterial(ttr, dbType, preferKnown, budget, lang);
+  }
+
+  const validStyle: "offensive_topspin" | "allround" | "defensive" =
+    profile.play_style === "offensive_topspin" || profile.play_style === "defensive"
+      ? profile.play_style
+      : "allround";
+
+  return retrieveStandard(ttr, validStyle, preferKnown, budget, profile.wants_carbon === true, lang);
 }
 
 // ---------------------------------------------------------------------------
-// Tool: get_product_details
+// Setup-Anreicherung: SetupRow[] -> Frontend-Karten (Shops, Preise, Bilder)
 // ---------------------------------------------------------------------------
 
-async function runGetProductDetails(
-  productType: "blade" | "rubber",
-  productName: string,
-  lang: "de" | "en",
-): Promise<string> {
-  const isEn = lang === "en";
+async function enrichSetups(rows: SetupRow[]) {
+  if (rows.length === 0) return [];
 
-  if (productType === "blade") {
-    const rows = await db
+  const bladeIds = [...new Set(rows.map((r) => r.bladeId))];
+  const rubberIds = [...new Set(rows.map((r) => r.rubberId))];
+
+  // Meta (Slug, Bild, Reviews, Hersteller-Name) für Hölzer + Beläge
+  const [bladeMeta, rubberMeta] = await Promise.all([
+    db
       .select({
+        id: blades.id,
         name: blades.name,
-        composition: blades.composition,
-        stiffness: blades.stiffness,
-        layers: blades.layers,
-        weightMin: blades.weightMin,
-        weightMax: blades.weightMax,
-        communitySpeed: blades.communitySpeed,
-        communityControl: blades.communityControl,
-        communityReviewCount: blades.communityReviewCount,
-        speedNorm: blades.speedNorm,
-        controlNorm: blades.controlNorm,
-        ttrMin: blades.ttrMin,
-        ttrMax: blades.ttrMax,
-        priceEur: blades.priceEur,
-        isManuallyCurated: blades.isManuallyCurated,
-        description: blades.description,
-        communityDescription: blades.communityDescription,
+        slug: blades.slug,
+        imageUrl: blades.imageUrl,
+        reviewCount: blades.communityReviewCount,
+        manufacturer: manufacturers.name,
       })
       .from(blades)
-      .where(drizzleSql`LOWER(${blades.name}) LIKE LOWER(${"%" + productName + "%"})`)
-      .limit(1);
+      .innerJoin(manufacturers, eq(blades.manufacturerId, manufacturers.id))
+      .where(inArray(blades.id, bladeIds)),
+    db
+      .select({
+        id: rubbers.id,
+        name: rubbers.name,
+        slug: rubbers.slug,
+        imageUrl: rubbers.imageUrl,
+        reviewCount: rubbers.communityReviewCount,
+        manufacturer: manufacturers.name,
+      })
+      .from(rubbers)
+      .innerJoin(manufacturers, eq(rubbers.manufacturerId, manufacturers.id))
+      .where(inArray(rubbers.id, rubberIds)),
+  ]);
 
-    if (rows.length === 0) {
-      return isEn
-        ? `No blade found matching "${productName}".`
-        : `Kein Holz gefunden mit Name "${productName}".`;
-    }
+  const bladeById = new Map(bladeMeta.map((b) => [b.id, b]));
+  const rubberById = new Map(rubberMeta.map((r) => [r.id, r]));
 
-    const b = rows[0]!;
-    const speed = b.communitySpeed ?? b.speedNorm ?? "k.A.";
-    const control = b.communityControl ?? b.controlNorm ?? "k.A.";
-    const weight = b.weightMin && b.weightMax ? `${b.weightMin}-${b.weightMax}g` : "k.A.";
-
-    return [
-      `Holz: ${b.name}`,
-      `Aufbau: ${b.composition ?? "k.A."} | Steifigkeit: ${b.stiffness ?? "k.A."} | Furniere: ${b.layers ?? "k.A."} | Gewicht: ${weight}`,
-      `Speed: ${speed} | Kontrolle: ${control} (Community, ${b.communityReviewCount ?? 0} Reviews) [${formatPopularity(b.communityReviewCount, b.isManuallyCurated)}]`,
-      `PREIS: ${formatPrice(b.priceEur)}`,
-      b.description ? `\nHersteller-Info: ${b.description.substring(0, 400)}` : "",
-      b.communityDescription ? `\nSpieler-Fazit: ${b.communityDescription.substring(0, 300)}` : "",
-    ].filter(Boolean).join("\n");
-  }
-
-  // rubber
-  const rows = await db
-    .select({
-      name: rubbers.name,
-      type: rubbers.type,
-      hardnessMin: rubbers.hardnessMin,
-      hardnessMax: rubbers.hardnessMax,
-      topsheetCharacter: rubbers.topsheetCharacter,
-      communitySpeed: rubbers.communitySpeed,
-      communitySpin: rubbers.communitySpin,
-      communityControl: rubbers.communityControl,
-      communityReviewCount: rubbers.communityReviewCount,
-      ttrMin: rubbers.ttrMin,
-      ttrMax: rubbers.ttrMax,
-      priceEur: rubbers.priceEur,
-      isManuallyCurated: rubbers.isManuallyCurated,
-      description: rubbers.description,
-      communityDescription: rubbers.communityDescription,
-    })
-    .from(rubbers)
-    .where(drizzleSql`LOWER(${rubbers.name}) LIKE LOWER(${"%" + productName + "%"})`)
-    .limit(1);
-
-  if (rows.length === 0) {
-    return isEn
-      ? `No rubber found matching "${productName}".`
-      : `Kein Belag gefunden mit Name "${productName}".`;
-  }
-
-  const r = rows[0]!;
-  const hardness = formatHardnessDetail(r.hardnessMin, r.hardnessMax);
-  const topsheet = r.topsheetCharacter ? formatTopsheet(r.topsheetCharacter) : "k.A.";
-  const typeLabel = r.type === "smooth" ? "Noppen innen" : r.type === "long_pips" ? "Lange Noppen" : r.type === "short_pips" ? "Kurze Noppen" : "Anti";
-
-  return [
-    `Belag: ${r.name} (${typeLabel})`,
-    `Härte: ${hardness} | Topsheet: ${topsheet}`,
-    `Speed: ${r.communitySpeed ?? "k.A."} | Spin: ${r.communitySpin ?? "k.A."} | Kontrolle: ${r.communityControl ?? "k.A."} (${r.communityReviewCount ?? 0} Reviews) [${formatPopularity(r.communityReviewCount, r.isManuallyCurated)}]`,
-    `PREIS: ${formatPrice(r.priceEur)}`,
-    r.description ? `\nHersteller-Info: ${r.description.substring(0, 400)}` : "",
-    r.communityDescription ? `\nSpieler-Fazit: ${r.communityDescription.substring(0, 300)}` : "",
-  ].filter(Boolean).join("\n");
-}
-
-function formatHardnessDetail(min: number | null, max: number | null): string {
-  if (!min) return "k.A.";
-  return max ? `${min}-${max}°` : `${min}°`;
-}
-
-// ---------------------------------------------------------------------------
-// Tool: query_rubber_for_side
-// ---------------------------------------------------------------------------
-
-async function runQueryRubberForSide(
-  ttr: number,
-  side: "vh" | "rh",
-  desiredCharacter: string,
-  lang: "de" | "en",
-): Promise<string> {
-  const clamped = Math.max(1000, Math.min(1700, ttr));
-  const isEn = lang === "en";
-
-  // Character → Filter-Logik
-  let rubberTypeFilter;
-  let scoreColumn;
-  let minSpeed: number | null = null;
-  let maxSpeed: number | null = null;
-
-  switch (desiredCharacter) {
-    case "spin_offensive":
-      rubberTypeFilter = eq(rubbers.type, "smooth");
-      scoreColumn = synergies.scoreOffensive;
-      minSpeed = 7;
-      break;
-    case "control_allround":
-      rubberTypeFilter = eq(rubbers.type, "smooth");
-      scoreColumn = synergies.scoreAllround;
-      break;
-    case "control_defensive":
-      rubberTypeFilter = eq(rubbers.type, "smooth");
-      scoreColumn = synergies.scoreDefensive;
-      maxSpeed = 7;
-      break;
-    case "long_pips":
-      rubberTypeFilter = eq(rubbers.type, "long_pips");
-      scoreColumn = synergies.scoreMaterial;
-      break;
-    case "short_pips":
-      rubberTypeFilter = eq(rubbers.type, "short_pips");
-      scoreColumn = synergies.scoreMaterial;
-      break;
-    case "anti":
-      rubberTypeFilter = eq(rubbers.type, "anti");
-      scoreColumn = synergies.scoreMaterial;
-      break;
-    default:
-      rubberTypeFilter = eq(rubbers.type, "smooth");
-      scoreColumn = synergies.scoreAllround;
-  }
-
-  const conditions = [
-    gte(synergies.ttrTarget, clamped - 250),
-    lte(synergies.ttrTarget, clamped + 250),
-    rubberTypeFilter,
-  ];
-
-  const rows = await db
-    .select({
-      rubberName: rubbers.name,
-      rubberHardnessMin: rubbers.hardnessMin,
-      rubberHardnessMax: rubbers.hardnessMax,
-      rubberTopsheet: rubbers.topsheetCharacter,
-      communitySpeed: rubbers.communitySpeed,
-      communitySpin: rubbers.communitySpin,
-      communityControl: rubbers.communityControl,
-      score: scoreColumn,
-    })
-    .from(synergies)
-    .innerJoin(rubbers, eq(synergies.rubberId, rubbers.id))
-    .where(and(...conditions))
-    .orderBy(desc(scoreColumn))
-    .limit(100);
-
-  // Deduplizieren nach Belag-Name, Speed-Filter anwenden
-  const seen = new Set<string>();
-  const filtered = rows
-    .filter((r) => {
-      const s = parseFloat(String(r.communitySpeed ?? 7));
-      if (minSpeed !== null && s < minSpeed) return false;
-      if (maxSpeed !== null && s > maxSpeed) return false;
-      return true;
-    })
-    .filter((r) => {
-      if (seen.has(r.rubberName)) return false;
-      seen.add(r.rubberName);
-      return true;
-    })
-    .slice(0, 3);
-
-  if (filtered.length === 0) {
-    return isEn
-      ? `DB_KEIN_ERGEBNIS (TTR: ${ttr}, side: ${side}, character: ${desiredCharacter})`
-      : `DB_KEIN_ERGEBNIS (TTR: ${ttr}, Seite: ${side}, Charakter: ${desiredCharacter})`;
-  }
-
-  const sideLabel = isEn ? (side === "vh" ? "Forehand" : "Backhand") : (side === "vh" ? "Vorhand" : "Rückhand");
-  const charLabel = isEn ? desiredCharacter : {
-    spin_offensive: "Spin/Offensiv", control_allround: "Control/Allround",
-    control_defensive: "Control/Defensiv", long_pips: "Lange Noppen",
-    short_pips: "Kurze Noppen", anti: "Anti",
-  }[desiredCharacter] ?? desiredCharacter;
-
-  const header = isEn
-    ? `Rubber recommendations for ${sideLabel} (TTR ${ttr}, ${charLabel}):`
-    : `Belag-Empfehlungen für ${sideLabel} (TTR ${ttr}, ${charLabel}):`;
-
-  const lines = filtered.map((r, i) => {
-    const hardness = formatHardnessDetail(r.rubberHardnessMin, r.rubberHardnessMax);
-    const topsheet = r.rubberTopsheet ? formatTopsheet(r.rubberTopsheet) : "";
-    const speed = r.communitySpeed ?? "-";
-    const spin = r.communitySpin ?? "-";
-    const control = r.communityControl ?? "-";
-    return `${i + 1}. ${r.rubberName} | Härte: ${hardness} | ${topsheet ? `Topsheet: ${topsheet} | ` : ""}Speed: ${speed}, Spin: ${spin}, Kontrolle: ${control}`;
-  });
-
-  return `${header}\n${lines.join("\n")}`;
-}
-
-// ---------------------------------------------------------------------------
-// Tool: query_by_problem
-// ---------------------------------------------------------------------------
-
-async function runQueryByProblem(
-  ttr: number,
-  playStyle: string,
-  problem: string,
-  lang: "de" | "en",
-): Promise<string> {
-  const clamped = Math.max(1000, Math.min(1700, ttr));
-
-  // Problem → Score-Priorität und Mindest-Werte
-  const problemConfig: Record<string, {
-    orderByCol: keyof typeof synergies;
-    descriptionDE: string;
-    descriptionEN: string;
-    minControl?: number;
-    minSpin?: number;
-    minTempo?: number;
-    maxTempo?: number;
-  }> = {
-    block_unstable: {
-      orderByCol: "controlReserve",
-      descriptionDE: "Block instabil, Setup mit hoher Kontrollreserve gesucht",
-      descriptionEN: "Unstable block, looking for high control reserve",
-      minControl: 70,
-    },
-    topspin_falls: {
-      orderByCol: "spinPotential",
-      descriptionDE: "Topspin fällt zu kurz, Setup mit höherem Spin-Potenzial gesucht",
-      descriptionEN: "Topspin falls short, higher spin potential needed",
-      minSpin: 75,
-    },
-    no_spin: {
-      orderByCol: "spinPotential",
-      descriptionDE: "Kein Spin, spinstarkes Setup gesucht",
-      descriptionEN: "No spin, high-spin setup needed",
-      minSpin: 80,
-    },
-    too_slow: {
-      orderByCol: "tempoMatch",
-      descriptionDE: "Zu langsam, schnelleres Setup gesucht",
-      descriptionEN: "Too slow, faster setup needed",
-      minTempo: 60,
-    },
-    too_fast: {
-      orderByCol: "controlReserve",
-      descriptionDE: "Zu schnell, kontrollierbareres Setup gesucht",
-      descriptionEN: "Too fast, more controllable setup needed",
-      minControl: 75,
-      maxTempo: 70,
-    },
-    tired_arm: {
-      orderByCol: "controlReserve",
-      descriptionDE: "Müder Arm, leichteres, weiches Setup gesucht",
-      descriptionEN: "Tired arm, lighter, softer setup needed",
-      minControl: 70,
-      maxTempo: 65,
-    },
+  // Live-Preise + Direkt-Affiliate-Links aus shop_products
+  type ShopProductInfo = {
+    shopDomain: string;
+    affiliateUrl: string | null;
+    priceEur: number | null;
+    inStock: boolean | null;
   };
-
-  const config = problemConfig[problem];
-  if (!config) {
-    return `DB_KEIN_ERGEBNIS (unbekanntes Problem: ${problem})`;
+  const shopProductMap = new Map<string, ShopProductInfo[]>();
+  const spRows = await db
+    .select({
+      productType: shopProducts.productType,
+      productId: shopProducts.productId,
+      affiliateUrl: shopProducts.affiliateUrl,
+      shopProductUrl: shopProducts.shopProductUrl,
+      latestPrice: shopProducts.latestPrice,
+      latestInStock: shopProducts.latestInStock,
+      shopDomain: shops.domain,
+    })
+    .from(shopProducts)
+    .innerJoin(shops, eq(shopProducts.shopId, shops.id))
+    .where(
+      and(
+        eq(shopProducts.isActive, true),
+        or(
+          and(eq(shopProducts.productType, "blade"), inArray(shopProducts.productId, bladeIds)),
+          and(eq(shopProducts.productType, "rubber"), inArray(shopProducts.productId, rubberIds)),
+        ),
+      ),
+    );
+  for (const r of spRows) {
+    const key = `${r.productType}:${r.productId}`;
+    if (!shopProductMap.has(key)) shopProductMap.set(key, []);
+    shopProductMap.get(key)!.push({
+      shopDomain: r.shopDomain,
+      affiliateUrl: r.affiliateUrl ?? r.shopProductUrl,
+      priceEur: r.latestPrice != null ? Number(r.latestPrice) : null,
+      inStock: r.latestInStock ?? null,
+    });
   }
 
-  const validStyle = ["offensive_topspin", "allround", "defensive", "material"].includes(playStyle)
-    ? playStyle as "offensive_topspin" | "allround" | "defensive" | "material"
-    : "allround";
+  function buildProduct(type: "blade" | "rubber", id: number, name: string, manufacturer: string, slug: string | null, imageUrl: string | null, reviewCount: number | null) {
+    const ref = { type, id, name, manufacturer };
+    const liveByDomain = new Map(
+      (shopProductMap.get(`${type}:${id}`) ?? []).map((s) => [s.shopDomain, s]),
+    );
+    const shopLinks = getShopLinks(ref).map((l) => {
+      const live = liveByDomain.get(l.shop.domain);
+      return {
+        id: l.shop.id,
+        name: l.shop.name,
+        url: buildTrackingUrl({ shopId: l.shop.id, productType: type, productId: id }),
+        affiliateActive: l.affiliateActive,
+        priceEur: live?.priceEur ?? null,
+        inStock: live?.inStock ?? null,
+        hasDirectLink: !!live?.affiliateUrl,
+      };
+    });
+    return { type, id, name, manufacturer, slug, imageUrl, reviewCount: reviewCount ?? 0, shops: shopLinks };
+  }
 
-  const scoreColumn =
-    validStyle === "offensive_topspin" ? synergies.scoreOffensive
-    : validStyle === "defensive"       ? synergies.scoreDefensive
-    : validStyle === "material"        ? synergies.scoreMaterial
-    : synergies.scoreAllround;
-
-  // Primäre Sortierung nach problem-spezifischer Spalte
-  const orderCol =
-    config.orderByCol === "controlReserve" ? synergies.controlReserve
-    : config.orderByCol === "spinPotential" ? synergies.spinPotential
-    : synergies.tempoMatch;
-
-  const conditions = [
-    gte(synergies.ttrTarget, clamped - 300),
-    lte(synergies.ttrTarget, clamped + 300),
-    eq(synergies.playStyleTarget, validStyle),
-    eq(rubbers.type, "smooth"),
-    bladeAvailabilityFilter,
-    rubberAvailabilityFilter,
-  ];
-
-  const rows = await db
-    .select(SETUP_ROW_SELECT)
-    .from(synergies)
-    .innerJoin(blades, eq(synergies.bladeId, blades.id))
-    .innerJoin(rubbers, eq(synergies.rubberId, rubbers.id))
-    .where(and(...conditions))
-    .orderBy(desc(orderCol))
-    .limit(120);
-
-  // Zusätzliche Filter nach Problem-Schwellwerten
-  const filtered = (rows as SetupRow[]).filter((r) => {
-    if (config.minControl !== undefined && (r.controlReserve ?? 0) < config.minControl) return false;
-    if (config.minSpin !== undefined && (r.spinPotential ?? 0) < config.minSpin) return false;
-    if (config.minTempo !== undefined && (r.tempoMatch ?? 0) < config.minTempo) return false;
-    if (config.maxTempo !== undefined && (r.tempoMatch ?? 100) > config.maxTempo) return false;
-    return true;
+  return rows.map((row, i) => {
+    const bm = bladeById.get(row.bladeId);
+    const rm = rubberById.get(row.rubberId);
+    const products = [];
+    if (bm) products.push(buildProduct("blade", bm.id, bm.name, bm.manufacturer, bm.slug, bm.imageUrl, bm.reviewCount));
+    if (rm) products.push(buildProduct("rubber", rm.id, rm.name, rm.manufacturer, rm.slug, rm.imageUrl, rm.reviewCount));
+    return {
+      index: i + 1,
+      title: `${bm?.name ?? row.bladeName} mit ${rm?.name ?? row.rubberName}`,
+      description: "",
+      synergyScore: row.synergyScore,
+      // Holz-Konstruktion mitliefern (Frontend kann Specs zeigen, Eval prüft Carbon)
+      bladeComposition: row.bladeComposition,
+      bladeStiffness: row.bladeStiffness,
+      products,
+    };
   });
-
-  const problemCoverage = await loadAffiliateCoverage(
-    [...new Set(filtered.map((r) => r.bladeId))],
-    [...new Set(filtered.map((r) => r.rubberId))],
-  );
-  const filteredAndSorted = sortByConfidenceAdjustedScore(filtered, problemCoverage);
-  const diverse = diversify(filteredAndSorted, 3, true);
-
-  if (diverse.length === 0) {
-    return lang === "de"
-      ? `DB_KEIN_ERGEBNIS, Kein Setup mit passendem Profil für "${problem}" gefunden. Versuche query_setups mit dem Spielstil.`
-      : `DB_KEIN_ERGEBNIS, No setup found for problem "${problem}". Try query_setups with the play style.`;
-  }
-
-  const styleLabel = lang === "en" ? config.descriptionEN : config.descriptionDE;
-  return rowsToText(diverse, ttr, styleLabel, lang);
 }
 
 // ---------------------------------------------------------------------------
-// Agentic Loop
+// Stufe 1: Triangulation (Haiku, forced structured output)
 // ---------------------------------------------------------------------------
+
+interface TriageResult {
+  done: boolean;
+  question: string | null;
+  profile: BeraterProfile;
+}
+
+async function triangulate(
+  client: Anthropic,
+  messages: Anthropic.MessageParam[],
+  lang: "de" | "en",
+): Promise<TriageResult> {
+  const res = await client.messages.create({
+    model: config.modelHintergrund,
+    max_tokens: 700,
+    system: [{ type: "text", text: triageSystem(lang), cache_control: { type: "ephemeral" } }],
+    tools: [TRIANGULATION_TOOL],
+    tool_choice: { type: "tool", name: "submit_triage" },
+    messages,
+  });
+  const block = res.content.find(
+    (b): b is Anthropic.ToolUseBlock => b.type === "tool_use",
+  );
+  if (!block) {
+    // Sollte durch tool_choice nie passieren, defensiver Fallback
+    return {
+      done: false,
+      question: lang === "en"
+        ? "Could you tell me your TTR, play style and what is bugging you?"
+        : "Sag mir kurz deinen TTR, deinen Spielstil und was dich gerade stört?",
+      profile: emptyProfile(),
+    };
+  }
+  const input = block.input as TriageResult;
+  return {
+    done: !!input.done,
+    question: input.question ?? null,
+    profile: { ...emptyProfile(), ...(input.profile ?? {}) },
+  };
+}
+
+function emptyProfile(): BeraterProfile {
+  return {
+    ttr: null, play_style: null, budget_max_eur: null, technique_solid: null,
+    training_systematic: null, aspiration: null, wants_carbon: null, problem: null,
+    rubber_type: null, change_scope: null, current_blade: null,
+    current_rubber_vh: null, current_rubber_rh: null,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Aktuelles Setup gegen DB prüfen (für Ehrlichkeits-Notiz)
+// ---------------------------------------------------------------------------
+
+/** Prüft ob ein genanntes Produkt in der DB existiert (fuzzy, ilike). */
+async function productExistsInDb(name: string, type: "blade" | "rubber"): Promise<boolean> {
+  const variants = [name];
+  const sp = name.indexOf(" ");
+  if (sp > 0) variants.push(name.slice(sp + 1)); // ohne Marken-Präfix
+  for (const v of variants) {
+    const clean = v.trim();
+    if (clean.length < 3) continue;
+    const rows = type === "blade"
+      ? await db.select({ id: blades.id }).from(blades).where(ilike(blades.name, `%${clean}%`)).limit(1)
+      : await db.select({ id: rubbers.id }).from(rubbers).where(ilike(rubbers.name, `%${clean}%`)).limit(1);
+    if (rows.length > 0) return true;
+  }
+  return false;
+}
+
+/** Liefert die im Profil genannten aktuellen Produkte die NICHT in der DB sind. */
+async function findUnknownCurrent(profile: BeraterProfile): Promise<string[]> {
+  const checks: Array<{ name: string; type: "blade" | "rubber" }> = [];
+  if (profile.current_blade) checks.push({ name: profile.current_blade, type: "blade" });
+  if (profile.current_rubber_vh) checks.push({ name: profile.current_rubber_vh, type: "rubber" });
+  if (profile.current_rubber_rh && profile.current_rubber_rh !== profile.current_rubber_vh)
+    checks.push({ name: profile.current_rubber_rh, type: "rubber" });
+  const unknown: string[] = [];
+  for (const c of checks) {
+    if (!(await productExistsInDb(c.name, c.type))) unknown.push(c.name);
+  }
+  return unknown;
+}
+
+// ---------------------------------------------------------------------------
+// Stufe 3: Erklärung (Sonnet, Prosa um die gewählten Setups)
+// ---------------------------------------------------------------------------
+
+function profileSummary(profile: BeraterProfile): string {
+  const styleLabel: Record<string, string> = {
+    offensive_topspin: "offensiv/Topspin",
+    allround: "Allround",
+    defensive: "defensiv",
+    material: "Material",
+  };
+  const parts: string[] = [];
+  parts.push(`TTR ${profile.ttr ?? "unbekannt"}`);
+  parts.push(`Stil ${profile.play_style ? styleLabel[profile.play_style] : "unbekannt"}`);
+  if (profile.problem) parts.push(`Problem: ${profile.problem}`);
+  if (profile.technique_solid != null)
+    parts.push(`Technik sitzt: ${profile.technique_solid ? "ja" : "eher wackelig"}`);
+  if (profile.training_systematic != null)
+    parts.push(`Training: ${profile.training_systematic ? "systematisch/Trainer" : "eher nur Punktspiele"}`);
+  if (profile.aspiration)
+    parts.push(`Wunsch: ${profile.aspiration === "faster" ? "mehr Tempo" : profile.aspiration === "more_control" ? "mehr Kontrolle" : "Niveau halten"}`);
+  if (profile.budget_max_eur != null) parts.push(`Budget: max ${profile.budget_max_eur} EUR`);
+  else parts.push("Budget: egal/offen");
+  if (profile.change_scope) {
+    const scope: Record<string, string> = {
+      full: "komplettes neues Setup",
+      blade_only: "nur Holz tauschen",
+      rubber_only: "nur Beläge tauschen",
+      rubber_vh_rh: "Beläge VH/RH getrennt",
+    };
+    parts.push(`Wunsch-Umfang: ${scope[profile.change_scope]}`);
+  }
+  const cur: string[] = [];
+  if (profile.current_blade) cur.push(`Holz ${profile.current_blade}`);
+  if (profile.current_rubber_vh) cur.push(`VH ${profile.current_rubber_vh}`);
+  if (profile.current_rubber_rh) cur.push(`RH ${profile.current_rubber_rh}`);
+  if (cur.length) parts.push(`Aktuelles Setup: ${cur.join(", ")}`);
+  return parts.join(" | ");
+}
+
+async function explainRecommendation(
+  client: Anthropic,
+  profile: BeraterProfile,
+  retrieval: RetrievalResult,
+  forced: boolean,
+  unknownCurrent: string[],
+  lang: "de" | "en",
+): Promise<string> {
+  const setupsText = rowsToText(retrieval.rows, profile.ttr ?? 1300, retrieval.styleName, lang);
+  const forcedNote = forced
+    ? "\n\nHINWEIS: Die Info vom Spieler ist unvollständig (max. Fragen ausgereizt). Formulier mit ehrlichem Vorbehalt, z.B. 'mit dem was ich von dir habe würde ich X nehmen, sicherer wäre es mit mehr Detail'."
+    : "";
+  const aspNote = profile.aspiration === "faster"
+    ? "\n\nHINWEIS: Der Spieler will bewusst ein ambitionierteres, schnelleres Setup. Ich habe absichtlich etwas oberhalb seines aktuellen Niveaus gesucht. Sag das aktiv."
+    : "";
+  const fallbackNote = retrieval.status === "fallback"
+    ? "\n\nHINWEIS: Für den exakten Stil gab es keine perfekten Treffer, das sind die nächstbesten Allround-Annäherungen. Erwähne das kurz und ehrlich."
+    : "";
+  const gapNote = unknownCurrent.length > 0
+    ? `\n\nHINWEIS: Das aktuelle Material des Spielers (${unknownCurrent.join(", ")}) ist NICHT in unserer Datenbank. Sag das einmal ehrlich am Anfang (z.B. "dein aktuelles Holz kenne ich nicht im Detail"), und stütz die Empfehlung dann auf TTR, Stil und Problem.`
+    : "";
+
+  const context = lang === "en"
+    ? `Player profile: ${profileSummary(profile)}\n\nThe database picked these setups (already in this order, Setup 1 is the best, all within budget):\n\n${setupsText}\n\nWrite the consultation now: one honest diagnosis sentence, then the setups in order with a short why each, then a closing tip naming Setup 1.${forcedNote}${aspNote}${fallbackNote}${gapNote}`
+    : `Spieler-Profil: ${profileSummary(profile)}\n\nDie Datenbank hat diese Setups ausgewählt (bereits in dieser Reihenfolge, Setup 1 ist das beste, alle im Budget):\n\n${setupsText}\n\nSchreib jetzt die Beratung: ein ehrlicher Diagnose-Satz, dann die Setups in Reihenfolge mit je kurzer Begründung, dann ein Abschluss-Tipp der Setup 1 nennt.${forcedNote}${aspNote}${fallbackNote}${gapNote}`;
+
+  const res = await client.messages.create({
+    model: config.modelBerater,
+    max_tokens: 1000,
+    system: [{ type: "text", text: explainSystem(lang), cache_control: { type: "ephemeral" } }],
+    messages: [{ role: "user", content: context }],
+  });
+  return res.content
+    .filter((b): b is Anthropic.TextBlock => b.type === "text")
+    .map((b) => b.text)
+    .join("");
+}
+
+/** Erklärung wenn KEINE Setups (Anfänger unter TTR 900, oder DB leer). */
+async function explainNoSetups(
+  client: Anthropic,
+  profile: BeraterProfile,
+  reason: "beginner" | "empty",
+  lang: "de" | "en",
+): Promise<string> {
+  const context = reason === "beginner"
+    ? (lang === "en"
+        ? `Player profile: ${profileSummary(profile)}\n\nThis player is below TTR 900, our database starts at 1000. Do NOT name database products. Give exactly one beginner tip: a pre-assembled bat in the 30-60 EUR range (Stiga, Donic, Butterfly entry line), and invite them back in 3-6 months once they have a club rating. Short and warm.`
+        : `Spieler-Profil: ${profileSummary(profile)}\n\nDieser Spieler liegt unter TTR 900, unsere Datenbank startet bei 1000. Nenne KEINE Datenbank-Produkte. Gib genau einen Einsteiger-Tipp: ein vorkonfektionierter Schläger in der 30-60-Euro-Klasse (Stiga, Donic, Butterfly Einstieg), und lad ihn in 3-6 Monaten wieder ein, wenn er einen Vereins-TTR hat. Kurz und warm.`)
+    : (lang === "en"
+        ? `Player profile: ${profileSummary(profile)}\n\nThe database returned NO matching setups for this profile and budget. Be honest about it, do not invent products, and use the dialog box to ask one clarifying question that could open up results (e.g. budget, style).`
+        : `Spieler-Profil: ${profileSummary(profile)}\n\nDie Datenbank hat für dieses Profil und Budget KEINE passenden Setups gefunden. Sag das ehrlich, erfinde keine Produkte, und nutz das Antwort-Feld für eine gezielte Rückfrage die Ergebnisse öffnen könnte (z.B. Budget, Stil).`);
+
+  const res = await client.messages.create({
+    model: config.modelBerater,
+    max_tokens: 600,
+    system: [{ type: "text", text: explainSystem(lang), cache_control: { type: "ephemeral" } }],
+    messages: [{ role: "user", content: context }],
+  });
+  return res.content
+    .filter((b): b is Anthropic.TextBlock => b.type === "text")
+    .map((b) => b.text)
+    .join("");
+}
+
+
 
 // ─── Rate-Limiting gegen Cost-DoS auf der Anthropic-API ──────────────────
 //
@@ -1489,20 +1122,23 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Rate-Limit-Check (IP-Hash, keine Klartext-IP gespeichert)
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-    req.headers.get("x-real-ip") ??
-    "unknown";
-  const ipHash = createHash("sha256").update(ip).digest("hex");
-  const limit = checkRateLimit(ipHash);
-  if (!limit.allowed) {
-    return NextResponse.json(
-      {
-        error: `Du hast das ${limit.reason}e Limit erreicht. Versuch's später nochmal.`,
-      },
-      { status: 429 },
-    );
+  // Rate-Limit-Check (IP-Hash, keine Klartext-IP gespeichert).
+  // In Dev (lokale Evals) übersprungen, sonst blockt der Limiter die Test-Suite.
+  if (process.env.NODE_ENV === "production") {
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+      req.headers.get("x-real-ip") ??
+      "unknown";
+    const ipHash = createHash("sha256").update(ip).digest("hex");
+    const limit = checkRateLimit(ipHash);
+    if (!limit.allowed) {
+      return NextResponse.json(
+        {
+          error: `Du hast das ${limit.reason}e Limit erreicht. Versuch's später nochmal.`,
+        },
+        { status: 429 },
+      );
+    }
   }
 
   try {
@@ -1514,267 +1150,52 @@ export async function POST(req: NextRequest) {
     const lang: "de" | "en" = rawLang === "en" ? "en" : "de";
     const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-    let current: Anthropic.MessageParam[] = messages.map((m) => ({
+    const history: Anthropic.MessageParam[] = messages.map((m) => ({
       role: m.role,
       content: m.content,
     }));
 
-    // Agentic Loop (max. 6 Runden, mehr Tools = mehr mögliche Calls)
-    // Modell aus config.ts — Sonnet 4.7 für Kosteneffizienz (Mai 2026).
-    for (let i = 0; i < 6; i++) {
-      const response = await client.messages.create({
-        model: config.modelBerater,
-        max_tokens: 1200,
-        system: getSystemPrompt(lang),
-        tools: TOOLS,
-        messages: current,
-      });
+    // ─── Stufe 1: Triangulation (billiges Modell) ────────────────────────
+    // Turn-Cap im Code: nach 2 Berater-Rückfragen wird zwingend empfohlen.
+    const assistantTurns = messages.filter((m) => m.role === "assistant").length;
+    const forceRecommend = assistantTurns >= 2;
 
-      if (response.stop_reason === "end_turn") {
-        const text = response.content
-          .filter((b): b is Anthropic.TextBlock => b.type === "text")
-          .map((b) => b.text)
-          .join("");
+    const triage = await triangulate(client, history, lang);
+    const done = triage.done || forceRecommend;
 
-        // Produkte erkennen
-        const detected = await detectProducts(text);
-
-        // Bild-URLs + Review-Counts + Slugs pro Produkt nachladen
-        const bladeIds = detected.filter((p) => p.type === "blade").map((p) => p.id);
-        const rubberIds = detected.filter((p) => p.type === "rubber").map((p) => p.id);
-
-        const [bladeMeta, rubberMeta] = await Promise.all([
-          bladeIds.length > 0
-            ? db.select({
-                id: blades.id,
-                slug: blades.slug,
-                imageUrl: blades.imageUrl,
-                reviewCount: blades.communityReviewCount,
-              }).from(blades).where(inArray(blades.id, bladeIds))
-            : Promise.resolve([]),
-          rubberIds.length > 0
-            ? db.select({
-                id: rubbers.id,
-                slug: rubbers.slug,
-                imageUrl: rubbers.imageUrl,
-                reviewCount: rubbers.communityReviewCount,
-              }).from(rubbers).where(inArray(rubbers.id, rubberIds))
-            : Promise.resolve([]),
-        ]);
-
-        const bladeMetaById = new Map(bladeMeta.map((b) => [b.id, b]));
-        const rubberMetaById = new Map(rubberMeta.map((r) => [r.id, r]));
-
-        // Live-Preise + Direkt-Affiliate-Links aus shop_products laden
-        // (per Feed-Sync täglich aktualisiert, derzeit nur tischtennis.biz).
-        type ShopProductInfo = {
-          shopDomain: string;
-          affiliateUrl: string | null;
-          priceEur: number | null;
-          inStock: boolean | null;
-        };
-        const shopProductMap = new Map<string, ShopProductInfo[]>(); // key = `${type}:${id}`
-        if (bladeIds.length + rubberIds.length > 0) {
-          const spRows = await db
-            .select({
-              productType: shopProducts.productType,
-              productId: shopProducts.productId,
-              affiliateUrl: shopProducts.affiliateUrl,
-              shopProductUrl: shopProducts.shopProductUrl,
-              latestPrice: shopProducts.latestPrice,
-              latestInStock: shopProducts.latestInStock,
-              shopDomain: shops.domain,
-            })
-            .from(shopProducts)
-            .innerJoin(shops, eq(shopProducts.shopId, shops.id))
-            .where(
-              and(
-                eq(shopProducts.isActive, true),
-                or(
-                  bladeIds.length > 0
-                    ? and(eq(shopProducts.productType, "blade"), inArray(shopProducts.productId, bladeIds))
-                    : undefined,
-                  rubberIds.length > 0
-                    ? and(eq(shopProducts.productType, "rubber"), inArray(shopProducts.productId, rubberIds))
-                    : undefined,
-                ),
-              ),
-            );
-          for (const r of spRows) {
-            const key = `${r.productType}:${r.productId}`;
-            if (!shopProductMap.has(key)) shopProductMap.set(key, []);
-            shopProductMap.get(key)!.push({
-              shopDomain: r.shopDomain,
-              affiliateUrl: r.affiliateUrl ?? r.shopProductUrl,
-              priceEur: r.latestPrice != null ? Number(r.latestPrice) : null,
-              inStock: r.latestInStock ?? null,
-            });
-          }
-        }
-
-        const enrichProduct = (p: typeof detected[0]) => {
-          const meta = p.type === "blade" ? bladeMetaById.get(p.id) : rubberMetaById.get(p.id);
-          const ref = { type: p.type, id: p.id, name: p.name, manufacturer: p.manufacturer };
-          const liveByDomain = new Map(
-            (shopProductMap.get(`${p.type}:${p.id}`) ?? []).map((s) => [s.shopDomain, s]),
-          );
-          const shops = getShopLinks(ref).map((l) => {
-            const live = liveByDomain.get(l.shop.domain);
-            return {
-              id: l.shop.id,
-              name: l.shop.name,
-              url: buildTrackingUrl({ shopId: l.shop.id, productType: p.type, productId: p.id }),
-              affiliateActive: l.affiliateActive,
-              priceEur: live?.priceEur ?? null,
-              inStock: live?.inStock ?? null,
-              hasDirectLink: !!live?.affiliateUrl,
-            };
-          });
-          return {
-            type: p.type,
-            id: p.id,
-            name: p.name,
-            manufacturer: p.manufacturer,
-            slug: meta?.slug ?? null,
-            imageUrl: meta?.imageUrl ?? null,
-            reviewCount: meta?.reviewCount ?? 0,
-            shops,
-          };
-        };
-
-        const products = detected.map(enrichProduct);
-
-        // Setup-Gruppen erkennen + Synergie-Scores pro Setup nachladen
-        let setupGroups = groupProductsBySetup(text, detected);
-
-        // Fallback: Wenn keine Setup-Marker erkannt wurden, NUR dann eine
-        // generische Karte zeigen, wenn die Produkt-Liste klar ein einzelnes
-        // Setup ergibt (max 1 Holz + max 2 Beläge). Sonst lieber gar keine
-        // Karte als ein zusammengewürfeltes Frankenstein-Setup aus mehreren
-        // Empfehlungen oder disclaimten Produkten.
-        //
-        // Zusatz-Schutz: Wenn der Berater Unsicherheits-Marker im Text hat
-        // ("oder ähnliches", "z.B.", "aus dem Gedächtnis", "DB liefert keine",
-        // "kein ... empfehlen") sind die Produkte nur HYPOTHETISCHE Beispiele.
-        // Dann KEINE Fallback-Karte bauen.
-        const uncertaintyMarkers = [
-          /oder ähnlich/i,
-          /aus dem ged[äa]chtnis/i,
-          /\bz\.?\s?b\.?\b/i,
-          /kein\w* (carbon|holz|belag).{0,40}empfehlen/i,
-          /db liefert (hier )?keine/i,
-          /db\W?ergebniss\w* fehlen/i,
-          /will dir kein/i,
-          /\bvergleichbar\b/i,
-        ];
-        const textHasUncertainty = uncertaintyMarkers.some((re) => re.test(text));
-
-        if (setupGroups.length === 0 && detected.length > 0 && !textHasUncertainty) {
-          const bladeCount = detected.filter((p) => p.type === "blade").length;
-          const rubberCount = detected.filter((p) => p.type === "rubber").length;
-          const looksLikeSingleSetup = bladeCount <= 1 && rubberCount <= 2 && detected.length <= 3;
-          if (looksLikeSingleSetup) {
-            setupGroups = [{
-              index: 1,
-              title: "Empfohlenes Setup",
-              description: "Aus den im Text genannten Produkten zusammengestellt.",
-              products: detected,
-            }];
-          }
-        }
-        // Sonst: setupGroups bleibt leer, UI zeigt nur den Beratertext.
-
-        const setups = await Promise.all(setupGroups.map(async (g) => {
-          const blade = g.products.find((p) => p.type === "blade");
-          const setupRubbers = g.products.filter((p) => p.type === "rubber");
-
-          // Synergie-Score: Durchschnitt der Holz×Belag-Synergien dieses Setups
-          let synergyScore: number | null = null;
-          if (blade && setupRubbers.length > 0) {
-            const synRows = await db.select({
-              score: synergies.synergyScore,
-            }).from(synergies).where(
-              and(
-                eq(synergies.bladeId, blade.id),
-                inArray(synergies.rubberId, setupRubbers.map((r) => r.id)),
-              ),
-            );
-            if (synRows.length > 0) {
-              const avg = synRows.reduce((s, r) => s + r.score, 0) / synRows.length;
-              synergyScore = Math.round(avg);
-            }
-          }
-
-          return {
-            index: g.index,
-            title: g.title,
-            description: g.description,
-            synergyScore,
-            products: g.products.map(enrichProduct),
-          };
-        }));
-
-        return NextResponse.json({ text, products, setups });
-      }
-
-      if (response.stop_reason === "tool_use") {
-        const toolBlocks = response.content.filter(
-          (b): b is Anthropic.ToolUseBlock => b.type === "tool_use",
-        );
-
-        const toolResults: Anthropic.ToolResultBlockParam[] = [];
-
-        for (const toolBlock of toolBlocks) {
-          let toolResult = "";
-
-          if (toolBlock.name === "query_setups") {
-            const inp = toolBlock.input as {
-              ttr: number;
-              play_style: string;
-              rubber_type?: string;
-              prefer_known_brands?: boolean;
-              budget_max_eur?: number;
-              max_results?: number;
-            };
-            toolResult = await runQuerySetups(
-              inp.ttr,
-              inp.play_style,
-              inp.rubber_type,
-              inp.prefer_known_brands ?? true,
-              inp.max_results ?? 3,
-              lang,
-              inp.budget_max_eur,
-            );
-          } else if (toolBlock.name === "get_product_details") {
-            const inp = toolBlock.input as { product_type: "blade" | "rubber"; product_name: string };
-            toolResult = await runGetProductDetails(inp.product_type, inp.product_name, lang);
-          } else if (toolBlock.name === "query_rubber_for_side") {
-            const inp = toolBlock.input as { ttr: number; side: "vh" | "rh"; desired_character: string };
-            toolResult = await runQueryRubberForSide(inp.ttr, inp.side, inp.desired_character, lang);
-          } else if (toolBlock.name === "query_by_problem") {
-            const inp = toolBlock.input as { ttr: number; play_style: string; problem: string };
-            toolResult = await runQueryByProblem(inp.ttr, inp.play_style, inp.problem, lang);
-          }
-
-          toolResults.push({
-            type: "tool_result",
-            tool_use_id: toolBlock.id,
-            content: toolResult,
-          });
-        }
-
-        current = [
-          ...current,
-          { role: "assistant", content: response.content },
-          { role: "user", content: toolResults },
-        ];
-      }
+    if (!done) {
+      // Berater fragt nach. Das ist die ganze Antwort, keine Setups.
+      const question = triage.question ??
+        (lang === "en"
+          ? "Could you tell me a bit more so I can recommend something solid?"
+          : "Sag mir noch kurz etwas mehr, damit ich dir was Solides empfehlen kann?");
+      return NextResponse.json({ text: question, setups: [] });
     }
 
-    const fallback = lang === "en"
-      ? "Sorry, I couldn't generate a response."
-      : "Entschuldigung, konnte keine Antwort generieren.";
-    return NextResponse.json({ text: fallback });
+    const profile = triage.profile;
+
+    // ─── Anfänger-Sonderfall (TTR < 900) ─────────────────────────────────
+    if ((profile.ttr ?? 1300) < 900) {
+      const text = await explainNoSetups(client, profile, "beginner", lang);
+      return NextResponse.json({ text, setups: [] });
+    }
+
+    // ─── Stufe 2: Retrieval (reiner Code) ────────────────────────────────
+    const retrieval = await retrieveSetups(profile, lang);
+
+    if (retrieval.rows.length === 0) {
+      const text = await explainNoSetups(client, profile, "empty", lang);
+      return NextResponse.json({ text, setups: [] });
+    }
+
+    // ─── Stufe 3: Anreicherung + Erklärung (parallel) ────────────────────
+    const unknownCurrent = await findUnknownCurrent(profile);
+    const [setups, text] = await Promise.all([
+      enrichSetups(retrieval.rows),
+      explainRecommendation(client, profile, retrieval, forceRecommend && !triage.done, unknownCurrent, lang),
+    ]);
+
+    return NextResponse.json({ text, setups });
 
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
@@ -1783,3 +1204,4 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: detail }, { status: 500 });
   }
 }
+
