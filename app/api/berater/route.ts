@@ -17,7 +17,7 @@ import { createHash } from "crypto";
 import Anthropic from "@anthropic-ai/sdk";
 import { db } from "@/db";
 import { blades, rubbers, synergies, manufacturers, shopProducts, shops } from "@/db/schema";
-import { and, desc, eq, gte, inArray, lte, or } from "drizzle-orm";
+import { and, desc, eq, gte, ilike, inArray, lte, not, or } from "drizzle-orm";
 import { getShopLinks, buildTrackingUrl } from "@/lib/affiliate";
 import { config } from "@/lib/config";
 
@@ -50,6 +50,7 @@ interface BeraterProfile {
   technique_solid: boolean | null;
   training_systematic: boolean | null;
   aspiration: "faster" | "more_control" | "same_level" | null;
+  wants_carbon: boolean | null;
   problem: string | null;
   rubber_type: "inverted" | "long_pips" | "short_pips" | "anti" | null;
   change_scope: "full" | "blade_only" | "rubber_only" | "rubber_vh_rh" | null;
@@ -108,6 +109,10 @@ const TRIANGULATION_TOOL: Anthropic.Tool = {
             enum: ["faster", "more_control", "same_level", null],
             description: "Will der Spieler schneller (faster), mehr Kontrolle (more_control), oder gleiches Niveau halten (same_level)?",
           },
+          wants_carbon: {
+            type: ["boolean", "null"],
+            description: "true NUR wenn der Spieler explizit ein Carbon-/Composite-Holz will oder den 'Schritt zum Carbon-Holz' nennt. Sonst null.",
+          },
           problem: {
             type: ["string", "null"],
             description: "Das konkrete Problem in einem Satz, z.B. 'Topspin gegen Unterschnitt fällt ins Netz'.",
@@ -128,7 +133,7 @@ const TRIANGULATION_TOOL: Anthropic.Tool = {
         },
         required: [
           "ttr", "play_style", "budget_max_eur", "technique_solid",
-          "training_systematic", "aspiration", "problem", "rubber_type",
+          "training_systematic", "aspiration", "wants_carbon", "problem", "rubber_type",
           "change_scope", "current_blade", "current_rubber_vh", "current_rubber_rh",
         ],
       },
@@ -139,19 +144,20 @@ const TRIANGULATION_TOOL: Anthropic.Tool = {
 
 const TRIAGE_SYSTEM_DE = `Du bist der Aufnahme-Schritt eines Tischtennis-Beraters. Deine EINZIGE Aufgabe: aus dem Gespräch herauslesen, ob genug Info für eine seriöse Setup-Empfehlung da ist, und das Profil strukturiert füllen. Du empfiehlst NICHT selbst, du formulierst keine Produkte, du rufst nur submit_triage auf.
 
-Damit done=true gesetzt werden darf, MÜSSEN diese drei Dinge klar sein:
+Damit done=true gesetzt werden darf, MÜSSEN diese vier Dinge klar sein:
 1. TTR (oder grobe Selbst-Einordnung, dann schätz die TTR)
 2. Spielstil (offensiv_topspin, allround, defensiv, material)
 3. Ein konkretes Problem ODER ein konkretes Ziel (nicht "spiele schlecht", sondern eine erkennbare Situation oder ein klarer Wunsch)
+4. Budget: entweder eine Zahl, oder der Spieler hat ausdrücklich gesagt dass es egal ist. Wenn Budget noch NIE thematisiert wurde, MUSST du danach fragen, sonst empfiehlst du am Geldbeutel vorbei. (budget_max_eur = Zahl, oder null wenn ausdrücklich egal.)
 
-Stark erwünscht, aber nicht zwingend für done=true:
-- Budget (oder ein explizites "egal")
+Stark erwünscht, erhöht die Qualität:
 - technique_solid: sitzt die Technik (ehrliche Selbsteinschätzung)
 - training_systematic: Trainer/Struktur vs. nur Punktspiele
 
 Regeln für die Rückfrage (done=false):
-- Stell GENAU EINE Rückfrage, warm und konkret, maximal 2 Aspekte zusammen.
-- Frag nach dem wichtigsten was noch fehlt. Reihenfolge der Wichtigkeit: erst Problem/Ziel, dann Trainingskontext+Technik (zusammen in einer Frage), dann Budget.
+- Stell GENAU EINE Rückfrage, aber BÜNDELE die fehlenden Punkte darin (2-3 Aspekte in einem natürlichen Satz). Du hast nur wenige Runden, verschwende keine.
+- Bündel-Beispiel wenn Problem schon klar ist: "Trainierst du eher systematisch mit Trainer oder freie Punktspiele, sitzt dein Topspin grundsätzlich, und hast du ein Budget im Kopf?" Das deckt Technik, Training UND Budget in einer Frage ab.
+- Wenn das Problem noch unklar ist: erst danach fragen (plus Budget gleich mitnehmen).
 - Stell NIE eine Frage die im Gespräch schon beantwortet wurde.
 - Beim allerersten Turn mit dünner Eingabe ("spiele schlecht", "will besser werden"): immer zuerst zurückfragen.
 
@@ -559,11 +565,33 @@ function effectiveTtr(profile: BeraterProfile): number {
   return base;
 }
 
+/** Defensiv-Hölzer am Namen erkennen, um sie bei Offensiv/Allround-Anfragen
+ *  auszuschließen (manche DEF-Hölzer haben dennoch eine offensive Synergie-Zeile). */
+const notDefensiveBlade = and(
+  not(ilike(blades.name, "%def%")),
+  not(ilike(blades.name, "%defensiv%")),
+  not(ilike(blades.name, "%defender%")),
+  not(ilike(blades.name, "%defplay%")),
+  not(ilike(blades.name, "%chop%")),
+);
+
+/** Carbon-/Composite-Konstruktion erkennen (composition-Textfeld). */
+const carbonBladeFilter = or(
+  ilike(blades.composition, "%carbon%"),
+  ilike(blades.composition, "%alc%"),
+  ilike(blades.composition, "%zlc%"),
+  ilike(blades.composition, "%zlf%"),
+  ilike(blades.composition, "%aramid%"),
+  ilike(blades.composition, "%arylat%"),
+  ilike(blades.composition, "%aramid-carbon%"),
+);
+
 async function retrieveStandard(
   ttr: number,
   validStyle: "offensive_topspin" | "allround" | "defensive",
   preferKnownBrands: boolean,
   budgetMaxEur: number | undefined,
+  wantsCarbon: boolean,
   lang: "de" | "en",
 ): Promise<RetrievalResult> {
   const clamped = Math.max(1000, Math.min(1700, ttr));
@@ -571,6 +599,8 @@ async function retrieveStandard(
     validStyle === "offensive_topspin" ? synergies.scoreOffensive
     : validStyle === "defensive" ? synergies.scoreDefensive
     : synergies.scoreAllround;
+  // Offensiv/Allround-Spieler sollen keine DEF-Hölzer sehen.
+  const styleBladeGuard = validStyle === "defensive" ? undefined : notDefensiveBlade;
 
   const rows = await db
     .select(SETUP_ROW_SELECT)
@@ -585,6 +615,8 @@ async function retrieveStandard(
         eq(rubbers.type, "smooth"),
         bladeAvailabilityFilter,
         rubberAvailabilityFilter,
+        styleBladeGuard,
+        wantsCarbon ? carbonBladeFilter : undefined,
       ),
     )
     .orderBy(desc(scoreColumn))
@@ -621,6 +653,7 @@ async function retrieveStandard(
         eq(rubbers.type, "smooth"),
         bladeAvailabilityFilter,
         rubberAvailabilityFilter,
+        styleBladeGuard,
       ),
     )
     .orderBy(desc(synergies.scoreAllround))
@@ -714,7 +747,7 @@ async function retrieveSetups(profile: BeraterProfile, lang: "de" | "en"): Promi
       ? profile.play_style
       : "allround";
 
-  return retrieveStandard(ttr, validStyle, preferKnown, budget, lang);
+  return retrieveStandard(ttr, validStyle, preferKnown, budget, profile.wants_carbon === true, lang);
 }
 
 // ---------------------------------------------------------------------------
@@ -829,6 +862,9 @@ async function enrichSetups(rows: SetupRow[]) {
       title: `${bm?.name ?? row.bladeName} mit ${rm?.name ?? row.rubberName}`,
       description: "",
       synergyScore: row.synergyScore,
+      // Holz-Konstruktion mitliefern (Frontend kann Specs zeigen, Eval prüft Carbon)
+      bladeComposition: row.bladeComposition,
+      bladeStiffness: row.bladeStiffness,
       products,
     };
   });
@@ -881,9 +917,44 @@ async function triangulate(
 function emptyProfile(): BeraterProfile {
   return {
     ttr: null, play_style: null, budget_max_eur: null, technique_solid: null,
-    training_systematic: null, aspiration: null, problem: null, rubber_type: null,
-    change_scope: null, current_blade: null, current_rubber_vh: null, current_rubber_rh: null,
+    training_systematic: null, aspiration: null, wants_carbon: null, problem: null,
+    rubber_type: null, change_scope: null, current_blade: null,
+    current_rubber_vh: null, current_rubber_rh: null,
   };
+}
+
+// ---------------------------------------------------------------------------
+// Aktuelles Setup gegen DB prüfen (für Ehrlichkeits-Notiz)
+// ---------------------------------------------------------------------------
+
+/** Prüft ob ein genanntes Produkt in der DB existiert (fuzzy, ilike). */
+async function productExistsInDb(name: string, type: "blade" | "rubber"): Promise<boolean> {
+  const variants = [name];
+  const sp = name.indexOf(" ");
+  if (sp > 0) variants.push(name.slice(sp + 1)); // ohne Marken-Präfix
+  for (const v of variants) {
+    const clean = v.trim();
+    if (clean.length < 3) continue;
+    const rows = type === "blade"
+      ? await db.select({ id: blades.id }).from(blades).where(ilike(blades.name, `%${clean}%`)).limit(1)
+      : await db.select({ id: rubbers.id }).from(rubbers).where(ilike(rubbers.name, `%${clean}%`)).limit(1);
+    if (rows.length > 0) return true;
+  }
+  return false;
+}
+
+/** Liefert die im Profil genannten aktuellen Produkte die NICHT in der DB sind. */
+async function findUnknownCurrent(profile: BeraterProfile): Promise<string[]> {
+  const checks: Array<{ name: string; type: "blade" | "rubber" }> = [];
+  if (profile.current_blade) checks.push({ name: profile.current_blade, type: "blade" });
+  if (profile.current_rubber_vh) checks.push({ name: profile.current_rubber_vh, type: "rubber" });
+  if (profile.current_rubber_rh && profile.current_rubber_rh !== profile.current_rubber_vh)
+    checks.push({ name: profile.current_rubber_rh, type: "rubber" });
+  const unknown: string[] = [];
+  for (const c of checks) {
+    if (!(await productExistsInDb(c.name, c.type))) unknown.push(c.name);
+  }
+  return unknown;
 }
 
 // ---------------------------------------------------------------------------
@@ -931,6 +1002,7 @@ async function explainRecommendation(
   profile: BeraterProfile,
   retrieval: RetrievalResult,
   forced: boolean,
+  unknownCurrent: string[],
   lang: "de" | "en",
 ): Promise<string> {
   const setupsText = rowsToText(retrieval.rows, profile.ttr ?? 1300, retrieval.styleName, lang);
@@ -943,10 +1015,13 @@ async function explainRecommendation(
   const fallbackNote = retrieval.status === "fallback"
     ? "\n\nHINWEIS: Für den exakten Stil gab es keine perfekten Treffer, das sind die nächstbesten Allround-Annäherungen. Erwähne das kurz und ehrlich."
     : "";
+  const gapNote = unknownCurrent.length > 0
+    ? `\n\nHINWEIS: Das aktuelle Material des Spielers (${unknownCurrent.join(", ")}) ist NICHT in unserer Datenbank. Sag das einmal ehrlich am Anfang (z.B. "dein aktuelles Holz kenne ich nicht im Detail"), und stütz die Empfehlung dann auf TTR, Stil und Problem.`
+    : "";
 
   const context = lang === "en"
-    ? `Player profile: ${profileSummary(profile)}\n\nThe database picked these setups (already in this order, Setup 1 is the best, all within budget):\n\n${setupsText}\n\nWrite the consultation now: one honest diagnosis sentence, then the setups in order with a short why each, then a closing tip naming Setup 1.${forcedNote}${aspNote}${fallbackNote}`
-    : `Spieler-Profil: ${profileSummary(profile)}\n\nDie Datenbank hat diese Setups ausgewählt (bereits in dieser Reihenfolge, Setup 1 ist das beste, alle im Budget):\n\n${setupsText}\n\nSchreib jetzt die Beratung: ein ehrlicher Diagnose-Satz, dann die Setups in Reihenfolge mit je kurzer Begründung, dann ein Abschluss-Tipp der Setup 1 nennt.${forcedNote}${aspNote}${fallbackNote}`;
+    ? `Player profile: ${profileSummary(profile)}\n\nThe database picked these setups (already in this order, Setup 1 is the best, all within budget):\n\n${setupsText}\n\nWrite the consultation now: one honest diagnosis sentence, then the setups in order with a short why each, then a closing tip naming Setup 1.${forcedNote}${aspNote}${fallbackNote}${gapNote}`
+    : `Spieler-Profil: ${profileSummary(profile)}\n\nDie Datenbank hat diese Setups ausgewählt (bereits in dieser Reihenfolge, Setup 1 ist das beste, alle im Budget):\n\n${setupsText}\n\nSchreib jetzt die Beratung: ein ehrlicher Diagnose-Satz, dann die Setups in Reihenfolge mit je kurzer Begründung, dann ein Abschluss-Tipp der Setup 1 nennt.${forcedNote}${aspNote}${fallbackNote}${gapNote}`;
 
   const res = await client.messages.create({
     model: config.modelBerater,
@@ -1047,20 +1122,23 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Rate-Limit-Check (IP-Hash, keine Klartext-IP gespeichert)
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-    req.headers.get("x-real-ip") ??
-    "unknown";
-  const ipHash = createHash("sha256").update(ip).digest("hex");
-  const limit = checkRateLimit(ipHash);
-  if (!limit.allowed) {
-    return NextResponse.json(
-      {
-        error: `Du hast das ${limit.reason}e Limit erreicht. Versuch's später nochmal.`,
-      },
-      { status: 429 },
-    );
+  // Rate-Limit-Check (IP-Hash, keine Klartext-IP gespeichert).
+  // In Dev (lokale Evals) übersprungen, sonst blockt der Limiter die Test-Suite.
+  if (process.env.NODE_ENV === "production") {
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+      req.headers.get("x-real-ip") ??
+      "unknown";
+    const ipHash = createHash("sha256").update(ip).digest("hex");
+    const limit = checkRateLimit(ipHash);
+    if (!limit.allowed) {
+      return NextResponse.json(
+        {
+          error: `Du hast das ${limit.reason}e Limit erreicht. Versuch's später nochmal.`,
+        },
+        { status: 429 },
+      );
+    }
   }
 
   try {
@@ -1111,9 +1189,10 @@ export async function POST(req: NextRequest) {
     }
 
     // ─── Stufe 3: Anreicherung + Erklärung (parallel) ────────────────────
+    const unknownCurrent = await findUnknownCurrent(profile);
     const [setups, text] = await Promise.all([
       enrichSetups(retrieval.rows),
-      explainRecommendation(client, profile, retrieval, forceRecommend && !triage.done, lang),
+      explainRecommendation(client, profile, retrieval, forceRecommend && !triage.done, unknownCurrent, lang),
     ]);
 
     return NextResponse.json({ text, setups });

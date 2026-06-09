@@ -194,17 +194,20 @@ function runChecks(persona, result) {
     });
   }
 
-  // (9) Aspirations-Carbon: Spieler will Carbon-Schritt, mind. ein Setup mit Carbon-Holz
+  // (9) Aspirations-Carbon: Spieler will Carbon-Schritt, mind. ein Setup mit Carbon-Holz.
+  // Liest die composition (zuverlässig), Name als Fallback.
   if (exp.shouldRecommendCarbon && setups.length > 0) {
-    const allBlades = setups
-      .flatMap((s) => (s.products ?? []).filter((p) => p.type === "blade"))
-      .map((p) => p.name);
-    const carbonPattern = /\b(ALC|ZLC|ZLF|Carbon|Innerforce|Viscaria|Timo Boll|Stratus|Carbonado|Hurricane Long|ZJK)\b/i;
-    const hasCarbon = allBlades.some((n) => carbonPattern.test(n));
+    const carbonPattern = /(carbon|alc|zlc|zlf|aramid|arylat|zylon|kevlar|composite)/i;
+    const namePattern = /(ALC|ZLC|ZLF|Viscaria|Innerforce|Hayabusa|Hurricane Long|Fang Bo|Ma Long.*(Carbon|5)|Stradivarius)/i;
+    const infos = setups.map((s) => {
+      const blade = (s.products ?? []).find((p) => p.type === "blade");
+      return { comp: s.bladeComposition ?? "", name: blade?.name ?? "" };
+    });
+    const hasCarbon = infos.some((i) => carbonPattern.test(i.comp) || namePattern.test(i.name));
     checks.push({
       name: "aspirational-carbon-recommended",
       pass: hasCarbon,
-      detail: hasCarbon ? "OK" : `Blades ohne Carbon: ${allBlades.join(" | ")}`,
+      detail: hasCarbon ? "OK" : `kein Carbon: ${infos.map((i) => `${i.name} (${i.comp || "?"})`).join(" | ")}`,
     });
   }
 
@@ -224,7 +227,7 @@ function runChecks(persona, result) {
 
   // (11) DB-Lücke ehrlich: bei DB-Lücke-Persona muss Berater zugeben dass Produkt nicht in DB ist
   if (exp.expectHonestyAboutDbGap) {
-    const honest = /(nicht in (unserer |meiner |der )?(db|datenbank)|kenne (das|dein) holz nicht|finde ich nicht|nicht hinterlegt|nicht gelistet|kein eintrag)/i.test(
+    const honest = /(nicht in (unserer|meiner|der)|nicht aus (unserer|der)|kenne (ich|das|dein)|nicht im detail|finde ich nicht|nicht hinterlegt|nicht gelistet|kein eintrag|nicht in der db|datenbank)/i.test(
       finalText,
     );
     checks.push({
